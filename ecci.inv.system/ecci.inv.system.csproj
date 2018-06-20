@@ -6738,7 +6738,7 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="Products.aspx" />
-    <Content Include="PurchaseOrderService.asmx" />
+    <Content Include="purchasing\WebService\PurchaseOrderService.asmx" />
     <Content Include="purchasing\index.aspx" />
     <Content Include="purchasing\supplier.aspx" />
     <Content Include="purchasing\items.aspx" />
@@ -7482,8 +7482,8 @@
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PurchaseOrder.cs" />
-    <Compile Include="PurchaseOrderService.asmx.cs">
+    <Compile Include="purchasing\CS\PurchaseOrder.cs" />
+    <Compile Include="purchasing\WebService\PurchaseOrderService.asmx.cs">
       <DependentUpon>PurchaseOrderService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>

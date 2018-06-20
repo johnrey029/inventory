@@ -18,8 +18,42 @@
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Purchasing
 </asp:Content>
-<asp:Content ID="HS1" ContentPlaceHolderID="head" runat="server">
-     
+<asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
+     <script type="text/javascript">  
+     $(document).ready(function () {  
+         $.ajax({  
+             type: "POST",  
+             dataType: "json",  
+             url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
+             success: function (data) {
+                 var datatableVariable = $('#manageTable').DataTable({
+                     data: data,
+                     columns: [
+                         { 'data': 'purchaseOrder' },
+                         { 'data': 'suppName' },
+                         { 'data': 'brandName' },
+                         { 'data': 'quantity'
+                             //'data': 'feesPaid', 'render': function (feesPaid) {
+                             //    return ' ' + feesPaid;
+                             //}
+                         },
+                         { 'data': 'purchaseDate' },
+                         { 'data': 'deliverDate' },
+                         { 'data': 'poStatus' }
+                         //{
+                         //    'data': 'dateOfBirth', 'render': function (date) {
+                         //        var date = new Date(parseInt(date.substr(6)));
+                         //        var month = date.getMonth() + 1;
+                         //        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                         //    }
+                         //}
+                     ]
+                 });
+             }
+        });  
+  
+  });  
+ </script>  
 </asp:Content>
 
  <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -125,5 +159,5 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->--%>
-
+    
 </asp:Content>   
