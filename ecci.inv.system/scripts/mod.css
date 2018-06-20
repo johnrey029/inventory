@@ -1,0 +1,19 @@
+.demo-card-wide.mdl-card {
+  width: 33%;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../img/admission.jpg') center/content-box;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+.ad-left {
+  float: left;
+}
+
+.ad-right {
+  float: right;
+  margin-left: 10px;
+}

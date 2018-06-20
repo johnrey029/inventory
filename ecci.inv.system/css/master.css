@@ -1,0 +1,17 @@
+﻿*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI';
+    background: #fff; 
+    overflow: hidden;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #262626;
+    display: block;
+    width: 250px;
+    height: 100%;
+    transition: .5s;
+}
