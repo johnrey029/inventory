@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dashboard
+    Dashboard <!--commit sample -->
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
