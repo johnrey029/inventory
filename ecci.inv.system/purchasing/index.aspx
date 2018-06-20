@@ -19,6 +19,7 @@
     Purchasing
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="head" runat="server">
+     
 </asp:Content>
 
  <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -78,9 +79,9 @@
                 <th>Staus</th>
               </tr>
               </thead>
-                <tbody>
+<%--                <tbody>
               <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-               </tbody>
+               </tbody>--%>
             </table>
           </div>
             

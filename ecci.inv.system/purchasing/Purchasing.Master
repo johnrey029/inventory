@@ -103,12 +103,12 @@
 <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
-    
+<%--    
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap.min.js"></script>--%>
   <script type="text/javascript">
       $(document).ready(function () {
             $(".js-example-placeholder-single").select2({
@@ -122,12 +122,47 @@
             $('.alert-error').hide();
         });
     </script>
-    
+  <%--  
   <script type="text/javascript">
     $(document).ready(function() {
         $('#manageTable').DataTable();
     });
-  </script>
+  </script>--%>
+   <script type="text/javascript">  
+     $(document).ready(function () {  
+         $.ajax({  
+             type: "POST",  
+             dataType: "json",  
+             url: "..//PurchaseOrderService.asmx/GetPurchaseOrder",
+             success: function (data) {
+                 var datatableVariable = $('#manageTable').DataTable({
+                     data: data,
+                     columns: [
+                         { 'data': 'purchaseOrder' },
+                         { 'data': 'suppName' },
+                         { 'data': 'brandName' },
+                         { 'data': 'quantity'
+                             //'data': 'feesPaid', 'render': function (feesPaid) {
+                             //    return ' ' + feesPaid;
+                             //}
+                         },
+                         { 'data': 'purchaseDate' },
+                         { 'data': 'deliverDate' },
+                         { 'data': 'poStatus' }
+                         //{
+                         //    'data': 'dateOfBirth', 'render': function (date) {
+                         //        var date = new Date(parseInt(date.substr(6)));
+                         //        var month = date.getMonth() + 1;
+                         //        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                         //    }
+                         //}
+                     ]
+                 });
+             }
+        });  
+  
+  });  
+ </script>  
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">

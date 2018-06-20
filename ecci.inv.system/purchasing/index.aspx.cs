@@ -54,7 +54,7 @@ namespace ecci.inv.system.purchasing
                 }
               //  table.Append("</tbody>");
                 //table.Append("</table>");
-                PlaceHolder1.Controls.Add(new Literal { Text = table.ToString() });
+               // PlaceHolder1.Controls.Add(new Literal { Text = table.ToString() });
                 con._dr.Close();
                 con.CloseConnection();
             }
