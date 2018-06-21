@@ -26,7 +26,7 @@ namespace ecci.inv.system.purchasing.WebService
             var orders = new List<ManageItem>();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT suppcode, brandname, description FROM items ORDERBY itemsid ASC");
+            @"SELECT suppcode, brandname, description FROM items ORDER BY itemsid ASC");
             while (con._dr.Read())
             {
 

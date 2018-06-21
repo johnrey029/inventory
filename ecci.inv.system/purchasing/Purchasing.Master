@@ -35,10 +35,10 @@
   <!-- icheck -->
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="../assets/plugins/iCheck/all.css"/>
-    
+<%--    
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.min.css"/>--%>
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -179,7 +179,7 @@
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li class="treeview" id="mainUserNav">
+            <li class="treeview" id="mainSupNav">
             <a href="#"><i class="fa fa-users"></i>
               <span>Supplier</span>
               <span class="pull-right-container">
@@ -188,11 +188,11 @@
             </a>
                 <ul class="treeview-menu">
     <%--              <?php if(in_array('createUser', $user_permission)): ?>--%>
-                  <li id="createUserNav"><a href="supplier.aspx"><i class="fa fa-plus"></i> Add Supplier</a></li>
+                  <li id="addSupNav"><a href="supplier.aspx"><i class="fa fa-plus"></i> Add Supplier</a></li>
     <%--              <?php endif; ?>--%>
 
     <%--              <?php if(in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-                  <li id="manageUserNav"><a href="#"><i class="fa fa-circle-o"></i> Manage Supplier</a></li>
+                  <li id="manageSupNav"><a href="#"><i class="fa fa-circle-o"></i> Manage Supplier</a></li>
     <%--            <?php endif; ?>--%>
                 </ul>
           </li>
@@ -220,7 +220,7 @@
 
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
-            <li id="brandNav">
+            <li id="stockNav">
               <a href="stock.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Stock Input</span>
               </a>

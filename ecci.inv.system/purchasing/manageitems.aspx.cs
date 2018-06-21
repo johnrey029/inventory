@@ -11,12 +11,17 @@ namespace ecci.inv.system.purchasing
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            if (!IsPostBack)
+            {
+                lbError.Visible = false;
+                //load();
+            }
         }
 
-        protected void btnAddItems_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("items.aspx");
-        }
+        //protected void btnAddItems_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("items.aspx");
+        //}
     }
 }

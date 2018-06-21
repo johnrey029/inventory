@@ -13,15 +13,6 @@ namespace ecci.inv.system.purchasing {
     public partial class manageitems {
         
         /// <summary>
-        /// btnAddItems control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddItems;
-        
-        /// <summary>
         /// lbError control.
         /// </summary>
         /// <remarks>

@@ -19,7 +19,8 @@
                  });
              }
         });  
-  
+         $("#mainItemNav").addClass('active');
+         $("#manageItemsNav").addClass('active');
   });  
  </script>  
 </asp:Content>
@@ -29,11 +30,11 @@
   <section class="content-header">
     <h1>
       Manage
-      <small>Orders</small>
+      <small>Items</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Orders</li>
+      <li class="active">Items</li>
     </ol>
   </section>
 
@@ -59,10 +60,11 @@
           <a href="<%--<?php echo base_url('products/create') ?>AddProducts.aspx" class="btn btn-primary">Add Product</a>
           <br /> <br />--%>
 <%--        <?php endif; ?>--%>
-
+          <a href="items.aspx" class="btn btn-primary">Add Items</a>
+            <br /> <br />
         <div class="box">
           <div class="box-header">
-            <asp:Button ID="btnAddItems" runat="server" Text="Add Items" CssClass="btn btn-primary" OnClick="btnAddItems_Click"/>
+            <h3 class="box-title">List of Items</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
