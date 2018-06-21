@@ -73,23 +73,23 @@ namespace ecci.inv.system.purchasing
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
         }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            load();
-        }
-
-        protected void btnBack_Click(object sender, EventArgs e)
-        {
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-            Response.Redirect("index.aspx");
-        }
         private void clear()
         {
             tbBrand.Text = "";
             tbDescription.Text = "";
             ddSupplier.SelectedIndex = -1;
+        }
+
+        protected void btnSave_Click1(object sender, EventArgs e)
+        {
+            load();
+        }
+
+        protected void btnBack_Click1(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+           "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+            Response.Redirect("index.aspx");
         }
     }
     

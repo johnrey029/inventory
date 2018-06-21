@@ -7,7 +7,7 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",  
-             url: "../purchasing/WebService/ManageItemService.asmx/GetItem",
+             url: "WebService/ManageItemService.asmx/GetItem",
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
@@ -15,17 +15,6 @@
                          { 'data': 'suppCode' },
                          { 'data': 'brandName' },
                          { 'data': 'description' }
-                         //{ 'data': 'quantity'},
-                         //{ 'data': 'purchaseDate' },
-                         //{ 'data': 'deliverDate' },
-                         //{ 'data': 'poStatus' }
-                         //{
-                         //    'data': 'dateOfBirth', 'render': function (date) {
-                         //        var date = new Date(parseInt(date.substr(6)));
-                         //        var month = date.getMonth() + 1;
-                         //        return date.getDate() + "/" + month + "/" + date.getFullYear();
-                         //    }
-                         //}
                      ]
                  });
              }

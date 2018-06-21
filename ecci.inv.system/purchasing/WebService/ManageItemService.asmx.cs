@@ -15,7 +15,7 @@ namespace ecci.inv.system.purchasing.WebService
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class ManageItemService : System.Web.Services.WebService
     {
         DBConnection con;
@@ -24,32 +24,25 @@ namespace ecci.inv.system.purchasing.WebService
         {
             con = new DBConnection();
             var orders = new List<ManageItem>();
-            try
+            con.OpenConection();
+            con._dr = con.DataReader(
+            @"SELECT suppcode, brandname, description FROM items ORDERBY itemsid ASC");
+            while (con._dr.Read())
             {
-                con.OpenConection();
-                con._dr = con.DataReader(
-                @"SELECT suppcode, brandname, description FROM items");
-                while (con._dr.Read())
+
+                var order = new ManageItem
                 {
+                    suppCode = con._dr["suppcode"].ToString(),
+                    brandName = con._dr["brandname"].ToString(),
+                    description = con._dr["description"].ToString()
+                };
 
-                    var order = new ManageItem
-                    { 
-                        suppCode = con._dr["suppcode"].ToString(),
-                        brandName = con._dr["brandname"].ToString(),
-                        description = con._dr["description"].ToString()
-                    };
-
-                    orders.Add(order);
-                }
-                con._dr.Close();
-                con.CloseConnection();
-                var js = new JavaScriptSerializer();
-                Context.Response.Write(js.Serialize(orders));
+                orders.Add(order);
             }
-            catch (Exception ex)
-            {
-
-            }
+            con._dr.Close();
+            con.CloseConnection();
+            var js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(orders));
         }
     }
 }
