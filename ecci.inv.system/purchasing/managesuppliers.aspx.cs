@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ecci.inv.system.purchasing
 {
-    public partial class manageitems : System.Web.UI.Page
+    public partial class managesuppliers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,10 +17,5 @@ namespace ecci.inv.system.purchasing
                 lbError.Visible = false;
             }
         }
-
-        //protected void btnAddItems_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("items.aspx");
-        //}
     }
 }

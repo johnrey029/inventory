@@ -192,7 +192,7 @@
     <%--              <?php endif; ?>--%>
 
     <%--              <?php if(in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-                  <li id="manageSupNav"><a href="#"><i class="fa fa-circle-o"></i> Manage Supplier</a></li>
+                  <li id="manageSupNav"><a href="managesuppliers.aspx"><i class="fa fa-circle-o"></i> Manage Supplier</a></li>
     <%--            <?php endif; ?>--%>
                 </ul>
           </li>
