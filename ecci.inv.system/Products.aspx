@@ -88,7 +88,6 @@
         <h4 class="modal-title">Remove Product</h4>
       </div>
 
-      <form role="form" action="#<%--<?php echo base_url('products/remove') ?>--%>" method="post" id="removeForm">
         <div class="modal-body">
           <p>Do you really want to remove?</p>
         </div>
@@ -96,7 +95,6 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
-      </form>
 
 
     </div><!-- /.modal-content -->

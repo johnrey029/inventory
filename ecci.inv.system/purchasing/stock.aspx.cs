@@ -38,7 +38,7 @@ namespace ecci.inv.system.purchasing
                 ddSupplier.Items.Insert(0, new ListItem("Select Supplier", "-1"));
                 con.CloseConnection();
             }
-            catch (Exception ex)
+            catch//(Exception ex)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
@@ -74,7 +74,7 @@ namespace ecci.inv.system.purchasing
                     ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));
                     con.CloseConnection();
                 }
-                catch (Exception ex)
+                catch
                 {
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
@@ -104,7 +104,7 @@ namespace ecci.inv.system.purchasing
                     }
                     con.CloseConnection();
                 }
-                catch (Exception ex)
+                catch
                 {
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");

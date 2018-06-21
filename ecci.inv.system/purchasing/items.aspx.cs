@@ -34,7 +34,7 @@ namespace ecci.inv.system.purchasing
                 ddSupplier.Items.Insert(0, new ListItem("Select Supplier", "-1"));
                 con.CloseConnection();
             }
-            catch(Exception ex)
+            catch//(Exception ex)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
@@ -63,7 +63,7 @@ namespace ecci.inv.system.purchasing
                 }
                 clear();
             }
-            catch (Exception ex)
+            catch//(Exception ex)
             {
                 //lbError.ForeColor = System.Drawing.Color.Red;
                 //lbError.Text = "Error: " + ex.Message;
