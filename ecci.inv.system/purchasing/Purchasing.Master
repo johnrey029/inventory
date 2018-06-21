@@ -235,10 +235,10 @@
    --%>         
 
         
-          <li><a href="..//Products.aspx"><i class="fa fa-user-o"></i> <span>Profile</span></a></li>
+          <li><a href="#"><i class="fa fa-user-o"></i> <span>Profile</span></a></li>
 
         <!-- user permission info -->
-        <li><a href="..//default.aspx"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
+        <li><a href="..//Default.aspx"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
 
       </ul>
     </section>
