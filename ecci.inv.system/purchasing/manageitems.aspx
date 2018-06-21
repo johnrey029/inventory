@@ -1,55 +1,41 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.purchasing.index" MasterPageFile="~/purchasing/Purchasing.Master"  %>
-
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>--%>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="manageitems.aspx.cs" Inherits="ecci.inv.system.purchasing.manageitems" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dashboard
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
-     <script type="text/javascript">  
+    <script type="text/javascript">  
      $(document).ready(function () {  
          $.ajax({  
              type: "POST",  
              dataType: "json",  
-             url: "../purchasing/WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
+             url: "../purchasing/WebService/ManageItemService.asmx/GetItem",
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
-                         { 'data': 'purchaseOrder' },
-                         { 'data': 'suppName' },
+                         { 'data': 'suppCode' },
                          { 'data': 'brandName' },
-                         { 'data': 'quantity'},
-                         { 'data': 'purchaseDate' },
-                         { 'data': 'deliverDate' },
-                         { 'data': 'poStatus' }
+                         { 'data': 'description' }
+                         //{ 'data': 'quantity'},
+                         //{ 'data': 'purchaseDate' },
+                         //{ 'data': 'deliverDate' },
+                         //{ 'data': 'poStatus' }
+                         //{
+                         //    'data': 'dateOfBirth', 'render': function (date) {
+                         //        var date = new Date(parseInt(date.substr(6)));
+                         //        var month = date.getMonth() + 1;
+                         //        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                         //    }
+                         //}
                      ]
                  });
              }
-         });
-
-         $("#dashboardMainMenu").addClass('active');
-     });
-
+        });  
+  
+  });  
  </script>  
 </asp:Content>
-
- <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     
-  <div class="content-wrapper">
+<asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -87,7 +73,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Inbound Orders</h3>
+            <asp:Button ID="btnAddItems" runat="server" Text="Add Items" CssClass="btn btn-primary" OnClick="btnAddItems_Click"/>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -95,13 +81,13 @@
             <table id="manageTable" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>PO#</th>
-                <th>Supplier Name</th>
+                <%--<th>PO#</th>--%>
+                <th>Supplier Code</th>
                 <th>Brand Name</th>
-                <th>Quantity</th>
-                <th>Purchased Date</th>
+                <th>Description</th>
+                <%--<th>Purchased Date</th>
                 <th>Delivery Date</th>
-                <th>Staus</th>
+                <th>Staus</th>--%>
               </tr>
               </thead>
 <%--                <tbody>
@@ -150,5 +136,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->--%>
-    
-</asp:Content>   
+</asp:Content>
