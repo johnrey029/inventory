@@ -7,7 +7,7 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",  
-             url: "WebService/ManageItemService.asmx/GetItem",
+             url: "../purchasing/WebService/ManageItemService.asmx/GetItem",
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
