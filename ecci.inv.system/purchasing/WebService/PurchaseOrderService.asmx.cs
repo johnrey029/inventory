@@ -14,7 +14,7 @@ namespace ecci.inv.system
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class PurchaseOrderService : System.Web.Services.WebService
     {
         DBConnection con;
@@ -34,7 +34,6 @@ namespace ecci.inv.system
                 ORDER BY s.stockid ASC");
                 while (con._dr.Read())
                 {
-
                     var order = new PurchaseOrder
                     {
                         purchaseOrder = con._dr["purchaseorder"].ToString(),
@@ -43,9 +42,8 @@ namespace ecci.inv.system
                         quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
                         purchaseDate = con._dr["purchasedate"].ToString(),
                         deliverDate = con._dr["deliverydate"].ToString(),
-                        poStatus = con._dr["postatus"].ToString(),
+                        poStatus = con._dr["postatus"].ToString()
                     };
-
                     orders.Add(order);
                 }
                 con._dr.Close();

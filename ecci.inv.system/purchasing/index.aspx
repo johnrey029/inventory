@@ -16,7 +16,7 @@
 </html>--%>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Purchasing
+    Dashboard
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -32,27 +32,18 @@
                          { 'data': 'purchaseOrder' },
                          { 'data': 'suppName' },
                          { 'data': 'brandName' },
-                         { 'data': 'quantity'
-                             //'data': 'feesPaid', 'render': function (feesPaid) {
-                             //    return ' ' + feesPaid;
-                             //}
-                         },
+                         { 'data': 'quantity'},
                          { 'data': 'purchaseDate' },
                          { 'data': 'deliverDate' },
                          { 'data': 'poStatus' }
-                         //{
-                         //    'data': 'dateOfBirth', 'render': function (date) {
-                         //        var date = new Date(parseInt(date.substr(6)));
-                         //        var month = date.getMonth() + 1;
-                         //        return date.getDate() + "/" + month + "/" + date.getFullYear();
-                         //    }
-                         //}
                      ]
                  });
              }
-        });  
-  
-  });  
+         });
+
+         $("#dashboardMainMenu").addClass('active');
+     });
+
  </script>  
 </asp:Content>
 

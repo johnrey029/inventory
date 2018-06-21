@@ -6738,11 +6738,14 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="Products.aspx" />
+    <Content Include="purchasing\manageitem.aspx" />
+    <Content Include="purchasing\WebService\ItemsService.asmx" />
     <Content Include="purchasing\WebService\PurchaseOrderService.asmx" />
     <Content Include="purchasing\index.aspx" />
     <Content Include="purchasing\supplier.aspx" />
     <Content Include="purchasing\items.aspx" />
     <Content Include="purchasing\stock.aspx" />
+    <Content Include="purchasing\WebService\WebService1.asmx" />
     <Content Include="scripts\chosen.jquery.min.js" />
     <Content Include="scripts\getmdl-select.min.css" />
     <Content Include="scripts\getmdl-select.min.js" />
@@ -7482,7 +7485,19 @@
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\CS\PurchaseOrder.cs" />
+    <Compile Include="purchasing\Class\Item.cs" />
+    <Compile Include="purchasing\Class\PurchaseOrder.cs" />
+    <Compile Include="purchasing\manageitem.aspx.cs">
+      <DependentUpon>manageitem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="purchasing\manageitem.aspx.designer.cs">
+      <DependentUpon>manageitem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="purchasing\WebService\ItemsService.asmx.cs">
+      <DependentUpon>ItemsService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="purchasing\WebService\PurchaseOrderService.asmx.cs">
       <DependentUpon>PurchaseOrderService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -7522,6 +7537,10 @@
     </Compile>
     <Compile Include="purchasing\stock.aspx.designer.cs">
       <DependentUpon>stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="purchasing\WebService\WebService1.asmx.cs">
+      <DependentUpon>WebService1.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>

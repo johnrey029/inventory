@@ -199,7 +199,7 @@
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-            <li class="treeview" id="mainGroupNav">
+            <li class="treeview" id="mainItemNav">
               <a href="#">
                 <i class="fa fa-files-o"></i>
                 <span>Items</span>
@@ -209,10 +209,10 @@
               </a>
               <ul class="treeview-menu">
 <%--                <?php if(in_array('createGroup', $user_permission)): ?>--%>
-                  <li id="addGroupNav"><a href="items.aspx"><i class="fa fa-plus"></i> Add Items</a></li>
+                  <li id="addItemsNav"><a href="items.aspx"><i class="fa fa-plus"></i> Add Items</a></li>
 <%--                <?php endif; ?>
                 <?php if(in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-                <li id="manageGroupNav"><a href="#"><i class="fa fa-circle-o"></i> Manage Items</a></li>
+                <li id="manageItemsNav"><a href="manageitem.aspx"><i class="fa fa-circle-o"></i> Manage Items</a></li>
 <%--                <?php endif; ?>--%>
               </ul>
             </li>
