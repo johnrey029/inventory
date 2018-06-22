@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Web.Script.Services;
 using System.Web.Services;
 
 namespace ecci.inv.system
@@ -18,7 +19,9 @@ namespace ecci.inv.system
     public class PurchaseOrderService : System.Web.Services.WebService
     {
         DBConnection con;
-        [WebMethod]
+        [WebMethod(EnableSession =true)]
+        [ScriptMethod(ResponseFormat =ResponseFormat.Json)]
+
         public void GetPurchaseOrder()
         {
             con = new DBConnection();

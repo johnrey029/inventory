@@ -26,7 +26,7 @@
              type: "POST",  
              dataType: "json",
              url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
-             url: resourceAdress,
+             //url: resourceAdress,
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
