@@ -39,9 +39,10 @@ namespace ecci.inv.system.purchasing.WebService
                 orders.Add(order);
             }
             con._dr.Close();
-            con.CloseConnection();
+            //con.CloseConnection();
             var js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(orders));
+            con.CloseConnection();
         }
         public class ManageItem
         {
