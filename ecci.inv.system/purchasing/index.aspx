@@ -1,19 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.purchasing.index" MasterPageFile="~/purchasing/Purchasing.Master"  %>
 
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>--%>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Dashboard
