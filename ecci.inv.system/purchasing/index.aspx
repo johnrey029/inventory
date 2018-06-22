@@ -20,11 +20,13 @@
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
-     $(document).ready(function () {  
+         $(document).ready(function () {
+             var resourceAdress = '@Url.Content("~/WebService/PurchaseOrderService.asmx/GetPurchaseOrder")';
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
+             //url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
+             url: resourceAdress,
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
