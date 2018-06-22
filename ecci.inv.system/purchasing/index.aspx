@@ -25,8 +25,8 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             //url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
-             url: '@Url.Action("WebService", "PurchaseOrderService.asmx", "GetPurchaseOrder")',
+             url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
+             //url: '@Url.Action("WebService", "PurchaseOrderService.asmx", "GetPurchaseOrder")',
              //url: resourceAdress,
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
