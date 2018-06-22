@@ -33,7 +33,7 @@ namespace ecci.inv.system.superadmin
                 con.Cmd.Parameters.Add("@depthead", SqlDbType.VarChar).Value = tbDeptHead.Text;
                 con.Cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch 
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");

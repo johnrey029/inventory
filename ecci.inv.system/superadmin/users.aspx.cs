@@ -36,7 +36,7 @@ namespace ecci.inv.system.superadmin
                 ddDept.Items.Insert(0, new ListItem("Select Department", "-1"));
                 con.CloseConnection();
             }
-            catch (Exception ex)
+            catch
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
