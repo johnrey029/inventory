@@ -13,6 +13,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
          <!-- Content Wrapper. Contains page content -->
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <%--    <script type="text/javascript">$(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>--%>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

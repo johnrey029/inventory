@@ -38,6 +38,10 @@
                          { 'data': 'poStatus' }
                      ]
                  });
+             },
+             bServerSide: true,
+             error: function (err) {
+                 alert(err);
              }
          });
 
@@ -48,7 +52,7 @@
 </asp:Content>
 
  <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
   <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -91,7 +95,6 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-              
             <table id="manageTable" class="table table-bordered table-striped">
               <thead>
               <tr>

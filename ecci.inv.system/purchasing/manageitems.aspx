@@ -25,6 +25,7 @@
  </script>  
 </asp:Content>
 <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
