@@ -128,6 +128,7 @@
     });
   </script>--%>
    
+    <asp:ContentPlaceHolder ID="heading" runat="server"></asp:ContentPlaceHolder>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -245,6 +246,5 @@
     <!-- /.sidebar -->
   </aside>
   </form>
-    <asp:ContentPlaceHolder ID="heading" runat="server"></asp:ContentPlaceHolder>
 </body>
 </html>

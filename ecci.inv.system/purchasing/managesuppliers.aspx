@@ -1,7 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="managesuppliers.aspx.cs" Inherits="ecci.inv.system.purchasing.managesuppliers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
+     <script type="text/javascript">  
+     $(document).ready(function () {  
+         $.ajax({  
+             type: "POST",  
+             dataType: "json",  
+             url: "WebService/ManageSupplierService.asmx/GetSupplier",
+             success: function (data) {
+                 var datatableVariable = $('#manageTable').DataTable({
+                     data: data,
+                     columns: [
+                         { 'data': 'suppCode' },
+                         { 'data': 'suppName' },
+                         { 'data': 'suppAdd' }
+                     ]
+                 });
+             }
+        });  
+         $("#mainSupNav").addClass('active');
+         $("#manageSupNav").addClass('active');
+  });  
+ </script>  
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -104,27 +127,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->--%>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="heading" runat="server">
-     <script type="text/javascript">  
-     $(document).ready(function () {  
-         $.ajax({  
-             type: "POST",  
-             dataType: "json",  
-             url: "WebService/ManageSupplierService.asmx/GetSupplier",
-             success: function (data) {
-                 var datatableVariable = $('#manageTable').DataTable({
-                     data: data,
-                     columns: [
-                         { 'data': 'suppCode' },
-                         { 'data': 'suppName' },
-                         { 'data': 'suppAdd' }
-                     ]
-                 });
-             }
-        });  
-         $("#mainSupNav").addClass('active');
-         $("#manageSupNav").addClass('active');
-  });  
- </script>  
 </asp:Content>
