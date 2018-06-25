@@ -20,7 +20,7 @@
   <!-- Morris chart -->
   <link rel="stylesheet" href="../assets/bower_components/morris.js/morris.css"/>
   <!-- jvectormap -->
-  <link rel="stylesheet" href="../assets/bower_components/jvectormap/jquery-jvectormap.css="/>
+  <link rel="stylesheet" href="../assets/bower_components/jvectormap/jquery-jvectormap.css"/>
   <!-- Date Picker -->
   <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
   <!-- Daterange picker -->  
@@ -95,7 +95,7 @@
   <script src="../assets/bower_components/Chart.js/Chart.js"></script>
 
   <!-- icheck -->
-  <script src="../assets/plugins/iCheck/icheck.min.js'"></script>
+  <script src="../assets/plugins/iCheck/icheck.min.js"></script>
 
   <!-- DataTables -->
 <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

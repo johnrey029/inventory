@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Web.Script.Serialization;
+using ecci.inv.system.purchasing.CS;
 
 namespace ecci.inv.system.purchasing.WebService
 {
@@ -44,11 +45,11 @@ namespace ecci.inv.system.purchasing.WebService
             Context.Response.Write(js.Serialize(orders));
             con.CloseConnection();
         }
-        public class ManageItem
-        {
-            public string suppCode { get; set; }
-            public string brandName { get; set; }
-            public string description { get; set; }
-        }
+        //public class ManageItem
+        //{
+        //    public string suppCode { get; set; }
+        //    public string brandName { get; set; }
+        //    public string description { get; set; }
+        //}
     }
 }

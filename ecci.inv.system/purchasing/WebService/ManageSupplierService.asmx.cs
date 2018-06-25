@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ecci.inv.system.purchasing.CS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,11 +42,11 @@ namespace ecci.inv.system.purchasing.WebService
             var js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(supps));
         }
-        public class ManageSupplier
-        {
-            public string suppCode { get; set; }
-            public string suppName { get; set; }
-            public string suppAdd { get; set; }
-        }
+        //public class ManageSupplier
+        //{
+        //    public string suppCode { get; set; }
+        //    public string suppName { get; set; }
+        //    public string suppAdd { get; set; }
+        //}
     }
 }
