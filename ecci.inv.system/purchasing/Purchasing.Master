@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Purchasing.Master.cs" Inherits="ecci.inv.system.Purchasing" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Purchasing.Master.cs" Inherits="ecci.inv.system.purchasing.Purchasing" %>
 
 <!DOCTYPE html>
 

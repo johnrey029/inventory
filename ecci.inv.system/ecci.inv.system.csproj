@@ -7392,6 +7392,7 @@
     <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="purchasing\Purchasing.Master" />
     <Content Include="superadmin\Superadmin.Master" />
+    <Content Include="qualitycontrol\QualityControl.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7555,6 +7556,13 @@
     <Compile Include="purchasing\stock.aspx.designer.cs">
       <DependentUpon>stock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="qualitycontrol\QualityControl.Master.cs">
+      <DependentUpon>QualityControl.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="qualitycontrol\QualityControl.Master.designer.cs">
+      <DependentUpon>QualityControl.Master</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7617,6 +7625,10 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="qualitycontrol\CS\" />
+    <Folder Include="qualitycontrol\WebService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

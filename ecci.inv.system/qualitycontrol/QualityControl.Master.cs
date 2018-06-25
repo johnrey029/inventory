@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.purchasing
+namespace ecci.inv.system.qualitycontrol
 {
-    public partial class Purchasing : System.Web.UI.MasterPage
+    public partial class QualityControl : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
