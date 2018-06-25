@@ -45,11 +45,5 @@ namespace ecci.inv.system.purchasing.WebService
             Context.Response.Write(js.Serialize(orders));
             con.CloseConnection();
         }
-        //public class ManageItem
-        //{
-        //    public string suppCode { get; set; }
-        //    public string brandName { get; set; }
-        //    public string description { get; set; }
-        //}
     }
 }

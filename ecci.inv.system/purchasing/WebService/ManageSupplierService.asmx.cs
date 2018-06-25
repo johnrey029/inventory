@@ -42,11 +42,5 @@ namespace ecci.inv.system.purchasing.WebService
             var js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(supps));
         }
-        //public class ManageSupplier
-        //{
-        //    public string suppCode { get; set; }
-        //    public string suppName { get; set; }
-        //    public string suppAdd { get; set; }
-        //}
     }
 }

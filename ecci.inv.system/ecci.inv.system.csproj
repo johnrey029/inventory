@@ -6749,6 +6749,8 @@
     <Content Include="purchasing\supplier.aspx" />
     <Content Include="purchasing\items.aspx" />
     <Content Include="purchasing\stock.aspx" />
+    <Content Include="qualitycontrol\index.aspx" />
+    <Content Include="qualitycontrol\WebService\OrderDeliveryService.asmx" />
     <Content Include="scripts\chosen.jquery.min.js" />
     <Content Include="scripts\getmdl-select.min.css" />
     <Content Include="scripts\getmdl-select.min.js" />
@@ -7556,12 +7558,24 @@
     <Compile Include="purchasing\stock.aspx.designer.cs">
       <DependentUpon>stock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="qualitycontrol\CS\PurchaseOrder.cs" />
     <Compile Include="qualitycontrol\QualityControl.Master.cs">
       <DependentUpon>QualityControl.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="qualitycontrol\QualityControl.Master.designer.cs">
       <DependentUpon>QualityControl.Master</DependentUpon>
+    </Compile>
+    <Compile Include="qualitycontrol\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="qualitycontrol\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="qualitycontrol\WebService\OrderDeliveryService.asmx.cs">
+      <DependentUpon>OrderDeliveryService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
@@ -7626,10 +7640,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="qualitycontrol\CS\" />
-    <Folder Include="qualitycontrol\WebService\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

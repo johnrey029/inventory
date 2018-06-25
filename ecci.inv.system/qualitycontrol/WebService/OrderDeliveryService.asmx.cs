@@ -1,4 +1,4 @@
-﻿using ecci.inv.system.purchasing.CS;
+﻿using ecci.inv.system.qualitycontrol.CS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
 
-namespace ecci.inv.system.purchasing.WebService
+namespace ecci.inv.system.qualitycontrol.WebService
 {
     /// <summary>
     /// Summary description for PurchaseOrderService
@@ -17,16 +17,16 @@ namespace ecci.inv.system.purchasing.WebService
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
-    public class PurchaseOrderService : System.Web.Services.WebService
+    public class OrderDeliveryService : System.Web.Services.WebService
     {
         DBConnection con;
         [WebMethod(EnableSession =true)]
         [ScriptMethod(ResponseFormat =ResponseFormat.Json)]
 
-        public void GetPurchaseOrder()
+        public void GetDeliveredOrder()
         {
             con = new DBConnection();
-            var orders = new List<PurchaseOrder>();
+            var orders = new List<OrderDelivery>();
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
@@ -36,7 +36,7 @@ namespace ecci.inv.system.purchasing.WebService
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
-                var order = new PurchaseOrder
+                var order = new OrderDelivery
                 {
                     purchaseOrder = con._dr["purchaseorder"].ToString(),
                     suppName = con._dr["suppname"].ToString(),
