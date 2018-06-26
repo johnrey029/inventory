@@ -30,7 +30,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
-            s.postatus, i.brandname, u.suppname FROM stock s
+            s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
             ORDER BY s.stockid ASC");
@@ -44,7 +44,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
                     purchaseDate = con._dr["purchasedate"].ToString(),
                     deliverDate = con._dr["deliverydate"].ToString(),
-                    poStatus = con._dr["postatus"].ToString()
+                    poStatus = con._dr["postatus"].ToString(),
+                    stockId = Convert.ToInt32(con._dr["stockid"].ToString())
                 };
                 orders.Add(order);
             }

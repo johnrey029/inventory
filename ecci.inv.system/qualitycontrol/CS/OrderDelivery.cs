@@ -14,5 +14,6 @@ namespace ecci.inv.system.qualitycontrol.CS
         public string purchaseDate { get; set; }
         public string deliverDate { get; set; }
         public string poStatus { get; set; }
+        public int stockId { get; set; }
     }
 }

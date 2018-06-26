@@ -22,8 +22,27 @@
                          { 'data': 'quantity'},
                          { 'data': 'purchaseDate' },
                          { 'data': 'deliverDate' },
-                         { 'data': 'poStatus' },
+                         { 'data': 'poStatus' }
+                         //, {
+                         //    data: "active",
+                         //    render: function (data, type, row) {
+                         //        if (type === 'display') {
+                         //            return '<input type="checkbox" class="editor-active">';
+                         //        }
+                         //        return data;
+                         //    },
+                         //    className: "dt-body-center"
+                         //}
+
+                         //,
+                         //{
+                         //    'data': 'stockId', 'render': function () {
+                         //        return "<a class='btn btn-primary btn-sm' >"
+                         //    },
+
+                         //}
                      ]
+
                  });
              },
              bServerSide: true,
