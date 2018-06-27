@@ -138,9 +138,9 @@
             <!-- Logo -->
             <a href="Dashboard.aspx" class="logo">
               <!-- mini logo for sidebar mini 50x50 pixels -->
-              <span class="logo-mini"><b>PCS</b></span>
+              <span class="logo-mini"><b>QC</b></span>
               <!-- logo for regular state and mobile devices -->
-              <span class="logo-lg"><b>Purchasing</b></span>
+              <span class="logo-lg"><b>Quality Control</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -180,49 +180,25 @@
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li class="treeview" id="mainSupNav">
-            <a href="#"><i class="fa fa-users"></i>
-              <span>Supplier</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-                <ul class="treeview-menu">
-    <%--              <?php if(in_array('createUser', $user_permission)): ?>--%>
-                  <li id="addSupNav"><a href="supplier.aspx"><i class="fa fa-plus"></i> Add Supplier</a></li>
-    <%--              <?php endif; ?>--%>
-
-    <%--              <?php if(in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-                  <li id="manageSupNav"><a href="managesuppliers.aspx"><i class="fa fa-circle-o"></i> Manage Supplier</a></li>
-    <%--            <?php endif; ?>--%>
-                </ul>
-          </li>
+            <li id="stockNav">
+              <a href="#">
+                <i class="glyphicon glyphicon-tags"></i> <span>Recieving</span>
+              </a>
+            </li>
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-            <li class="treeview" id="mainItemNav">
+            <li id="stockNav">
               <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>Items</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Dispatching</span>
               </a>
-              <ul class="treeview-menu">
-<%--                <?php if(in_array('createGroup', $user_permission)): ?>--%>
-                  <li id="addItemsNav"><a href="items.aspx"><i class="fa fa-plus"></i> Add Items</a></li>
-<%--                <?php endif; ?>
-                <?php if(in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-                <li id="manageItemsNav"><a href="manageitems.aspx"><i class="fa fa-circle-o"></i> Manage Items</a></li>
-<%--                <?php endif; ?>--%>
-              </ul>
             </li>
 <%--          <?php endif; ?>--%>
 
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
             <li id="stockNav">
-              <a href="stock.aspx">
+              <a href="#">
                 <i class="glyphicon glyphicon-tags"></i> <span>Stock Input</span>
               </a>
             </li>
@@ -239,7 +215,7 @@
           <li><a href="#"><i class="fa fa-user-o"></i> <span>Profile</span></a></li>
 
         <!-- user permission info -->
-        <li><a href="..//Default.aspx"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
+        <li><a href="../Default.aspx"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
 
       </ul>
     </section>
