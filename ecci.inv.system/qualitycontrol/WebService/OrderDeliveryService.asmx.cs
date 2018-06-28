@@ -38,14 +38,14 @@ namespace ecci.inv.system.qualitycontrol.WebService
             {
                 var order = new OrderDelivery
                 {
+                    stockId = Convert.ToInt32(con._dr["stockid"].ToString()),
                     purchaseOrder = con._dr["purchaseorder"].ToString(),
                     suppName = con._dr["suppname"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
                     quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
                     purchaseDate = con._dr["purchasedate"].ToString(),
                     deliverDate = con._dr["deliverydate"].ToString(),
-                    poStatus = con._dr["postatus"].ToString(),
-                    stockId = Convert.ToInt32(con._dr["stockid"].ToString())
+                    poStatus = con._dr["postatus"].ToString()
                 };
                 orders.Add(order);
             }

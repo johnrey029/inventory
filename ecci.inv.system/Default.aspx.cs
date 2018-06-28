@@ -58,32 +58,36 @@ namespace ecci.inv.system
                 }
                 else
                 {
-                    Response.Redirect("~/purchasing/index.aspx");
-                    //con.OpenConection();
-                    //con.ExecSqlQuery("Select dept_id From users where empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS and password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
-                    //con.Cmd.Parameters.AddWithValue("@user", user);
-                    //con.Cmd.Parameters.AddWithValue("@pass", pass);
-                    //con._dr = con.Cmd.ExecuteReader();
-                    //if (con._dr.Read())
-                    //{
-                    //    string did = con._dr["dept_id"].ToString();
+                    // Response.Redirect("~/qualitycontrol/index.aspx");
+                    con.OpenConection();
+                    con.ExecSqlQuery("Select dept_id From users where empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS and password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
+                    con.Cmd.Parameters.AddWithValue("@user", user);
+                    con.Cmd.Parameters.AddWithValue("@pass", pass);
+                    con._dr = con.Cmd.ExecuteReader();
+                    if (con._dr.Read())
+                    {
+                        string did = con._dr["dept_id"].ToString();
+                        con.CloseConnection();
+                        if (did == "Purchasing")
+                        {
+                            Response.Redirect("~/purchasing/index.aspx");
+                        }
+                        else if (did == "Super Admin")
+                        {
+                            Response.Redirect("~/superadmin/index.aspx");
+                        }
+                        else if (did == "Quality Control")
+                        {
+                            Response.Redirect("~/qualitycontrol/index.aspx");
+                        }
 
-                    //    if (did == "Purchasing")
-                    //    {
-                    //        Response.Redirect("~/purchasing/index.aspx");
-                    //    }
-                    //    else if (did == "Super Admin")
-                    //    {
-                    //        Response.Redirect("~/superadmin/index.aspx");
-                    //    }
-                    //    //con.CloseConnection();
-                    //}
-                    //else
-                    //{
-                    //    lbError.Visible = true;
-                    //    lbError.Text = "User does not exist!";
-                    //    lbError.ForeColor = Color.Red;
-                    //}
+                    }
+                    else
+                    {
+                        lbError.Visible = true;
+                        lbError.Text = "User does not exist!";
+                        lbError.ForeColor = Color.Red;
+                    }
                 }
                 tbEmpNo.Focus();
                 tbEmpNo.Text = "";

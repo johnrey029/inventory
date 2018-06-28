@@ -35,6 +35,7 @@
   <!-- icheck -->
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="../assets/plugins/iCheck/all.css"/>
+   <link rel="stylesheet" href=" https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css"/>
 <%--    
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
@@ -107,6 +108,7 @@
   <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap.min.js"></script>--%>
+   <script src=" https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
   <script type="text/javascript">
       $(document).ready(function () {
             $(".js-example-placeholder-single").select2({
@@ -138,9 +140,9 @@
             <!-- Logo -->
             <a href="Dashboard.aspx" class="logo">
               <!-- mini logo for sidebar mini 50x50 pixels -->
-              <span class="logo-mini"><b>PCS</b></span>
+              <span class="logo-mini"><b>QA</b></span>
               <!-- logo for regular state and mobile devices -->
-              <span class="logo-lg"><b>Purchasing</b></span>
+              <span class="logo-lg"><b>Quality Control</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">

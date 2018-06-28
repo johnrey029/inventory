@@ -10,12 +10,15 @@
              type: "POST",  
              dataType: "json",
              url: "WebService/OrderDeliveryService.asmx/GetDeliveredOrder",
-             //url: '@Url.Action("WebService", "PurchaseOrderService.asmx", "GetPurchaseOrder")',
-             //url: resourceAdress,
              success: function (data) {
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
+                         {
+                             'data': 'stockId','render': function (data) {
+                                 return '<input type="button" class=""  value="' + data + '"/>';
+                             }
+                         },
                          { 'data': 'purchaseOrder' },
                          { 'data': 'suppName' },
                          { 'data': 'brandName' },
@@ -23,26 +26,7 @@
                          { 'data': 'purchaseDate' },
                          { 'data': 'deliverDate' },
                          { 'data': 'poStatus' }
-                         //, {
-                         //    data: "active",
-                         //    render: function (data, type, row) {
-                         //        if (type === 'display') {
-                         //            return '<input type="checkbox" class="editor-active">';
-                         //        }
-                         //        return data;
-                         //    },
-                         //    className: "dt-body-center"
-                         //}
-
-                         //,
-                         //{
-                         //    'data': 'stockId', 'render': function () {
-                         //        return "<a class='btn btn-primary btn-sm' >"
-                         //    },
-
-                         //}
                      ]
-
                  });
              },
              bServerSide: true,
@@ -52,6 +36,18 @@
          });
 
          $("#dashboardMainMenu").addClass('active');
+         $(":checkbox").change(function () {
+             $(this).closest("tr").toggleClass("highlight", this.checked);
+         });
+         $('[name=case]').click(function () {
+             checkAll();
+         });
+
+         function checkAll() {
+             $('[name=case]:checked').each(function () {
+                 alert('selected: ' + $(this).val());
+             });
+         }
      });
 
  </script>  
@@ -104,6 +100,7 @@
             <table id="manageTable" class="table table-bordered table-striped">
               <thead>
               <tr>
+                <th>Select</th>
                 <th>PO#</th>
                 <th>Supplier Name</th>
                 <th>Brand Name</th>
