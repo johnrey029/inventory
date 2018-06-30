@@ -180,7 +180,7 @@
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li id="stockNav">
+            <li id="receiveNav">
               <a href="#">
                 <i class="glyphicon glyphicon-tags"></i> <span>Recieving</span>
               </a>
@@ -188,7 +188,7 @@
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-            <li id="stockNav">
+            <li id="dispatchNav">
               <a href="#">
                 <i class="glyphicon glyphicon-tags"></i> <span>Dispatching</span>
               </a>

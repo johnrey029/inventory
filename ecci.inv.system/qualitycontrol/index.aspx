@@ -5,7 +5,7 @@
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
          $(document).ready(function () {
-             //var resourceAdress = '@Url.Content("~/WebService/PurchaseOrderService.asmx/GetPurchaseOrder")';
+             //data-target="#updateModal" data-toggle="modal"<i class="fa fa-clipboard-edit"></i> data-target='#updateModal' data-toggle='modal'
          $.ajax({  
              type: "POST",  
              dataType: "json",
@@ -15,9 +15,10 @@
                      data: data,
                      columns: [
                          {
-                             'data': 'stockId','render': function (data) {
-                                 return '<input type="button" class=""  value="' + data + '"/>';
-                             }
+                             'data': 'stockId', 'render': function (data, type, row) {
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-edit'></i> Accept</a>";
+                             },
+                             orderable: false
                          },
                          { 'data': 'purchaseOrder' },
                          { 'data': 'suppName' },
@@ -26,7 +27,10 @@
                          { 'data': 'purchaseDate' },
                          { 'data': 'deliverDate' },
                          { 'data': 'poStatus' }
-                     ]
+                     ],
+                     language: {
+                         emptyTable: "No data found!"
+                     }
                  });
              },
              bServerSide: true,
@@ -34,22 +38,9 @@
                  alert(err);
              }
          });
-
          $("#dashboardMainMenu").addClass('active');
-         $(":checkbox").change(function () {
-             $(this).closest("tr").toggleClass("highlight", this.checked);
-         });
-         $('[name=case]').click(function () {
-             checkAll();
-         });
 
-         function checkAll() {
-             $('[name=case]:checked').each(function () {
-                 alert('selected: ' + $(this).val());
-             });
-         }
-     });
-
+         });
  </script>  
 </asp:Content>
 
@@ -100,7 +91,7 @@
             <table id="manageTable" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>Select</th>
+                <th>Action</th>
                 <th>PO#</th>
                 <th>Supplier Name</th>
                 <th>Brand Name</th>
@@ -112,6 +103,7 @@
               </thead>
             </table>
           </div>
+            <input type="hidden" id="hiddenStockId" />
             
             <asp:Label ID="lbError" runat="server" Text="Label"></asp:Label>
           <!-- /.box-body -->
@@ -128,30 +120,79 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<%--
-<?php if(in_array('deleteProduct', $user_permission)): ?>--%>
 <!-- remove brand modal -->
-<%--<div class="modal fade" tabindex="-1" role="dialog" id="removeModal">
+<div class="modal fade" tabindex="-1"  role="dialog" id="updateModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Remove Product</h4>
+        <h4 class="modal-title">Accept Items</h4>
       </div>
 
-      <form role="form" action="#" method="post" id="removeForm">
         <div class="modal-body">
-          <p>Do you really want to remove?</p>
+            <div class="form-group">
+                <label for="PO">Purchase Order Number</label>
+                <input type="text" class="form-control" id="po" name="po" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+                <label for="supplier">Supplier</label>
+                <input type="text" class="form-control" id="supplier" name="supplier" autocomplete="off" />
+             </div>
+             <div class="form-group">
+                 <label for="brand">Brand</label>
+                 <input type="text" class="form-control" id="brand" name="brand" autocomplete="off" />
+             </div>
+            <div class="form-group">
+                <label for="qty">Quantity</label>
+                <input type="text" class="form-control" id="qty" name="qty" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label for="pdate">Purchased Date</label>
+                <input type="text" class="form-control" id="pdate" name="pdate" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label for="ddate">Delivery Date</label>
+                <input type="text" class="form-control" id="ddate" name="ddate" autocomplete="off" />
+            </div>
+
+                
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+           <%-- <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click"/>--%>
+          <button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>
         </div>
-      </form>
 
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->--%>
-    
+</div><!-- /.modal -->
+         <script type="text/javascript">  
+
+         function ConfirmUpdate(stockId)
+         {
+           $('#hiddenStockId').val(stockId);
+          var sid = $('#hiddenStockId').val();
+          $.ajax({
+              type: "POST",
+              dataType: "json",
+              url: "WebService/OrderDeliveryService.asmx/ShowDelivered",
+              data: { id: sid },
+              success: function (data) {
+                  $("#po").text(data.purchaseOrder);
+                  $("#supplier").text(data.suppName);
+                  $("#brand").text(data.brandName);
+                  $("#qty").text(data.quantity);
+                  $("#pdate").text(data.purchaseDate);
+                  $("#ddate").text(data.deliverDate);
+              }
+          });
+          $('#updateModal').modal('show');
+         }
+         var UpdateDelivery = function()
+         {
+             $('#updateModal').modal('hide');
+         }
+ </script>
 </asp:Content>   

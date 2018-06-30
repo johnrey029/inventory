@@ -13,5 +13,10 @@ namespace ecci.inv.system.qualitycontrol
         {
 
         }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

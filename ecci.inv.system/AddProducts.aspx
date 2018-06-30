@@ -47,7 +47,6 @@
             <h3 class="box-title">Add Product</h3>
           </div>
           <!-- /.box-header -->
-          <form role="form" action="<%--<?php base_url('users/create') ?>--%>#" method="post" enctype="multipart/form-data">
               <div class="box-body">
 
 <%--                <?php echo validation_errors(); ?>--%>
@@ -144,7 +143,6 @@
                 <button type="submit" class="btn btn-primary">Save Changes</button>
                 <a href="<%--<?php echo base_url('products/') ?>--%>#" class="btn btn-warning">Back</a>
               </div>
-            </form>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
