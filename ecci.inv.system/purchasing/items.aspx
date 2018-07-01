@@ -89,7 +89,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="heading" runat="server">
-   <script type="text/javascript">  
+<script type="text/javascript">  
      $(document).ready(function () {  
          $("#mainItemNav").addClass('active');
          $("#addItemsNav").addClass('active');

@@ -5,18 +5,19 @@
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
          $(document).ready(function () {
+             var datatableVariable;
              //data-target="#updateModal" data-toggle="modal"<i class="fa fa-clipboard-edit"></i> data-target='#updateModal' data-toggle='modal'
          $.ajax({  
              type: "POST",  
              dataType: "json",
              url: "WebService/OrderDeliveryService.asmx/GetDeliveredOrder",
              success: function (data) {
-                 var datatableVariable = $('#manageTable').DataTable({
+                     datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
                          {
                              'data': 'stockId', 'render': function (data, type, row) {
-                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-edit'></i> Accept</a>";
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Accept</a>";
                              },
                              orderable: false
                          },
@@ -64,18 +65,15 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
       <div class="col-md-12 col-xs-12">
-  <%--       <div id="messages"></div>
-       <?php if($this->session->flashdata('success')): ?>
+          <div id="messages"></div>
           <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('success'); ?>
+              <strong>Succesfully</strong>Update Received Delivery
           </div>
-        <?php elseif($this->session->flashdata('error')): ?>
           <div class="alert alert-error alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('error'); ?>
+              <strong>Failed Processing</strong>Delivery Update
           </div>
-        <?php endif; ?>--%>
 
       <%--  <?php if(in_array('createProduct', $user_permission)): ?>
           <a href="<%--<?php echo base_url('products/create') ?>AddProducts.aspx" class="btn btn-primary">Add Product</a>
@@ -103,9 +101,7 @@
               </thead>
             </table>
           </div>
-            <input type="hidden" id="hiddenStockId" />
-            
-            <asp:Label ID="lbError" runat="server" Text="Label"></asp:Label>
+            <input type="hidden" id="hiddenStockId"  name="hiddenStockId" value="" />
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
@@ -132,27 +128,27 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="PO">Purchase Order Number</label>
-                <input type="text" class="form-control" id="po" name="po" autocomplete="off"/>
+                <input type="text" class="form-control" id="po" name="po"/>
             </div>
             <div class="form-group">
                 <label for="supplier">Supplier</label>
-                <input type="text" class="form-control" id="supplier" name="supplier" autocomplete="off" />
+                <input type="text" class="form-control" id="supplier" name="supplier" />
              </div>
              <div class="form-group">
                  <label for="brand">Brand</label>
-                 <input type="text" class="form-control" id="brand" name="brand" autocomplete="off" />
+                 <input type="text" class="form-control" id="brand" name="brand" />
              </div>
             <div class="form-group">
                 <label for="qty">Quantity</label>
-                <input type="text" class="form-control" id="qty" name="qty" autocomplete="off" />
+                <input type="text" class="form-control" id="qty" name="qty" />
             </div>
             <div class="form-group">
                 <label for="pdate">Purchased Date</label>
-                <input type="text" class="form-control" id="pdate" name="pdate" autocomplete="off" />
+                <input type="text" class="form-control" id="pdate" name="pdate" />
             </div>
             <div class="form-group">
                 <label for="ddate">Delivery Date</label>
-                <input type="text" class="form-control" id="ddate" name="ddate" autocomplete="off" />
+                <input type="text" class="form-control" id="ddate" name="ddate"/>
             </div>
 
                 
@@ -160,39 +156,59 @@
         
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           <%-- <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click"/>--%>
-          <button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>
+          <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
+          <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
         </div>
 
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-         <script type="text/javascript">  
-
+<script type="text/javascript">  
          function ConfirmUpdate(stockId)
          {
            $('#hiddenStockId').val(stockId);
           var sid = $('#hiddenStockId').val();
           $.ajax({
+              url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
+              data: { id: sid },
               type: "POST",
               dataType: "json",
-              url: "WebService/OrderDeliveryService.asmx/ShowDelivered",
-              data: { id: sid },
               success: function (data) {
-                  $("#po").text(data.purchaseOrder);
-                  $("#supplier").text(data.suppName);
-                  $("#brand").text(data.brandName);
-                  $("#qty").text(data.quantity);
-                  $("#pdate").text(data.purchaseDate);
-                  $("#ddate").text(data.deliverDate);
+                      $('#po').val(data.purchaseOrder);
+                      $('#supplier').val(data.suppName);
+                      $('#brand').val(data.brandName);
+                      $('#qty').val(data.quantity);
+                      $('#pdate').val(data.purchaseDate);
+                      $('#ddate').val(data.deliverDate);
+              },
+              error: function (err) {
+                  alert(err);
               }
           });
           $('#updateModal').modal('show');
          }
          var UpdateDelivery = function()
          {
+             var sid = $('#hiddenStockId').val();
              $('#updateModal').modal('hide');
+             $.ajax({
+                 url: "WebService/OrderDeliveryService.asmx/UpdateById",
+                 data: { upid: sid },
+                 type: "POST",
+                 dataType: "xml",
+                 success: function (data) {
+                     datatableVariable.ajax.reload(null, false);
+                     if (data == 1) {
+              //           $("#messages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
+              //'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+              //'<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>' + data + '</div>');
+                     }
+                 },
+                 error: function (err) {
+                     $('.alert-success').hide(); $('.alert-error').show();
+                 }
+             });
          }
  </script>
 </asp:Content>   

@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
+using System.Web.UI;
+
 
 namespace ecci.inv.system.qualitycontrol.WebService
 {
@@ -51,15 +53,15 @@ namespace ecci.inv.system.qualitycontrol.WebService
             }
             con._dr.Close();
             con.CloseConnection();
-            var js = new JavaScriptSerializer();
+            JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(orders));
         }
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void ShowDelivered(int id)
+        public void ShowDeliveredById(int id)
         {
             con = new DBConnection();
-            var orders = new List<OrderDelivery>();
+            OrderDelivery od = new OrderDelivery();
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
@@ -69,23 +71,47 @@ namespace ecci.inv.system.qualitycontrol.WebService
             WHERE s.stockid = '" + id +"';");
             while (con._dr.Read())
             {
-                var order = new OrderDelivery
-                {
-                    stockId = Convert.ToInt32(con._dr["stockid"].ToString()),
-                    purchaseOrder = con._dr["purchaseorder"].ToString(),
-                    suppName = con._dr["suppname"].ToString(),
-                    brandName = con._dr["brandname"].ToString(),
-                    quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
-                    purchaseDate = con._dr["purchasedate"].ToString(),
-                    deliverDate = con._dr["deliverydate"].ToString(),
-                    poStatus = con._dr["postatus"].ToString()
-                };
-                orders.Add(order);
+                //var order = new OrderDelivery
+                //{
+                od.stockId = Convert.ToInt32(con._dr["stockid"].ToString());
+                od.purchaseOrder = con._dr["purchaseorder"].ToString();
+                od.suppName = con._dr["suppname"].ToString();
+                od.brandName = con._dr["brandname"].ToString();
+                od.quantity = Convert.ToInt32(con._dr["quantity"].ToString());
+                od.purchaseDate = con._dr["purchasedate"].ToString();
+                od.deliverDate = con._dr["deliverydate"].ToString();
+                od.poStatus = con._dr["postatus"].ToString();
+                //};
+                //orders.Add(order);
             }
             con._dr.Close();
             con.CloseConnection();
-            var js = new JavaScriptSerializer();
-            Context.Response.Write(js.Serialize(orders));
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(od));
+        }
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int UpdateById(int upid)
+        {
+            con = new DBConnection();
+            con.OpenConection();
+            con.ExecSqlQuery("Update stock set postatus = @stat where stockid = @sid");
+            con.Cmd.Parameters.AddWithValue("@stat", "Received");
+            con.Cmd.Parameters.AddWithValue("@sid", upid);
+            int a = con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
+            if (a == 0)
+            {
+                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            }
+            else
+            {
+                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+            }
+            con.CloseConnection();
+            return a;
         }
     }
 }

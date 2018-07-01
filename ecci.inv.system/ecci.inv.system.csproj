@@ -6760,6 +6760,13 @@
     <Content Include="scripts\material.min.css" />
     <Content Include="scripts\material.min.js" />
     <Content Include="scripts\mod.css" />
+    <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
+    <None Include="Service References\DeliveryService\configuration91.svcinfo" />
+    <None Include="Service References\DeliveryService\configuration.svcinfo" />
+    <None Include="Service References\DeliveryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="SignIn.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="scripts\bower.json" />
@@ -7395,6 +7402,7 @@
     <Content Include="purchasing\Purchasing.Master" />
     <Content Include="superadmin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
+    <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7577,6 +7585,11 @@
       <DependentUpon>OrderDeliveryService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Service References\DeliveryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7640,7 +7653,12 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DeliveryService\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
