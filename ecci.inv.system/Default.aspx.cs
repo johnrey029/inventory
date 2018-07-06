@@ -80,6 +80,14 @@ namespace ecci.inv.system
                         {
                             Response.Redirect("~/qualitycontrol/index.aspx");
                         }
+                        else if (did == "Warehouse")
+                        {
+                            Response.Redirect("~/warehouse/index.aspx");
+                        }
+                        else if (did == "Sales")
+                        {
+                            Response.Redirect("~/sales/index.aspx");
+                        }
 
                     }
                     else

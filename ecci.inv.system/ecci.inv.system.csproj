@@ -6753,6 +6753,7 @@
     <Content Include="qualitycontrol\index.aspx" />
     <Content Include="qualitycontrol\WebService\DispatchingDeliveryService.asmx" />
     <Content Include="qualitycontrol\WebService\OrderDeliveryService.asmx" />
+    <Content Include="sales\index.aspx" />
     <Content Include="scripts\chosen.jquery.min.js" />
     <Content Include="scripts\getmdl-select.min.css" />
     <Content Include="scripts\getmdl-select.min.js" />
@@ -6762,6 +6763,7 @@
     <Content Include="scripts\material.min.css" />
     <Content Include="scripts\material.min.js" />
     <Content Include="scripts\mod.css" />
+    <Content Include="sales\Sales.Master" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
     <None Include="Service References\DeliveryService\configuration91.svcinfo" />
     <None Include="Service References\DeliveryService\configuration.svcinfo" />
@@ -7405,6 +7407,7 @@
     <Content Include="superadmin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
+    <Content Include="warehouse\WareHouse.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7469,6 +7472,7 @@
     <Content Include="superadmin\department.aspx" />
     <Content Include="superadmin\index.aspx" />
     <Content Include="superadmin\users.aspx" />
+    <Content Include="warehouse\index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -7599,6 +7603,20 @@
       <DependentUpon>OrderDeliveryService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="sales\Sales.Master.cs">
+      <DependentUpon>Sales.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sales\Sales.Master.designer.cs">
+      <DependentUpon>Sales.Master</DependentUpon>
+    </Compile>
+    <Compile Include="sales\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sales\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Service References\DeliveryService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -7660,6 +7678,20 @@
     <Compile Include="superadmin\users.aspx.designer.cs">
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
+    <Compile Include="warehouse\WareHouse.Master.cs">
+      <DependentUpon>WareHouse.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="warehouse\WareHouse.Master.designer.cs">
+      <DependentUpon>WareHouse.Master</DependentUpon>
+    </Compile>
+    <Compile Include="warehouse\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="warehouse\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\bower_components\moment\moment.d.ts" />
@@ -7673,10 +7705,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="sales\" />
-    <Folder Include="warehouse\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
