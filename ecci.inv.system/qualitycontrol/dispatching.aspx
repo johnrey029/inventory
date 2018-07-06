@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qualitycontrol/QualityControl.Master" AutoEventWireup="true" CodeBehind="dispatching.aspx.cs" Inherits="ecci.inv.system.qualitycontrol.dispatching" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
+    Dispatching
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -84,7 +85,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table id="manageTable" class="table table-bordered table-striped">
+            <table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
               <thead>
               <tr>
                 <th>Action</th>

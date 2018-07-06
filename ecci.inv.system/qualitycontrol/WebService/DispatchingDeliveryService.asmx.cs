@@ -32,7 +32,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE postatus='Received'
+            WHERE s.postatus='Received'
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {

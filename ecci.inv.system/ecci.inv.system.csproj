@@ -7673,6 +7673,10 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sales\" />
+    <Folder Include="warehouse\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

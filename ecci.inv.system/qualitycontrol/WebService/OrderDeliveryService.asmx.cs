@@ -25,7 +25,6 @@ namespace ecci.inv.system.qualitycontrol.WebService
         DBConnection con;
         [WebMethod(EnableSession =true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-
         public void GetDeliveredOrder()
         {
             con = new DBConnection();
@@ -36,7 +35,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE postatus='For Delivery'
+            WHERE s.postatus='For Delivery'
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
