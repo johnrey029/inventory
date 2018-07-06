@@ -156,7 +156,7 @@
         
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
+          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
         </div>
 
