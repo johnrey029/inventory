@@ -182,14 +182,14 @@
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
             <li id="receiveNav">
               <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Recieving</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Receiving</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
             <li id="dispatchNav">
-              <a href="#">
+              <a href="dispatching.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Dispatching</span>
               </a>
             </li>
@@ -199,7 +199,7 @@
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
             <li id="stockNav">
               <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Stock Input</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Reports</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

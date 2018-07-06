@@ -17,7 +17,7 @@
                      columns: [
                          {
                              'data': 'stockId', 'render': function (data, type, row) {
-                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Accept</a>";
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Receive</a>";
                              },
                              orderable: false
                          },
@@ -128,27 +128,27 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="PO">Purchase Order Number</label>
-                <input type="text" class="form-control" id="po" name="po"/>
+                <input type="text" class="form-control" id="po" name="po" readonly="true"/>
             </div>
             <div class="form-group">
                 <label for="supplier">Supplier</label>
-                <input type="text" class="form-control" id="supplier" name="supplier" />
+                <input type="text" class="form-control" id="supplier" name="supplier" readonly="true"/>
              </div>
              <div class="form-group">
                  <label for="brand">Brand</label>
-                 <input type="text" class="form-control" id="brand" name="brand" />
+                 <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
              </div>
             <div class="form-group">
                 <label for="qty">Quantity</label>
-                <input type="text" class="form-control" id="qty" name="qty" />
+                <input type="text" class="form-control" id="qty" name="qty" readonly="true"/>
             </div>
             <div class="form-group">
                 <label for="pdate">Purchased Date</label>
-                <input type="text" class="form-control" id="pdate" name="pdate" />
+                <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
             </div>
             <div class="form-group">
                 <label for="ddate">Delivery Date</label>
-                <input type="text" class="form-control" id="ddate" name="ddate"/>
+                <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
             </div>
 
                 

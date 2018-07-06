@@ -1,6 +1,7 @@
 ﻿using ecci.inv.system.qualitycontrol.CS;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -35,6 +36,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
+            WHERE postatus='For Delivery'
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
@@ -95,9 +97,10 @@ namespace ecci.inv.system.qualitycontrol.WebService
         {
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("Update stock set postatus = @stat where stockid = @sid");
+            con.ExecSqlQuery("UPDATE stock SET postatus = @stat, receivedate = @rdate WHERE stockid = @sid");
             con.Cmd.Parameters.AddWithValue("@stat", "Received");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
+            con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
             int a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
             if (a == 0)

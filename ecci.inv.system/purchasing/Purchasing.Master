@@ -226,6 +226,7 @@
                 <i class="glyphicon glyphicon-tags"></i> <span>Stock Input</span>
               </a>
             </li>
+
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createCategory', $user_permission) || in_array('updateCategory', $user_permission) || in_array('viewCategory', $user_permission) || in_array('deleteCategory', $user_permission)): ?>--%>
@@ -235,11 +236,11 @@
           <?php if(in_array('createStore', $user_permission) || in_array('updateStore', $user_permission) || in_array('viewStore', $user_permission) || in_array('deleteStore', $user_permission)): ?>
    --%>         
 
-        
+            <li><a href="#"><i class="glyphicon glyphicon-tags"></i> <span>Reports</span></a></li>
           <li><a href="#"><i class="fa fa-user-o"></i> <span>Profile</span></a></li>
 
         <!-- user permission info -->
-        <li><a href="..//Default.aspx"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
+        <li><a href="../Default.aspx"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
 
       </ul>
     </section>
