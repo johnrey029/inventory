@@ -96,7 +96,7 @@
                 <th>Quantity</th>
                 <th>Purchased Date</th>
                 <th>Delivery Date</th>
-                <th>Staus</th>
+                <th>Status</th>
               </tr>
               </thead>
             </table>
