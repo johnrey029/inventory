@@ -9,11 +9,16 @@ namespace ecci.inv.system.purchasing
 {
     public partial class stock : System.Web.UI.Page
     {
+        private string sessionempno { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             con = new DBConnection();
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
             if (!IsPostBack)
             {
                 ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));

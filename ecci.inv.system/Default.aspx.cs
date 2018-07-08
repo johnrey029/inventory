@@ -19,7 +19,7 @@ namespace ecci.inv.system
         private bool validatelogin(string user, string pass)
         {
             con.OpenConection();
-            con.ExecSqlQuery("Select * From users where empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS and password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
+            con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
             con.Cmd.Parameters.AddWithValue("@user", user);
             con.Cmd.Parameters.AddWithValue("@pass", pass);
             con._dr = con.Cmd.ExecuteReader();
@@ -34,7 +34,7 @@ namespace ecci.inv.system
                 return false;
             }
         }
-
+        private string log_user { get; set; }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             if (tbEmpNo.Text != "" && tbPassword.Text != "")
@@ -60,41 +60,46 @@ namespace ecci.inv.system
                 {
                     // Response.Redirect("~/qualitycontrol/index.aspx");
                     con.OpenConection();
-                    con.ExecSqlQuery("Select dept_id From users where empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS and password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
+                    con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
                     con.Cmd.Parameters.AddWithValue("@user", user);
                     con.Cmd.Parameters.AddWithValue("@pass", pass);
                     con._dr = con.Cmd.ExecuteReader();
-                    if (con._dr.Read())
+                    while (con._dr.Read())
                     {
                         string did = con._dr["dept_id"].ToString();
-                        con.CloseConnection();
-                        if (did == "Purchasing")
+                        switch (did)
                         {
-                            Response.Redirect("~/purchasing/index.aspx");
-                        }
-                        else if (did == "Super Admin")
-                        {
-                            Response.Redirect("~/superadmin/index.aspx");
-                        }
-                        else if (did == "Quality Control")
-                        {
-                            Response.Redirect("~/qualitycontrol/index.aspx");
-                        }
-                        else if (did == "Warehouse")
-                        {
-                            Response.Redirect("~/warehouse/index.aspx");
-                        }
-                        else if (did == "Sales")
-                        {
-                            Response.Redirect("~/sales/index.aspx");
-                        }
+                            case "Purchasing":
+                                Session["empnumber"] = con._dr["empno"].ToString();
+                                Response.Redirect("~/purchasing/index.aspx");
+                                break;
 
-                    }
-                    else
-                    {
-                        lbError.Visible = true;
-                        lbError.Text = "User does not exist!";
-                        lbError.ForeColor = Color.Red;
+                            case "Super Admin":
+                                Session["empnumber"] = con._dr["empno"].ToString();
+                                Response.Redirect("~/superadmin/index.aspx");
+                                break;
+
+                            case "Quality Control":
+                                Session["empnumber"] = con._dr["empno"].ToString();
+                                Response.Redirect("~/qualitycontrol/index.aspx");
+                                break;
+
+                            case "Warehouse":
+                                Session["empnumber"] = con._dr["empno"].ToString();
+                                Response.Redirect("~/warehouse/index.aspx");
+                                break;
+
+                            case "Sales":
+                                Session["empnumber"] = con._dr["empno"].ToString();
+                                Response.Redirect("~/sales/index.aspx");
+                                break;
+
+                            default:
+                                lbError.Visible = true;
+                                lbError.Text = "User does not exist!";
+                                lbError.ForeColor = Color.Red;
+                                break;
+                        }
                     }
                 }
                 tbEmpNo.Focus();
@@ -102,7 +107,6 @@ namespace ecci.inv.system
                 tbPassword.Text = "";
 
             }
-            else { }
         }
     }
 }

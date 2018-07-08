@@ -9,9 +9,18 @@ namespace ecci.inv.system.warehouse
 {
     public partial class Warehouse : System.Web.UI.MasterPage
     {
+        private string sessionempno { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
+            }
         }
     }
 }

@@ -9,9 +9,13 @@ namespace ecci.inv.system.sales
 {
     public partial class index : System.Web.UI.Page
     {
+        private string sessionempno { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
         }
     }
 }

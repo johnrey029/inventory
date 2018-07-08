@@ -9,9 +9,14 @@ namespace ecci.inv.system.purchasing
 {
     public partial class supplier : Page
     {
+        private string sessionempno { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             con = new DBConnection();
             if(!IsPostBack)

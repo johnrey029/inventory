@@ -10,9 +10,19 @@ namespace ecci.inv.system.superadmin
 {
     public partial class users : System.Web.UI.Page
     {
+        private string sessionempno { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
+            }
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             con = new DBConnection();
             if (!IsPostBack)
@@ -21,6 +31,7 @@ namespace ecci.inv.system.superadmin
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
+
         }
 
         private void dropdown()
@@ -33,7 +44,7 @@ namespace ecci.inv.system.superadmin
                 ddDept.DataValueField = "dept_name";
                 ddDept.DataSource = con.DataQueryExec();
                 ddDept.DataBind();
-                ddDept.Items.Insert(0, new ListItem("Select Department", "-1"));
+                ddDept.Items.Insert(0, new ListItem("SELECT Department", "-1"));
                 con.CloseConnection();
             }
             catch
