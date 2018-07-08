@@ -10,9 +10,20 @@ namespace ecci.inv.system.superadmin
 {
     public partial class department : System.Web.UI.Page
     {
+        private string sessionempno { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
+
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
+            }
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             con = new DBConnection();
             if (!IsPostBack)

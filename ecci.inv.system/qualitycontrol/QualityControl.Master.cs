@@ -11,7 +11,15 @@ namespace ecci.inv.system.qualitycontrol
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["empnumber"] != null)
+            {
+                lblEmpno.Text = Session["empnumber"].ToString();
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
+            }
         }
     }
 }

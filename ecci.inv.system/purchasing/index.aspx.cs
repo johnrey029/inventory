@@ -10,18 +10,30 @@ namespace ecci.inv.system.purchasing
 {
     public partial class index : Page
     {
+
+        private string sessionempno { get; set; }
         DBConnection con;
         StringBuilder table = new StringBuilder();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            con = new DBConnection();
-            if (!IsPostBack)
+            if (Session["empnumber"] != null)
             {
-                lbError.Visible = false;
-                //load();
+                sessionempno = Session["empnumber"].ToString();
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+                con = new DBConnection();
+                if (!IsPostBack)
+                {
+                    lbError.Visible = false;
+                    //load();
+                }
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
             }
         }
+
         private void load()
         {
             try
