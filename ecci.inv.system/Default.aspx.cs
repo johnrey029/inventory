@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Drawing;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace ecci.inv.system
 {
@@ -58,6 +59,8 @@ namespace ecci.inv.system
                 }
                 else
                 {
+                    log_user = tbEmpNo.Text;
+                    user_activity();
                     // Response.Redirect("~/qualitycontrol/index.aspx");
                     con.OpenConection();
                     con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
@@ -100,6 +103,7 @@ namespace ecci.inv.system
                                 lbError.ForeColor = Color.Red;
                                 break;
                         }
+                        
                     }
                 }
                 tbEmpNo.Focus();
@@ -107,6 +111,15 @@ namespace ecci.inv.system
                 tbPassword.Text = "";
 
             }
+        }
+        private void user_activity()
+        {
+            con.OpenConection();
+            con.ExecSqlQuery("INSERT INTO activity_user (act_empno,act_activity,act_datetime) VALUES (@empno,@activity,@datetime)");
+            con.Cmd.Parameters.Add("@empno", SqlDbType.Char).Value = log_user;
+            con.Cmd.Parameters.Add("@activity", SqlDbType.Char).Value = "Login";
+            con.Cmd.Parameters.Add("@datetime", SqlDbType.DateTime).Value = DateTime.Now;
+            con._dr = con.Cmd.ExecuteReader();
         }
     }
 }
