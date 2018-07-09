@@ -17,20 +17,21 @@ namespace ecci.inv.system.superadmin
             if (Session["empnumber"] != null)
             {
                 sessionempno = Session["empnumber"].ToString();
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+                con = new DBConnection();
+                if (!IsPostBack)
+                {
+                    dropdown();
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+                }
             }
             else
             {
                 Session.Clear();
                 Response.Redirect("~/default.aspx");
             }
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            con = new DBConnection();
-            if (!IsPostBack)
-            {
-                dropdown();
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-            }
+            
 
         }
 
@@ -59,13 +60,14 @@ namespace ecci.inv.system.superadmin
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO users (empno,password,firstname,lastname,position,gender,dept_id) VALUES (@empid,@pass,@fname,@lname,@post,@gen,@dept)");
+                con.ExecSqlQuery("INSERT INTO users (empno,password,firstname,lastname,position,gender,dept_id,reset) VALUES (@empid,@pass,@fname,@lname,@post,@gen,@dept,@reset)");
                 con.Cmd.Parameters.Add("@empid", SqlDbType.VarChar).Value = tbEmpNo.Text;
                 con.Cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = tbPassword.Text;
                 con.Cmd.Parameters.Add("@fname", SqlDbType.VarChar).Value = tbFname.Text;
                 con.Cmd.Parameters.Add("@lname", SqlDbType.VarChar).Value = tbLname.Text;
                 con.Cmd.Parameters.Add("@post", SqlDbType.VarChar).Value = tbPosition.Text;
                 con.Cmd.Parameters.Add("@dept", SqlDbType.VarChar).Value = ddDept.Text;
+                con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
                 if (rbMale.Checked && !rbFemale.Checked)
                 {
                     con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 1;
