@@ -89,7 +89,7 @@ namespace ecci.inv.system.qualitycontrol
             //con.Cmd.Parameters.AddWithValue("@rdate", date);
             //con.Cmd.Parameters.AddWithValue("@stat", "Received");
             con.Cmd.Parameters.AddWithValue("@en", sessionempno);
-            con.Cmd.Parameters.AddWithValue("@act", "Received Delivery");
+            con.Cmd.Parameters.AddWithValue("@act", "Received");
             con.Cmd.Parameters.AddWithValue("@t", time);
             int a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();

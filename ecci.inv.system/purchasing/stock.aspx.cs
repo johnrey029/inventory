@@ -198,7 +198,7 @@ namespace ecci.inv.system.purchasing
                 //con.Cmd.Parameters.AddWithValue("@ddate", tbCalendar.SelectedDate.ToString());
                 //con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
                 con.Cmd.Parameters.AddWithValue("@en", sessionempno);
-                con.Cmd.Parameters.AddWithValue("@act", "Ordered an Item");
+                con.Cmd.Parameters.AddWithValue("@act", "For Delivery");
                 con.Cmd.Parameters.AddWithValue("@t", time);
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
