@@ -21,6 +21,7 @@ namespace ecci.inv.system.purchasing
             }
             if (!IsPostBack)
             {
+                tbCalendar.Visible = false;
                 ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));
                 dropdown();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
@@ -51,9 +52,14 @@ namespace ecci.inv.system.purchasing
         }
         private void clear()
         {
-            //tbBrand.Text = "";
-            //tbDescription.Text = "";
-            //ddSupplier.SelectedIndex = -1;
+            tbPO.Text = ""; ;
+            tbDescription.Text = "";
+            ddSupplier.SelectedIndex = -1;
+            tbPO.Text = "";
+            ddBrand.SelectedIndex = -1;
+            tbQuantity.Text = "";
+            tbCalendar.Visible = false;
+            tbEdate.Text = "";
         }
 
         protected void ddSupplier_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,6 +68,7 @@ namespace ecci.inv.system.purchasing
             {
                 ddBrand.SelectedIndex = 0;
                 ddBrand.Enabled = false;
+                ddSupplier.SelectedIndex = 0;
                 tbDescription.Text = "";
                 tbDescription.Enabled = false;
             }
@@ -119,12 +126,24 @@ namespace ecci.inv.system.purchasing
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            load();
+            bool tama = load();
+            bool mali = activity();
+            if(tama == true && mali == true)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+            }
+            else
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            }
+            clear();
         }
-        private void load()
+        private Boolean load()
         {
             string date = DateTime.Now.ToString("MMMM dd yyyy");
-
+            bool check = false;
             lbError.Visible = false;
             try
             {
@@ -141,15 +160,56 @@ namespace ecci.inv.system.purchasing
                 con.CloseConnection();
                 if (a == 0)
                 {
-                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                    check = false;
                 }
                 else
                 {
-                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                    check = true;
                 }
-                clear();
+            }
+            catch (Exception ex)
+            {
+                check = false;
+                lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "Error: " + ex.Message;
+                lbError.Visible = true;
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            }
+            return check;
+        }
+        private Boolean activity()
+        {
+            //string date = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
+            string date = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
+            bool check = false;
+            lbError.Visible = false;
+            try
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("insert into activity_transaction(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus,empno,activity)values(@po, @item, @quan, @pdate, @ddate, @stat,@en,@act)");
+                con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
+                con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
+                con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
+                con.Cmd.Parameters.AddWithValue("@pdate", date);
+                con.Cmd.Parameters.AddWithValue("@ddate", tbCalendar.SelectedDate.ToString());
+                con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
+                con.Cmd.Parameters.AddWithValue("@en", sessionempno);
+                con.Cmd.Parameters.AddWithValue("@act", "Ordered");
+                int a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+                if (a == 0)
+                {
+                    check = false;
+                    //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                }
+                else
+                {
+                    check = true;
+                    //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                }
             }
             catch (Exception ex)
             {
@@ -159,6 +219,27 @@ namespace ecci.inv.system.purchasing
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
             }
+            return check;
+        }
+
+        protected void tbCalendar_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date.CompareTo(DateTime.Now.Date) < 0)
+            {
+                e.Cell.Text = e.Day.DayNumberText;
+                e.Day.IsSelectable = false;
+            }
+        }
+        
+        protected void tbEdate_TextChanged(object sender, EventArgs e)
+        {
+            tbCalendar.Visible = true;
+        }
+
+        protected void tbCalendar_SelectionChanged(object sender, EventArgs e)
+        {
+            tbEdate.Text = tbCalendar.SelectedDate.ToShortDateString();
+            tbCalendar.Visible = false;
         }
     }
 }

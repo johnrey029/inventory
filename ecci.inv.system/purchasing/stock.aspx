@@ -11,7 +11,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
     
-<%--    <script type="text/javascript">$(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>--%>
+<%--                <div class="form-group">
+                  <label for="batch">Batch Code</label>
+                  <asp:TextBox ID="tbBatch" runat="server" CssClass="form-control" placeholder="Batch Code"></asp:TextBox>
+                </div>--%>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -48,13 +51,14 @@
             <h3 class="box-title">Stock Input</h3>
           </div>
           <!-- /.box-header -->
-          <%--<form role="form" action="#" method="post" enctype="multipart/form-data">--%>
+            <%-- <asp:TextBox ID="tbEdate" runat="server" CssClass="form-control" placeholder="Expected Delivery Date"></asp:TextBox>--%>
               <div class="box-body">
 
 <%--                <?php echo validation_errors(); ?>--%>
                 <div class="form-group">
                   <label for="purchaseorder">Purchase Order Number</label>
-                    <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPO" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number" autocomplete="off"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
@@ -78,9 +82,10 @@
 
                 <div class="form-group">
                   <label for="description">Description</label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbDescription" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
-                  <asp:TextBox ID="tbDescription" runat="server" CssClass="form-control" placeholder="Description"></asp:TextBox>
+                  <asp:TextBox ID="tbDescription" runat="server" CssClass="form-control" placeholder="Description" autocomplete="off"></asp:TextBox>
                          </ContentTemplate> 
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="ddBrand" EventName="SelectedIndexChanged" />
@@ -90,7 +95,8 @@
 
                 <div class="form-group">
                   <label for="quantity">Quantity</label>
-                  <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbQuantity" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" autocomplete="off"></asp:TextBox>
                 </div>
 <%--                <div class="form-group">
                   <label for="batch">Batch Code</label>
@@ -98,7 +104,9 @@
                 </div>--%>
                   <div class="form-group">
                   <label for="deliverydate">Expected Delivery Date</label>
-                  <asp:TextBox ID="tbEdate" runat="server" CssClass="form-control" placeholder="Expected Delivery Date"></asp:TextBox>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbEdate" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:TextBox ID="tbEdate" runat="server" CssClass="form-control" placeholder="Expected Delivery Date" autocomplete="off" OnTextChanged="tbEdate_TextChanged"></asp:TextBox>
+                  <asp:Calendar ID="tbCalendar" CssClass="form-control" placeholder="Expected Delivery Date" runat="server" OnDayRender="tbCalendar_DayRender" OnSelectionChanged="tbCalendar_SelectionChanged"></asp:Calendar>
                 </div>
 
               </div>

@@ -65,20 +65,20 @@
                   <div class="form-group">
                   <label for="suppcode">Supplier Code</label><span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSuppCode" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:TextBox ID="tbSuppCode" runat="server" CssClass="form-control" placeholder="Supplier Code"></asp:TextBox>
+                    <asp:TextBox ID="tbSuppCode" runat="server" CssClass="form-control" placeholder="Supplier Code" autocomplete="off"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
                   <label for="suppname">Supplier Name</label><span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbSuppName" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbSuppName" runat="server" CssClass="form-control" placeholder="Supplier Name"></asp:TextBox>
+                  <asp:TextBox ID="tbSuppName" runat="server" CssClass="form-control" placeholder="Supplier Name" autocomplete="off"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
                   <label for="suppaddress">Supplier Address</label><span style="display:inline-block; width: 20px;"></span>
                     
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbSuppAddress" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbSuppAddress" runat="server" CssClass="form-control" placeholder="Supplier Address"></asp:TextBox>
+                  <asp:TextBox ID="tbSuppAddress" runat="server" CssClass="form-control" placeholder="Supplier Address" autocomplete="off"></asp:TextBox>
                 </div>
               </div>
               <!-- /.box-body -->

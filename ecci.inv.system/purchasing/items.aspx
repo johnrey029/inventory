@@ -58,14 +58,14 @@
                   <label for="brand">Brand Name</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbBrand" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     
-                    <asp:TextBox ID="tbBrand" runat="server" CssClass="form-control" placeholder="Brand Name" CausesValidation="false"></asp:TextBox>
+                    <asp:TextBox ID="tbBrand" runat="server" CssClass="form-control" placeholder="Brand Name" CausesValidation="false" autocomplete="off"></asp:TextBox>
                      
                         </div>
                 
                 <div class="form-group">
                   <label for="description">Description</label><span style="display:inline-block; width: 20px;"></span>
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbDescription" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbDescription" runat="server" CssClass="form-control" placeholder="Description" CausesValidation="false"></asp:TextBox>
+                  <asp:TextBox ID="tbDescription" runat="server" CssClass="form-control" placeholder="Description" CausesValidation="false" autocomplete="off"></asp:TextBox>
                 </div>
               </div>
                 
