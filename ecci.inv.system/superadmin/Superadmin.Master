@@ -205,7 +205,7 @@
           <?php if(in_array('createStore', $user_permission) || in_array('updateStore', $user_permission) || in_array('viewStore', $user_permission) || in_array('deleteStore', $user_permission)): ?>
                     --%>
 
-
+                    <li><a href="resetpassword.aspx"><i class="fa fa-user-o"></i><span>Reset Password</span></a></li>
                     <li><a href="#"><i class="fa fa-user-o"></i><span>Profile</span></a></li>
 
                     <!-- user permission info -->

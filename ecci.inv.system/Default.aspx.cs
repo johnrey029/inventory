@@ -70,38 +70,47 @@ namespace ecci.inv.system
                     while (con._dr.Read())
                     {
                         string did = con._dr["dept_id"].ToString();
-                        switch (did)
+                        string passreset = con._dr["reset"].ToString();
+                        if (passreset == "Y")
                         {
-                            case "Purchasing":
-                                Session["empnumber"] = con._dr["empno"].ToString();
-                                Response.Redirect("~/purchasing/index.aspx");
-                                break;
+                            Session["empnumber"] = con._dr["empno"].ToString();
+                            Response.Redirect("~/changepassword.aspx");
+                        }
+                        else
+                        {
+                            switch (did)
+                            {
+                                case "Purchasing":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/purchasing/index.aspx");
+                                    break;
 
-                            case "Super Admin":
-                                Session["empnumber"] = con._dr["empno"].ToString();
-                                Response.Redirect("~/superadmin/index.aspx");
-                                break;
+                                case "Super Admin":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/superadmin/index.aspx");
+                                    break;
 
-                            case "Quality Control":
-                                Session["empnumber"] = con._dr["empno"].ToString();
-                                Response.Redirect("~/qualitycontrol/index.aspx");
-                                break;
+                                case "Quality Control":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/qualitycontrol/index.aspx");
+                                    break;
 
-                            case "Warehouse":
-                                Session["empnumber"] = con._dr["empno"].ToString();
-                                Response.Redirect("~/warehouse/index.aspx");
-                                break;
+                                case "Warehouse":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/warehouse/index.aspx");
+                                    break;
 
-                            case "Sales":
-                                Session["empnumber"] = con._dr["empno"].ToString();
-                                Response.Redirect("~/sales/index.aspx");
-                                break;
+                                case "Sales":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/sales/index.aspx");
+                                    break;
 
-                            default:
-                                lbError.Visible = true;
-                                lbError.Text = "User does not exist!";
-                                lbError.ForeColor = Color.Red;
-                                break;
+                                default:
+                                    lbError.Visible = true;
+                                    lbError.Text = "User does not exist!";
+                                    lbError.ForeColor = Color.Red;
+                                    break;
+                            }
                         }
                         
                     }

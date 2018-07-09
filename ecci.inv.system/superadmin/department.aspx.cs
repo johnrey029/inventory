@@ -17,6 +17,12 @@ namespace ecci.inv.system.superadmin
             if (Session["empnumber"] != null)
             {
                 sessionempno = Session["empnumber"].ToString();
+                if (!IsPostBack)
+                {
+                    //dropdown();
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+                }
             }
 
             else
