@@ -21,7 +21,7 @@ namespace ecci.inv.system.purchasing
             }
             if (!IsPostBack)
             {
-                tbCalendar.Visible = false;
+                //tbCalendar.Visible = false;
                 ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));
                 dropdown();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
@@ -58,7 +58,8 @@ namespace ecci.inv.system.purchasing
             tbPO.Text = "";
             ddBrand.SelectedIndex = -1;
             tbQuantity.Text = "";
-            tbCalendar.Visible = false;
+            ddBrand.Enabled = false;
+            //tbCalendar.Visible = false;
             tbEdate.Text = "";
         }
 
@@ -181,21 +182,24 @@ namespace ecci.inv.system.purchasing
         private Boolean activity()
         {
             //string date = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
-            string date = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
+            string date = DateTime.Now.ToShortDateString();
+            string time = DateTime.Now.ToLongTimeString();
             bool check = false;
             lbError.Visible = false;
             try
             {
+                //itemsid, quantity, purchasedate, deliverydate, postatus,@item, @quan, @pdate, @ddate, @stat,
                 con.OpenConection();
-                con.ExecSqlQuery("insert into activity_transaction(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus,empno,activity)values(@po, @item, @quan, @pdate, @ddate, @stat,@en,@act)");
+                con.ExecSqlQuery("insert into activity_transaction(purchaseorder,empno,activity,time)values(@po,@en,@act,@t)");
                 con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
-                con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
-                con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
-                con.Cmd.Parameters.AddWithValue("@pdate", date);
-                con.Cmd.Parameters.AddWithValue("@ddate", tbCalendar.SelectedDate.ToString());
-                con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
+                //con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
+                //con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
+                //con.Cmd.Parameters.AddWithValue("@pdate", date);
+                //con.Cmd.Parameters.AddWithValue("@ddate", tbCalendar.SelectedDate.ToString());
+                //con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
                 con.Cmd.Parameters.AddWithValue("@en", sessionempno);
-                con.Cmd.Parameters.AddWithValue("@act", "Ordered");
+                con.Cmd.Parameters.AddWithValue("@act", "Ordered an Item");
+                con.Cmd.Parameters.AddWithValue("@t", time);
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)
@@ -221,25 +225,7 @@ namespace ecci.inv.system.purchasing
             }
             return check;
         }
-
-        protected void tbCalendar_DayRender(object sender, DayRenderEventArgs e)
-        {
-            if (e.Day.Date.CompareTo(DateTime.Now.Date) < 0)
-            {
-                e.Cell.Text = e.Day.DayNumberText;
-                e.Day.IsSelectable = false;
-            }
-        }
         
-        protected void tbEdate_TextChanged(object sender, EventArgs e)
-        {
-            tbCalendar.Visible = true;
-        }
-
-        protected void tbCalendar_SelectionChanged(object sender, EventArgs e)
-        {
-            tbEdate.Text = tbCalendar.SelectedDate.ToShortDateString();
-            tbCalendar.Visible = false;
-        }
+        
     }
 }

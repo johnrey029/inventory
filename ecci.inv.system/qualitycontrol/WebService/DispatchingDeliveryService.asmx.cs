@@ -28,14 +28,16 @@ namespace ecci.inv.system.qualitycontrol.WebService
             var orders = new List<DispatchDelivery>();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
+            @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.receivedate,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE s.postatus='Received'
+            WHERE s.postatus='Received'and s.receivedate is not null
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
+                DateTime dt = DateTime.Parse(con._dr["purchasedate"].ToString());
+                DateTime dt1 = DateTime.Parse(con._dr["receivedate"].ToString());
                 var order = new DispatchDelivery
                 {
                     stockId = Convert.ToInt32(con._dr["stockid"].ToString()),
@@ -43,8 +45,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     suppName = con._dr["suppname"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
                     quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
-                    purchaseDate = con._dr["purchasedate"].ToString(),
-                    deliverDate = con._dr["deliverydate"].ToString(),
+                    purchaseDate = dt.ToShortDateString(),
+                    receivedDate = dt1.ToShortDateString(),
                     poStatus = con._dr["postatus"].ToString()
                 };
                 orders.Add(order);

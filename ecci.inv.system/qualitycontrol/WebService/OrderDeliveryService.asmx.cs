@@ -39,6 +39,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
+                DateTime dt = DateTime.Parse(con._dr["purchasedate"].ToString());
+                DateTime dt1 = DateTime.Parse(con._dr["deliverydate"].ToString());
                 var order = new OrderDelivery
                 {
                     stockId = Convert.ToInt32(con._dr["stockid"].ToString()),
@@ -46,8 +48,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     suppName = con._dr["suppname"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
                     quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
-                    purchaseDate = con._dr["purchasedate"].ToString(),
-                    deliverDate = con._dr["deliverydate"].ToString(),
+                    purchaseDate = dt.ToShortDateString(),
+                    deliverDate = dt1.ToShortDateString(),
                     poStatus = con._dr["postatus"].ToString()
                 };
                 orders.Add(order);
@@ -74,13 +76,16 @@ namespace ecci.inv.system.qualitycontrol.WebService
             {
                 //var order = new OrderDelivery
                 //{
+
+                DateTime dt = DateTime.Parse(con._dr["purchasedate"].ToString());
+                DateTime dt1 = DateTime.Parse(con._dr["deliverydate"].ToString());
                 od.stockId = Convert.ToInt32(con._dr["stockid"].ToString());
                 od.purchaseOrder = con._dr["purchaseorder"].ToString();
                 od.suppName = con._dr["suppname"].ToString();
                 od.brandName = con._dr["brandname"].ToString();
                 od.quantity = Convert.ToInt32(con._dr["quantity"].ToString());
-                od.purchaseDate = con._dr["purchasedate"].ToString();
-                od.deliverDate = con._dr["deliverydate"].ToString();
+                od.purchaseDate = dt.ToShortDateString();
+                od.deliverDate = dt1.ToShortDateString();
                 od.poStatus = con._dr["postatus"].ToString();
                 //};
                 //orders.Add(order);

@@ -5,8 +5,11 @@
      <script type="text/javascript">  
      $(document).ready(function () {  
          $("#stockNav").addClass('active');
-  });  
+     });
  </script>  
+ 
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>--%>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -51,7 +54,7 @@
             <h3 class="box-title">Stock Input</h3>
           </div>
           <!-- /.box-header -->
-            <%-- <asp:TextBox ID="tbEdate" runat="server" CssClass="form-control" placeholder="Expected Delivery Date"></asp:TextBox>--%>
+            <%-- <asp:TextBox ID="tbEdate" runat="server" CssClass="form-control" placeholder="Expected Delivery Date"></asp:TextBox>CausesValidation="false"--%>
               <div class="box-body">
 
 <%--                <?php echo validation_errors(); ?>--%>
@@ -60,19 +63,18 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPO" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number" autocomplete="off"></asp:TextBox>
                 </div>
-
                 <div class="form-group">
                   <label for="supplier">Supplier Name</label><span style="display:inline-block; width: 20px;"></span>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddSupplier" ErrorMessage="This field is required" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
-                  <asp:DropDownList ID="ddSupplier"  CssClass="form-control js-example-placeholder-single" CausesValidation="false" runat="server" OnSelectedIndexChanged="ddSupplier_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddSupplier" ErrorMessage="This field is required" ForeColor="Red" InitialValue="-1"></asp:RequiredFieldValidator>
+                  <asp:DropDownList ID="ddSupplier" CssClass="form-control js-example-placeholder-single"  CausesValidation="false" runat="server" OnSelectedIndexChanged="ddSupplier_SelectedIndexChanged" AutoPostBack="True" Width="100%"></asp:DropDownList>
                 </div>
 
                 <div class="form-group">
                   <label for="brand">Brand Name</label><span style="display:inline-block; width: 20px;"></span>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddBrand" ErrorMessage="This field is required" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddBrand" ErrorMessage="This field is required" ForeColor="Red" InitialValue="-1"></asp:RequiredFieldValidator>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                  <asp:DropDownList ID="ddBrand"  CssClass="form-control js-example-placeholder-single" CausesValidation="false" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddBrand_SelectedIndexChanged"></asp:DropDownList>
+                  <asp:DropDownList ID="ddBrand"  CssClass="form-control js-example-placeholder-single"  CausesValidation="false" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddBrand_SelectedIndexChanged" Width="100%"></asp:DropDownList>
                </ContentTemplate> 
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="ddSupplier" EventName="SelectedIndexChanged" />
@@ -98,16 +100,24 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbQuantity" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                   <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" autocomplete="off"></asp:TextBox>
                 </div>
-<%--                <div class="form-group">
-                  <label for="batch">Batch Code</label>
-                  <asp:TextBox ID="tbBatch" runat="server" CssClass="form-control" placeholder="Batch Code"></asp:TextBox>
+
+<%--                </asp:TextBox> runat="server"--%>
+                 <%-- <div class="form-group"><input type="text" id="tbEdate" class="form-control" placeholder="Expected Delivery Date (MM/DD/YYYY)" autocomplete="off"/>
+                  <label for="deliverydate">Expected Delivery Date</label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbEdate" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <input type="text" id="tbEdate" class="form-control" placeholder="Expected Delivery Date" autocomplete="off"/>
+                  <asp:Calendar ID="tbCalendar" CssClass="form-control" placeholder="Expected Delivery Date" runat="server" OnDayRender="tbCalendar_DayRender" OnSelectionChanged="tbCalendar_SelectionChanged"></asp:Calendar>
                 </div>--%>
                   <div class="form-group">
                   <label for="deliverydate">Expected Delivery Date</label>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbEdate" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbEdate" runat="server" CssClass="form-control" placeholder="Expected Delivery Date" autocomplete="off" OnTextChanged="tbEdate_TextChanged"></asp:TextBox>
-                  <asp:Calendar ID="tbCalendar" CssClass="form-control" placeholder="Expected Delivery Date" runat="server" OnDayRender="tbCalendar_DayRender" OnSelectionChanged="tbCalendar_SelectionChanged"></asp:Calendar>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbEdate" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                <div class="input-group date" id="datetimepicker">
+                    <asp:TextBox ID="tbEdate"  runat="server" CssClass="form-control" placeholder="Expected Delivery Date (MM/DD/YYYY)" autocomplete="off"></asp:TextBox>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
+            </div>
 
               </div>
               <!-- /.box-body -->
@@ -123,9 +133,17 @@
       <!-- col-md-12 -->
     </div>
     <!-- /.row -->
-    
-
   </section>     
-
   </div>
+    <script type="text/javascript">  
+        $(document).ready(function () {
+            $("#datetimepicker").datepicker({
+                format: "mm/dd/yyyy",
+                chageMonth: true,
+                changeYear: true,
+                startDate: "+0d"
+            });
+            
+        });
+ </script>  
 </asp:Content>

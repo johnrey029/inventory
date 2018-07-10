@@ -59,14 +59,14 @@
     <form action="<?php echo base_url('auth/login') ?>" method="post">--%>
       <div class="form-group has-feedback">
         <%--<input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off">--%>
-          <asp:TextBox ID="tbEmpNo" runat="server" CssClass="form-control" placeholder="Employee Number" ></asp:TextBox>
+          <asp:TextBox ID="tbEmpNo" runat="server" CssClass="form-control" placeholder="Employee Number" autocomplete="off" ></asp:TextBox>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           
       <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEmpNo" ErrorMessage="*The Employee Number field is required" ForeColor="Red"></asp:RequiredFieldValidator>
       </div>
       <div class="form-group has-feedback">
         <%--<input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">--%>
-        <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password" autocomplete="off"></asp:TextBox>
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           
       <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"  ControlToValidate="tbPassword" ErrorMessage="*The Password field is required" ForeColor="Red"></asp:RequiredFieldValidator>

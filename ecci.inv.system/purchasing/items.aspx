@@ -53,7 +53,6 @@
                   <asp:DropDownList ID="ddSupplier"  CssClass="form-control js-example-placeholder-single" CausesValidation="false" runat="server"></asp:DropDownList>
                  </div>
                   
-<%--                <?php echo validation_errors(); ?>--%>
                 <div class="form-group">
                   <label for="brand">Brand Name</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbBrand" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>

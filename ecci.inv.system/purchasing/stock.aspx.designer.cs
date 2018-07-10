@@ -148,15 +148,6 @@ namespace ecci.inv.system.purchasing {
         protected global::System.Web.UI.WebControls.TextBox tbEdate;
         
         /// <summary>
-        /// tbCalendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar tbCalendar;
-        
-        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

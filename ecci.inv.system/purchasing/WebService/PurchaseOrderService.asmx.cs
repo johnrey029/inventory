@@ -36,14 +36,16 @@ namespace ecci.inv.system.purchasing.WebService
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
+                DateTime dt = DateTime.Parse(con._dr["purchasedate"].ToString());
+                DateTime dt1 = DateTime.Parse(con._dr["deliverydate"].ToString());
                 var order = new PurchaseOrder
                 {
                     purchaseOrder = con._dr["purchaseorder"].ToString(),
                     suppName = con._dr["suppname"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
                     quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
-                    purchaseDate = con._dr["purchasedate"].ToString(),
-                    deliverDate = con._dr["deliverydate"].ToString(),
+                    purchaseDate = dt.ToShortDateString(),
+                    deliverDate = dt1.ToShortDateString(),
                     poStatus = con._dr["postatus"].ToString()
                 };
                 orders.Add(order);

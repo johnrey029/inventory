@@ -6766,6 +6766,10 @@
     <Content Include="scripts\material.min.js" />
     <Content Include="scripts\mod.css" />
     <Content Include="sales\Sales.Master" />
+    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap.min.css.map" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
     <None Include="Service References\DeliveryService\configuration91.svcinfo" />
     <None Include="Service References\DeliveryService\configuration.svcinfo" />
@@ -6869,10 +6873,6 @@
     <Content Include="assets\bower_components\bootstrap\.DS_Store" />
     <Content Include="assets\bower_components\bootstrap\bower.json" />
     <Content Include="assets\bower_components\bootstrap\CHANGELOG.md" />
-    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
-    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap-theme.min.css.map" />
-    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap.css.map" />
-    <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap.min.css.map" />
     <Content Include="assets\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="assets\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />

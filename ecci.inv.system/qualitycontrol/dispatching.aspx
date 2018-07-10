@@ -26,7 +26,7 @@
                          { 'data': 'brandName' },
                          { 'data': 'quantity'},
                          { 'data': 'purchaseDate' },
-                         { 'data': 'deliverDate' },
+                         { 'data': 'receivedDate' },
                          { 'data': 'poStatus' }
                      ],
                      language: {
@@ -94,7 +94,7 @@
                 <th>Brand Name</th>
                 <th>Quantity</th>
                 <th>Purchased Date</th>
-                <th>Delivery Date</th>
+                <th>Received Date</th>
                 <th>Staus</th>
               </tr>
               </thead>
