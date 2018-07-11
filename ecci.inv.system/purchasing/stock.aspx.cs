@@ -190,12 +190,12 @@ namespace ecci.inv.system.purchasing
             {
                 //itemsid, quantity, purchasedate, deliverydate, postatus,@item, @quan, @pdate, @ddate, @stat,
                 con.OpenConection();
-                con.ExecSqlQuery("insert into activity_transaction(purchaseorder,empno,activity,time)values(@po,@en,@act,@t)");
+                con.ExecSqlQuery("INSERT INTO activity_transaction(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@ddate,@t)");
                 con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
                 //con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
                 //con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
                 //con.Cmd.Parameters.AddWithValue("@pdate", date);
-                //con.Cmd.Parameters.AddWithValue("@ddate", tbCalendar.SelectedDate.ToString());
+                con.Cmd.Parameters.AddWithValue("@ddate", date);
                 //con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
                 con.Cmd.Parameters.AddWithValue("@en", sessionempno);
                 con.Cmd.Parameters.AddWithValue("@act", "For Delivery");

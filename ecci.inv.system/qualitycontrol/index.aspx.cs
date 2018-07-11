@@ -75,18 +75,18 @@ namespace ecci.inv.system.qualitycontrol
             //ToString("MMMM dd yyyy hh:mm tt")
             //int item = itemsid(); itemsid, quantity, purchasedate, deliverydate, postatus,receivedate, @item, @quan, @pdate, @ddate, @stat,@rdate
 
-            //string date = DateTime.Now.ToShortDateString();
+            string date = DateTime.Now.ToShortDateString();
             //DateTime pdate = DateTime.Parse(Request.Form.Get("pdate").ToString());
             //DateTime ddate = DateTime.Parse(Request.Form.Get("ddate").ToString());
             string time = DateTime.Now.ToLongTimeString();
             con.OpenConection();
-            con.ExecSqlQuery("insert into activity_transaction(purchaseorder,empno,activity,time)values(@po,@en,@act,@t)");
+            con.ExecSqlQuery("INSERT INTO activity_transaction(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@rdate,@t)");
             con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
             //con.Cmd.Parameters.AddWithValue("@item", item);
             //con.Cmd.Parameters.AddWithValue("@quan", Request.Form.Get("qty").ToString());
             //con.Cmd.Parameters.AddWithValue("@pdate", pdate.ToShortDateString());
             //con.Cmd.Parameters.AddWithValue("@ddate", ddate.ToShortDateString());
-            //con.Cmd.Parameters.AddWithValue("@rdate", date);
+            con.Cmd.Parameters.AddWithValue("@rdate", date);
             //con.Cmd.Parameters.AddWithValue("@stat", "Received");
             con.Cmd.Parameters.AddWithValue("@en", sessionempno);
             con.Cmd.Parameters.AddWithValue("@act", "Received");
