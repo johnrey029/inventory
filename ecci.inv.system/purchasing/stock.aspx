@@ -125,7 +125,7 @@
               <div class="box-footer">
                   <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
                   <asp:Button ID="btnBack" runat="server" Text="Back" CausesValidation="false" CssClass="btn btn-warning" />
-                   <asp:Label ID="lbError" runat="server" Text="Label" Visible="False"></asp:Label>
+                  <asp:Label ID="lbError" runat="server" Text="Label" Visible="False"></asp:Label>
               </div>
         </div>
         <!-- /.box -->
