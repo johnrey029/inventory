@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace ecci.inv.system.purchasing
 {
@@ -31,6 +32,7 @@ namespace ecci.inv.system.purchasing
             }
 
         }
+      
         private void dropdown()
         {
             try
@@ -139,24 +141,25 @@ namespace ecci.inv.system.purchasing
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
             }
-            clear();
+            //clear();
         }
         private Boolean load()
         {
-            string date = DateTime.Now.ToString("MMMM dd yyyy");
+            //string date = DateTime.Now.ToString("MMMM dd yyyy");
+            string date = DateTime.Now.ToShortDateString();
             bool check = false;
             lbError.Visible = false;
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("insert into stock(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus)values(@po, @item, @quan, @pdate, @ddate, @stat)");
+                con.ExecSqlQuery("insert into stock_raw(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus, price)values(@po, @item, @quan, @pdate, @ddate, @stat, @price)");
                 con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
-                //con.Cmd.Parameters.AddWithValue("@scode", ddSupplier.SelectedValue);
                 con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
                 con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
-                con.Cmd.Parameters.AddWithValue("@pdate", date);
-                con.Cmd.Parameters.AddWithValue("@ddate", tbEdate.Text);
+                con.Cmd.Parameters.AddWithValue("@pdate", DateTime.Parse(date));
+                con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(tbEdate.Text));
                 con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
+                con.Cmd.Parameters.AddWithValue("@price", tbPrice.Text);
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)
@@ -190,16 +193,16 @@ namespace ecci.inv.system.purchasing
             {
                 //itemsid, quantity, purchasedate, deliverydate, postatus,@item, @quan, @pdate, @ddate, @stat,
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO activity_transaction(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@ddate,@t)");
+                con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@ddate,@t)");
                 con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
                 //con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
                 //con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
                 //con.Cmd.Parameters.AddWithValue("@pdate", date);
-                con.Cmd.Parameters.AddWithValue("@ddate", date);
-                //con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
                 con.Cmd.Parameters.AddWithValue("@en", sessionempno);
                 con.Cmd.Parameters.AddWithValue("@act", "For Delivery");
-                con.Cmd.Parameters.AddWithValue("@t", time);
+                con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(date));
+                //con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
+                con.Cmd.Parameters.AddWithValue("@t", DateTime.Parse(time));
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)
@@ -225,7 +228,5 @@ namespace ecci.inv.system.purchasing
             }
             return check;
         }
-        
-        
     }
 }

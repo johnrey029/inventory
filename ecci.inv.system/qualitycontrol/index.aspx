@@ -116,13 +116,13 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<!-- remove brand modal -->
+<!-- Update raw stock modal -->
 <div class="modal fade" tabindex="-1"  role="dialog" id="updateModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Accept Items</h4>
+      <div class="modal-header bg-aqua-active">
+        <button type="button" class="close active" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Accept Delivery Items</h4>
       </div>
 
         <div class="modal-body">
@@ -154,9 +154,9 @@
                 
         </div>
         
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
+        <div class="modal-footer bg-aqua-active">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-success" OnClick="btnSave_Click"/>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
         </div>
 
@@ -188,27 +188,27 @@
           });
           $('#updateModal').modal('show');
          }
-         var UpdateDelivery = function()
-         {
-             var sid = $('#hiddenStockId').val();
-             $('#updateModal').modal('hide');
-             $.ajax({
-                 url: "WebService/OrderDeliveryService.asmx/UpdateById",
-                 data: { upid: sid },
-                 type: "POST",
-                 dataType: "xml",
-                 success: function (data) {
-                     datatableVariable.ajax.reload(null, false);
-                     if (data == 1) {
-              //           $("#messages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
-              //'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-              //'<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>' + data + '</div>');
-                     }
-                 },
-                 error: function (err) {
-                     $('.alert-success').hide(); $('.alert-error').show();
-                 }
-             });
-         }
+         //var UpdateDelivery = function()
+         //{
+         //    var sid = $('#hiddenStockId').val();
+         //    $('#updateModal').modal('hide');
+         //    $.ajax({
+         //        url: "WebService/OrderDeliveryService.asmx/UpdateById",
+         //        data: { upid: sid },
+         //        type: "POST",
+         //        dataType: "xml",
+         //        success: function (data) {
+         //            datatableVariable.ajax.reload(null, false);
+         //            if (data == 1) {
+         //               $("#messages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
+         //     '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+         //    '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>' + data + '</div>');
+         //            }
+         //        },
+         //        error: function (err) {
+         //            $('.alert-success').hide(); $('.alert-error').show();
+         //        }
+         //    });
+         //}
  </script>
 </asp:Content>   

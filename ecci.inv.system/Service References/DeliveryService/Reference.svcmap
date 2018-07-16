@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="66ed92db-571b-4c48-8991-a28a1e6680c7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fbf77bb9-b70a-4efa-8ecb-5912a5a26c97" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:2908/qualitycontrol/WebService/OrderDeliveryService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="OrderDeliveryService.wsdl" MetadataType="Wsdl" ID="6591ebb0-4735-42af-b541-3fecdb4a9ac9" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OrderDeliveryService.asmx?wsdl" />
-    <MetadataFile FileName="OrderDeliveryService.disco" MetadataType="Disco" ID="a7914390-2c7b-4f50-9a07-909e18d8b6bd" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OrderDeliveryService.asmx?disco" />
+    <MetadataFile FileName="OrderDeliveryService.wsdl" MetadataType="Wsdl" ID="3cb4f448-aaf4-4022-ab4b-0d1d648c3499" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OrderDeliveryService.asmx?wsdl" />
+    <MetadataFile FileName="OrderDeliveryService.disco" MetadataType="Disco" ID="d27ad7f0-484c-436c-8e0f-0d153c6bdae8" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OrderDeliveryService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

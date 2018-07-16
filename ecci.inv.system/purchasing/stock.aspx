@@ -61,7 +61,7 @@
                 <div class="form-group">
                   <label for="purchaseorder">Purchase Order Number</label>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPO" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number" autocomplete="off"></asp:TextBox>
+                    <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number" autocomplete="off" ReadOnly="True"></asp:TextBox>
                 </div>
                 <div class="form-group">
                   <label for="supplier">Supplier Name</label><span style="display:inline-block; width: 20px;"></span>
@@ -99,6 +99,11 @@
                   <label for="quantity">Quantity</label>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbQuantity" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                   <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" autocomplete="off"></asp:TextBox>
+                </div>
+                  <div class="form-group">
+                  <label for="price">Price</label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbPrice" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:TextBox ID="tbPrice" runat="server" CssClass="form-control" placeholder="Price" autocomplete="off"></asp:TextBox>
                 </div>
 
 <%--                </asp:TextBox> runat="server"--%>
@@ -138,7 +143,7 @@
     <script type="text/javascript">  
         $(document).ready(function () {
             $("#datetimepicker").datepicker({
-                format: "mm/dd/yyyy",
+                format: "dd/mm/yyyy",
                 chageMonth: true,
                 changeYear: true,
                 startDate: "+0d"

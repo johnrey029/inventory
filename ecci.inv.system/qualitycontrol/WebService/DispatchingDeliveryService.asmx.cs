@@ -29,7 +29,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.receivedate,
-            s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
+            s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
             WHERE s.postatus='Received'and s.receivedate is not null
@@ -56,6 +56,41 @@ namespace ecci.inv.system.qualitycontrol.WebService
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(orders));
         }
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void ShowDeliveredById(int id)
+        {
+            con = new DBConnection();
+            OrderDelivery od = new OrderDelivery();
+            con.OpenConection();
+            con._dr = con.DataReader(
+            @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
+            s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
+            INNER JOIN items i ON s.itemsid = i.itemsid
+            INNER JOIN suppliers u ON i.suppcode = u.suppcode
+            WHERE s.stockid = '" + id + "';");
+            while (con._dr.Read())
+            {
+                //var order = new OrderDelivery
+                //{
 
+                DateTime dt = DateTime.Parse(con._dr["purchasedate"].ToString());
+                DateTime dt1 = DateTime.Parse(con._dr["deliverydate"].ToString());
+                od.stockId = Convert.ToInt32(con._dr["stockid"].ToString());
+                od.purchaseOrder = con._dr["purchaseorder"].ToString();
+                od.suppName = con._dr["suppname"].ToString();
+                od.brandName = con._dr["brandname"].ToString();
+                od.quantity = Convert.ToInt32(con._dr["quantity"].ToString());
+                od.purchaseDate = dt.ToShortDateString();
+                od.deliverDate = dt1.ToShortDateString();
+                od.poStatus = con._dr["postatus"].ToString();
+                //};
+                //orders.Add(order);
+            }
+            con._dr.Close();
+            con.CloseConnection();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(od));
+        }
     }
 }

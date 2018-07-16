@@ -17,7 +17,7 @@
                      columns: [
                          {
                              'data': 'stockId', 'render': function (data, type, row) {
-                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Dispatch</a>";
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-paper-plane'></i>  Dispatch</a>";
                              },
                              orderable: false
                          },
@@ -39,7 +39,7 @@
                  alert(err);
              }
          });
-         $("#dashboardMainMenu").addClass('active');
+         $("#dispatchNav").addClass('active');
 
          });
  </script>  
@@ -109,8 +109,86 @@
     </div>
 
     <!-- /.row -->
-    
-
   </section>
+</div>
+<div class="modal fade" tabindex="-1"  role="dialog" id="dispatchModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-aqua-active">
+        <button type="button" class="close active" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Dispatch Raw Materials</h4>
       </div>
+
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="PO">Purchase Order Number</label>
+                <input type="text" class="form-control" id="po" name="po" readonly="true"/>
+            </div>
+            <div class="form-group">
+                <label for="supplier">Supplier</label>
+                <input type="text" class="form-control" id="supplier" name="supplier" readonly="true"/>
+             </div>
+             <div class="form-group">
+                 <label for="brand">Brand</label>
+                 <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
+             </div>
+            <div class="form-group">
+                <label for="qty">Quantity</label>
+                <input type="text" class="form-control" id="qty" name="qty" readonly="true"/>
+            </div>
+            <div class="form-group">
+                <label for="pdate">Purchased Date</label>
+                <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
+            </div>
+            <div class="form-group">
+                <label for="ddate">Delivery Date</label>
+                <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
+            </div>
+            <div class="form-group">
+                <label for="pquan">Quantity Passed</label>
+                <input type="text" class="form-control" id="pquan" name="pdate" readonly="true"/>
+            </div>
+            <div class="form-group">
+                <label for="fquan">Quantity Failed</label>
+                <input type="text" class="form-control" id="fquan" name="ddate"readonly="true"/>
+            </div>
+
+                
+        </div>
+        
+        <div class="modal-footer bg-aqua-active">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success"/>
+          <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
+        </div>
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">  
+         function ConfirmUpdate(stockId)
+         {
+           $('#hiddenStockId').val(stockId);
+          var sid = $('#hiddenStockId').val();
+          $.ajax({
+              url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
+              data: { id: sid },
+              type: "POST",
+              dataType: "json",
+              success: function (data) {
+                      $('#po').val(data.purchaseOrder);
+                      $('#supplier').val(data.suppName);
+                      $('#brand').val(data.brandName);
+                      $('#qty').val(data.quantity);
+                      $('#pdate').val(data.purchaseDate);
+                      $('#ddate').val(data.deliverDate);
+              },
+              error: function (err) {
+                  alert(err);
+              }
+          });
+          $('#dispatchModal').modal('show');
+         }
+ </script>
 </asp:Content>

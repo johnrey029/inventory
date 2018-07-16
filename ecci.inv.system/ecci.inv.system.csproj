@@ -6770,13 +6770,6 @@
     <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap-theme.min.css.map" />
     <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap.css.map" />
     <Content Include="assets\bower_components\bootstrap\dist\css\bootstrap.min.css.map" />
-    <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
-    <None Include="Service References\DeliveryService\configuration91.svcinfo" />
-    <None Include="Service References\DeliveryService\configuration.svcinfo" />
-    <None Include="Service References\DeliveryService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="scripts\bower.json" />
     <Content Include="scripts\getmdl-select.min.css.map" />
     <Content Include="scripts\getmdl-select.min.js.map" />
@@ -7404,11 +7397,18 @@
     <Content Include="assets\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="purchasing\Purchasing.Master" />
+    <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
+    <None Include="Service References\DeliveryService\configuration91.svcinfo" />
+    <None Include="Service References\DeliveryService\configuration.svcinfo" />
+    <None Include="Service References\DeliveryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="superadmin\resetpassword.aspx" />
     <Content Include="superadmin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
-    <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <Content Include="warehouse\WareHouse.Master" />
+    <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7632,11 +7632,6 @@
     <Compile Include="sales\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\DeliveryService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7650,6 +7645,11 @@
     </Compile>
     <Compile Include="EditProducts.aspx.designer.cs">
       <DependentUpon>EditProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DeliveryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="superadmin\department.aspx.cs">
       <DependentUpon>department.aspx</DependentUpon>
@@ -7713,7 +7713,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -32,7 +32,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
-            s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
+            s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
             WHERE s.postatus='For Delivery'
@@ -68,7 +68,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
-            s.stockid, s.postatus, i.brandname, u.suppname FROM stock s
+            s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
             WHERE s.stockid = '" + id +"';");
@@ -101,7 +101,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
         {
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("UPDATE stock SET postatus = @stat, receivedate = @rdate WHERE stockid = @sid");
+            con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, receivedate = @rdate WHERE stockid = @sid");
             con.Cmd.Parameters.AddWithValue("@stat", "Received");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
             con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
