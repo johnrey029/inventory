@@ -23,7 +23,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
     public class OrderDeliveryService : System.Web.Services.WebService
     {
         DBConnection con;
-        [WebMethod(EnableSession =true)]
+        [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetDeliveredOrder()
         {
@@ -71,7 +71,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE s.stockid = '" + id +"';");
+            WHERE s.stockid = '" + id + "';");
             while (con._dr.Read())
             {
                 //var order = new OrderDelivery

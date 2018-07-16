@@ -25,5 +25,38 @@ namespace ecci.inv.system.qualitycontrol
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
         }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            int sid = Convert.ToInt32(Request.Form.Get("hiddenStockId").ToString());
+
+            int result = client;
+            int result1 = Insert();
+            if (result == 1 && result1 == 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+            }
+            else
+            {
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            }
+        }
+        public int Insert()
+        {
+            string date = DateTime.Now.ToShortDateString();
+            string time = DateTime.Now.ToLongTimeString();
+            con.OpenConection();
+            con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@rdate,@t)");
+            con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
+            con.Cmd.Parameters.AddWithValue("@rdate", DateTime.Parse(date));
+            con.Cmd.Parameters.AddWithValue("@en", sessionempno);
+            con.Cmd.Parameters.AddWithValue("@act", "Dispatch Raw Materials");
+            con.Cmd.Parameters.AddWithValue("@t", DateTime.Parse(time));
+            int a = con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
+            return a;
+        }
     }
 }

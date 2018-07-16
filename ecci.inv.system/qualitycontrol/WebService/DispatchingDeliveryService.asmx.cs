@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
+using System.Data;
 
 namespace ecci.inv.system.qualitycontrol.WebService
 {
@@ -61,7 +62,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
         public void ShowDeliveredById(int id)
         {
             con = new DBConnection();
-            OrderDelivery od = new OrderDelivery();
+            DispatchDelivery od = new DispatchDelivery();
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
@@ -75,14 +76,14 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 //{
 
                 DateTime dt = DateTime.Parse(con._dr["purchasedate"].ToString());
-                DateTime dt1 = DateTime.Parse(con._dr["deliverydate"].ToString());
+                DateTime dt1 = DateTime.Parse(con._dr["receivedate"].ToString());
                 od.stockId = Convert.ToInt32(con._dr["stockid"].ToString());
                 od.purchaseOrder = con._dr["purchaseorder"].ToString();
                 od.suppName = con._dr["suppname"].ToString();
                 od.brandName = con._dr["brandname"].ToString();
                 od.quantity = Convert.ToInt32(con._dr["quantity"].ToString());
                 od.purchaseDate = dt.ToShortDateString();
-                od.deliverDate = dt1.ToShortDateString();
+                od.receivedDate = dt1.ToShortDateString();
                 od.poStatus = con._dr["postatus"].ToString();
                 //};
                 //orders.Add(order);
@@ -91,6 +92,31 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con.CloseConnection();
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(od));
+        }
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int UpdateDispatch(int upid)
+        {
+            con = new DBConnection();
+            con.OpenConection();
+            con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, receivedate = @rdate WHERE stockid = @sid");
+            con.Cmd.Parameters.AddWithValue("@stat", "Dispatch");
+            con.Cmd.Parameters.AddWithValue("@sid", upid);
+            con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+            int a = con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
+            if (a == 0)
+            {
+                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            }
+            else
+            {
+                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+            }
+            con.CloseConnection();
+            return a;
         }
     }
 }

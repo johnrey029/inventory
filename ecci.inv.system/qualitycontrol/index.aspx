@@ -68,11 +68,11 @@
           <div id="messages"></div>
           <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Succesfully</strong>Update Received Delivery
+              <strong>Succesfully</strong> Update Received Delivery
           </div>
           <div class="alert alert-error alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Failed Processing</strong>Delivery Update
+              <strong>Failed Processing</strong> Delivery Update
           </div>
 
       <%--  <?php if(in_array('createProduct', $user_permission)): ?>

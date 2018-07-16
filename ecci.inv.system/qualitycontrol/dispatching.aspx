@@ -133,7 +133,7 @@
                  <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
              </div>
             <div class="form-group">
-                <label for="qty">Quantity</label>
+                <label for="qty">Total Quantity</label>
                 <input type="text" class="form-control" id="qty" name="qty" readonly="true"/>
             </div>
             <div class="form-group">
@@ -146,11 +146,14 @@
             </div>
             <div class="form-group">
                 <label for="pquan">Quantity Passed</label>
-                <input type="text" class="form-control" id="pquan" name="pdate" readonly="true"/>
+                 <asp:TextBox ID="tbPquan" CssClass="form-control"  runat="server"></asp:TextBox>
+                
             </div>
             <div class="form-group">
                 <label for="fquan">Quantity Failed</label>
-                <input type="text" class="form-control" id="fquan" name="ddate"readonly="true"/>
+                <asp:TextBox ID="tbFquan" CssClass="form-control"  runat="server"></asp:TextBox>
+                <%--<input type="text" class="form-control" id="fquan" name="ddate"/>
+                <input type="text" class="form-control" id="pquan" name="pdate"/>--%>
             </div>
 
                 
@@ -158,7 +161,7 @@
         
         <div class="modal-footer bg-aqua-active">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success"/>
+          <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" Onclick="btnSave_Click"/>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
         </div>
 
