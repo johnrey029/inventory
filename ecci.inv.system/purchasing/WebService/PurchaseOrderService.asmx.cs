@@ -30,7 +30,7 @@ namespace ecci.inv.system.purchasing.WebService
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
-            s.postatus, i.brandname, u.suppname FROM stock s
+            s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
             ORDER BY s.stockid ASC");

@@ -61,7 +61,7 @@
                 <div class="form-group">
                   <label for="purchaseorder">Purchase Order Number</label>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPO" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number" autocomplete="off"></asp:TextBox>
+                    <asp:TextBox ID="tbPO" runat="server" CssClass="form-control" placeholder="Purchase Order Number" autocomplete="off" ReadOnly="True"></asp:TextBox>
                 </div>
                 <div class="form-group">
                   <label for="supplier">Supplier Name</label><span style="display:inline-block; width: 20px;"></span>
