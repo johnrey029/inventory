@@ -7404,11 +7404,19 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\DispatchService\DispatchingDeliveryService.disco" />
+    <None Include="Service References\DispatchService\configuration91.svcinfo" />
+    <None Include="Service References\DispatchService\configuration.svcinfo" />
+    <None Include="Service References\DispatchService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="superadmin\resetpassword.aspx" />
     <Content Include="superadmin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
+    <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7651,6 +7659,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\DispatchService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="superadmin\department.aspx.cs">
       <DependentUpon>department.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7712,6 +7725,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
+    <WCFMetadataStorage Include="Service References\DispatchService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

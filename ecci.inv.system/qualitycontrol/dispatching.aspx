@@ -67,11 +67,11 @@
           <div id="messages"></div>
           <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Succesfully</strong>Update Received Delivery
+              <strong>Succesfully</strong> Update Received Delivery
           </div>
           <div class="alert alert-error alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Failed Processing</strong>Delivery Update
+              <strong>Failed in Processing</strong> Delivery Update
           </div>
 
       <%--  <?php if(in_array('createProduct', $user_permission)): ?>
@@ -146,20 +146,24 @@
             </div>
             <div class="form-group">
                 <label for="pquan">Quantity Passed</label>
-                 <asp:TextBox ID="tbPquan" CssClass="form-control"  runat="server"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbPquan" ErrorMessage="Input a quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                 <asp:TextBox ID="tbPquan" CssClass="form-control"  runat="server" placeholder="Quantity Number Passed" autocomplete="off"></asp:TextBox>
                 
             </div>
             <div class="form-group">
                 <label for="fquan">Quantity Failed</label>
-                <asp:TextBox ID="tbFquan" CssClass="form-control"  runat="server"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbFquan" ErrorMessage="Input a quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="tbFquan" CssClass="form-control"  runat="server" placeholder="Quantity Number Failed" autocomplete="off"></asp:TextBox>
                 <%--<input type="text" class="form-control" id="fquan" name="ddate"/>
                 <input type="text" class="form-control" id="pquan" name="pdate"/>--%>
             </div>
-
-                
+            <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Not Equal</strong>
+          </div>
         </div>
-        
         <div class="modal-footer bg-aqua-active">
+            
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" Onclick="btnSave_Click"/>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
