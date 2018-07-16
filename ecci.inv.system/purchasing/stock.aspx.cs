@@ -19,17 +19,19 @@ namespace ecci.inv.system.purchasing
             if (Session["empnumber"] != null)
             {
                 sessionempno = Session["empnumber"].ToString();
+                if (!IsPostBack)
+                {
+                    //tbCalendar.Visible = false;
+                    ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));
+                    dropdown();
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+                    ddBrand.Enabled = false;
+                    tbDescription.Enabled = false;
+                }
+                tbPO.Text = DateTime.Now.ToString("MyyHHmmssff");
             }
-            if (!IsPostBack)
-            {
-                //tbCalendar.Visible = false;
-                ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));
-                dropdown();
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-                ddBrand.Enabled = false;
-                tbDescription.Enabled = false;
-            }
+            
 
         }
       
