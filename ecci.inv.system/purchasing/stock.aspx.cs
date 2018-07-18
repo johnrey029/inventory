@@ -29,7 +29,7 @@ namespace ecci.inv.system.purchasing
                     ddBrand.Enabled = false;
                     tbDescription.Enabled = false;
                 }
-                tbPO.Text = DateTime.Now.ToString("MyyHHmmssff");
+                tbPO.Text = DateTime.Now.ToString("Myyssff");
             }
             
 
