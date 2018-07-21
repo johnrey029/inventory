@@ -143,7 +143,7 @@
     <script type="text/javascript">  
         $(document).ready(function () {
             $("#datetimepicker").datepicker({
-                format: "dd/mm/yyyy",
+                format: "mm/dd/yyyy",
                 chageMonth: true,
                 changeYear: true,
                 startDate: "+0d"
