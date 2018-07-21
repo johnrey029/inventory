@@ -32,24 +32,26 @@ namespace ecci.inv.system.qualitycontrol
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int sid = Convert.ToInt32(Request.Form.Get("hiddenStockId").ToString());
-            DispatchService.DispatchingDeliveryServiceSoapClient client = new DispatchService.DispatchingDeliveryServiceSoapClient("DispatchingDeliveryServiceSoap");
-            int result = client.UpdateDispatch(sid);
-            int result1 = Insert();
-            int result2 = fail();
-            int result3 = warehouse();
             int quantity = Convert.ToInt32(Request.Form.Get("qty").ToString());
             int sum = Convert.ToInt32(tbFquan.Text) + Convert.ToInt32(tbPquan.Text);
             if (quantity == sum)
             {
-                if (result == 1 && result1 == 1 && result2 == 1 && result3 == 1)
+                if (Convert.ToInt32(tbPquan.Text) >= 0 && Convert.ToInt32(tbFquan.Text) >= 0)
                 {
-                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
-                }
-                else
-                {
-                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                    "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                    DispatchService.DispatchingDeliveryServiceSoapClient client = new DispatchService.DispatchingDeliveryServiceSoapClient("DispatchingDeliveryServiceSoap");
+                    int result = client.UpdateDispatch(sid);
+                    int result1 = Insert();
+                    int result2 = warehouse();
+                    if (result == 1 && result1 == 1 && result2 == 1)
+                    {
+                        Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                        "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                        "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                    }
                 }
             }
             else if(quantity > sum)
@@ -64,6 +66,7 @@ namespace ecci.inv.system.qualitycontrol
         }
         public int Insert()
         {
+            int a = 0;
             con.OpenConection();
             con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@rdate,@t)");
             con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
@@ -71,14 +74,15 @@ namespace ecci.inv.system.qualitycontrol
             con.Cmd.Parameters.AddWithValue("@en", sessionempno);
             con.Cmd.Parameters.AddWithValue("@act", "Dispatch Raw Materials");
             con.Cmd.Parameters.AddWithValue("@t", DateTime.Parse(time));
-            int a = con.Cmd.ExecuteNonQuery();
+            a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
             return a;
         }
         public int fail()
         {
             int a = 0;
-            if (tbFquan.Text != "0")
+            int comp = Convert.ToInt32(tbFquan.Text);
+            if (comp >= 0)
             {
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO stock_raw_fail(purchaseorder,quantity,date,status)VALUES(@po,@quan,@date,@st)");
@@ -95,9 +99,11 @@ namespace ecci.inv.system.qualitycontrol
         public int warehouse()
         {
             int a = 0;
-            if (tbPquan.Text != "0")
+            int quantity = Convert.ToInt32(Request.Form.Get("qty").ToString());
+            int comp = Convert.ToInt32(tbPquan.Text);
+            if (comp >= 0 && comp == quantity)
             {
-
+                int res = 0;
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO stock_warehouse(purchaseorder,quantity,receivedate,status)VALUES(@po,@quan,@rdate,@st)");
                 con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
@@ -106,12 +112,36 @@ namespace ecci.inv.system.qualitycontrol
                 con.Cmd.Parameters.AddWithValue("@st", "In Stock");
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
-            }
-            else
-            {
-
+                if(a > 0)
+                {
+                    res = fail();
+                }
+                a = res;
             }
             return a;
+        }
+
+        protected void tbFquan_TextChanged(object sender, EventArgs e)
+        {
+            //char key = e.KeyChar;
+            //if (!Char.IsDigit(key) && key != 8)
+            //{
+            //    e.Handled = true;
+            //}
+            int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbFquan.Text);
+            if (compute >= 0)
+            {
+                tbPquan.Text = compute.ToString();
+            }
+        }
+
+        protected void tbPquan_TextChanged(object sender, EventArgs e)
+        {
+            int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbPquan.Text);
+            if (compute >= 0)
+            {
+                tbFquan.Text = compute.ToString();
+            }
         }
     }
 }

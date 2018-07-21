@@ -26,8 +26,8 @@ namespace ecci.inv.system.purchasing
                     dropdown();
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-                    ddBrand.Enabled = false;
                     tbDescription.Enabled = false;
+                    ddBrand.Enabled = false;
                 }
                 tbPO.Text = DateTime.Now.ToString("Myyssff");
             }
@@ -56,13 +56,14 @@ namespace ecci.inv.system.purchasing
         }
         private void clear()
         {
-            tbPO.Text = ""; ;
+           // tbPO.Text = "";
             tbDescription.Text = "";
             ddSupplier.SelectedIndex = -1;
             tbPO.Text = "";
             ddBrand.SelectedIndex = -1;
             tbQuantity.Text = "";
             ddBrand.Enabled = false;
+            tbPrice.Text = "";
             //tbCalendar.Visible = false;
             tbEdate.Text = "";
         }
@@ -143,7 +144,7 @@ namespace ecci.inv.system.purchasing
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
             }
-            //clear();
+            clear();
         }
         private Boolean load()
         {

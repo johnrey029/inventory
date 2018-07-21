@@ -114,10 +114,11 @@
 <div class="modal fade" tabindex="-1"  role="dialog" id="dispatchModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-aqua-active">
+
+       <div class="modal-header bg-aqua-active">
         <button type="button" class="close active" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Dispatch Raw Materials</h4>
-      </div>
+       </div>
 
         <div class="modal-body">
             <div class="form-group">
@@ -147,28 +148,43 @@
             <div class="form-group">
                 <label for="pquan">Quantity Passed</label>
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbPquan" ErrorMessage="Input a quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                 <asp:TextBox ID="tbPquan" CssClass="form-control"  runat="server" placeholder="Quantity Number Passed" autocomplete="off"></asp:TextBox>
-                
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+                 <asp:TextBox ID="tbPquan" CssClass="form-control" runat="server" placeholder="Input Quantity Passed" autocomplete="off" min="0" OnTextChanged="tbPquan_TextChanged" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbFquan" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
             </div>
             <div class="form-group">
                 <label for="fquan">Quantity Failed</label>
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbFquan" ErrorMessage="Input a quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:TextBox ID="tbFquan" CssClass="form-control"  runat="server" placeholder="Quantity Number Failed" autocomplete="off"></asp:TextBox>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                <asp:TextBox ID="tbFquan" CssClass="form-control"  runat="server" placeholder="Input Quantity Passed" autocomplete="off" min="0" OnTextChanged="tbFquan_TextChanged" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbPquan" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                
                 <%--<input type="text" class="form-control" id="fquan" name="ddate"/>
                 <input type="text" class="form-control" id="pquan" name="pdate"/>--%>
             </div>
+            
             <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <strong>Not Equal</strong>
-          </div>
-        </div>
-        <div class="modal-footer bg-aqua-active">
+            </div>
             
+          </div>
+        
+        <div class="modal-footer bg-aqua-active">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" Onclick="btnSave_Click"/>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
-        </div>
-
+        </div>  
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
