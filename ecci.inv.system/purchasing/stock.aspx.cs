@@ -134,13 +134,17 @@ namespace ecci.inv.system.purchasing
         {
             bool tama = load();
             bool mali = activity();
-            if(tama == true && mali == true)
+            if (tama == true && mali == true)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
             }
             else
             {
+
+                //lbError.Text = "Dito may mali.";
+                //lbError.Visible = true;
+                //lbError.ForeColor = System.Drawing.Color.Red;
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
             }
@@ -155,14 +159,14 @@ namespace ecci.inv.system.purchasing
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("insert into stock_raw(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus, price)values(@po, @item, @quan, @pdate, @ddate, @stat, @price)");
-                con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
-                con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
-                con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
+                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @pdate, @ddate, @stat, @price)");
+                con.Cmd.Parameters.Add("@po",SqlDbType.NVarChar).Value=tbPO.Text;
+                con.Cmd.Parameters.Add("@item", SqlDbType.Int).Value = ddBrand.SelectedValue;
+                con.Cmd.Parameters.Add("@quan", SqlDbType.Int).Value = tbQuantity.Text;
                 con.Cmd.Parameters.AddWithValue("@pdate", DateTime.Parse(date));
                 con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(tbEdate.Text));
-                con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
-                con.Cmd.Parameters.AddWithValue("@price", tbPrice.Text);
+                con.Cmd.Parameters.Add("@stat", SqlDbType.Char).Value= "For delivery";
+                con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = tbPrice.Text;
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)
