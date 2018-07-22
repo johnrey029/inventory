@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="users.aspx.cs" Inherits="ecci.inv.system.superadmin.users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    SuperAdmin-Users
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

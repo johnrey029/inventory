@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="resetpassword.aspx.cs" Inherits="ecci.inv.system.superadmin.resetpassword" %>
 <asp:Content ID="ts1" ContentPlaceHolderID="title" runat="server">
+    SuperAdmin-Reset Password
 </asp:Content>
 <asp:Content ID="hs1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

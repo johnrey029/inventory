@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="stock.aspx.cs" Inherits="ecci.inv.system.purchasing.stock" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Purchasing-Stock
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
