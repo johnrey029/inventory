@@ -143,13 +143,9 @@
             <section class="sidebar">
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-
                     <li id="dashboardMainMenu">
                         <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                     </li>
-
-                    <%--        <?php if($user_permission): ?>
-          <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
                     <li class="treeview" id="mainUserNav">
                         <a href="#"><i class="fa fa-users"></i>
                             <span>Users</span>
@@ -158,19 +154,11 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <%--              <?php if(in_array('createUser', $user_permission)): ?>--%>
                             <li id="createUserNav"><a href="users.aspx"><i class="fa fa-plus"></i>Add Users</a></li>
-                            <%--              <?php endif; ?>--%>
-
-                            <%--              <?php if(in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
                             <li id="manageUserNav"><a href="#"><i class="fa fa-circle-o"></i>Manage Users</a></li>
-                            <%--            <?php endif; ?>--%>
                         </ul>
                     </li>
-                    <%--          <?php endif; ?>--%>
-
-                    <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-                    <li class="treeview" id="mainGroupNav">
+                    <%--<li class="treeview" id="mainGroupNav">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
                             <span>Departments</span>
@@ -179,31 +167,15 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <%--                <?php if(in_array('createGroup', $user_permission)): ?>--%>
                             <li id="addGroupNav"><a href="department.aspx"><i class="fa fa-plus"></i>Add Department</a></li>
-                            <%--                <?php endif; ?>
-                <?php if(in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
                             <li id="manageGroupNav"><a href="#"><i class="fa fa-circle-o"></i>Manage Department</a></li>
-                            <%--                <?php endif; ?>--%>
                         </ul>
-                    </li>
-                    <%--          <?php endif; ?>--%>
-
-
-                    <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
+                    </li>--%>
                     <%--<li id="brandNav">
               <a href="stock.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Stock Input</span>
               </a>
             </li>--%>
-                    <%--          <?php endif; ?>--%>
-
-                    <%--          <?php if(in_array('createCategory', $user_permission) || in_array('updateCategory', $user_permission) || in_array('viewCategory', $user_permission) || in_array('deleteCategory', $user_permission)): ?>--%>
-
-                    <%--          <?php endif; ?>
-
-          <?php if(in_array('createStore', $user_permission) || in_array('updateStore', $user_permission) || in_array('viewStore', $user_permission) || in_array('deleteStore', $user_permission)): ?>
-                    --%>
 
                     <li><a href="resetpassword.aspx"><i class="fa fa-user-o"></i><span>Reset Password</span></a></li>
                     <li><a href="#"><i class="fa fa-user-o"></i><span>Profile</span></a></li>

@@ -122,7 +122,16 @@ namespace ecci.inv.system.superadmin
                 {
                     con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 2;
                 }
-                con.Cmd.ExecuteNonQuery();
+                int a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+                if (a == 0)
+                {
+                    check = false;
+                }
+                else
+                {
+                    check = true;
+                }
             }
 
             catch (Exception ex)
