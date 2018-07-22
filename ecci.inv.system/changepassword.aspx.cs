@@ -78,5 +78,67 @@ namespace ecci.inv.system
             tmpData = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
             return Convert.ToBase64String(tmpData);
         }
+
+        protected void tbConfNewPassword_TextChanged(object sender, EventArgs e)
+        {
+            if(tbConfNewPassword.Text != string.Empty && tbNewPassword.Text != string.Empty)
+            {
+                lbError.Visible = false;
+                if(tbNewPassword.Text.Length ==  tbConfNewPassword.Text.Length)
+                {
+                    if(tbNewPassword.Text == tbConfNewPassword.Text)
+                    {
+                        lbError.Visible = true;
+                        lbError.ForeColor = System.Drawing.Color.Green;
+                        lbError.Text = "New Password and Confirm New Password Match";
+                    }
+                    else
+                    {
+                        lbError.Visible = true;
+                        lbError.Text = "New Password and Confirm New Password Did Not Match";
+                    }
+                }
+                else
+                {
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Red;
+                    lbError.Text = "New Password and Confirm New Password Length Is Not Equal";
+                }
+            }
+
+        }
+
+        protected void tbNewPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (tbConfNewPassword.Text != string.Empty)
+            {
+                lbError.Visible = false;
+                if (tbNewPassword.Text.Length == tbConfNewPassword.Text.Length)
+                {
+                    if (tbNewPassword.Text == tbConfNewPassword.Text)
+                    {
+                        lbError.Visible = true;
+                        lbError.ForeColor = System.Drawing.Color.Green;
+                        lbError.Text = "New Password and Confirm New Password Match";
+                    }
+                    else
+                    {
+                        lbError.Visible = true;
+                        lbError.Text = "New Password and Confirm New Password Did Not Match";
+                    }
+                }
+                else
+                {
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Red;
+                    lbError.Text = "New Password and Confirm New Password Length Is Not Equal";
+                }
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/default.aspx");
+        }
     }
 }
