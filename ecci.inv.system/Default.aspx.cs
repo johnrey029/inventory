@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace ecci.inv.system
 {
@@ -22,7 +24,7 @@ namespace ecci.inv.system
             con.OpenConection();
             con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
             con.Cmd.Parameters.AddWithValue("@user", user);
-            con.Cmd.Parameters.AddWithValue("@pass", pass);
+            con.Cmd.Parameters.AddWithValue("@pass", GetHashedText(pass));
             con._dr = con.Cmd.ExecuteReader();
             if (con._dr.Read())
             {
@@ -65,7 +67,7 @@ namespace ecci.inv.system
                     con.OpenConection();
                     con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
                     con.Cmd.Parameters.AddWithValue("@user", user);
-                    con.Cmd.Parameters.AddWithValue("@pass", pass);
+                    con.Cmd.Parameters.AddWithValue("@pass", GetHashedText(pass));
                     con._dr = con.Cmd.ExecuteReader();
                     while (con._dr.Read())
                     {
@@ -129,6 +131,15 @@ namespace ecci.inv.system
             con.Cmd.Parameters.Add("@activity", SqlDbType.Char).Value = "Login";
             con.Cmd.Parameters.Add("@datetime", SqlDbType.DateTime).Value = DateTime.Now;
             con._dr = con.Cmd.ExecuteReader();
+        }
+
+        private string GetHashedText(string inputData)
+        {
+            byte[] tmpSource;
+            byte[] tmpData;
+            tmpSource = ASCIIEncoding.ASCII.GetBytes(inputData);
+            tmpData = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+            return Convert.ToBase64String(tmpData);
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace ecci.inv.system
 {
@@ -14,8 +16,16 @@ namespace ecci.inv.system
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
-            sessionempno = Session["empnumber"].ToString();
-            con = new DBConnection();
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+                con = new DBConnection();
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
+            }
         }
 
         protected void btnChange_Click(object sender, EventArgs e)
@@ -29,14 +39,14 @@ namespace ecci.inv.system
                 if (con._dr.Read())
                 {
                     string oldpass = con._dr["password"].ToString();
-                    if (oldpass == tboldPassword.Text)
+                    if (oldpass == GetHashedText(tboldPassword.Text))
                     {
                         //Test if the new password matched.
                         if (tbNewPassword.Text == tbConfNewPassword.Text)
                         {
                             con.OpenConection();
                             con.ExecSqlQuery("UPDATE users SET password=@newpass,reset=@resetno WHERE empno=@empno");
-                            con.Cmd.Parameters.Add("@newpass", SqlDbType.VarChar).Value = tbNewPassword.Text;
+                            con.Cmd.Parameters.Add("@newpass", SqlDbType.VarChar).Value = GetHashedText(tbNewPassword.Text);
                             con.Cmd.Parameters.Add("@resetno", SqlDbType.VarChar).Value = "N";
                             con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = sessionempno;
                             con.Cmd.ExecuteNonQuery();
@@ -59,6 +69,14 @@ namespace ecci.inv.system
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "err_msg", "alert('" + ex.ToString() + "');", true);
             }
+        }
+        private string GetHashedText(string inputData)
+        {
+            byte[] tmpSource;
+            byte[] tmpData;
+            tmpSource = ASCIIEncoding.ASCII.GetBytes(inputData);
+            tmpData = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+            return Convert.ToBase64String(tmpData);
         }
     }
 }
