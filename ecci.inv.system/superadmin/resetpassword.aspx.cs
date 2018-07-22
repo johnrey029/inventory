@@ -33,7 +33,7 @@ namespace ecci.inv.system.superadmin
         {
             con.OpenConection();
             con.ExecSqlQuery("SELECT * FROM users WHERE empno=@empno");
-            con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = sessionempno;
+            con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = tbEmpNo.Text;
             con._dr = con.Cmd.ExecuteReader();
             if (con._dr.Read())
             {
@@ -43,26 +43,31 @@ namespace ecci.inv.system.superadmin
                 if (employeenum != tbEmpNo.Text)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "err_msg", "alert('User does not exist.');", true);
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
                 }
                 else
                 {
                     if (tbPassword.Text == tbConfPassword.Text)
                     {
-                        if(resetstat=="Y" || resetstat == "N")
+                        if (resetstat == "Y" || resetstat == "N")
                         {
                             con.OpenConection();
                             con.ExecSqlQuery("UPDATE users SET password=@newpass, reset=@reset WHERE empno=@empno");
-                            con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = sessionempno;
+                            con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = tbEmpNo.Text;
                             con.Cmd.Parameters.Add("@newpass", SqlDbType.VarChar).Value = GetHashedText(tbConfPassword.Text);
                             con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
                             con.Cmd.ExecuteNonQuery();
-                            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert","<script>$(document).ready(function(){ $('.alert-success').show();$('.alert-error').hide(); });</script>");
 
                         }
+                        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                        "<script>$(document).ready(function(){ $('.alert-error').hide();$('.alert-success').show(); });</script>");
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "err_msg", "alert('Password do not match!');", true);
+                        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
                     }
                 }
             }
