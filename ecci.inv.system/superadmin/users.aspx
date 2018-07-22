@@ -62,13 +62,13 @@
                   <div class="form-group">
                   <label for="brand">Password</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbPassword" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" CausesValidation="false"></asp:TextBox>
+                  <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" CausesValidation="false" TextMode="Password"></asp:TextBox>
                      </div>
 
                    <div class="form-group">
                   <label for="brand">Confirm Password</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbConfPassword" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbConfPassword" runat="server" CssClass="form-control" placeholder="Confirm Password" CausesValidation="false"></asp:TextBox>
+                  <asp:TextBox ID="tbConfPassword" runat="server" CssClass="form-control" placeholder="Confirm Password" CausesValidation="false" TextMode="Password"></asp:TextBox>
                      </div>
                 
                   <div class="form-group">
