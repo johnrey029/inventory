@@ -11,7 +11,7 @@
     <div>
         <h4>Password expired. Please change your password</h4>
         <div>
-            <asp:Label ID="Label1" runat="server" Text="Old Password"></asp:Label><asp:TextBox ID="tboldPassword" runat="server"></asp:TextBox></div>
+            <asp:Label ID="Label1" runat="server" Text="Old Password" ></asp:Label><asp:TextBox ID="tboldPassword" runat="server"></asp:TextBox></div>
         <div>
             <asp:Label ID="Label3" runat="server" Text="New Password"></asp:Label><asp:TextBox ID="tbNewPassword" runat="server"></asp:TextBox></div>
         <div>

@@ -59,46 +59,50 @@ namespace ecci.inv.system.superadmin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            bool user = addUser();
-            if (user == true)
-            {
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
-            }
-            else
-            {
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-               "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-            }
-            //try
+            //bool user = addUser();
+            //if (user == true)
             //{
-            //    con.OpenConection();
-            //    con.ExecSqlQuery("INSERT INTO users (empno,password,firstname,lastname,position,gender,dept_id,reset) VALUES (@empid,@pass,@fname,@lname,@post,@gen,@dept,@reset)");
-            //    con.Cmd.Parameters.Add("@empid", SqlDbType.VarChar).Value = tbEmpNo.Text;
-            //    con.Cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = GetHashedText(tbPassword.Text);
-            //    con.Cmd.Parameters.Add("@fname", SqlDbType.VarChar).Value = tbFname.Text;
-            //    con.Cmd.Parameters.Add("@lname", SqlDbType.VarChar).Value = tbLname.Text;
-            //    con.Cmd.Parameters.Add("@post", SqlDbType.VarChar).Value = tbPosition.Text;
-            //    con.Cmd.Parameters.Add("@dept", SqlDbType.VarChar).Value = ddDept.Text;
-            //    con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
-            //    if (rbMale.Checked && !rbFemale.Checked)
-            //    {
-            //        con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 1;
-            //    }
-            //    else if (!rbMale.Checked && rbFemale.Checked)
-            //    {
-            //        con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 2;
-            //    }
-            //        con.Cmd.ExecuteNonQuery();
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    Label1.Text = "Error: " + ex.Message + "";
-
             //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+            //    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
             //}
+            //else
+            //{
+            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+            //   "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            //}
+            try
+            {
+                Label1.Text = "";
+                con.OpenConection();
+                con.ExecSqlQuery("INSERT INTO users (empno,password,firstname,lastname,position,gender,dept_id,reset) VALUES (@empid,@pass,@fname,@lname,@post,@gen,@dept,@reset)");
+                con.Cmd.Parameters.Add("@empid", SqlDbType.VarChar).Value = tbEmpNo.Text;
+                con.Cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = GetHashedText(tbPassword.Text);
+                con.Cmd.Parameters.Add("@fname", SqlDbType.VarChar).Value = tbFname.Text;
+                con.Cmd.Parameters.Add("@lname", SqlDbType.VarChar).Value = tbLname.Text;
+                con.Cmd.Parameters.Add("@post", SqlDbType.VarChar).Value = tbPosition.Text;
+                con.Cmd.Parameters.Add("@dept", SqlDbType.VarChar).Value = ddDept.Text;
+                con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
+                if (rbMale.Checked && !rbFemale.Checked)
+                {
+                    con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 1;
+                }
+                else if (!rbMale.Checked && rbFemale.Checked)
+                {
+                    con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 2;
+                }
+                con.Cmd.ExecuteNonQuery();
+
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-error').hide();$('.alert-success').show(); });</script>");
+            }
+
+            catch (Exception ex)
+            {
+                Label1.Text = "Error: " + ex.Message + "";
+
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+            }
         }
         private Boolean addUser()
         {

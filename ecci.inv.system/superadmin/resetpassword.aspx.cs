@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace ecci.inv.system.superadmin
 {
@@ -51,7 +53,7 @@ namespace ecci.inv.system.superadmin
                             con.OpenConection();
                             con.ExecSqlQuery("UPDATE users SET password=@newpass, reset=@reset WHERE empno=@empno");
                             con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = sessionempno;
-                            con.Cmd.Parameters.Add("@newpass", SqlDbType.VarChar).Value = tbConfPassword.Text;
+                            con.Cmd.Parameters.Add("@newpass", SqlDbType.VarChar).Value = GetHashedText(tbConfPassword.Text);
                             con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
                             con.Cmd.ExecuteNonQuery();
                             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert","<script>$(document).ready(function(){ $('.alert-success').show();$('.alert-error').hide(); });</script>");
@@ -64,6 +66,14 @@ namespace ecci.inv.system.superadmin
                     }
                 }
             }
+        }
+        private string GetHashedText(string inputData)
+        {
+            byte[] tmpSource;
+            byte[] tmpData;
+            tmpSource = ASCIIEncoding.ASCII.GetBytes(inputData);
+            tmpData = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+            return Convert.ToBase64String(tmpData);
         }
     }
 }
