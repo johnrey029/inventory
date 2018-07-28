@@ -139,10 +139,6 @@
                  <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
              </div>
             <div class="form-group">
-                <label for="qty">Quantity</label>
-                <input type="text" class="form-control" id="qty" name="qty" readonly="true"/>
-            </div>
-            <div class="form-group">
                 <label for="pdate">Purchased Date</label>
                 <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
             </div>
@@ -150,7 +146,29 @@
                 <label for="ddate">Delivery Date</label>
                 <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
             </div>
-
+            <div class="form-group">
+                <label for="qty">Quantity</label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="This Field Is Needed" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                <asp:TextBox ID="qty" CssClass="form-control"  runat="server" placeholder="Input Quantity Receive" autocomplete="off" min="0" OnTextChanged="qty_TextChanged" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+            </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+            </div>
+            <div class="form-group">
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                    <ContentTemplate>
+             <asp:Label ID="lbError" runat="server" Text="Label" Visible="false" ForeColor="Red"></asp:Label>
+                        </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+            <input type="hidden" id="hiddenquantity"  name="hiddenquantity" value="" />
                 
         </div>
         
@@ -158,6 +176,7 @@
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-success" OnClick="btnSave_Click"/>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
+             <%-- <input type="text" class="form-control" id="qty" name="qty" readonly="false"/>--%>
         </div>
 
 
@@ -178,15 +197,17 @@
                       $('#po').val(data.purchaseOrder);
                       $('#supplier').val(data.suppName);
                       $('#brand').val(data.brandName);
-                      $('#qty').val(data.quantity);
+                      //$('#qty').val(data.quantity);
                       $('#pdate').val(data.purchaseDate);
                       $('#ddate').val(data.deliverDate);
+                      document.getElementById('<%=qty.ClientID %>').value = data.quantity;
+                  $('#hiddenquantity').val(data.quantity);
               },
               error: function (err) {
                   alert(err);
               }
           });
-          $('#updateModal').modal('show');
+             $('#updateModal').modal('show');
          }
          //var UpdateDelivery = function()
          //{

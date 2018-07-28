@@ -42,6 +42,11 @@ namespace ecci.inv.system.qualitycontrol
                     int result = client.UpdateDispatch(sid);
                     int result1 = Insert();
                     int result2 = warehouse();
+                    int result3 = 0;
+                    if(Convert.ToInt32(tbFquan.Text) > 0)
+                    {
+                        result3 = fail();
+                    }
                     if (result == 1 && result1 == 1 && result2 == 1)
                     {
                         Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
@@ -56,11 +61,13 @@ namespace ecci.inv.system.qualitycontrol
             }
             else if(quantity > sum)
             {
-
+                lbError.Visible = true;
+                lbError.Text = "Sum Of Passed&Failed Quantity Is Less Than The Total Quantity";
             }
             else if (quantity < sum)
             {
-
+                lbError.Visible = true;
+                lbError.Text = "Sum Of Passed&Failed Quantity Is Greater Than The Total Quantity";
             }
 
         }
@@ -81,8 +88,9 @@ namespace ecci.inv.system.qualitycontrol
         public int fail()
         {
             int a = 0;
+            int quantity = Convert.ToInt32(Request.Form.Get("qty").ToString());
             int comp = Convert.ToInt32(tbFquan.Text);
-            if (comp >= 0)
+            if (comp > 0 && comp <= quantity)
             {
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO stock_raw_fail(purchaseorder,quantity,date,status)VALUES(@po,@quan,@date,@st)");
@@ -93,7 +101,6 @@ namespace ecci.inv.system.qualitycontrol
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
             }
-
             return a;
         }
         public int warehouse()
@@ -101,9 +108,8 @@ namespace ecci.inv.system.qualitycontrol
             int a = 0;
             int quantity = Convert.ToInt32(Request.Form.Get("qty").ToString());
             int comp = Convert.ToInt32(tbPquan.Text);
-            if (comp >= 0 && comp == quantity)
+            if (comp >= 0 && comp <= quantity)
             {
-                int res = 0;
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO stock_warehouse(purchaseorder,quantity,receivedate,status)VALUES(@po,@quan,@rdate,@st)");
                 con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
@@ -112,26 +118,29 @@ namespace ecci.inv.system.qualitycontrol
                 con.Cmd.Parameters.AddWithValue("@st", "In Stock");
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
-                if(a > 0)
-                {
-                    res = fail();
-                }
-                a = res;
             }
             return a;
         }
 
         protected void tbFquan_TextChanged(object sender, EventArgs e)
         {
-            //char key = e.KeyChar;
-            //if (!Char.IsDigit(key) && key != 8)
-            //{
-            //    e.Handled = true;
-            //}
             int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbFquan.Text);
             if (compute >= 0)
             {
+                tbFquan.BorderColor = System.Drawing.Color.Gray;
+                tbPquan.BorderColor = System.Drawing.Color.Gray;
+                lbError.Visible = false;
+                btnSave.Enabled = true;
                 tbPquan.Text = compute.ToString();
+            }
+            else if(compute<0)
+            {
+                tbFquan.BorderColor = System.Drawing.Color.Red;
+                tbPquan.BorderColor = System.Drawing.Color.Gray;
+                tbPquan.Text = "0";
+                lbError.Visible = true;
+                btnSave.Enabled = false;
+                lbError.Text = "Failed Quantity Is Greater Than The Total Quantity";
             }
         }
 
@@ -140,7 +149,20 @@ namespace ecci.inv.system.qualitycontrol
             int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbPquan.Text);
             if (compute >= 0)
             {
+                tbPquan.BorderColor = System.Drawing.Color.Gray;
+                tbFquan.BorderColor = System.Drawing.Color.Gray;
+                lbError.Visible = false;
+                btnSave.Enabled = true;
                 tbFquan.Text = compute.ToString();
+            }
+            else if (compute < 0)
+            {
+                tbFquan.Text = "0";
+                tbPquan.BorderColor = System.Drawing.Color.Red;
+                tbFquan.BorderColor = System.Drawing.Color.Gray;
+                lbError.Visible = true;
+                btnSave.Enabled = false;
+                lbError.Text = "Passed Quantity Is Greater Than The Total Quantity";
             }
         }
     }

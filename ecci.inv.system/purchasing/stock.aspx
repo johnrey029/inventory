@@ -123,7 +123,7 @@
                   <label for="deliverydate">Expected Delivery Date</label>
                       <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbEdate" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                 <div class="input-group date" id="datetimepicker">
-                    <asp:TextBox ID="tbEdate"  runat="server" CssClass="form-control" placeholder="Expected Delivery Date (MM/DD/YYYY)" autocomplete="off"></asp:TextBox>
+                    <asp:TextBox ID="tbEdate"  runat="server" CssClass="form-control" placeholder="Expected Delivery Date (DD/MM/YYYY)" autocomplete="off"></asp:TextBox>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -149,7 +149,7 @@
     <script type="text/javascript">  
         $(document).ready(function () {
             $("#datetimepicker").datepicker({
-                format: "mm/dd/yyyy",
+                format: "dd/mm/yyyy",
                 chageMonth: true,
                 changeYear: true,
                 startDate: "+0d"

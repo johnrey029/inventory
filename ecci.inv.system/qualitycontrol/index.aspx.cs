@@ -11,9 +11,9 @@ namespace ecci.inv.system.qualitycontrol
     {
         private string sessionempno { get; set; }
         DBConnection con;
+        int totalquantity;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (Session["empnumber"] != null)
             {
                 sessionempno = Session["empnumber"].ToString();
@@ -104,6 +104,42 @@ namespace ecci.inv.system.qualitycontrol
                 //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
             }
             return a;
+        }
+
+        protected void qty_TextChanged(object sender, EventArgs e)
+        {
+            totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
+            int diff = totalquantity - Convert.ToInt32(qty.Text);
+            if (totalquantity>Convert.ToInt32(qty.Text))
+            {
+                qty.BorderColor = System.Drawing.Color.Blue;
+                lbError.Visible = true;
+                lbError.ForeColor = System.Drawing.Color.Blue;
+                lbError.Text = "The Remaining Total Quantity To Be Receive Is Equal To " + diff ;
+            }
+            else if(totalquantity < Convert.ToInt32(qty.Text))
+            {
+                lbError.Visible = true;
+                lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "The Input Quantity To Be Receive " + Convert.ToInt32(qty.Text) 
+                    + " Is Greater Than The Total Expected Quantity "+ totalquantity;
+                qty.BorderColor = System.Drawing.Color.Red;
+            }
+            else if(totalquantity == Convert.ToInt32(qty.Text))
+            {
+                qty.BorderColor = System.Drawing.Color.Green;
+                lbError.Visible = true;
+                lbError.ForeColor = System.Drawing.Color.Green;
+                lbError.Text = "Receiving Total Quantity";
+            }
+            else if(qty.Text == string.Empty)
+            {
+                qty.BorderColor = System.Drawing.Color.Green;
+                lbError.Visible = true;
+                lbError.ForeColor = System.Drawing.Color.Green;
+                lbError.Text = "Receiving Total Quantity";
+            }
+
         }
     }
 }
