@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="manageitems.aspx.cs" Inherits="ecci.inv.system.purchasing.manageitems" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
+    Purchasing-Manage Items
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">  

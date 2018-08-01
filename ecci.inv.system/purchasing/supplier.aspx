@@ -2,6 +2,7 @@
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="ecci.inv.system.purchasing.supplier" MasterPageFile="~/purchasing/Purchasing.Master"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Purchasing-Supplier
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  

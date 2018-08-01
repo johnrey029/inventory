@@ -48,9 +48,6 @@
     <form id="form1" runat="server">
          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
   <div class="login-box">
-  <div class="login-logo">
-    <b>Triton Industrial Plastic Manufacturing</b>
-  </div>
        <div class="auto-style1">
     <p class="login-box-msg">INVENTORY SYSTEM
       </p>
