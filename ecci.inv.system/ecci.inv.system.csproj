@@ -7400,13 +7400,7 @@
     <Content Include="assets\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="purchasing\Purchasing.Master" />
-    <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
-    <None Include="Service References\DeliveryService\configuration91.svcinfo" />
-    <None Include="Service References\DeliveryService\configuration.svcinfo" />
-    <None Include="Service References\DeliveryService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.disco" />
     <None Include="Service References\DispatchService\configuration91.svcinfo" />
     <None Include="Service References\DispatchService\configuration.svcinfo" />
@@ -7414,11 +7408,17 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
+    <None Include="Service References\DeliveryService\configuration91.svcinfo" />
+    <None Include="Service References\DeliveryService\configuration.svcinfo" />
+    <None Include="Service References\DeliveryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="superadmin\resetpassword.aspx" />
     <Content Include="superadmin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
     <Content Include="warehouse\WareHouse.Master" />
-    <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

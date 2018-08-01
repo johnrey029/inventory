@@ -91,7 +91,7 @@
                 <th>PO#</th>
                 <th>Supplier Name</th>
                 <th>Brand Name</th>
-                <th>Quantity</th>
+                <th>Stock Quantity</th>
                 <th>Purchased Date</th>
                 <th>Received Date</th>
                 <th>Staus</th>
@@ -191,7 +191,7 @@
         <div class="modal-footer bg-aqua-active">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" Onclick="btnSave_Click"
-              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Dispatching...'; this.disabled='true'; }"/>
+              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Dispatching...'; this.disabled='false'; }"/>
                         
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>
                "this.disabled=true; this.value='Dispatching...';"--%>
@@ -203,6 +203,8 @@
 <script type="text/javascript">  
          function ConfirmUpdate(stockId)
          {
+             document.getElementById('<%=tbFquan.ClientID%>').value = '';
+             document.getElementById('<%=tbPquan.ClientID%>').value = '';
            $('#hiddenStockId').val(stockId);
           var sid = $('#hiddenStockId').val();
           $.ajax({
@@ -223,7 +225,12 @@
               }
           });
           $('#dispatchModal').modal('show');
-          $('.alert-warning').hide();
+             document.getElementById("<%=tbFquan.ClientID%>").style.borderColor = 'Gray';
+             document.getElementById("<%=tbPquan.ClientID%>").style.borderColor = 'Gray';
+             document.getElementById("<%=tbFquan.ClientID%>").style.color = 'Black';
+             document.getElementById("<%=lbError.ClientID%>").style.display = 'none';
+             document.getElementById("<%=tbPquan.ClientID%>").style.color = 'Black';
+          //$('.alert-warning').hide();
          }
  </script>
 </asp:Content>

@@ -93,7 +93,7 @@
                 <th>PO#</th>
                 <th>Supplier Name</th>
                 <th>Brand Name</th>
-                <th>Quantity</th>
+                <th>Ordered Quantity</th>
                 <th>Purchased Date</th>
                 <th>Delivery Date</th>
                 <th>Status</th>
@@ -147,9 +147,9 @@
                 <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
             </div>
             <div class="form-group">
-                <label for="qty">Quantity</label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="This Field Is Needed" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <label for="qty">Delivery Quantity</label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
                     <ContentTemplate>
                 <asp:TextBox ID="qty" CssClass="form-control"  runat="server" placeholder="Input Quantity Receive" autocomplete="off" min="0" OnTextChanged="qty_TextChanged" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
             </ContentTemplate> 
@@ -159,9 +159,9 @@
                     </asp:UpdatePanel>
             </div>
             <div class="form-group">
-                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
                     <ContentTemplate>
-             <asp:Label ID="lbError" runat="server" Text="Label" Visible="false" ForeColor="Red"></asp:Label>
+             <asp:Label ID="lbError" runat="server" Text="Receiving Total Quantity" Visible="true" ForeColor="Green"></asp:Label>
                         </ContentTemplate> 
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
@@ -173,8 +173,9 @@
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-success" OnClick="btnSave_Click"/>
+          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-success" OnClick="btnSave_Click"
+              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"/>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
              <%-- <input type="text" class="form-control" id="qty" name="qty" readonly="false"/>--%>
         </div>
@@ -187,7 +188,7 @@
          function ConfirmUpdate(stockId)
          {
            $('#hiddenStockId').val(stockId);
-          var sid = $('#hiddenStockId').val();
+           var sid = $('#hiddenStockId').val();
           $.ajax({
               url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
               data: { id: sid },
@@ -202,13 +203,22 @@
                       $('#ddate').val(data.deliverDate);
                       document.getElementById('<%=qty.ClientID %>').value = data.quantity;
                   $('#hiddenquantity').val(data.quantity);
+                  
               },
               error: function (err) {
                   alert(err);
               }
           });
              $('#updateModal').modal('show');
+             document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
+             document.getElementById("<%=qty.ClientID%>").style.color = 'Black';
+             document.getElementById('<%=lbError.ClientID%>').style.color = 'Green';
          }
+         function myFunction() {
+             document.getElementById('<%=lbError.ClientID%>').innerHTML = 'Receiving Total Quantity';
+             document.getElementById("<%=btnSave.ClientID%>").disabled = false;
+         }
+            
          //var UpdateDelivery = function()
          //{
          //    var sid = $('#hiddenStockId').val();

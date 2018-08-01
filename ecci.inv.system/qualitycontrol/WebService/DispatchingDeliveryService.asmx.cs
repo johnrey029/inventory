@@ -17,7 +17,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class DispatchingDeliveryService : System.Web.Services.WebService
     {
         DBConnection con;
@@ -29,11 +29,11 @@ namespace ecci.inv.system.qualitycontrol.WebService
             var orders = new List<DispatchDelivery>();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.receivedate,
+            @"SELECT s.purchaseorder,s.quantity,s.receivedquantity,s.purchasedate,s.receivedate,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE s.postatus='Received'and s.receivedate is not null
+            WHERE s.receivedate is not null and s.receivedquantity>0 and s.quantity>=0
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
@@ -45,7 +45,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     purchaseOrder = con._dr["purchaseorder"].ToString(),
                     suppName = con._dr["suppname"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
-                    quantity = Convert.ToInt32(con._dr["quantity"].ToString()),
+                    quantity = Convert.ToInt32(con._dr["receivedquantity"].ToString()),
                     purchaseDate = dt.ToShortDateString(),
                     receivedDate = dt1.ToShortDateString(),
                     poStatus = con._dr["postatus"].ToString()
@@ -65,7 +65,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             DispatchDelivery od = new DispatchDelivery();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.quantity,s.purchasedate,s.deliverydate,
+            @"SELECT s.purchaseorder,s.quantity,s.receivedquantity,s.purchasedate,s.deliverydate,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
@@ -81,7 +81,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 od.purchaseOrder = con._dr["purchaseorder"].ToString();
                 od.suppName = con._dr["suppname"].ToString();
                 od.brandName = con._dr["brandname"].ToString();
-                od.quantity = Convert.ToInt32(con._dr["quantity"].ToString());
+                od.quantity = Convert.ToInt32(con._dr["receivedquantity"].ToString());
                 od.purchaseDate = dt.ToShortDateString();
                 od.receivedDate = dt1.ToShortDateString();
                 od.poStatus = con._dr["postatus"].ToString();

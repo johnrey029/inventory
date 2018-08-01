@@ -35,7 +35,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE s.postatus='For Delivery'
+            WHERE s.quantity>0
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {
@@ -97,27 +97,47 @@ namespace ecci.inv.system.qualitycontrol.WebService
         }
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public int UpdateById(int upid)
+        public int UpdateById(int upid,int total)
         {
             con = new DBConnection();
+            int rq = 0, oq = 0, a = 0;
             con.OpenConection();
-            con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, receivedate = @rdate WHERE stockid = @sid");
-            con.Cmd.Parameters.AddWithValue("@stat", "Received");
+            con.ExecSqlQuery("Select * from stock_raw where stockid = @sid");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
-            con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-            int a = con.Cmd.ExecuteNonQuery();
-            con.CloseConnection();
-            if (a == 0)
+            con._dr = con.Cmd.ExecuteReader();
+            while (con._dr.Read())
             {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-            }
-            else
-            {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                rq = Convert.ToInt32(con._dr["receivedquantity"].ToString());
+                oq = Convert.ToInt32(con._dr["quantity"].ToString());
             }
             con.CloseConnection();
+            int decrease = oq - total;
+            int increase = rq + total;
+
+            if (decrease > 0 && increase >= 0)
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,quantity=@quan, receivedquantity=@rq, receivedate = @rdate WHERE stockid = @sid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
+                con.Cmd.Parameters.AddWithValue("@quan", decrease);
+                con.Cmd.Parameters.AddWithValue("@rq", increase);
+                con.Cmd.Parameters.AddWithValue("@sid", upid);
+                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+            }
+            else if (decrease == 0)
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,quantity=@quan, receivedquantity=@rq, receivedate = @rdate WHERE stockid = @sid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Received");
+                con.Cmd.Parameters.AddWithValue("@quan", decrease);
+                con.Cmd.Parameters.AddWithValue("@rq", increase);
+                con.Cmd.Parameters.AddWithValue("@sid", upid);
+                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+            }
             return a;
         }
     }

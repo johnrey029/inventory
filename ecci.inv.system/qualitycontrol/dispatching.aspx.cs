@@ -127,8 +127,11 @@ namespace ecci.inv.system.qualitycontrol
             int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbFquan.Text);
             if (compute >= 0)
             {
-                tbFquan.BorderColor = System.Drawing.Color.Gray;
-                tbPquan.BorderColor = System.Drawing.Color.Gray;
+                tbFquan.BorderColor = System.Drawing.Color.Green;
+                tbPquan.BorderColor = System.Drawing.Color.Green;
+                tbFquan.ForeColor = System.Drawing.Color.Black;
+                tbPquan.ForeColor = System.Drawing.Color.Black;
+                lbError.ForeColor = System.Drawing.Color.Green;
                 lbError.Visible = false;
                 btnSave.Enabled = true;
                 tbPquan.Text = compute.ToString();
@@ -136,7 +139,10 @@ namespace ecci.inv.system.qualitycontrol
             else if(compute<0)
             {
                 tbFquan.BorderColor = System.Drawing.Color.Red;
-                tbPquan.BorderColor = System.Drawing.Color.Gray;
+                tbPquan.BorderColor = System.Drawing.Color.Red;
+                tbFquan.ForeColor = System.Drawing.Color.Black;
+                tbPquan.ForeColor = System.Drawing.Color.Black;
+                lbError.ForeColor = System.Drawing.Color.Green;
                 tbPquan.Text = "0";
                 lbError.Visible = true;
                 btnSave.Enabled = false;
@@ -149,9 +155,12 @@ namespace ecci.inv.system.qualitycontrol
             int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbPquan.Text);
             if (compute >= 0)
             {
-                tbPquan.BorderColor = System.Drawing.Color.Gray;
-                tbFquan.BorderColor = System.Drawing.Color.Gray;
+                tbPquan.BorderColor = System.Drawing.Color.Green;
+                tbFquan.BorderColor = System.Drawing.Color.Green;
+                tbFquan.ForeColor = System.Drawing.Color.Black;
+                tbPquan.ForeColor = System.Drawing.Color.Black;
                 lbError.Visible = false;
+                lbError.ForeColor = System.Drawing.Color.Green;
                 btnSave.Enabled = true;
                 tbFquan.Text = compute.ToString();
             }
@@ -159,7 +168,10 @@ namespace ecci.inv.system.qualitycontrol
             {
                 tbFquan.Text = "0";
                 tbPquan.BorderColor = System.Drawing.Color.Red;
-                tbFquan.BorderColor = System.Drawing.Color.Gray;
+                tbFquan.BorderColor = System.Drawing.Color.Red;
+                tbFquan.ForeColor = System.Drawing.Color.Black;
+                tbPquan.ForeColor = System.Drawing.Color.Black;
+                lbError.ForeColor = System.Drawing.Color.Red;
                 lbError.Visible = true;
                 btnSave.Enabled = false;
                 lbError.Text = "Passed Quantity Is Greater Than The Total Quantity";

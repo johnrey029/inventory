@@ -159,10 +159,11 @@ namespace ecci.inv.system.purchasing
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @pdate, @ddate, @stat, @price)");
+                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @rq, @pdate, @ddate, @stat, @price)");
                 con.Cmd.Parameters.Add("@po",SqlDbType.NVarChar).Value=tbPO.Text;
                 con.Cmd.Parameters.Add("@item", SqlDbType.Int).Value = ddBrand.SelectedValue;
                 con.Cmd.Parameters.Add("@quan", SqlDbType.Int).Value = tbQuantity.Text;
+                con.Cmd.Parameters.Add("@rq", SqlDbType.Int).Value = 0;
                 con.Cmd.Parameters.AddWithValue("@pdate", DateTime.Parse(date));
                 con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(tbEdate.Text));
                 con.Cmd.Parameters.Add("@stat", SqlDbType.Char).Value= "For delivery";

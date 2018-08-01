@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,7 @@ namespace ecci.inv.system.qualitycontrol
         private string sessionempno { get; set; }
         DBConnection con;
         int totalquantity;
+        bool process = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["empnumber"] != null)
@@ -25,56 +27,56 @@ namespace ecci.inv.system.qualitycontrol
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
+            //else
+            //{
+            //    if (Session["sucess"].ToString() == "Tama")
+            //    {
+            //        Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+            //        "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+            //    }
+            //}
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int sid = Convert.ToInt32(Request.Form.Get("hiddenStockId").ToString());
-            DeliveryService.OrderDeliveryServiceSoapClient client = new DeliveryService.OrderDeliveryServiceSoapClient("OrderDeliveryServiceSoap");
-            int result1 = InsertById();
-            int result = client.UpdateById(sid);
-            if (result == 1 && result1 == 1)
+            totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
+            if (totalquantity >= Convert.ToInt32(qty.Text) && Convert.ToInt32(qty.Text) != 0)
             {
-                Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                DeliveryService.OrderDeliveryServiceSoapClient client = new DeliveryService.OrderDeliveryServiceSoapClient("OrderDeliveryServiceSoap");
+                int result1 = InsertById();
+                int result = client.UpdateById(sid, Convert.ToInt32(qty.Text));
+                if (result == 1 && result1 == 1)
+                {
+                    //Session["sucess"] = "Tama";
+                    //  UpdatePanel2.ValidateRequestMode = ValidateRequestMode.Disabled;
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#updateModal').modal('hide');", true);
+                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                }
+                else
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                    //Session["sucess"] = "Mali";
+                }
             }
             else
             {
-                Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                if (Convert.ToInt32(qty.Text) == 0)
+                {
+                    qty.BorderColor = System.Drawing.Color.Red;
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Red;
+                    lbError.Text = "Incorrect input! Value must be greater than 0.";
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#updateModal').modal('show');", true);
+                }
             }
         }
-        //public int itemsid()
-        //{
-        //    int a = 0,sid = 0;
-        //    con.OpenConection();
-        //    con.ExecSqlQuery("Select * from suppliers where suppname = @sname");
-        //    con.Cmd.Parameters.AddWithValue("@sname", Request.Form.Get("supplier").ToString());
-        //    con._dr = con.Cmd.ExecuteReader();
-        //    while(con._dr.Read())
-        //    {
-        //        sid = Convert.ToInt32(con._dr["suppcode"].ToString());
-        //    }
-        //    con.CloseConnection();
-
-        //    con.OpenConection();
-        //    con.ExecSqlQuery("Select * from items where brandname = @bn and suppcode=@sc");
-        //    con.Cmd.Parameters.AddWithValue("@bn", Request.Form.Get("brand").ToString());
-        //    con.Cmd.Parameters.AddWithValue("@sc", sid);
-        //    con._dr = con.Cmd.ExecuteReader();
-        //    while (con._dr.Read())
-        //    {
-        //        a = Convert.ToInt32(con._dr["itemsid"].ToString());
-        //    }
-        //    con.CloseConnection();
-
-        //    return a;
-        //}
         public int InsertById()
         {
             //ToString("MMMM dd yyyy hh:mm tt")
             //int item = itemsid(); itemsid, quantity, purchasedate, deliverydate, postatus,receivedate, @item, @quan, @pdate, @ddate, @stat,@rdate
-
             string date = DateTime.Now.ToShortDateString();
             //DateTime pdate = DateTime.Parse(Request.Form.Get("pdate").ToString());
             //DateTime ddate = DateTime.Parse(Request.Form.Get("ddate").ToString());
@@ -108,36 +110,43 @@ namespace ecci.inv.system.qualitycontrol
 
         protected void qty_TextChanged(object sender, EventArgs e)
         {
+            qty.ForeColor = System.Drawing.Color.Black;
             totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
-            int diff = totalquantity - Convert.ToInt32(qty.Text);
-            if (totalquantity>Convert.ToInt32(qty.Text))
+            if (Convert.ToInt32(qty.Text) == 0)
             {
-                qty.BorderColor = System.Drawing.Color.Blue;
-                lbError.Visible = true;
-                lbError.ForeColor = System.Drawing.Color.Blue;
-                lbError.Text = "The Remaining Total Quantity To Be Receive Is Equal To " + diff ;
-            }
-            else if(totalquantity < Convert.ToInt32(qty.Text))
-            {
+                qty.Text = 0.ToString();
+                qty.BorderColor = System.Drawing.Color.Red;
                 lbError.Visible = true;
                 lbError.ForeColor = System.Drawing.Color.Red;
-                lbError.Text = "The Input Quantity To Be Receive " + Convert.ToInt32(qty.Text) 
-                    + " Is Greater Than The Total Expected Quantity "+ totalquantity;
-                qty.BorderColor = System.Drawing.Color.Red;
+                lbError.Text = "Incorrect input! Value must be greater than 0.";
             }
-            else if(totalquantity == Convert.ToInt32(qty.Text))
+            else
             {
-                qty.BorderColor = System.Drawing.Color.Green;
-                lbError.Visible = true;
-                lbError.ForeColor = System.Drawing.Color.Green;
-                lbError.Text = "Receiving Total Quantity";
-            }
-            else if(qty.Text == string.Empty)
-            {
-                qty.BorderColor = System.Drawing.Color.Green;
-                lbError.Visible = true;
-                lbError.ForeColor = System.Drawing.Color.Green;
-                lbError.Text = "Receiving Total Quantity";
+                int diff = totalquantity - Convert.ToInt32(qty.Text);
+                if (totalquantity > Convert.ToInt32(qty.Text))
+                {
+                    qty.BorderColor = System.Drawing.Color.Blue;
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Blue;
+                    lbError.Text = "Receiving: " + qty.Text + "  Out of Total Quantity: " + totalquantity.ToString()
+                        + "  Remaining Quantity Receivable: " + diff;
+                }
+                else if (totalquantity == Convert.ToInt32(qty.Text))
+                {
+                    qty.BorderColor = System.Drawing.Color.Green;
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Green;
+                    lbError.Text = "Receiving Total Quantity";
+
+                }
+                else if (totalquantity < Convert.ToInt32(qty.Text))
+                {
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Red;
+                    lbError.Text = "Input Quantity: " + Convert.ToInt32(qty.Text)
+                        + " is greater than Expected Total Quantity " + totalquantity;
+                    qty.BorderColor = System.Drawing.Color.Red;
+                }
             }
 
         }
