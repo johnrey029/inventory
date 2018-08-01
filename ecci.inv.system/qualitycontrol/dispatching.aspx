@@ -133,7 +133,7 @@
                  <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
              </div>
             <div class="form-group">
-                <label for="qty">Total Quantity</label>
+                <label for="qty">Stock Quantity</label>
                 <input type="text" class="form-control" id="qty" name="qty" readonly="true"/>
             </div>
             <div class="form-group">
@@ -141,7 +141,7 @@
                 <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
             </div>
             <div class="form-group">
-                <label for="ddate">Delivery Date</label>
+                <label for="ddate">Received Date</label>
                 <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
             </div>
             <div class="form-group">
@@ -203,12 +203,10 @@
 <script type="text/javascript">  
          function ConfirmUpdate(stockId)
          {
-             document.getElementById('<%=tbFquan.ClientID%>').value = '';
-             document.getElementById('<%=tbPquan.ClientID%>').value = '';
            $('#hiddenStockId').val(stockId);
           var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
+              url: "WebService/DispatchingDeliveryService.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",
@@ -218,17 +216,19 @@
                       $('#brand').val(data.brandName);
                       $('#qty').val(data.quantity);
                       $('#pdate').val(data.purchaseDate);
-                      $('#ddate').val(data.deliverDate);
+                      $('#ddate').val(data.receivedDate);
               },
               error: function (err) {
                   alert(err);
               }
           });
           $('#dispatchModal').modal('show');
+             document.getElementById('<%=tbFquan.ClientID%>').value = '';
+             document.getElementById('<%=tbPquan.ClientID%>').value = '';
+             document.getElementById("<%=lbError.ClientID%>").style.block = 'none';
              document.getElementById("<%=tbFquan.ClientID%>").style.borderColor = 'Gray';
              document.getElementById("<%=tbPquan.ClientID%>").style.borderColor = 'Gray';
              document.getElementById("<%=tbFquan.ClientID%>").style.color = 'Black';
-             document.getElementById("<%=lbError.ClientID%>").style.display = 'none';
              document.getElementById("<%=tbPquan.ClientID%>").style.color = 'Black';
           //$('.alert-warning').hide();
          }

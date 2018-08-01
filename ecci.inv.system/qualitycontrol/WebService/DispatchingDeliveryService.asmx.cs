@@ -29,7 +29,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             var orders = new List<DispatchDelivery>();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.quantity,s.receivedquantity,s.purchasedate,s.receivedate,
+            @"SELECT s.purchaseorder,s.receivedquantity,s.purchasedate,s.receivedate,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
@@ -65,7 +65,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             DispatchDelivery od = new DispatchDelivery();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.quantity,s.receivedquantity,s.purchasedate,s.deliverydate,
+            @"SELECT s.purchaseorder,s.receivedquantity,s.purchasedate,s.receivedate,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode

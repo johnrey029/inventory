@@ -74,6 +74,9 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <strong>Failed in Processing</strong> Delivery Update
           </div>
+          <div class="alert alert-warning alert-dismissible" role="alert">
+              
+          </div>
 
       <%--  <?php if(in_array('createProduct', $user_permission)): ?>
           <a href="<%--<?php echo base_url('products/create') ?>AddProducts.aspx" class="btn btn-primary">Add Product</a>
@@ -213,6 +216,7 @@
              document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
              document.getElementById("<%=qty.ClientID%>").style.color = 'Black';
              document.getElementById('<%=lbError.ClientID%>').style.color = 'Green';
+             document.getElementById('<%=lbError.ClientID%>').innerHTML = 'Receiving Total Quantity';
          }
          function myFunction() {
              document.getElementById('<%=lbError.ClientID%>').innerHTML = 'Receiving Total Quantity';
