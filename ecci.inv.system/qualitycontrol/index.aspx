@@ -75,7 +75,8 @@
               <strong>Failed in Processing</strong> Delivery Update
           </div>
           <div class="alert alert-warning alert-dismissible" role="alert">
-              
+              <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Incorrect Input! </strong><asp:Label ID="lbWarning" Text="" runat="server"></asp:Label><strong> Try Again!</strong>
           </div>
 
       <%--  <?php if(in_array('createProduct', $user_permission)): ?>
@@ -215,11 +216,11 @@
              $('#updateModal').modal('show');
              document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
              document.getElementById("<%=qty.ClientID%>").style.color = 'Black';
-             document.getElementById('<%=lbError.ClientID%>').style.color = 'Green';
-             document.getElementById('<%=lbError.ClientID%>').innerHTML = 'Receiving Total Quantity';
+             document.getElementById("<%=lbError.ClientID%>").style.color = 'Green';
+             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
          }
          function myFunction() {
-             document.getElementById('<%=lbError.ClientID%>').innerHTML = 'Receiving Total Quantity';
+             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
              document.getElementById("<%=btnSave.ClientID%>").disabled = false;
          }
             

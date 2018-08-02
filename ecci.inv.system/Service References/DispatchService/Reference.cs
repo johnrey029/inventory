@@ -31,10 +31,10 @@ namespace ecci.inv.system.DispatchService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDispatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        int UpdateDispatch(int upid);
+        int UpdateDispatch(int upid, int dq);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDispatch", ReplyAction="*")]
-        System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid);
+        System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid, int dq);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -80,12 +80,12 @@ namespace ecci.inv.system.DispatchService {
             return base.Channel.ShowDeliveredByIdAsync(id);
         }
         
-        public int UpdateDispatch(int upid) {
-            return base.Channel.UpdateDispatch(upid);
+        public int UpdateDispatch(int upid, int dq) {
+            return base.Channel.UpdateDispatch(upid, dq);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid) {
-            return base.Channel.UpdateDispatchAsync(upid);
+        public System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid, int dq) {
+            return base.Channel.UpdateDispatchAsync(upid, dq);
         }
     }
 }

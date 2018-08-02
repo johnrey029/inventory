@@ -22,6 +22,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="upid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dq" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -61,6 +62,7 @@
   <wsdl:message name="ShowDeliveredByIdHttpGetOut" />
   <wsdl:message name="UpdateDispatchHttpGetIn">
     <wsdl:part name="upid" type="s:string" />
+    <wsdl:part name="dq" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateDispatchHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -73,6 +75,7 @@
   <wsdl:message name="ShowDeliveredByIdHttpPostOut" />
   <wsdl:message name="UpdateDispatchHttpPostIn">
     <wsdl:part name="upid" type="s:string" />
+    <wsdl:part name="dq" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateDispatchHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />

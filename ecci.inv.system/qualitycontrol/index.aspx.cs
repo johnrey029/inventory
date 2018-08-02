@@ -13,7 +13,6 @@ namespace ecci.inv.system.qualitycontrol
         private string sessionempno { get; set; }
         DBConnection con;
         int totalquantity;
-        bool process = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["empnumber"] != null)
@@ -55,49 +54,51 @@ namespace ecci.inv.system.qualitycontrol
             }
             else
             {
-                string strong = "Incorrect Input!";
                 if (Convert.ToInt32(qty.Text) == 0)
                 {
                     string message = "Input Must Be Greater Than 0.";
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.Append("<script type = 'text/javascript'>");
-                    sb.Append("window.onload=function(){");
-                    sb.Append("$('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show();");
-                    sb.Append("$('.alert-warning').html('<strong>");
-                    sb.Append(strong);
-                    sb.Append("</strong> ");
-                    sb.Append(message);
-                    sb.Append("<strong> Try Again!</strong>');");
-                    sb.Append("setTimeout(function(){ $('.alert-warning').hide('fade');},10000);");
-                    sb.Append("};");
-                    sb.Append("</script>");
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
-                    //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //   "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').innerHTML(''); $('.alert-warning').show(); });</script>");
+                    lbWarning.Text = message;
+                    //System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    //sb.Append("<script type = 'text/javascript'>");
+                    //sb.Append("window.onload=function(){");
+                    //sb.Append("$('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show();");
+                    //sb.Append("$('.alert-warning').html('<strong>");
+                    //sb.Append(strong);
+                    //sb.Append("</strong> ");
+                    //sb.Append(message);
+                    //sb.Append("<strong> Try Again!</strong>');");
+                    //sb.Append("setTimeout(function(){ $('.alert-warning').hide('fade');},60000);");
+                    //sb.Append("};");
+                    //sb.Append("</script>");
+                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                       "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
                     //qty.BorderColor = System.Drawing.Color.Red;
                     //lbError.Visible = true;
                     //lbError.ForeColor = System.Drawing.Color.Red;
                     //lbError.Text = "Incorrect input! Value must be greater than 0.";
-                   // ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#updateModal').modal('show');", true);
+                    // ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#updateModal').modal('show');", true);
                 }
                 else if(Convert.ToInt32(qty.Text)>totalquantity)
                 {
-                    //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //   "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').innerHTML('Wrong Input! Input Must Not Be Greater Than The Total Quantity'); $('.alert-warning').show(); });</script>");
-                    string message = qty.Text +" Is Greater Than The Total Quantity " + totalquantity.ToString();
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.Append("<script type = 'text/javascript'>");
-                    sb.Append("window.onload=function(){");
-                    sb.Append("$('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show();");
-                    sb.Append("$('.alert-warning').html('<strong>");
-                    sb.Append(strong);
-                    sb.Append("</strong> ");
-                    sb.Append(message);
-                    sb.Append("<strong> Try Again!</strong>');");
-                    sb.Append("setTimeout(function(){ $('.alert-warning').hide('fade');},10000);");
-                    sb.Append("};");
-                    sb.Append("</script>");
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
+                    string message = qty.Text + " Is Greater Than The Total Quantity " + totalquantity.ToString();
+                    lbWarning.Text = message;
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                       "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
+                    
+                    //System.Text.StringBuilder sb = new System.Text.StringBuilder(); $('.alert-warning').innerHTML('Wrong Input! Input Must Not Be Greater Than The Total Quantity');
+                    //sb.Append("<script type = 'text/javascript'>");
+                    //sb.Append("window.onload=function(){");
+                    //sb.Append("$('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show();");
+                    //sb.Append("$('.alert-warning').html('<strong>");
+                    //sb.Append(strong);
+                    //sb.Append("</strong> ");
+                    //sb.Append(message);
+                    //sb.Append("<strong> Try Again!</strong>');");
+                    //sb.Append("setTimeout(function(){ $('.alert-warning').hide('fade');},10000);");
+                    //sb.Append("};");
+                    //sb.Append("</script>");
+                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
                 }
             }
         }

@@ -72,6 +72,10 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <strong>Failed in Processing</strong> Delivery Update
           </div>
+          <div class="alert alert-warning alert-dismissible" role="alert">
+              <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Incorrect Input! </strong><asp:Label ID="lbWarning" Text="" runat="server"></asp:Label><strong> Try Again!</strong>
+          </div>
 
       <%--  <?php if(in_array('createProduct', $user_permission)): ?>
           <a href="<%--<?php echo base_url('products/create') ?>AddProducts.aspx" class="btn btn-primary">Add Product</a>
@@ -152,7 +156,7 @@
                  <asp:TextBox ID="tbPquan" CssClass="form-control" runat="server" placeholder="Input Quantity Passed" autocomplete="off" min="0" OnTextChanged="tbPquan_TextChanged" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </ContentTemplate> 
                         <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="tbFquan" EventName="TextChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="tbPquan" EventName="TextChanged" />
                         </Triggers>
                     </asp:UpdatePanel>
             </div>
@@ -164,7 +168,7 @@
                 <asp:TextBox ID="tbFquan" CssClass="form-control"  runat="server" placeholder="Input Quantity Passed" autocomplete="off" min="0" OnTextChanged="tbFquan_TextChanged" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </ContentTemplate> 
                         <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="tbPquan" EventName="TextChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="tbFquan" EventName="TextChanged" />
                         </Triggers>
                     </asp:UpdatePanel>
                 <%--<input type="text" class="form-control" id="fquan" name="ddate"/>  <strong>Not Equal</strong>"ReadOnly="true" BackColor="White"
@@ -185,14 +189,13 @@
             <strong>Wrong Input</strong> Passed or Failed Input Must Not Be Greater Than The Total Quantity
             </div>--%>
             </div>
-            
+            <input type="hidden" id="dispatchquantity"  name="dispatchquantity" value="" />
             
           </div>
         <div class="modal-footer bg-aqua-active">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" Onclick="btnSave_Click"
               UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Dispatching...'; this.disabled='false'; }"/>
-                        
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>
                "this.disabled=true; this.value='Dispatching...';"--%>
         </div>  
@@ -217,19 +220,20 @@
                       $('#qty').val(data.quantity);
                       $('#pdate').val(data.purchaseDate);
                       $('#ddate').val(data.receivedDate);
+                      $('#dispatchquantity').val(data.dispatch);
               },
               error: function (err) {
                   alert(err);
               }
           });
           $('#dispatchModal').modal('show');
-             document.getElementById('<%=tbFquan.ClientID%>').value = '';
-             document.getElementById('<%=tbPquan.ClientID%>').value = '';
-             document.getElementById("<%=lbError.ClientID%>").style.block = 'none';
              document.getElementById("<%=tbFquan.ClientID%>").style.borderColor = 'Gray';
              document.getElementById("<%=tbPquan.ClientID%>").style.borderColor = 'Gray';
              document.getElementById("<%=tbFquan.ClientID%>").style.color = 'Black';
              document.getElementById("<%=tbPquan.ClientID%>").style.color = 'Black';
+             document.getElementById("<%=tbFquan.ClientID%>").value = '';
+             document.getElementById("<%=tbPquan.ClientID%>").value = '';
+             document.getElementById("<%=lbError.ClientID%>").style.display = 'none';
           //$('.alert-warning').hide();
          }
  </script>

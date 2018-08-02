@@ -65,7 +65,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             DispatchDelivery od = new DispatchDelivery();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.receivedquantity,s.purchasedate,s.receivedate,
+            @"SELECT s.purchaseorder,s.receivedquantity,s.dispatchquantity,s.purchasedate,s.receivedate,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
@@ -85,6 +85,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 od.purchaseDate = dt.ToShortDateString();
                 od.receivedDate = dt1.ToShortDateString();
                 od.poStatus = con._dr["postatus"].ToString();
+                od.dispatch = Convert.ToInt32(con._dr["dispatchquantity"].ToString());
                 //};
                 //orders.Add(order);
             }
@@ -95,27 +96,45 @@ namespace ecci.inv.system.qualitycontrol.WebService
         }
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public int UpdateDispatch(int upid)
+        public int UpdateDispatch(int upid,int dq)
         {
             con = new DBConnection();
+            int rq = 0, oq = 0, a = 0;
             con.OpenConection();
-            con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, receivedate = @rdate WHERE stockid = @sid");
-            con.Cmd.Parameters.AddWithValue("@stat", "Dispatch");
+            con.ExecSqlQuery("Select * from stock_raw where stockid = @sid");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
-            con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-            int a = con.Cmd.ExecuteNonQuery();
-            con.CloseConnection();
-            if (a == 0)
+            con._dr = con.Cmd.ExecuteReader();
+            while (con._dr.Read())
             {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-            }
-            else
-            {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                rq = Convert.ToInt32(con._dr["receivedquantity"].ToString());
+                oq = Convert.ToInt32(con._dr["quantity"].ToString());
             }
             con.CloseConnection();
+            if (rq == 0 && oq == 0)
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,receivedquantity=@rq, dispatchquantity=@dq, receivedate = @rdate WHERE stockid = @sid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Dispatch");
+                con.Cmd.Parameters.AddWithValue("@rq", 0);
+                con.Cmd.Parameters.AddWithValue("@dq", dq);
+                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                con.Cmd.Parameters.AddWithValue("@sid", upid);
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+            }
+            else if (rq > 0 && oq > 0)
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,receivedquantity=@rq, dispatchquantity=@dq, receivedate = @rdate WHERE stockid = @sid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
+                con.Cmd.Parameters.AddWithValue("@rq", 0);
+                con.Cmd.Parameters.AddWithValue("@dq", dq);
+                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                con.Cmd.Parameters.AddWithValue("@sid", upid);
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+            }
+
             return a;
         }
     }

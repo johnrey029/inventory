@@ -25,7 +25,7 @@ namespace ecci.inv.system.qualitycontrol
             if (!IsPostBack)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); $('.alert-warning').hide(); });</script>");
             }
         }
 
@@ -33,13 +33,14 @@ namespace ecci.inv.system.qualitycontrol
         {
             int sid = Convert.ToInt32(Request.Form.Get("hiddenStockId").ToString());
             int quantity = Convert.ToInt32(Request.Form.Get("qty").ToString());
+            int dp = Convert.ToInt32(Request.Form.Get("dispatchquantity").ToString());
             int sum = Convert.ToInt32(tbFquan.Text) + Convert.ToInt32(tbPquan.Text);
             if (quantity == sum)
             {
                 if (Convert.ToInt32(tbPquan.Text) >= 0 && Convert.ToInt32(tbFquan.Text) >= 0)
                 {
                     DispatchService.DispatchingDeliveryServiceSoapClient client = new DispatchService.DispatchingDeliveryServiceSoapClient("DispatchingDeliveryServiceSoap");
-                    int result = client.UpdateDispatch(sid);
+                    int result = client.UpdateDispatch(sid, dp+sum);
                     int result1 = Insert();
                     int result2 = warehouse();
                     int result3 = 0;
@@ -50,12 +51,12 @@ namespace ecci.inv.system.qualitycontrol
                     if (result == 1 && result1 == 1 && result2 == 1)
                     {
                         Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                        "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+                        "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); $('.alert-warning').hide(); });</script>");
                     }
                     else
                     {
                         Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                        "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+                        "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); $('.alert-warning').hide(); });</script>");
                     }
                 }
             }
@@ -63,11 +64,18 @@ namespace ecci.inv.system.qualitycontrol
             {
                 lbError.Visible = true;
                 lbError.Text = "Sum Of Passed&Failed Quantity Is Less Than The Total Quantity";
+                lbWarning.Text = "Sum Of Passed&Failed Quantity Is Less Than The Total Quantity";
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                      "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
+                
             }
             else if (quantity < sum)
             {
                 lbError.Visible = true;
                 lbError.Text = "Sum Of Passed&Failed Quantity Is Greater Than The Total Quantity";
+                lbWarning.Text = "Sum Of Passed&Failed Quantity Is Greater Than The Total Quantity";
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                   "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
             }
 
         }
@@ -124,47 +132,46 @@ namespace ecci.inv.system.qualitycontrol
 
         protected void tbFquan_TextChanged(object sender, EventArgs e)
         {
+            int total = Convert.ToInt32(Request.Form.Get("qty").ToString());
             int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbFquan.Text);
-            if (compute >= 0)
+            if (total >= Convert.ToInt32(tbFquan.Text) && Convert.ToInt32(tbFquan.Text) >= 0)
             {
                 tbFquan.BorderColor = System.Drawing.Color.Green;
                 tbPquan.BorderColor = System.Drawing.Color.Green;
                 tbFquan.ForeColor = System.Drawing.Color.Black;
                 tbPquan.ForeColor = System.Drawing.Color.Black;
-                lbError.ForeColor = System.Drawing.Color.Green;
+                //lbError.ForeColor = System.Drawing.Color.Red;
                 lbError.Visible = false;
-                btnSave.Enabled = true;
                 tbPquan.Text = compute.ToString();
             }
-            else if(compute<0)
+            else if (total < Convert.ToInt32(tbFquan.Text))
             {
                 tbFquan.BorderColor = System.Drawing.Color.Red;
                 tbPquan.BorderColor = System.Drawing.Color.Red;
                 tbFquan.ForeColor = System.Drawing.Color.Black;
                 tbPquan.ForeColor = System.Drawing.Color.Black;
-                lbError.ForeColor = System.Drawing.Color.Green;
+                lbError.ForeColor = System.Drawing.Color.Red;
                 tbPquan.Text = "0";
                 lbError.Visible = true;
-                btnSave.Enabled = false;
                 lbError.Text = "Failed Quantity Is Greater Than The Total Quantity";
             }
         }
 
         protected void tbPquan_TextChanged(object sender, EventArgs e)
         {
+            int total = Convert.ToInt32(Request.Form.Get("qty").ToString());
             int compute = Convert.ToInt32(Request.Form.Get("qty").ToString()) - Convert.ToInt32(tbPquan.Text);
-            if (compute >= 0)
+            if (total >= Convert.ToInt32(tbPquan.Text) && Convert.ToInt32(tbPquan.Text) >= 0)
             {
                 tbPquan.BorderColor = System.Drawing.Color.Green;
                 tbFquan.BorderColor = System.Drawing.Color.Green;
                 tbFquan.ForeColor = System.Drawing.Color.Black;
                 tbPquan.ForeColor = System.Drawing.Color.Black;
                 lbError.Visible = false;
-                lbError.ForeColor = System.Drawing.Color.Green;
-                btnSave.Enabled = true;
+                //lbError.ForeColor = System.Drawing.Color.Red;
                 tbFquan.Text = compute.ToString();
             }
-            else if (compute < 0)
+            else if (total < Convert.ToInt32(tbPquan.Text))
             {
                 tbFquan.Text = "0";
                 tbPquan.BorderColor = System.Drawing.Color.Red;
@@ -173,7 +180,6 @@ namespace ecci.inv.system.qualitycontrol
                 tbPquan.ForeColor = System.Drawing.Color.Black;
                 lbError.ForeColor = System.Drawing.Color.Red;
                 lbError.Visible = true;
-                btnSave.Enabled = false;
                 lbError.Text = "Passed Quantity Is Greater Than The Total Quantity";
             }
         }

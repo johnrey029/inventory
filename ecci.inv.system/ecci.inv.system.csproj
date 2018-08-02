@@ -7401,17 +7401,17 @@
     <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="purchasing\Purchasing.Master" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
-    <None Include="Service References\DispatchService\DispatchingDeliveryService.disco" />
-    <None Include="Service References\DispatchService\configuration91.svcinfo" />
-    <None Include="Service References\DispatchService\configuration.svcinfo" />
-    <None Include="Service References\DispatchService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
     <None Include="Service References\DeliveryService\configuration91.svcinfo" />
     <None Include="Service References\DeliveryService\configuration.svcinfo" />
     <None Include="Service References\DeliveryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\DispatchService\DispatchingDeliveryService.disco" />
+    <None Include="Service References\DispatchService\configuration91.svcinfo" />
+    <None Include="Service References\DispatchService\configuration.svcinfo" />
+    <None Include="Service References\DispatchService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
