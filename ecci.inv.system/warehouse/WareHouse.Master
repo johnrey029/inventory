@@ -178,14 +178,14 @@
       <ul class="sidebar-menu" data-widget="tree">
         
         <li id="dashboardMainMenu">
-            <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            <a href="index.aspx"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
             <li id="receiveNav">
               <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Receiving</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
@@ -193,7 +193,7 @@
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
             <li id="dispatchNav">
               <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Dispatching</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Products</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

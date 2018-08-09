@@ -113,19 +113,50 @@ namespace ecci.inv.system.qualitycontrol
         }
         public int warehouse()
         {
-            int a = 0;
+            int q = 0, a = 0, b = 0;
             int quantity = Convert.ToInt32(Request.Form.Get("qty").ToString());
             int comp = Convert.ToInt32(tbPquan.Text);
-            if (comp >= 0 && comp <= quantity)
+            con.OpenConection();
+            con.ExecSqlQuery("Select count(*) from stock_warehouse where purchaseorder = @sid");
+            con.Cmd.Parameters.AddWithValue("@sid", Request.Form.Get("po").ToString().Trim());
+            b = Convert.ToInt32(con.Cmd.ExecuteScalar());
+            con.CloseConnection();
+            if (b == 1)
             {
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO stock_warehouse(purchaseorder,quantity,receivedate,status)VALUES(@po,@quan,@rdate,@st)");
-                con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
-                con.Cmd.Parameters.AddWithValue("@quan", tbPquan.Text);
-                con.Cmd.Parameters.AddWithValue("@rdate", DateTime.Parse(date));
-                con.Cmd.Parameters.AddWithValue("@st", "In Stock");
-                a = con.Cmd.ExecuteNonQuery();
+                con.ExecSqlQuery("Select * from stock_warehouse where purchaseorder = @sid");
+                con.Cmd.Parameters.AddWithValue("@sid", Request.Form.Get("po").ToString());
+                con._dr = con.Cmd.ExecuteReader();
+                while (con._dr.Read())
+                {
+                    q = Convert.ToInt32(con._dr["quantity"].ToString());
+                }
                 con.CloseConnection();
+                int add = comp + q;
+                if (comp >= 0 && comp <= quantity)
+                {
+                    con.OpenConection();
+                    con.ExecSqlQuery("UPDATE stock_warehouse set quantity=@quan,receivedate=@rdate where purchaseorder=@po");
+                    con.Cmd.Parameters.AddWithValue("@quan", add);
+                    con.Cmd.Parameters.AddWithValue("@rdate", DateTime.Parse(date));
+                    con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
+                }
+            }
+            else
+            {
+                if (comp >= 0 && comp <= quantity)
+                {
+                    con.OpenConection();
+                    con.ExecSqlQuery("INSERT INTO stock_warehouse(purchaseorder,quantity,receivedate,status)VALUES(@po,@quan,@rdate,@st)");
+                    con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
+                    con.Cmd.Parameters.AddWithValue("@quan", comp);
+                    con.Cmd.Parameters.AddWithValue("@rdate", DateTime.Parse(date));
+                    con.Cmd.Parameters.AddWithValue("@st", "In Stock");
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
+                }
             }
             return a;
         }
