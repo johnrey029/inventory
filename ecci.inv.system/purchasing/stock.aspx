@@ -101,16 +101,42 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
-
+                  <div class="form-group">
+                  <label for="price">Unit Price</label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbUnitPrice" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                    <ContentTemplate>
+                  <asp:TextBox ID="tbUnitPrice" runat="server" CssClass="form-control" placeholder="Description" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
+                         </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="ddBrand" EventName="SelectedIndexChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
                 <div class="form-group">
                   <label for="quantity">Quantity</label>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbQuantity" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" autocomplete="off"></asp:TextBox>
-                </div>
+                    <asp:UpdatePanel ID="UpdatePanel15" runat="server">
+                        <ContentTemplate>sss
+                            <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" autocomplete="off" AutoPostBack="true" OnTextChanged="tbQuantity_TextChanged"></asp:TextBox>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbQuantity" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>                 
+
                   <div class="form-group">
-                  <label for="price">Price</label>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbPrice" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbPrice" runat="server" CssClass="form-control" placeholder="Price" autocomplete="off"></asp:TextBox>
+                  <label for="price">Total Price</label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="tbTotalPrice" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                    <ContentTemplate>
+                  <asp:TextBox ID="tbTotalPrice" runat="server" CssClass="form-control" placeholder="Total Price" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
+                         </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbQuantity" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
 
 <%--                </asp:TextBox> runat="server"--%>
