@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="stock.aspx.cs" Inherits="ecci.inv.system.purchasing.stock" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
     Purchasing-Stock
 </asp:Content>
@@ -117,7 +119,7 @@
                   <label for="quantity">Quantity</label>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbQuantity" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:UpdatePanel ID="UpdatePanel15" runat="server">
-                        <ContentTemplate>sss
+                        <ContentTemplate>
                             <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" autocomplete="off" AutoPostBack="true" OnTextChanged="tbQuantity_TextChanged"></asp:TextBox>
                         </ContentTemplate>
                         <Triggers>
@@ -150,7 +152,7 @@
                   <label for="deliverydate">Expected Delivery Date</label>
                       <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbEdate" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                 <div class="input-group date" id="datetimepicker">
-                    <asp:TextBox ID="tbEdate"  runat="server" CssClass="form-control" placeholder="Expected Delivery Date (DD/MM/YYYY)" autocomplete="off"></asp:TextBox>
+                    <asp:TextBox ID="tbEdate"  runat="server" CssClass="form-control" placeholder="Expected Delivery Date (MM/DD/YYYY)" autocomplete="off"></asp:TextBox>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -162,6 +164,8 @@
 
               <div class="box-footer">
                   <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
+                  <%--<asp:Button ID="btnPrint" runat="server" Text="Print" CausesValidation="false" CssClass="btn btn-primary" OnClick="btnPrint_Click" />--%>
+                          <asp:Button ID="btnPrint" runat="server" Text="Print" CausesValidation="false" CssClass="btn btn-primary" OnClick="btnPrint_Click" />
                   <asp:Button ID="btnBack" runat="server" Text="Back" CausesValidation="false" CssClass="btn btn-warning" />
                   <asp:Label ID="lbError" runat="server" Text="Label" Visible="False"></asp:Label>
               </div>
@@ -171,12 +175,25 @@
       <!-- col-md-12 -->
     </div>
     <!-- /.row -->
+      <div>
+          <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+              <ContentTemplate>
+                  <rsweb:ReportViewer ID="rvPurchaseOrder" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%">
+                  </rsweb:ReportViewer>
+              </ContentTemplate>
+              <Triggers>
+                  <asp:PostBackTrigger ControlID="btnPrint"/>
+              </Triggers>
+          </asp:UpdatePanel>
+          
+          
+      </div>
   </section>     
   </div>
     <script type="text/javascript">  
         $(document).ready(function () {
             $("#datetimepicker").datepicker({
-                format: "dd/mm/yyyy",
+                format: "mm/dd/yyyy",
                 chageMonth: true,
                 changeYear: true,
                 startDate: "+0d"
