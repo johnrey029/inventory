@@ -7505,6 +7505,7 @@
     <Content Include="superadmin\index.aspx" />
     <Content Include="superadmin\users.aspx" />
     <Content Include="warehouse\index.aspx" />
+    <Content Include="warehouse\WebService\RawMaterialsService.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -7727,6 +7728,7 @@
     <Compile Include="superadmin\users.aspx.designer.cs">
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
+    <Compile Include="warehouse\CS\RawMaterials.cs" />
     <Compile Include="warehouse\WareHouse.Master.cs">
       <DependentUpon>WareHouse.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7740,6 +7742,10 @@
     </Compile>
     <Compile Include="warehouse\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="warehouse\WebService\RawMaterialsService.asmx.cs">
+      <DependentUpon>RawMaterialsService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -7755,6 +7761,12 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
     <WCFMetadataStorage Include="Service References\DispatchService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="purchasing\purchaseorder.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>purchaseorder.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
