@@ -7762,12 +7762,6 @@
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
     <WCFMetadataStorage Include="Service References\DispatchService\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="purchasing\purchaseorder.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>purchaseorder.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
