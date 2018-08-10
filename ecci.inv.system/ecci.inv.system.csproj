@@ -6741,6 +6741,7 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt03" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
+    <Content Include="production\rawmaterials.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="purchasing\manageitems.aspx" />
     <Content Include="purchasing\managesuppliers.aspx" />
@@ -7397,6 +7398,7 @@
     <Content Include="assets\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="purchasing\Purchasing.Master" />
+    <Content Include="production\Production.Master" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
     <None Include="Service References\DeliveryService\configuration91.svcinfo" />
@@ -7523,6 +7525,20 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="production\Production.Master.cs">
+      <DependentUpon>Production.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\Production.Master.designer.cs">
+      <DependentUpon>Production.Master</DependentUpon>
+    </Compile>
+    <Compile Include="production\rawmaterials.aspx.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\rawmaterials.aspx.designer.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
     </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>
@@ -7746,7 +7762,10 @@
       <LastGenOutput>purchaseorder.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="production\CS\" />
+    <Folder Include="production\WebService\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
