@@ -60,10 +60,10 @@ namespace ecci.inv.system.purchasing
             tbDescription.Text = "";
             ddSupplier.SelectedIndex = -1;
             tbPO.Text = "";
-            ddBrand.SelectedIndex = -1;
+            ddBrand.SelectedIndex = -1; 
             tbQuantity.Text = "";
             ddBrand.Enabled = false;
-            tbPrice.Text = "";
+            tbUnitPrice.Text = "";
             //tbCalendar.Visible = false;
             tbEdate.Text = "";
         }
@@ -77,6 +77,8 @@ namespace ecci.inv.system.purchasing
                 ddSupplier.SelectedIndex = 0;
                 tbDescription.Text = "";
                 tbDescription.Enabled = false;
+                tbUnitPrice.Text = "";
+                tbUnitPrice.Enabled = false;
             }
             else
             {
@@ -84,7 +86,7 @@ namespace ecci.inv.system.purchasing
                 try
                 {
                     con.OpenConection();
-                    con.ExecSqlQuery("Select * from items where suppcode='" + ddSupplier.SelectedValue + "'");
+                    con.ExecSqlQuery("SELECT * FROM items WHERE suppcode='" + ddSupplier.SelectedValue + "'");
                     ddBrand.DataTextField = "brandname";
                     ddBrand.DataValueField = "itemsid";
                     ddBrand.DataSource = con.DataQueryExec();
@@ -99,7 +101,7 @@ namespace ecci.inv.system.purchasing
                 }
             }
         }
-
+        private string unitPrice { get; set; }
         protected void ddBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
@@ -108,17 +110,22 @@ namespace ecci.inv.system.purchasing
             {
                 tbDescription.Text = "";
                 tbDescription.Enabled = false;
+                tbUnitPrice.Text = "";
+                tbUnitPrice.Enabled = false;
             }
             else
             {
                 tbDescription.Enabled = true;
+                tbUnitPrice.Enabled = true;
                 try
                 {
                     con.OpenConection();
-                    con._dr = con.DataReader("Select * from items where itemsid='" + ddBrand.SelectedValue + "'");
+                    con._dr = con.DataReader("SELECT * FROM items WHERE itemsid='" + ddBrand.SelectedValue + "'");
                     while(con._dr.Read())
                     {
                         tbDescription.Text = con._dr["description"].ToString();
+                        unitPrice = con._dr["unitprice"].ToString();
+                        tbUnitPrice.Text = unitPrice;
                     }
                     con.CloseConnection();
                 }
@@ -167,7 +174,7 @@ namespace ecci.inv.system.purchasing
                 con.Cmd.Parameters.AddWithValue("@pdate", DateTime.Parse(date));
                 con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(tbEdate.Text));
                 con.Cmd.Parameters.Add("@stat", SqlDbType.Char).Value= "For delivery";
-                con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = tbPrice.Text;
+                con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = tbTotalPrice.Text;
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)
@@ -235,6 +242,18 @@ namespace ecci.inv.system.purchasing
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
             }
             return check;
+        }
+
+        protected void tbQuantity_TextChanged(object sender, EventArgs e)
+        {
+            decimal uprice;
+            decimal quant;
+            uprice = Convert.ToDecimal(tbUnitPrice.Text);
+            quant = Convert.ToDecimal(tbQuantity.Text);
+
+            decimal total = uprice * quant;
+
+            tbTotalPrice.Text = total.ToString();
         }
     }
 }

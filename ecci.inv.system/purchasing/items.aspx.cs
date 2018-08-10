@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,10 +51,11 @@ namespace ecci.inv.system.purchasing
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("insert into items(suppcode, brandname, description)values(@scode, @bname, @des)");
+                con.ExecSqlQuery("insert into items(suppcode, brandname, description,unitprice)values(@scode, @bname, @des, @price)");
                 con.Cmd.Parameters.AddWithValue("@scode", ddSupplier.SelectedValue);
                 con.Cmd.Parameters.AddWithValue("@bname", tbBrand.Text);
                 con.Cmd.Parameters.AddWithValue("@des", tbDescription.Text);
+                con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = tbUnitPrice.Text;
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)

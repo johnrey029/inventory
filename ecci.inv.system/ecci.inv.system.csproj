@@ -78,6 +78,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\..\Desktop\OnlineBiometricVotingSystem\OnlineBiometricVotingSystem\bin\MySql.Data.dll</HintPath>
     </Reference>
@@ -6741,7 +6753,6 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt03" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
-    <Content Include="production\rawmaterials.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="purchasing\manageitems.aspx" />
     <Content Include="purchasing\managesuppliers.aspx" />
@@ -7398,7 +7409,17 @@
     <Content Include="assets\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="purchasing\Purchasing.Master" />
-    <Content Include="production\Production.Master" />
+    <Content Include="purchasing\purchaseorder.xsc">
+      <DependentUpon>purchaseorder.xsd</DependentUpon>
+    </Content>
+    <None Include="purchasing\purchaseorder.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>purchaseorder.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="purchasing\purchaseorder.xss">
+      <DependentUpon>purchaseorder.xsd</DependentUpon>
+    </Content>
     <None Include="Service References\DeliveryService\OrderDeliveryService.wsdl" />
     <None Include="Service References\DeliveryService\OrderDeliveryService.disco" />
     <None Include="Service References\DeliveryService\configuration91.svcinfo" />
@@ -7526,20 +7547,6 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="production\Production.Master.cs">
-      <DependentUpon>Production.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="production\Production.Master.designer.cs">
-      <DependentUpon>Production.Master</DependentUpon>
-    </Compile>
-    <Compile Include="production\rawmaterials.aspx.cs">
-      <DependentUpon>rawmaterials.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="production\rawmaterials.aspx.designer.cs">
-      <DependentUpon>rawmaterials.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7564,11 +7571,10 @@
     <Compile Include="purchasing\managesuppliers.aspx.designer.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\purchaseorder.cs">
+    <Compile Include="purchasing\purchaseorder.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>purchaseorder.rpt</DependentUpon>
-      <SubType>Component</SubType>
+      <DependentUpon>purchaseorder.xsd</DependentUpon>
     </Compile>
     <Compile Include="purchasing\WebService\ManageItemService.asmx.cs">
       <DependentUpon>ManageItemService.asmx</DependentUpon>
@@ -7761,10 +7767,6 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>purchaseorder.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="production\CS\" />
-    <Folder Include="production\WebService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
