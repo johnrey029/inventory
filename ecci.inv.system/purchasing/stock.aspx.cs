@@ -5,12 +5,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Microsoft.Reporting.WebForms;
+using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace ecci.inv.system.purchasing
 {
     public partial class stock : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
+        private string ponumber { get; set; }
+        private string ponumber2 { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,8 +33,13 @@ namespace ecci.inv.system.purchasing
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
                     tbDescription.Enabled = false;
                     ddBrand.Enabled = false;
+
+                    ponumber = DateTime.Now.ToString("Myyssff");
+                    tbPO.Text = ponumber;
                 }
-                tbPO.Text = DateTime.Now.ToString("Myyssff");
+
+                //ponumber = DateTime.Now.ToString("Myyssff");
+                //tbPO.Text = ponumber;
             }
             
 
@@ -142,6 +152,7 @@ namespace ecci.inv.system.purchasing
             bool tama = load();
             bool mali = activity();
             if (tama == true && mali == true)
+
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
@@ -149,9 +160,9 @@ namespace ecci.inv.system.purchasing
             else
             {
 
-                //lbError.Text = "Dito may mali.";
-                //lbError.Visible = true;
-                //lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "Dito may mali.";
+                lbError.Visible = true;
+                lbError.ForeColor = System.Drawing.Color.Red;
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
             }
@@ -165,6 +176,7 @@ namespace ecci.inv.system.purchasing
             lbError.Visible = false;
             try
             {
+                ponumber2 = tbPO.Text;
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, disquantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price)");
                 con.Cmd.Parameters.Add("@po",SqlDbType.NVarChar).Value=tbPO.Text;
@@ -255,6 +267,41 @@ namespace ecci.inv.system.purchasing
             decimal total = uprice * quant;
 
             tbTotalPrice.Text = total.ToString();
+        }
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+           //if (!IsPostBack)
+           //{
+            rvPurchaseOrder.ProcessingMode = ProcessingMode.Local;
+            rvPurchaseOrder.LocalReport.ReportPath = Server.MapPath("~/purchasing/purchOrder.rdlc");
+            purchaseorder dsCustomers = GetData("SELECT stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price FROM stock_raw INNER JOIN items ON stock_raw.itemsid = items.itemsid WHERE stock_raw.purchaseorder='" + ponumber2 + "'");
+            ReportDataSource purchaseorder = new ReportDataSource("poDataSet", dsCustomers.Tables[0]);
+            rvPurchaseOrder.LocalReport.DataSources.Clear();
+            rvPurchaseOrder.LocalReport.DataSources.Add(purchaseorder);
+            lbError.Text = ponumber;
+            lbError.Visible = true;
+            //}
+        }
+        private purchaseorder GetData(string query)
+        {
+            string cs = WebConfigurationManager.ConnectionStrings["getdatabase"].ConnectionString;
+            SqlCommand cmd = new SqlCommand(query);
+            
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.Connection = con;
+
+                    sda.SelectCommand = cmd;
+                    using (purchaseorder dsCustomers = new purchaseorder())
+                    {
+                        sda.Fill(dsCustomers, "DataTable1");
+                        return dsCustomers;
+                    }
+                }
+            }
         }
     }
 }
