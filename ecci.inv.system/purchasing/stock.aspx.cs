@@ -69,7 +69,7 @@ namespace ecci.inv.system.purchasing
            // tbPO.Text = "";
             tbDescription.Text = "";
             ddSupplier.SelectedIndex = -1;
-            tbPO.Text = "";
+            tbPO.Text = ponumber;
             ddBrand.SelectedIndex = -1; 
             tbQuantity.Text = "";
             ddBrand.Enabled = false;
@@ -154,6 +154,8 @@ namespace ecci.inv.system.purchasing
             if (tama == true && mali == true)
 
             {
+                print();
+                modalPO.Show();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
             }
@@ -197,16 +199,16 @@ namespace ecci.inv.system.purchasing
                 {
                     check = true;
                 }
-            }
+        }
             catch (Exception ex)
             {
                 check = false;
                 lbError.ForeColor = System.Drawing.Color.Red;
-                lbError.Text = "Error: " + ex.Message;
+                //lbError.Text = "Error: " + ex.Message;
                 lbError.Visible = true;
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-            }
+        }
             return check;
         }
         private Boolean activity()
@@ -272,15 +274,31 @@ namespace ecci.inv.system.purchasing
         {
            //if (!IsPostBack)
            //{
+            //rvPurchaseOrder.ProcessingMode = ProcessingMode.Local;
+            //rvPurchaseOrder.LocalReport.ReportPath = Server.MapPath("~/purchasing/purchOrder.rdlc");
+            //purchaseorder dsCustomers = GetData("SELECT stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price FROM stock_raw INNER JOIN items ON stock_raw.itemsid = items.itemsid WHERE stock_raw.purchaseorder='" + ponumber2 + "'");
+            //ReportDataSource purchaseorder = new ReportDataSource("poDataSet", dsCustomers.Tables[0]);
+            //rvPurchaseOrder.LocalReport.DataSources.Clear();
+            //rvPurchaseOrder.LocalReport.DataSources.Add(purchaseorder);
+            //lbError.Text = ponumber;
+            //lbError.Visible = true;
+            //}
+        }
+
+        private void print()
+        {
             rvPurchaseOrder.ProcessingMode = ProcessingMode.Local;
             rvPurchaseOrder.LocalReport.ReportPath = Server.MapPath("~/purchasing/purchOrder.rdlc");
-            purchaseorder dsCustomers = GetData("SELECT stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price FROM stock_raw INNER JOIN items ON stock_raw.itemsid = items.itemsid WHERE stock_raw.purchaseorder='" + ponumber2 + "'");
+            purchaseorder dsCustomers = GetData("SELECT stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price, items.suppcode, "+
+                         "suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact "+
+                         "FROM stock_raw INNER JOIN "+
+                         "items ON stock_raw.itemsid = items.itemsid INNER JOIN "+
+                         "suppliers ON items.suppcode = suppliers.suppcode WHERE stock_raw.purchaseorder="+ponumber2+"");
             ReportDataSource purchaseorder = new ReportDataSource("poDataSet", dsCustomers.Tables[0]);
             rvPurchaseOrder.LocalReport.DataSources.Clear();
             rvPurchaseOrder.LocalReport.DataSources.Add(purchaseorder);
             lbError.Text = ponumber;
             lbError.Visible = true;
-            //}
         }
         private purchaseorder GetData(string query)
         {

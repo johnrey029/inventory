@@ -76,10 +76,15 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="suppaddress">Supplier Address</label><span style="display:inline-block; width: 20px;"></span>
-                    
+                  <label for="suppaddress">Supplier Address</label><span style="display:inline-block; width: 20px;"></span>                    
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbSuppAddress" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                   <asp:TextBox ID="tbSuppAddress" runat="server" CssClass="form-control" placeholder="Supplier Address" autocomplete="off"></asp:TextBox>
+                </div>
+
+                  <div class="form-group">
+                  <label for="suppcontact">Supplier Point of Contact</label><span style="display:inline-block; width: 20px;"></span>                    
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbSuppContact" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:TextBox ID="tbSuppContact" runat="server" CssClass="form-control" placeholder="Supplier Point of Contact" autocomplete="off"></asp:TextBox>
                 </div>
               </div>
               <!-- /.box-body -->
