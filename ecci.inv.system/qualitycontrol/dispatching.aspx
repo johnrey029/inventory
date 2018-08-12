@@ -233,7 +233,7 @@
              document.getElementById("<%=tbPquan.ClientID%>").style.color = 'Black';
              document.getElementById("<%=tbFquan.ClientID%>").value = '';
              document.getElementById("<%=tbPquan.ClientID%>").value = '';
-             document.getElementById("<%=lbError.ClientID%>").style.display = 'none';
+             //document.getElementById("<%=lbError.ClientID%>").style.display = 'none';
           //$('.alert-warning').hide();
          }
  </script>
