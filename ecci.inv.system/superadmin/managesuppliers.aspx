@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="managesuppliers.aspx.cs" Inherits="ecci.inv.system.purchasing.managesuppliers" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="managesuppliers.aspx.cs" Inherits="ecci.inv.system.superadmin.managesuppliers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Purchasing-Manage Suppliers
+    Super Admin-Manage Suppliers
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -15,9 +15,17 @@
                      columns: [
                          { 'data': 'suppCode' },
                          { 'data': 'suppName' },
-                         { 'data': 'suppAdd' }
-                     ]
+                         { 'data': 'suppAdd' },
+                         { 'data': 'suppContact' }
+                     ],
+                     language: {
+                         emptyTable: "No data found!"
+                     }
                  });
+             },
+             bServerSide: true,
+             error: function (err) {
+                 alert(err);
              }
         });  
          $("#mainSupNav").addClass('active');
@@ -45,23 +53,6 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
       <div class="col-md-12 col-xs-12">
-  <%--       <div id="messages"></div>
-       <?php if($this->session->flashdata('success')): ?>
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('success'); ?>
-          </div>
-        <?php elseif($this->session->flashdata('error')): ?>
-          <div class="alert alert-error alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('error'); ?>
-          </div>
-        <?php endif; ?>--%>
-
-      <%--  <?php if(in_array('createProduct', $user_permission)): ?>
-          <a href="<%--<?php echo base_url('products/create') ?>AddProducts.aspx" class="btn btn-primary">Add Product</a>
-          <br /> <br />--%>
-<%--        <?php endif; ?>--%>
           <a href="supplier.aspx" class="btn btn-primary">Add Suppliers</a>
             <br /> <br />
         <div class="box">
@@ -78,6 +69,7 @@
                 <th>Supplier Code</th>
                 <th>Company</th>
                 <th>Address</th>
+                  <th>Contact Person</th>
                 <%--<th>Purchased Date</th>
                 <th>Delivery Date</th>
                 <th>Staus</th>--%>

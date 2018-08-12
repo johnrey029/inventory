@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ecci.inv.system.purchasing {
+namespace ecci.inv.system.superadmin {
     
     
     public partial class manageitems {

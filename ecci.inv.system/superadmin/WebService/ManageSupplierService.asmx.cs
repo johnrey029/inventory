@@ -1,4 +1,4 @@
-﻿using ecci.inv.system.purchasing.CS;
+﻿using ecci.inv.system.superadmin.CS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 
-namespace ecci.inv.system.purchasing.WebService
+namespace ecci.inv.system.superadmin.WebService
 {
     /// <summary>
     /// Summary description for ManageSupplierService
@@ -25,8 +25,7 @@ namespace ecci.inv.system.purchasing.WebService
             con = new DBConnection();
             var supps = new List<ManageSupplier>();
             con.OpenConection();
-            con._dr = con.DataReader(
-            @"SELECT suppcode, suppname, suppadd FROM suppliers ORDER BY suppid ASC");
+            con._dr = con.DataReader(@"SELECT suppcode, suppname, suppadd, suppcontact FROM suppliers ORDER BY suppname ASC");
             while (con._dr.Read())
             {
                 var sup = new ManageSupplier
@@ -34,6 +33,7 @@ namespace ecci.inv.system.purchasing.WebService
                     suppCode = con._dr["suppcode"].ToString(),
                     suppName = con._dr["suppname"].ToString(),
                     suppAdd = con._dr["suppadd"].ToString(),
+                    suppContact = con._dr["suppcontact"].ToString()
                 };
                 supps.Add(sup);
             }

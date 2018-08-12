@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="items.aspx.cs" Inherits="ecci.inv.system.purchasing.items" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="items.aspx.cs" Inherits="ecci.inv.system.superadmin.items" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Purchasing-Items
+    Super Admin-Items
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -11,11 +11,11 @@
     <section class="content-header">
       <h1>
         Items Management
-        <small>Purchasing</small>
+        <small>Super Admin</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Items</li>
+        <li class="active">Add Items</li>pu
       </ol>
     </section>
  <!-- Main content -->

@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="manageitems.aspx.cs" Inherits="ecci.inv.system.purchasing.manageitems" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="manageitems.aspx.cs" Inherits="ecci.inv.system.superadmin.manageitems" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Purchasing-Manage Items
+    Super Admin-Manage Items
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">  
@@ -13,9 +13,10 @@
                  var datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
-                         { 'data': 'suppCode' },
+                         { 'data': 'suppName' },
                          { 'data': 'brandName' },
-                         { 'data': 'description' }
+                         { 'data': 'description' },
+                        { 'data': 'unitPrice' }
                      ]
                  });
              }
@@ -78,6 +79,7 @@
                 <th>Supplier Code</th>
                 <th>Brand Name</th>
                 <th>Description</th>
+                  <th>Unit Price</th>
                 <%--<th>Purchased Date</th>
                 <th>Delivery Date</th>
                 <th>Staus</th>--%>

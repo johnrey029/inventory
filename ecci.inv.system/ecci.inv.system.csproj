@@ -6753,14 +6753,14 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="Products.aspx" />
-    <Content Include="purchasing\manageitems.aspx" />
-    <Content Include="purchasing\managesuppliers.aspx" />
-    <Content Include="purchasing\WebService\ManageItemService.asmx" />
-    <Content Include="purchasing\WebService\ManageSupplierService.asmx" />
+    <Content Include="superadmin\manageitems.aspx" />
+    <Content Include="superadmin\managesuppliers.aspx" />
+    <Content Include="superadmin\WebService\ManageItemService.asmx" />
+    <Content Include="superadmin\WebService\ManageSupplierService.asmx" />
     <Content Include="purchasing\WebService\PurchaseOrderService.asmx" />
     <Content Include="purchasing\index.aspx" />
-    <Content Include="purchasing\supplier.aspx" />
-    <Content Include="purchasing\items.aspx" />
+    <Content Include="superadmin\supplier.aspx" />
+    <Content Include="superadmin\items.aspx" />
     <Content Include="purchasing\stock.aspx" />
     <Content Include="qualitycontrol\dispatching.aspx" />
     <Content Include="qualitycontrol\index.aspx" />
@@ -7553,21 +7553,21 @@
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\CS\ManageItem.cs" />
-    <Compile Include="purchasing\CS\ManageSupplier.cs" />
+    <Compile Include="superadmin\CS\ManageItem.cs" />
+    <Compile Include="superadmin\CS\ManageSupplier.cs" />
     <Compile Include="purchasing\CS\PurchaseOrder.cs" />
-    <Compile Include="purchasing\manageitems.aspx.cs">
+    <Compile Include="superadmin\manageitems.aspx.cs">
       <DependentUpon>manageitems.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\manageitems.aspx.designer.cs">
+    <Compile Include="superadmin\manageitems.aspx.designer.cs">
       <DependentUpon>manageitems.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\managesuppliers.aspx.cs">
+    <Compile Include="superadmin\managesuppliers.aspx.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\managesuppliers.aspx.designer.cs">
+    <Compile Include="superadmin\managesuppliers.aspx.designer.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
     </Compile>
     <Compile Include="purchasing\purchaseorder.cs">
@@ -7578,11 +7578,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>purchaseorder.xsd</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\WebService\ManageItemService.asmx.cs">
+    <Compile Include="superadmin\WebService\ManageItemService.asmx.cs">
       <DependentUpon>ManageItemService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="purchasing\WebService\ManageSupplierService.asmx.cs">
+    <Compile Include="superadmin\WebService\ManageSupplierService.asmx.cs">
       <DependentUpon>ManageSupplierService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
@@ -7604,19 +7604,19 @@
     <Compile Include="purchasing\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\supplier.aspx.cs">
+    <Compile Include="superadmin\supplier.aspx.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\supplier.aspx.designer.cs">
+    <Compile Include="superadmin\supplier.aspx.designer.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="purchasing\items.aspx.cs">
+    <Compile Include="superadmin\items.aspx.cs">
       <DependentUpon>items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\items.aspx.designer.cs">
+    <Compile Include="superadmin\items.aspx.designer.cs">
       <DependentUpon>items.aspx</DependentUpon>
     </Compile>
     <Compile Include="purchasing\stock.aspx.cs">

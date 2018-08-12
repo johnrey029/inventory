@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Web.Script.Serialization;
-using ecci.inv.system.purchasing.CS;
+using ecci.inv.system.superadmin.CS;
 
-namespace ecci.inv.system.purchasing.WebService
+namespace ecci.inv.system.superadmin.WebService
 {
     /// <summary>
     /// Summary description for ManageItemService
@@ -25,16 +25,16 @@ namespace ecci.inv.system.purchasing.WebService
             con = new DBConnection();
             var orders = new List<ManageItem>();
             con.OpenConection();
-            con._dr = con.DataReader(
-            @"SELECT suppcode, brandname, description FROM items ORDER BY itemsid ASC");
+            con._dr = con.DataReader(@"SELECT suppliers.suppname AS supplierName, items.brandname AS brandname, items.description AS description, items.unitprice AS price FROM suppliers INNER JOIN items ON suppliers.suppcode = items.suppcode ORDER BY suppliers.suppname ASC");
             while (con._dr.Read())
             {
 
                 var order = new ManageItem
                 {
-                    suppCode = con._dr["suppcode"].ToString(),
+                    suppName = con._dr["supplierName"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
-                    description = con._dr["description"].ToString()
+                    description = con._dr["description"].ToString(),
+                    unitPrice = con._dr["price"].ToString()
                 };
 
                 orders.Add(order);
