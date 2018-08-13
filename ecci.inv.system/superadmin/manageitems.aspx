@@ -139,7 +139,7 @@
                     </div>
                     <div class="form-group">
                         <label for="qty">Stock Unit Price</label>
-                        <input type="text" class="form-control" id="unitprice" name="unitprice" readonly="false" />
+                        <input type="text" class="form-control" id="unitprice" name="unitprice" />
                     </div>
 
                     <input type="hidden" id="hiddenitems" name="hiddenitems" value="" />

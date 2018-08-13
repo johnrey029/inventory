@@ -56,6 +56,7 @@ namespace ecci.inv.system.superadmin.WebService
         {
             con = new DBConnection();
             ManageItem itm = new ManageItem();
+            con.OpenConection();
             con._dr = con.DataReader(@"SELECT s.suppname, s.suppcode, i.brandname, i.description, i.unitprice, i.itemsid 
 			FROM items i INNER JOIN suppliers s ON s.suppcode=i.suppcode WHERE i.itemsid ='" + id + "'");
             while (con._dr.Read())
