@@ -99,6 +99,7 @@
                             </table>
                         </div>
                         <input type="hidden" id="hiddenItemsId"  name="hiddenItemsId" value="" />
+                        <asp:Label ID="lbError" runat="server" Text="Receiving Total Quantity" Visible="true" ForeColor="Green"></asp:Label>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
@@ -175,7 +176,7 @@
                     alert(err);
                 }
             });
-            $('#updateModal').modal('show');
+            $('#itemModal').modal('show');
 
             document.getElementById("<%=lbError.ClientID%>").style.color = 'Green';
             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';

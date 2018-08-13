@@ -64,7 +64,7 @@ namespace ecci.inv.system.superadmin.WebService
                 itm.suppName = con._dr["suppname"].ToString();
                 itm.brandName = con._dr["brandname"].ToString();
                 itm.description = con._dr["description"].ToString();
-                itm.unitPrice = con._dr["price"].ToString();
+                itm.unitPrice = con._dr["unitprice"].ToString();
             }
             con._dr.Close();
             con.CloseConnection();
