@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Serialization;
 using ecci.inv.system.superadmin.CS;
+using System.Web.Script.Services;
 
 namespace ecci.inv.system.superadmin.WebService
 {
@@ -19,31 +20,56 @@ namespace ecci.inv.system.superadmin.WebService
     public class ManageItemService : System.Web.Services.WebService
     {
         DBConnection con;
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void GetItem()
         {
             con = new DBConnection();
-            var orders = new List<ManageItem>();
+            var item = new List<ManageItem>();
             con.OpenConection();
-            con._dr = con.DataReader(@"SELECT suppliers.suppname AS supplierName, items.brandname AS brandname, items.description AS description, items.unitprice AS price FROM suppliers INNER JOIN items ON suppliers.suppcode = items.suppcode ORDER BY suppliers.suppname ASC");
+            con._dr = con.DataReader(@"SELECT s.suppname, s.suppcode, i.brandname, i.description, i.unitprice, i.itemsid 
+			FROM items i INNER JOIN suppliers s ON s.suppcode=i.suppcode ORDER BY s.suppname ASC");
             while (con._dr.Read())
             {
 
-                var order = new ManageItem
+                var items = new ManageItem
                 {
-                    suppName = con._dr["supplierName"].ToString(),
+                    itemsId=Convert.ToInt32(con._dr["itemsid"].ToString()),
+                    suppName = con._dr["suppname"].ToString(),
                     brandName = con._dr["brandname"].ToString(),
                     description = con._dr["description"].ToString(),
-                    unitPrice = con._dr["price"].ToString()
+                    unitPrice = con._dr["unitprice"].ToString()
                 };
 
-                orders.Add(order);
+                item.Add(items);
             }
             con._dr.Close();
-            //con.CloseConnection();
-            var js = new JavaScriptSerializer();
-            Context.Response.Write(js.Serialize(orders));
             con.CloseConnection();
+            var js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(item));
+            con.CloseConnection();
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetItemById(int id)
+        {
+            con = new DBConnection();
+            ManageItem itm = new ManageItem();
+            con._dr = con.DataReader(@"SELECT s.suppname, s.suppcode, i.brandname, i.description, i.unitprice, i.itemsid 
+			FROM items i INNER JOIN suppliers s ON s.suppcode=i.suppcode WHERE i.itemsid ='" + id + "'");
+            while (con._dr.Read())
+            {
+                itm.itemsId = Convert.ToInt32(con._dr["itemsid"].ToString());
+                itm.suppName = con._dr["suppname"].ToString();
+                itm.brandName = con._dr["brandname"].ToString();
+                itm.description = con._dr["description"].ToString();
+                itm.unitPrice = con._dr["price"].ToString();
+            }
+            con._dr.Close();
+            con.CloseConnection();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(itm));
         }
     }
 }
