@@ -178,7 +178,7 @@ namespace ecci.inv.system.purchasing
             {
                 ponumber2 = tbPO.Text;
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, disquantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price)");
+                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price)");
                 con.Cmd.Parameters.Add("@po",SqlDbType.NVarChar).Value=tbPO.Text;
                 con.Cmd.Parameters.Add("@item", SqlDbType.Int).Value = ddBrand.SelectedValue;
                 con.Cmd.Parameters.Add("@quan", SqlDbType.Int).Value = tbQuantity.Text;
