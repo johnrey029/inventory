@@ -11,5 +11,6 @@ namespace ecci.inv.system.superadmin.CS
         public string suppName { get; set; }
         public string suppAdd { get; set; }
         public string suppContact { get; set; }
+        public int suppId { get; set; }
     }
 }

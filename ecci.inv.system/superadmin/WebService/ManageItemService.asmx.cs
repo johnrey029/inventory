@@ -72,5 +72,20 @@ namespace ecci.inv.system.superadmin.WebService
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(itm));
         }
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public int updateItemById(int iid, decimal iprice)
+        {
+            con = new DBConnection();
+            int a = 0;
+            con.OpenConection();
+            con.ExecSqlQuery(@"UPDATE items SET unitprice = @iprice WHERE itemsid = @iid");
+            con.Cmd.Parameters.AddWithValue("@iprice", Convert.ToDecimal(iprice));
+            con.Cmd.Parameters.AddWithValue("@iid", Convert.ToInt32(iid));
+            a = con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
+
+            return a;
+        }
     }
 }

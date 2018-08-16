@@ -22,5 +22,10 @@ namespace ecci.inv.system.superadmin
                 lbError.Visible = false;
             }
         }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

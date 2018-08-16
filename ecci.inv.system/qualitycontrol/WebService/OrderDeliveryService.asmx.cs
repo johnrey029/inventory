@@ -102,7 +102,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con = new DBConnection();
             int rq = 0, oq = 0, a = 0;
             con.OpenConection();
-            con.ExecSqlQuery("Select * from stock_raw where stockid = @sid");
+            con.ExecSqlQuery("SELECT * FROM stock_raw WHERE stockid = @sid");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
             con._dr = con.Cmd.ExecuteReader();
             while (con._dr.Read())

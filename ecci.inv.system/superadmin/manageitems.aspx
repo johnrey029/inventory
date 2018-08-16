@@ -16,7 +16,7 @@
                         columns: [
                             {
                                 'data': 'itemsId', 'render': function (data, type, row) {
-                                    return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-paper-plane'></i>  Update</a>";
+                                    return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-bars'></i>  Update</a>";
                                 },
                                 orderable: false
                             },
@@ -59,23 +59,6 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                    <%--       <div id="messages"></div>
-       <?php if($this->session->flashdata('success')): ?>
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('success'); ?>
-          </div>
-        <?php elseif($this->session->flashdata('error')): ?>
-          <div class="alert alert-error alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('error'); ?>
-          </div>
-        <?php endif; ?>--%>
-
-                    <%--  <?php if(in_array('createProduct', $user_permission)): ?>
-          <a href="<%--<?php echo base_url('products/create') ?>AddProducts.aspx" class="btn btn-primary">Add Product</a>
-          <br /> <br />--%>
-                    <%--        <?php endif; ?>--%>
                     <a href="items.aspx" class="btn btn-primary">Add Items</a>
                     <br />
                     <br />
@@ -138,15 +121,22 @@
                         <input type="text" class="form-control" id="description" name="description" readonly="true" />
                     </div>
                     <div class="form-group">
-                        <label for="qty">Stock Unit Price</label>
-                        <input type="text" class="form-control" id="unitprice" name="unitprice" />
+                        <label for="qty">Current Unit Price</label>
+                        <input type="text" class="form-control" id="unitprice" name="unitprice" readonly="true" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qty">New Unit Price</label>
+                        <asp:TextBox ID="tbNewUnitPrice" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     </div>
 
                     <input type="hidden" id="hiddenitems" name="hiddenitems" value="" />
 
                 </div>
                 <div class="modal-footer bg-aqua-active">
-                    <asp:Button ID="btnSave" runat="server" Text="Update Items" CssClass="btn btn-success"
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbNewUnitPrice" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update Items" CssClass="btn btn-success" OnClick="btnUpdate_Click"
                         UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Updating...'; this.disabled='false'; }" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
@@ -177,13 +167,9 @@
                 }
             });
             $('#itemModal').modal('show');
-
-            document.getElementById("<%=lbError.ClientID%>").style.color = 'Green';
-            document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
         }
         function myFunction() {
-             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
-             document.getElementById("<%=btnSave.ClientID%>").disabled = false;
+             document.getElementById("<%=btnUpdate.ClientID%>").disabled = false;
         }
     </script>
 </asp:Content>

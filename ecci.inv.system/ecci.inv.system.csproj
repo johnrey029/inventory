@@ -6753,6 +6753,13 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="Products.aspx" />
+    <None Include="Service References\ManageItemService\ManageItemService.disco" />
+    <None Include="Service References\ManageItemService\configuration91.svcinfo" />
+    <None Include="Service References\ManageItemService\configuration.svcinfo" />
+    <None Include="Service References\ManageItemService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="superadmin\manageitems.aspx" />
     <Content Include="superadmin\managesuppliers.aspx" />
     <Content Include="superadmin\WebService\ManageItemService.asmx" />
@@ -7439,6 +7446,7 @@
     <Content Include="qualitycontrol\QualityControl.Master" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
+    <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7552,6 +7560,11 @@
     </Compile>
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ManageItemService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="superadmin\CS\ManageItem.cs" />
     <Compile Include="superadmin\CS\ManageSupplier.cs" />
@@ -7763,6 +7776,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
     <WCFMetadataStorage Include="Service References\DispatchService\" />
+    <WCFMetadataStorage Include="Service References\ManageItemService\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="purchasing\purchOrder.rdlc">
