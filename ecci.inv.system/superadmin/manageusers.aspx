@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="managesuppliers.aspx.cs" Inherits="ecci.inv.system.superadmin.managesuppliers" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/superadmin/Superadmin.Master" AutoEventWireup="true" CodeBehind="manageusers.aspx.cs" Inherits="ecci.inv.system.superadmin.manageusers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Super Admin-Manage Suppliers
+        Super Admin-Manage Users
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">
@@ -9,21 +8,21 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "WebService/ManageSupplierService.asmx/GetSupplier",
+                url: "WebService/ManageSupplierService.asmx/GetSupplier", //Change Service
                 success: function (data) {
                     var datatableVariable = $('#manageTable').DataTable({
                         data: data,
                         columns: [
                             {
-                                'data': 'suppId', 'render': function (data, type, row) {
+                                'data': 'userId', 'render': function (data, type, row) {
                                     return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-bars'></i>  Update</a>";
                                 },
                                 orderable: false
                             },
-                            { 'data': 'suppCode' },
-                            { 'data': 'suppName' },
-                            { 'data': 'suppAdd' },
-                            { 'data': 'suppContact' }
+                            { 'data': 'suppCode' },     //Change database
+                            { 'data': 'suppName' },     //Change database
+                            { 'data': 'suppAdd' },      //Change database
+                            { 'data': 'suppContact' }   //Change database
                         ],
                         language: {
                             emptyTable: "No data found!"
@@ -35,8 +34,8 @@
                     alert(err);
                 }
             });
-            $("#mainSupNav").addClass('active');
-            $("#manageSupNav").addClass('active');
+            $("#mainUserNav").addClass('active');
+            $("#manageUserNav").addClass('active');
         });
     </script>
 </asp:Content>

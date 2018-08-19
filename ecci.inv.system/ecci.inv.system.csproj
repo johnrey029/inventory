@@ -6769,6 +6769,7 @@
     </None>
     <Content Include="superadmin\manageitems.aspx" />
     <Content Include="superadmin\managesuppliers.aspx" />
+    <Content Include="superadmin\manageusers.aspx" />
     <Content Include="superadmin\WebService\ManageItemService.asmx" />
     <Content Include="superadmin\WebService\ManageSupplierService.asmx" />
     <Content Include="purchasing\WebService\PurchaseOrderService.asmx" />
@@ -7603,6 +7604,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>purchaseorder.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="superadmin\manageusers.aspx.cs">
+      <DependentUpon>manageusers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\manageusers.aspx.designer.cs">
+      <DependentUpon>manageusers.aspx</DependentUpon>
     </Compile>
     <Compile Include="superadmin\WebService\ManageItemService.asmx.cs">
       <DependentUpon>ManageItemService.asmx</DependentUpon>

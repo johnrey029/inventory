@@ -2,7 +2,7 @@
 <asp:Content ID="ts1" ContentPlaceHolderID="title" runat="server">
     SuperAdmin-Reset Password
 </asp:Content>
-<asp:Content ID="hs1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="hs1" ContentPlaceHolderID="heading" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
