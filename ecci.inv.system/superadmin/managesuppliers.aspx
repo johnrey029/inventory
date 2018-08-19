@@ -129,17 +129,11 @@
                         <asp:TextBox ID="tbSuppContact" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
 
-                    <div class="form-group">
-                        <label for="qty">New Unit Price</label>
-                        <asp:TextBox ID="tbNewUnitPrice" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                    </div>
-
                     <input type="hidden" id="hiddenitems" name="hiddenitems" value="" />
 
                 </div>
                 <div class="modal-footer bg-aqua-active">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbNewUnitPrice" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSuppContact" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:Button ID="btnUpdate" runat="server" Text="Update Items" CssClass="btn btn-success" OnClick="btnUpdate_Click"
                         UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Updating...'; this.disabled='false'; }" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

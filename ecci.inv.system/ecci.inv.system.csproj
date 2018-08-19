@@ -6760,6 +6760,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ManageSupplierService\ManageSupplierService.disco" />
+    <None Include="Service References\ManageSupplierService\configuration91.svcinfo" />
+    <None Include="Service References\ManageSupplierService\configuration.svcinfo" />
+    <None Include="Service References\ManageSupplierService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="superadmin\manageitems.aspx" />
     <Content Include="superadmin\managesuppliers.aspx" />
     <Content Include="superadmin\WebService\ManageItemService.asmx" />
@@ -7447,6 +7454,7 @@
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
+    <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7562,6 +7570,11 @@
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\ManageItemService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ManageSupplierService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -7777,6 +7790,7 @@
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
     <WCFMetadataStorage Include="Service References\DispatchService\" />
     <WCFMetadataStorage Include="Service References\ManageItemService\" />
+    <WCFMetadataStorage Include="Service References\ManageSupplierService\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="purchasing\purchOrder.rdlc">

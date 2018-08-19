@@ -27,7 +27,7 @@ namespace ecci.inv.system.superadmin
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             int iid = Convert.ToInt32(Request.Form.Get("hiddenItemsId").ToString());
-            Label1.Text = iid.ToString();
+            //Label1.Text = iid.ToString();
             ManageItemService.ManageItemServiceSoapClient itemsSC = new ManageItemService.ManageItemServiceSoapClient("ManageItemServiceSoap");
             //int result1 = insertItemActivity();
             int result2 = itemsSC.updateItemById(iid, Convert.ToDecimal(tbNewUnitPrice.Text));

@@ -73,10 +73,10 @@ namespace ecci.inv.system.superadmin.WebService
             con = new DBConnection();
             int a = 0;
             con.OpenConection();
-            con.ExecSqlQuery(@"UPDATE supplier SET suppadd = @sadd, suppcontact = @scontact WHERE itemsid = @spid");
+            con.ExecSqlQuery(@"UPDATE suppliers SET suppadd = @sadd, suppcontact = @scontact WHERE suppid = @spid");
             con.Cmd.Parameters.AddWithValue("@spid", Convert.ToInt32(spid));
-            //con.Cmd.Parameters.AddWithValue("@sadd", tbSuppAddress.Text);
-            //con.Cmd.Parameters.AddWithValue("@scontact", tbSuppContact.Text);
+            con.Cmd.Parameters.AddWithValue("@sadd", address);
+            con.Cmd.Parameters.AddWithValue("@scontact", contact);
             a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
 

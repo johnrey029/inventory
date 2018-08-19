@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetSupplier">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSupplierResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSupplierById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSupplierByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="updateSupplierById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="spid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateSupplierByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="updateSupplierByIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetSupplierSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSupplier" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSupplierResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSupplierById" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSupplierByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateSupplierByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:updateSupplierById" />
+  </wsdl:message>
+  <wsdl:message name="updateSupplierByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:updateSupplierByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierHttpGetIn" />
+  <wsdl:message name="GetSupplierHttpGetOut" />
+  <wsdl:message name="GetSupplierByIdHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierByIdHttpGetOut" />
+  <wsdl:message name="updateSupplierByIdHttpGetIn">
+    <wsdl:part name="spid" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="contact" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateSupplierByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierHttpPostIn" />
+  <wsdl:message name="GetSupplierHttpPostOut" />
+  <wsdl:message name="GetSupplierByIdHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSupplierByIdHttpPostOut" />
+  <wsdl:message name="updateSupplierByIdHttpPostIn">
+    <wsdl:part name="spid" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="contact" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateSupplierByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="ManageSupplierServiceSoap">
+    <wsdl:operation name="GetSupplier">
+      <wsdl:input message="tns:GetSupplierSoapIn" />
+      <wsdl:output message="tns:GetSupplierSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <wsdl:input message="tns:GetSupplierByIdSoapIn" />
+      <wsdl:output message="tns:GetSupplierByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <wsdl:input message="tns:updateSupplierByIdSoapIn" />
+      <wsdl:output message="tns:updateSupplierByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ManageSupplierServiceHttpGet">
+    <wsdl:operation name="GetSupplier">
+      <wsdl:input message="tns:GetSupplierHttpGetIn" />
+      <wsdl:output message="tns:GetSupplierHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <wsdl:input message="tns:GetSupplierByIdHttpGetIn" />
+      <wsdl:output message="tns:GetSupplierByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <wsdl:input message="tns:updateSupplierByIdHttpGetIn" />
+      <wsdl:output message="tns:updateSupplierByIdHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ManageSupplierServiceHttpPost">
+    <wsdl:operation name="GetSupplier">
+      <wsdl:input message="tns:GetSupplierHttpPostIn" />
+      <wsdl:output message="tns:GetSupplierHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <wsdl:input message="tns:GetSupplierByIdHttpPostIn" />
+      <wsdl:output message="tns:GetSupplierByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <wsdl:input message="tns:updateSupplierByIdHttpPostIn" />
+      <wsdl:output message="tns:updateSupplierByIdHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManageSupplierServiceSoap" type="tns:ManageSupplierServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSupplier">
+      <soap:operation soapAction="http://tempuri.org/GetSupplier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <soap:operation soapAction="http://tempuri.org/GetSupplierById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <soap:operation soapAction="http://tempuri.org/updateSupplierById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManageSupplierServiceSoap12" type="tns:ManageSupplierServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSupplier">
+      <soap12:operation soapAction="http://tempuri.org/GetSupplier" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <soap12:operation soapAction="http://tempuri.org/GetSupplierById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <soap12:operation soapAction="http://tempuri.org/updateSupplierById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManageSupplierServiceHttpGet" type="tns:ManageSupplierServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetSupplier">
+      <http:operation location="/GetSupplier" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <http:operation location="/GetSupplierById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <http:operation location="/updateSupplierById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManageSupplierServiceHttpPost" type="tns:ManageSupplierServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetSupplier">
+      <http:operation location="/GetSupplier" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupplierById">
+      <http:operation location="/GetSupplierById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="updateSupplierById">
+      <http:operation location="/updateSupplierById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManageSupplierService">
+    <wsdl:port name="ManageSupplierServiceSoap" binding="tns:ManageSupplierServiceSoap">
+      <soap:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManageSupplierServiceSoap12" binding="tns:ManageSupplierServiceSoap12">
+      <soap12:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManageSupplierServiceHttpGet" binding="tns:ManageSupplierServiceHttpGet">
+      <http:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManageSupplierServiceHttpPost" binding="tns:ManageSupplierServiceHttpPost">
+      <http:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
