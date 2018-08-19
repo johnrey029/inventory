@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.18.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -87,6 +91,7 @@
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\..\Desktop\OnlineBiometricVotingSystem\OnlineBiometricVotingSystem\bin\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Neodynamic.SDK.WebClientPrint, Version=4.0.2000.0, Culture=neutral, PublicKeyToken=93565f9c313b0a45, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -6748,14 +6753,14 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="Products.aspx" />
-    <Content Include="purchasing\manageitems.aspx" />
-    <Content Include="purchasing\managesuppliers.aspx" />
-    <Content Include="purchasing\WebService\ManageItemService.asmx" />
-    <Content Include="purchasing\WebService\ManageSupplierService.asmx" />
+    <Content Include="superadmin\manageitems.aspx" />
+    <Content Include="superadmin\managesuppliers.aspx" />
+    <Content Include="superadmin\WebService\ManageItemService.asmx" />
+    <Content Include="superadmin\WebService\ManageSupplierService.asmx" />
     <Content Include="purchasing\WebService\PurchaseOrderService.asmx" />
     <Content Include="purchasing\index.aspx" />
-    <Content Include="purchasing\supplier.aspx" />
-    <Content Include="purchasing\items.aspx" />
+    <Content Include="superadmin\supplier.aspx" />
+    <Content Include="superadmin\items.aspx" />
     <Content Include="purchasing\stock.aspx" />
     <Content Include="qualitycontrol\dispatching.aspx" />
     <Content Include="qualitycontrol\index.aspx" />
@@ -7550,21 +7555,21 @@
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\CS\ManageItem.cs" />
-    <Compile Include="purchasing\CS\ManageSupplier.cs" />
+    <Compile Include="superadmin\CS\ManageItem.cs" />
+    <Compile Include="superadmin\CS\ManageSupplier.cs" />
     <Compile Include="purchasing\CS\PurchaseOrder.cs" />
-    <Compile Include="purchasing\manageitems.aspx.cs">
+    <Compile Include="superadmin\manageitems.aspx.cs">
       <DependentUpon>manageitems.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\manageitems.aspx.designer.cs">
+    <Compile Include="superadmin\manageitems.aspx.designer.cs">
       <DependentUpon>manageitems.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\managesuppliers.aspx.cs">
+    <Compile Include="superadmin\managesuppliers.aspx.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\managesuppliers.aspx.designer.cs">
+    <Compile Include="superadmin\managesuppliers.aspx.designer.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
     </Compile>
     <Compile Include="purchasing\purchaseorder.cs">
@@ -7575,11 +7580,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>purchaseorder.xsd</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\WebService\ManageItemService.asmx.cs">
+    <Compile Include="superadmin\WebService\ManageItemService.asmx.cs">
       <DependentUpon>ManageItemService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="purchasing\WebService\ManageSupplierService.asmx.cs">
+    <Compile Include="superadmin\WebService\ManageSupplierService.asmx.cs">
       <DependentUpon>ManageSupplierService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
@@ -7601,19 +7606,19 @@
     <Compile Include="purchasing\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="purchasing\supplier.aspx.cs">
+    <Compile Include="superadmin\supplier.aspx.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\supplier.aspx.designer.cs">
+    <Compile Include="superadmin\supplier.aspx.designer.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="purchasing\items.aspx.cs">
+    <Compile Include="superadmin\items.aspx.cs">
       <DependentUpon>items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="purchasing\items.aspx.designer.cs">
+    <Compile Include="superadmin\items.aspx.designer.cs">
       <DependentUpon>items.aspx</DependentUpon>
     </Compile>
     <Compile Include="purchasing\stock.aspx.cs">
@@ -7774,7 +7779,9 @@
     <WCFMetadataStorage Include="Service References\DispatchService\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="purchasing\purchOrder.rdlc" />
+    <EmbeddedResource Include="purchasing\purchOrder.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

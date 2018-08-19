@@ -22,13 +22,13 @@ namespace ecci.inv.system {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder title;
         
         /// <summary>
-        /// head control.
+        /// heading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder heading;
         
         /// <summary>
         /// form1 control.

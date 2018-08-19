@@ -1,49 +1,46 @@
-﻿using System;
+﻿using ecci.inv.system.superadmin.CS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Services;
 using System.Web.Script.Serialization;
-using ecci.inv.system.purchasing.CS;
+using System.Web.Services;
 
-namespace ecci.inv.system.purchasing.WebService
+namespace ecci.inv.system.superadmin.WebService
 {
     /// <summary>
-    /// Summary description for ManageItemService
+    /// Summary description for ManageSupplierService
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
-    public class ManageItemService : System.Web.Services.WebService
+    public class ManageSupplierService : System.Web.Services.WebService
     {
         DBConnection con;
         [WebMethod]
-        public void GetItem()
+        public void GetSupplier()
         {
             con = new DBConnection();
-            var orders = new List<ManageItem>();
+            var supps = new List<ManageSupplier>();
             con.OpenConection();
-            con._dr = con.DataReader(
-            @"SELECT suppcode, brandname, description FROM items ORDER BY itemsid ASC");
+            con._dr = con.DataReader(@"SELECT suppcode, suppname, suppadd, suppcontact FROM suppliers ORDER BY suppname ASC");
             while (con._dr.Read())
             {
-
-                var order = new ManageItem
+                var sup = new ManageSupplier
                 {
                     suppCode = con._dr["suppcode"].ToString(),
-                    brandName = con._dr["brandname"].ToString(),
-                    description = con._dr["description"].ToString()
+                    suppName = con._dr["suppname"].ToString(),
+                    suppAdd = con._dr["suppadd"].ToString(),
+                    suppContact = con._dr["suppcontact"].ToString()
                 };
-
-                orders.Add(order);
+                supps.Add(sup);
             }
             con._dr.Close();
-            //con.CloseConnection();
-            var js = new JavaScriptSerializer();
-            Context.Response.Write(js.Serialize(orders));
             con.CloseConnection();
+            var js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(supps));
         }
     }
 }

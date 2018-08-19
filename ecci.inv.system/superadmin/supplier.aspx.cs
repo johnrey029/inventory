@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.purchasing
+namespace ecci.inv.system.superadmin
 {
     public partial class supplier : Page
     {
@@ -19,7 +19,7 @@ namespace ecci.inv.system.purchasing
             }
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             con = new DBConnection();
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
@@ -32,13 +32,14 @@ namespace ecci.inv.system.purchasing
             {
 
                 con.OpenConection();
-                con.ExecSqlQuery("insert into suppliers(suppcode, suppname, suppadd)values(@scode, @sname, @sadd)");
+                con.ExecSqlQuery("INSERT INTO suppliers(suppcode, suppname, suppadd, suppcontact)values(@scode, @sname, @sadd, @scontact)");
                 con.Cmd.Parameters.AddWithValue("@scode", tbSuppCode.Text);
                 con.Cmd.Parameters.AddWithValue("@sname", tbSuppName.Text);
                 con.Cmd.Parameters.AddWithValue("@sadd", tbSuppAddress.Text);
+                con.Cmd.Parameters.AddWithValue("@scontact", tbSuppContact.Text);
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
-                if (a==0)
+                if (a == 0)
                 {
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
@@ -60,7 +61,7 @@ namespace ecci.inv.system.purchasing
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
         }
-        
+
         private void clear()
         {
             tbSuppCode.Text = "";

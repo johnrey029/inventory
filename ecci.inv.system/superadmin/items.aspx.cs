@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.purchasing
+namespace ecci.inv.system.superadmin
 {
     public partial class items : System.Web.UI.Page
     {

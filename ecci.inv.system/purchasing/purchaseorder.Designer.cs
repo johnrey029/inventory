@@ -297,6 +297,14 @@ namespace ecci.inv.system.purchasing {
             
             private global::System.Data.DataColumn columnprice;
             
+            private global::System.Data.DataColumn columnsuppcode;
+            
+            private global::System.Data.DataColumn columnExpr2;
+            
+            private global::System.Data.DataColumn columnsuppname;
+            
+            private global::System.Data.DataColumn columnsuppcontact;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTable1DataTable() {
@@ -404,6 +412,38 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn suppcodeColumn {
+                get {
+                    return this.columnsuppcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Expr2Column {
+                get {
+                    return this.columnExpr2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn suppnameColumn {
+                get {
+                    return this.columnsuppname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn suppcontactColumn {
+                get {
+                    return this.columnsuppcontact;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +479,7 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string purchaseorder, System.DateTime purchasedate, System.DateTime deliverydate, int quantity, int itemsid, string description, decimal unitprice, decimal price) {
+            public DataTable1Row AddDataTable1Row(string purchaseorder, System.DateTime purchasedate, System.DateTime deliverydate, int quantity, int itemsid, string description, decimal unitprice, decimal price, string suppcode, string Expr2, string suppname, string suppcontact) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         purchaseorder,
@@ -450,7 +490,11 @@ namespace ecci.inv.system.purchasing {
                         null,
                         description,
                         unitprice,
-                        price};
+                        price,
+                        suppcode,
+                        Expr2,
+                        suppname,
+                        suppcontact};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -489,6 +533,10 @@ namespace ecci.inv.system.purchasing {
                 this.columndescription = base.Columns["description"];
                 this.columnunitprice = base.Columns["unitprice"];
                 this.columnprice = base.Columns["price"];
+                this.columnsuppcode = base.Columns["suppcode"];
+                this.columnExpr2 = base.Columns["Expr2"];
+                this.columnsuppname = base.Columns["suppname"];
+                this.columnsuppcontact = base.Columns["suppcontact"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -512,6 +560,14 @@ namespace ecci.inv.system.purchasing {
                 base.Columns.Add(this.columnunitprice);
                 this.columnprice = new global::System.Data.DataColumn("price", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprice);
+                this.columnsuppcode = new global::System.Data.DataColumn("suppcode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsuppcode);
+                this.columnExpr2 = new global::System.Data.DataColumn("Expr2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr2);
+                this.columnsuppname = new global::System.Data.DataColumn("suppname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsuppname);
+                this.columnsuppcontact = new global::System.Data.DataColumn("suppcontact", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsuppcontact);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnExpr1}, true));
                 this.columnpurchaseorder.AllowDBNull = false;
@@ -529,6 +585,13 @@ namespace ecci.inv.system.purchasing {
                 this.columndescription.AllowDBNull = false;
                 this.columndescription.MaxLength = 100;
                 this.columnprice.AllowDBNull = false;
+                this.columnsuppcode.AllowDBNull = false;
+                this.columnsuppcode.MaxLength = 20;
+                this.columnExpr2.AllowDBNull = false;
+                this.columnExpr2.MaxLength = 20;
+                this.columnsuppname.AllowDBNull = false;
+                this.columnsuppname.MaxLength = 50;
+                this.columnsuppcontact.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -775,6 +838,55 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string suppcode {
+                get {
+                    return ((string)(this[this.tableDataTable1.suppcodeColumn]));
+                }
+                set {
+                    this[this.tableDataTable1.suppcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Expr2 {
+                get {
+                    return ((string)(this[this.tableDataTable1.Expr2Column]));
+                }
+                set {
+                    this[this.tableDataTable1.Expr2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string suppname {
+                get {
+                    return ((string)(this[this.tableDataTable1.suppnameColumn]));
+                }
+                set {
+                    this[this.tableDataTable1.suppnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string suppcontact {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.suppcontactColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'suppcontact\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.suppcontactColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsunitpriceNull() {
                 return this.IsNull(this.tableDataTable1.unitpriceColumn);
             }
@@ -783,6 +895,18 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetunitpriceNull() {
                 this[this.tableDataTable1.unitpriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IssuppcontactNull() {
+                return this.IsNull(this.tableDataTable1.suppcontactColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetsuppcontactNull() {
+                this[this.tableDataTable1.suppcontactColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -954,6 +1078,10 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
             tableMapping.ColumnMappings.Add("description", "description");
             tableMapping.ColumnMappings.Add("unitprice", "unitprice");
             tableMapping.ColumnMappings.Add("price", "price");
+            tableMapping.ColumnMappings.Add("suppcode", "suppcode");
+            tableMapping.ColumnMappings.Add("Expr2", "Expr2");
+            tableMapping.ColumnMappings.Add("suppname", "suppname");
+            tableMapping.ColumnMappings.Add("suppcontact", "suppcontact");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -970,9 +1098,11 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price
+            this._commandCollection[0].CommandText = @"SELECT        stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price, items.suppcode, 
+                         suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact
 FROM            stock_raw INNER JOIN
-                         items ON stock_raw.itemsid = items.itemsid";
+                         items ON stock_raw.itemsid = items.itemsid INNER JOIN
+                         suppliers ON items.suppcode = suppliers.suppcode";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

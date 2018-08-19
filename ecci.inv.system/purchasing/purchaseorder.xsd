@@ -12,9 +12,11 @@
               <DbSource ConnectionRef="getdatabase (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillPoTable" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataPoTable" GeneratorSourceName="FillPoTable" GetMethodModifier="Public" GetMethodName="GetDataPoTable" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataPoTable" UserSourceName="FillPoTable">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price
+                    <CommandText>SELECT        stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price, items.suppcode, 
+                         suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact
 FROM            stock_raw INNER JOIN
-                         items ON stock_raw.itemsid = items.itemsid</CommandText>
+                         items ON stock_raw.itemsid = items.itemsid INNER JOIN
+                         suppliers ON items.suppcode = suppliers.suppcode</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -30,6 +32,10 @@ FROM            stock_raw INNER JOIN
               <Mapping SourceColumn="description" DataSetColumn="description" />
               <Mapping SourceColumn="unitprice" DataSetColumn="unitprice" />
               <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="suppcode" DataSetColumn="suppcode" />
+              <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
+              <Mapping SourceColumn="suppname" DataSetColumn="suppname" />
+              <Mapping SourceColumn="suppcontact" DataSetColumn="suppcontact" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -41,7 +47,7 @@ FROM            stock_raw INNER JOIN
   <xs:element name="purchaseorder" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="purchaseorder" msprop:Generator_UserDSName="purchaseorder">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="purchaseorder" msprop:Generator_ColumnVarNameInTable="columnpurchaseorder" msprop:Generator_ColumnPropNameInRow="purchaseorder" msprop:Generator_ColumnPropNameInTable="purchaseorderColumn" msprop:Generator_UserColumnName="purchaseorder">
@@ -65,6 +71,34 @@ FROM            stock_raw INNER JOIN
               </xs:element>
               <xs:element name="unitprice" msprop:Generator_ColumnVarNameInTable="columnunitprice" msprop:Generator_ColumnPropNameInRow="unitprice" msprop:Generator_ColumnPropNameInTable="unitpriceColumn" msprop:Generator_UserColumnName="unitprice" type="xs:decimal" minOccurs="0" />
               <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:decimal" />
+              <xs:element name="suppcode" msprop:Generator_ColumnVarNameInTable="columnsuppcode" msprop:Generator_ColumnPropNameInRow="suppcode" msprop:Generator_ColumnPropNameInTable="suppcodeColumn" msprop:Generator_UserColumnName="suppcode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_UserColumnName="Expr2">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="suppname" msprop:Generator_ColumnVarNameInTable="columnsuppname" msprop:Generator_ColumnPropNameInRow="suppname" msprop:Generator_ColumnPropNameInTable="suppnameColumn" msprop:Generator_UserColumnName="suppname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="suppcontact" msprop:Generator_ColumnVarNameInTable="columnsuppcontact" msprop:Generator_ColumnPropNameInRow="suppcontact" msprop:Generator_ColumnPropNameInTable="suppcontactColumn" msprop:Generator_UserColumnName="suppcontact" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

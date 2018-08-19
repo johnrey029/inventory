@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.purchasing
+namespace ecci.inv.system.superadmin
 {
-    public partial class managesuppliers : System.Web.UI.Page
+    public partial class manageitems : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -22,5 +22,10 @@ namespace ecci.inv.system.purchasing
                 lbError.Visible = false;
             }
         }
+
+        //protected void btnAddItems_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("items.aspx");
+        //}
     }
 }

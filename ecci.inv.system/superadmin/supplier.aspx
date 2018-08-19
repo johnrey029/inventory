@@ -1,8 +1,8 @@
 ﻿<%--<%@ Page Title="" Language="C#" MasterPageFile="~/purchasing/Purchasing.Master" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="ecci.inv.system.purchasing.supplier" %>--%>
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="ecci.inv.system.purchasing.supplier" MasterPageFile="~/purchasing/Purchasing.Master"  %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="ecci.inv.system.superadmin.supplier" MasterPageFile="~/superadmin/Superadmin.Master"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Purchasing-Supplier
+    Super Admin-Supplier
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -43,26 +43,12 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <strong>Failed</strong> To Save Supplier
           </div>
-
-        <%--<?php if($this->session->flashdata('success')): ?>
-          <?php echo $this->session->flashdata('success'); ?>
-          </div>
-        <?php elseif($this->session->flashdata('error')): ?>
-            <?php echo $this->session->flashdata('error'); ?
-          </div>
-        <?php endif; ?>--%>
-
-
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Add Supplier</h3>
           </div>
-          <!-- /.box-header -->
-          <%--<form role="form" action="#" method="post" enctype="multipart/form-data">--%>
               <div class="box-body">
                   
-               
-<%--                <?php echo validation_errors(); ?>--%>
                   <div class="form-group">
                   <label for="suppcode">Supplier Code</label><span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSuppCode" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -76,10 +62,15 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="suppaddress">Supplier Address</label><span style="display:inline-block; width: 20px;"></span>
-                    
+                  <label for="suppaddress">Supplier Address</label><span style="display:inline-block; width: 20px;"></span>                    
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbSuppAddress" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                   <asp:TextBox ID="tbSuppAddress" runat="server" CssClass="form-control" placeholder="Supplier Address" autocomplete="off"></asp:TextBox>
+                </div>
+
+                  <div class="form-group">
+                  <label for="suppcontact">Supplier Point of Contact</label><span style="display:inline-block; width: 20px;"></span>                    
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbSuppContact" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                  <asp:TextBox ID="tbSuppContact" runat="server" CssClass="form-control" placeholder="Supplier Point of Contact" autocomplete="off"></asp:TextBox>
                 </div>
               </div>
               <!-- /.box-body -->

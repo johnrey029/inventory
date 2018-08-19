@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ecci.inv.system.purchasing {
+namespace ecci.inv.system.superadmin {
     
     
-    public partial class items {
+    public partial class supplier {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -31,13 +31,13 @@ namespace ecci.inv.system.purchasing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// ddSupplier control.
+        /// tbSuppCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddSupplier;
+        protected global::System.Web.UI.WebControls.TextBox tbSuppCode;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -49,13 +49,13 @@ namespace ecci.inv.system.purchasing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// tbBrand control.
+        /// tbSuppName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbBrand;
+        protected global::System.Web.UI.WebControls.TextBox tbSuppName;
         
         /// <summary>
         /// RequiredFieldValidator3 control.
@@ -67,13 +67,13 @@ namespace ecci.inv.system.purchasing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// tbDescription control.
+        /// tbSuppAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescription;
+        protected global::System.Web.UI.WebControls.TextBox tbSuppAddress;
         
         /// <summary>
         /// RequiredFieldValidator4 control.
@@ -85,13 +85,13 @@ namespace ecci.inv.system.purchasing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// tbUnitPrice control.
+        /// tbSuppContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUnitPrice;
+        protected global::System.Web.UI.WebControls.TextBox tbSuppContact;
         
         /// <summary>
         /// btnSave control.
@@ -110,5 +110,14 @@ namespace ecci.inv.system.purchasing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// lbError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbError;
     }
 }
