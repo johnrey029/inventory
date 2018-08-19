@@ -62,7 +62,6 @@
   <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Morris.js charts -->
   <script src="../assets/bower_components/raphael/raphael.min.js"></script>
-  <script src="../assets/bower_components/morris.js/morris.min.js"></script>
   <!-- Sparkline -->
   <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
   <!-- jvectormap -->
@@ -134,6 +133,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <form id="form1" runat="server">
     <div class="wrapper">
+    <script src="../assets/bower_components/morris.js/morris.min.js"></script>
           <header class="main-header">
             <!-- Logo -->
             <a href="Dashboard.aspx" class="logo">
@@ -197,6 +197,11 @@
               </a>
             </li>
 <%--          <?php endif; ?>--%>
+          <li id="failNav">
+              <a href="onhold.aspx">
+                <i class="glyphicon glyphicon-inbox"></i> <span>On-Hold</span>
+              </a>
+            </li>
 
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>

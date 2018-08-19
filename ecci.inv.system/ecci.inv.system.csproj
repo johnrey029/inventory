@@ -6779,7 +6779,9 @@
     <Content Include="purchasing\stock.aspx" />
     <Content Include="qualitycontrol\dispatching.aspx" />
     <Content Include="qualitycontrol\index.aspx" />
+    <Content Include="qualitycontrol\onhold.aspx" />
     <Content Include="qualitycontrol\WebService\DispatchingDeliveryService.asmx" />
+    <Content Include="qualitycontrol\WebService\OnHoldService.asmx" />
     <Content Include="qualitycontrol\WebService\OrderDeliveryService.asmx" />
     <Content Include="sales\index.aspx" />
     <Content Include="scripts\chosen.jquery.min.js" />
@@ -7661,6 +7663,7 @@
       <DependentUpon>stock.aspx</DependentUpon>
     </Compile>
     <Compile Include="qualitycontrol\CS\DispatchDelivery.cs" />
+    <Compile Include="qualitycontrol\CS\Hold.cs" />
     <Compile Include="qualitycontrol\CS\OrderDelivery.cs" />
     <Compile Include="qualitycontrol\dispatching.aspx.cs">
       <DependentUpon>dispatching.aspx</DependentUpon>
@@ -7683,8 +7686,19 @@
     <Compile Include="qualitycontrol\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="qualitycontrol\onhold.aspx.cs">
+      <DependentUpon>onhold.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="qualitycontrol\onhold.aspx.designer.cs">
+      <DependentUpon>onhold.aspx</DependentUpon>
+    </Compile>
     <Compile Include="qualitycontrol\WebService\DispatchingDeliveryService.asmx.cs">
       <DependentUpon>DispatchingDeliveryService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="qualitycontrol\WebService\OnHoldService.asmx.cs">
+      <DependentUpon>OnHoldService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="qualitycontrol\WebService\OrderDeliveryService.asmx.cs">
