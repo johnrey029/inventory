@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,27 +29,75 @@ namespace ecci.inv.system.superadmin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            con.OpenConection();
+            con.ExecSqlQuery("SELECT * FROM suppliers WHERE suppcode = @suppcode");
+            con.Cmd.Parameters.Add("@suppcode", SqlDbType.VarChar).Value = tbSuppCode.Text;
+            con._dr = con.Cmd.ExecuteReader();
+            if (con._dr.Read())
+            {
+                string suppCode = con._dr["suppcode"].ToString();
+                if (suppCode == tbSuppCode.Text)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "err_msg", "alert('Nasa database na siya.');", true);
+                }
+            }
+            else
+            { 
+                int result1 = addSupplier();
+                int result2 = activitySupplier();
+                if (result1 == 1 && result2 == 1)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); $('.alert-warning').hide(); });</script>");
+                }
+                else
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); $('.alert-warning').hide(); });</script>");
+                }
+            }
+        }
+        private int addSupplier()
+        {
+            int a = 0;
             try
             {
-
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO suppliers(suppcode, suppname, suppadd, suppcontact)values(@scode, @sname, @sadd, @scontact)");
                 con.Cmd.Parameters.AddWithValue("@scode", tbSuppCode.Text);
                 con.Cmd.Parameters.AddWithValue("@sname", tbSuppName.Text);
                 con.Cmd.Parameters.AddWithValue("@sadd", tbSuppAddress.Text);
                 con.Cmd.Parameters.AddWithValue("@scontact", tbSuppContact.Text);
-                int a = con.Cmd.ExecuteNonQuery();
+
+                a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
-                if (a == 0)
-                {
-                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-                }
-                else
-                {
-                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
-                }
+
+                //clear();
+            }
+            catch (Exception ex)
+            {
+                lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "Error: " + ex.Message;
+                lbError.Visible = true;
+            }
+            return a;
+        }
+
+        private int activitySupplier()
+        {
+            int a = 0;
+            try
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("INSERT INTO activity_suppliersaddupdate(act_empno, act_suppcode, act_remarks)VALUES(@empno, @scode, @remarks)");
+                con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+                con.Cmd.Parameters.AddWithValue("@scode", tbSuppCode.Text);
+                con.Cmd.Parameters.AddWithValue("@remarks", "Add");
+
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+
                 clear();
             }
             catch (Exception ex)
@@ -56,10 +105,8 @@ namespace ecci.inv.system.superadmin
                 lbError.ForeColor = System.Drawing.Color.Red;
                 lbError.Text = "Error: " + ex.Message;
                 lbError.Visible = true;
-
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
+            return a;
         }
 
         private void clear()
@@ -67,6 +114,7 @@ namespace ecci.inv.system.superadmin
             tbSuppCode.Text = "";
             tbSuppName.Text = "";
             tbSuppAddress.Text = "";
+            tbSuppContact.Text = "";
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

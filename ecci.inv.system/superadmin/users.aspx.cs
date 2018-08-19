@@ -33,7 +33,7 @@ namespace ecci.inv.system.superadmin
                 Session.Clear();
                 Response.Redirect("~/default.aspx");
             }
-            
+
 
         }
 
@@ -59,17 +59,54 @@ namespace ecci.inv.system.superadmin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //bool user = addUser();
-            //if (user == true)
+            //try
             //{
-            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            //    "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
+            Label1.Text = "";
+            con.OpenConection();
+            con.ExecSqlQuery("SELECT * FROM users WHERE empno = @empno");
+            con.Cmd.Parameters.Add("@empno", SqlDbType.VarChar).Value = tbEmpNo.Text;
+            con._dr = con.Cmd.ExecuteReader();
+            if (con._dr.Read())
+            {
+                string empNumber = con._dr["empno"].ToString();
+                if (empNumber == tbEmpNo.Text)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "err_msg", "alert('Nasa database na siya.');", true);
+                }
+            }
+            else
+            {
+                int result1 = addUser();
+                int result2 = activityUser();
+
+                if (result1 == 1 && result2 == 1)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-error').hide();$('.alert-success').hide(); });</script>");
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "err_msg", "alert('Wala pa siya sa database.');", true);
+                }
+                else
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+                }
+
+                
+            }
             //}
-            //else
+
+            //catch (Exception ex)
             //{
+            //    Label1.Text = "Error: " + ex.Message + "";
+
             //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            //   "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
+            //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
             //}
+        }
+        private int addUser()
+        {
+            int a = 0;
             try
             {
                 Label1.Text = "";
@@ -90,7 +127,7 @@ namespace ecci.inv.system.superadmin
                 {
                     con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 2;
                 }
-                con.Cmd.ExecuteNonQuery();
+                a = con.Cmd.ExecuteNonQuery();
 
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-error').hide();$('.alert-success').show(); });</script>");
@@ -103,39 +140,25 @@ namespace ecci.inv.system.superadmin
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
             }
+            return a;
         }
-        private Boolean addUser()
+        private int activityUser()
         {
-            bool check = false;
+            int a = 0;
             try
             {
+                Label1.Text = "";
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO users (empno,password,firstname,lastname,position,gender,dept_id,reset) VALUES (@empid,@pass,@fname,@lname,@post,@gen,@dept,@reset)");
+                con.ExecSqlQuery("INSERT INTO activity_users_addupdate (act_empno,act_fname,act_lname,act_remarks) VALUES (@empid,@fname,@lname,@remarks)");
                 con.Cmd.Parameters.Add("@empid", SqlDbType.VarChar).Value = tbEmpNo.Text;
-                con.Cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = GetHashedText(tbPassword.Text);
                 con.Cmd.Parameters.Add("@fname", SqlDbType.VarChar).Value = tbFname.Text;
                 con.Cmd.Parameters.Add("@lname", SqlDbType.VarChar).Value = tbLname.Text;
-                con.Cmd.Parameters.Add("@post", SqlDbType.VarChar).Value = tbPosition.Text;
-                con.Cmd.Parameters.Add("@dept", SqlDbType.VarChar).Value = ddDept.Text;
-                con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
-                if (rbMale.Checked && !rbFemale.Checked)
-                {
-                    con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 1;
-                }
-                else if (!rbMale.Checked && rbFemale.Checked)
-                {
-                    con.Cmd.Parameters.Add("@gen", SqlDbType.Int).Value = 2;
-                }
-                int a = con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
-                if (a == 0)
-                {
-                    check = false;
-                }
-                else
-                {
-                    check = true;
-                }
+                con.Cmd.Parameters.Add("@remarks", SqlDbType.VarChar).Value = "Add";
+
+                a = con.Cmd.ExecuteNonQuery();
+
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-error').hide();$('.alert-success').show(); });</script>");
             }
 
             catch (Exception ex)
@@ -145,7 +168,7 @@ namespace ecci.inv.system.superadmin
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
             }
-            return check;
+            return a;
         }
         private string GetHashedText(string inputData)
         {

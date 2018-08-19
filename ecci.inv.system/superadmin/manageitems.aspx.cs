@@ -29,14 +29,10 @@ namespace ecci.inv.system.superadmin
             int iid = Convert.ToInt32(Request.Form.Get("hiddenItemsId").ToString());
             //Label1.Text = iid.ToString();
             ManageItemService.ManageItemServiceSoapClient itemsSC = new ManageItemService.ManageItemServiceSoapClient("ManageItemServiceSoap");
-            //int result1 = insertItemActivity();
+            int result1 = activityItem();
             int result2 = itemsSC.updateItemById(iid, Convert.ToDecimal(tbNewUnitPrice.Text));
-            if (result2 == 1)
-                //&& result2 == 1)
+            if (result1 == 1 && result2 == 1)
             {
-                //Session["sucess"] = "Tama";
-                //  UpdatePanel2.ValidateRequestMode = ValidateRequestMode.Disabled;
-                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#updateModal').modal('hide');", true);
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); $('.alert-warning').hide(); });</script>");
             }
@@ -48,26 +44,22 @@ namespace ecci.inv.system.superadmin
             }
 
         }
-        public int insertItemActivity()
-        { 
+        public int activityItem()
+        {
+            int iid = Convert.ToInt32(Request.Form.Get("hiddenItemsId").ToString());
+            int a = 0;
+
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("UPDATE ");
-            con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
-
-
-            int a = con.Cmd.ExecuteNonQuery();
+            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_itemsid, act_brandname, act_unitprice, act_remarks)VALUES(@empno, @itemsid, @brandname, @unitprice, @remarks)");
+            con.Cmd.Parameters.AddWithValue("@itemsid", iid);
+            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+            con.Cmd.Parameters.AddWithValue("@brandname", Request.Form.Get("brandname").ToString());
+            con.Cmd.Parameters.AddWithValue("@unitprice", tbNewUnitPrice.Text);
+            con.Cmd.Parameters.AddWithValue("@remarks", "Changed Price");
+            a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
-            if (a == 0)
-            {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-            }
-            else
-            {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
-            }
+
             return a;
         }
     }
