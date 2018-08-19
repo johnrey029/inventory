@@ -10,7 +10,7 @@
 namespace ecci.inv.system.superadmin {
     
     
-    public partial class manageitems {
+    public partial class manageusers {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -31,22 +31,40 @@ namespace ecci.inv.system.superadmin {
         protected global::System.Web.UI.WebControls.Label lbError;
         
         /// <summary>
-        /// tbNewUnitPrice control.
+        /// tbSuppCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNewUnitPrice;
+        protected global::System.Web.UI.WebControls.TextBox tbSuppCode;
         
         /// <summary>
-        /// Label1 control.
+        /// tbSuppName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox tbSuppName;
+        
+        /// <summary>
+        /// tbSuppAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbSuppAdd;
+        
+        /// <summary>
+        /// tbSuppContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbSuppContact;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
