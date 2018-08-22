@@ -157,6 +157,18 @@
                                 </asp:UpdatePanel>
                             </div>
 
+                            <div class="form-group">
+                                <label for="price">Unit</label>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlUnit" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                    <ContentTemplate>
+                                        <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-control js-example-placeholder-single" CausesValidation="false" AutoPostBack="True" Width="100%"></asp:DropDownList>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                                
+                            </div>
+
+
                             <%--                </asp:TextBox> runat="server"--%>
                             <%-- <div class="form-group"><input type="text" id="tbEdate" class="form-control" placeholder="Expected Delivery Date (MM/DD/YYYY)" autocomplete="off"/>
                   <label for="deliverydate">Expected Delivery Date</label>
@@ -175,25 +187,26 @@
                                 </div>
                             </div>
 
+                            
+
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <asp:button id="hButton" runat="server" style="display:none;" />
-                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                            <asp:Button ID="hButton" runat="server" Style="display: none;" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save & Print" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                             <asp:Panel ID="poPanel" runat="server" ScrollBars="Auto" Width="820px" Height="400px">
                                 <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                     <ContentTemplate>
                                         <input type="button" id="btnClose" value="Close" onclick="Hide()" />
                                         <rsweb:ReportViewer ID="rvPurchaseOrder" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%">
                                         </rsweb:ReportViewer>
-                                            
+
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
-                                
+
                             </asp:Panel>
                             <ajaxToolkit:ModalPopupExtender ID="modalPO" runat="server" PopupControlID="poPanel" TargetControlID="hButton" CancelControlID="btnClose" BackgroundCssClass="modalBackground" BehaviorID="modalBehavior"></ajaxToolkit:ModalPopupExtender>
-                            <asp:Button ID="btnPrint" runat="server" Text="Print" CausesValidation="false" CssClass="btn btn-primary" OnClick="btnPrint_Click" />
                             <asp:Button ID="btnBack" runat="server" Text="Back" CausesValidation="false" CssClass="btn btn-warning" />
                             <asp:Label ID="lbError" runat="server" Text="Label" Visible="False"></asp:Label>
                         </div>
@@ -209,7 +222,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#datetimepicker").datepicker({
-                format: "dd/mm/yyyy",
+                format: "mm/dd/yyyy",
                 chageMonth: true,
                 changeYear: true,
                 startDate: "+0d"
@@ -218,8 +231,8 @@
         });
     </script>
     <script type="text/javascript">
-    function Hide() {
-        $find("modalBehavior").hide();
-    }
-</script>
+        function Hide() {
+            $find("modalBehavior").hide();
+        }
+    </script>
 </asp:Content>

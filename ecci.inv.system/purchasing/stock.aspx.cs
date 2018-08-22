@@ -29,6 +29,7 @@ namespace ecci.inv.system.purchasing
                     //tbCalendar.Visible = false;
                     ddBrand.Items.Insert(0, new ListItem("Select Brand", "-1"));
                     dropdown();
+                    ddUnits();
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
                     tbDescription.Enabled = false;
@@ -43,6 +44,27 @@ namespace ecci.inv.system.purchasing
             }
 
 
+        }
+
+
+        private void ddUnits()
+        {
+            try
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("SELECT * FROM unit ORDER BY unit ASC");
+                ddlUnit.DataTextField = "unit";
+                ddlUnit.DataValueField = "unit";
+                ddlUnit.DataSource = con.DataQueryExec();
+                ddlUnit.DataBind();
+                ddlUnit.Items.Insert(0, new ListItem("Select Unit", "-1"));
+                con.CloseConnection();
+            }
+            catch//(Exception ex)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+            }
         }
 
         private void dropdown()
@@ -180,7 +202,7 @@ namespace ecci.inv.system.purchasing
             {
                 ponumber2 = tbPO.Text;
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity, purchasedate, deliverydate, postatus, price)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price)");
+                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity, purchasedate, deliverydate, postatus, price, unit)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price, @unit)");
                 con.Cmd.Parameters.Add("@po", SqlDbType.NVarChar).Value = tbPO.Text;
                 con.Cmd.Parameters.Add("@item", SqlDbType.Int).Value = ddBrand.SelectedValue;
                 con.Cmd.Parameters.Add("@quan", SqlDbType.Int).Value = tbQuantity.Text;
@@ -190,6 +212,7 @@ namespace ecci.inv.system.purchasing
                 con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(tbEdate.Text));
                 con.Cmd.Parameters.Add("@stat", SqlDbType.Char).Value = "For delivery";
                 con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = tbTotalPrice.Text;
+                con.Cmd.Parameters.Add("@unit", SqlDbType.VarChar).Value = ddlUnit.SelectedValue;
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)
@@ -290,11 +313,13 @@ namespace ecci.inv.system.purchasing
         {
             rvPurchaseOrder.ProcessingMode = ProcessingMode.Local;
             rvPurchaseOrder.LocalReport.ReportPath = Server.MapPath("~/purchasing/purchOrder.rdlc");
-            purchaseorder dsCustomers = GetData("SELECT stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price, items.suppcode, " +
-                         "suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact " +
-                         "FROM stock_raw INNER JOIN " +
-                         "items ON stock_raw.itemsid = items.itemsid INNER JOIN " +
-                         "suppliers ON items.suppcode = suppliers.suppcode WHERE stock_raw.purchaseorder=" + ponumber2 + "");
+            purchaseorder dsCustomers = GetData(@"SELECT stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price, items.suppcode, 
+                            suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact, stock_raw.unit, activity_stock_raw.purchaseorder AS Expr3, activity_stock_raw.empno, users.empno AS Expr4, users.firstname, users.lastname
+                            FROM stock_raw INNER JOIN
+                            items ON stock_raw.itemsid = items.itemsid INNER JOIN
+                            suppliers ON items.suppcode = suppliers.suppcode INNER JOIN
+                            activity_stock_raw ON stock_raw.purchaseorder = activity_stock_raw.purchaseorder INNER JOIN
+                            users ON activity_stock_raw.empno = users.empno WHERE stock_raw.purchaseorder=" + ponumber2 + "");
             ReportDataSource purchaseorder = new ReportDataSource("poDataSet", dsCustomers.Tables[0]);
             rvPurchaseOrder.LocalReport.DataSources.Clear();
             rvPurchaseOrder.LocalReport.DataSources.Add(purchaseorder);
@@ -315,7 +340,7 @@ namespace ecci.inv.system.purchasing
                     sda.SelectCommand = cmd;
                     using (purchaseorder dsCustomers = new purchaseorder())
                     {
-                        sda.Fill(dsCustomers, "DataTable1");
+                        sda.Fill(dsCustomers, "poDT");
                         return dsCustomers;
                     }
                 }
