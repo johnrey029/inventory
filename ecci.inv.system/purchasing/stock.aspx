@@ -201,10 +201,11 @@
                                         <input type="button" id="btnClose" value="Close" onclick="Hide()" />
                                         <rsweb:ReportViewer ID="rvPurchaseOrder" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%">
                                         </rsweb:ReportViewer>
-
                                     </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                                    </Triggers>
                                 </asp:UpdatePanel>
-
                             </asp:Panel>
                             <ajaxToolkit:ModalPopupExtender ID="modalPO" runat="server" PopupControlID="poPanel" TargetControlID="hButton" CancelControlID="btnClose" BackgroundCssClass="modalBackground" BehaviorID="modalBehavior"></ajaxToolkit:ModalPopupExtender>
                             <asp:Button ID="btnBack" runat="server" Text="Back" CausesValidation="false" CssClass="btn btn-warning" />
