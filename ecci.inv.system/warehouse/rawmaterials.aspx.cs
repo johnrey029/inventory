@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.production
+namespace ecci.inv.system.warehouse
 {
     public partial class rawmaterials : System.Web.UI.Page
     {
@@ -28,15 +28,57 @@ namespace ecci.inv.system.production
             }
         }
 
+        protected void qty_TextChanged(object sender, EventArgs e)
+        {
+            qty.ForeColor = System.Drawing.Color.Black;
+            totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
+            if (Convert.ToInt32(qty.Text) == 0)
+            {
+                qty.Text = 0.ToString();
+                qty.BorderColor = System.Drawing.Color.Red;
+                lbError.Visible = true;
+                lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "Incorrect Input! Value Must Be Greater Than 0.";
+            }
+            else
+            {
+                int diff = totalquantity - Convert.ToInt32(qty.Text);
+                if (totalquantity > Convert.ToInt32(qty.Text))
+                {
+                    qty.BorderColor = System.Drawing.Color.Blue;
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Blue;
+                    lbError.Text = "Receiving: " + qty.Text + "  Out of Total Quantity: " + totalquantity.ToString()
+                        + "  Remaining Quantity Receivable: " + diff;
+                }
+                else if (totalquantity == Convert.ToInt32(qty.Text))
+                {
+                    qty.BorderColor = System.Drawing.Color.Green;
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Green;
+                    lbError.Text = "Receiving Total Quantity";
+
+                }
+                else if (totalquantity < Convert.ToInt32(qty.Text))
+                {
+                    lbError.Visible = true;
+                    lbError.ForeColor = System.Drawing.Color.Red;
+                    lbError.Text = "Input Quantity: " + Convert.ToInt32(qty.Text)
+                        + " Is Greater Than Expected Total Quantity " + totalquantity;
+                    qty.BorderColor = System.Drawing.Color.Red;
+                }
+            }
+        }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int sid = Convert.ToInt32(Request.Form.Get("hiddenStockId").ToString());
             totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
             if (totalquantity >= Convert.ToInt32(qty.Text) && Convert.ToInt32(qty.Text) != 0)
             {
-                ProductRawService.ProdRawSoapClient client = new ProductRawService.ProdRawSoapClient("ProdRawSoap");
-                // int result1 = InsertById();
-                int result = client.UpdateDispatch(sid);
+                DeliveryService.OrderDeliveryServiceSoapClient client = new DeliveryService.OrderDeliveryServiceSoapClient("OrderDeliveryServiceSoap");
+               // int result1 = InsertById();
+                int result = client.UpdateById(sid, Convert.ToInt32(qty.Text));
                 if (result == 1) //&& result1 == 1)
                 {
                     //Session["sucess"] = "Tama";

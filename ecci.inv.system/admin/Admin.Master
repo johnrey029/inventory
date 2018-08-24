@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="QualityControl.master.cs" Inherits="ecci.inv.system.qualitycontrol.QualityControl" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.Master.cs" Inherits="ecci.inv.system.admin.Admin" %>
 
 <!DOCTYPE html>
 
@@ -62,7 +62,7 @@
   <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Morris.js charts -->
   <script src="../assets/bower_components/raphael/raphael.min.js"></script>
-  <%--  <script src="../assets/bower_components/morris.js/morris.min.js"></script>--%>
+ <%-- <script src="../assets/bower_components/morris.js/morris.min.js"></script>--%>
   <!-- Sparkline -->
   <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
   <!-- jvectormap -->
@@ -86,7 +86,7 @@
   <!-- AdminLTE App -->  
   <script src="../assets/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <%--<script src="../assets/dist/js/pages/dashboard.js"></script>--%>
+ <%-- <script src="../assets/dist/js/pages/dashboard.js"></script>--%>
   <!-- AdminLTE for demo purposes -->
   <script src="../assets/dist/js/demo.js"></script>
   <script src="../assets/plugins/fileinput/fileinput.min.js"></script>
@@ -138,11 +138,9 @@
             <!-- Logo -->
             <a href="Dashboard.aspx" class="logo">
               <!-- mini logo for sidebar mini 50x50 pixels -->
-              <span class="logo-mini"><b>QC</b></span>
+              <span class="logo-mini"><b>WH</b></span>
               <!-- logo for regular state and mobile devices -->
-              <span class="logo-lg"><b>Quality Control</b></span>
-
-
+              <span class="logo-lg"><b>Warehouse</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -151,7 +149,7 @@
                 <span class="sr-only">Toggle navigation</span>
               </a>
                 <div style="text-align:right">
-                    <asp:Label ID="lblEmpno" runat="server" Text="Label" CssClass="text-bold"></asp:Label>
+                    <asp:Label ID="lblEmpno" runat="server" Text="Label"></asp:Label>
                 </div>
             </nav>
           </header>
@@ -185,25 +183,20 @@
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li id="receiveNav">
-              <a href="index.aspx">
-                <i class="glyphicon glyphicon-tags"></i> <span>Receiving</span>
+            <li id="rawmatsNav">
+              <a href="rawmaterials.aspx">
+                <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
             <li id="dispatchNav">
-              <a href="dispatching.aspx">
-                <i class="glyphicon glyphicon-tags"></i> <span>Dispatching</span>
+              <a href="#">
+                <i class="glyphicon glyphicon-tags"></i> <span>Products</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
-          <li id="failNav">
-              <a href="onhold.aspx">
-                <i class="glyphicon glyphicon-inbox"></i> <span>On-Hold</span>
-              </a>
-            </li>
 
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ecci.inv.system.production {
+namespace ecci.inv.system.admin {
     
     
     public partial class rawmaterials {

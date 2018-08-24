@@ -139,16 +139,16 @@
                         <input type="text" class="form-control" id="brand" name="brand" readonly="true" />
                     </div>
                     <div class="form-group">
-                        <label for="qty">Stock Quantity</label>
-                        <input type="text" class="form-control" id="qty" name="qty" readonly="true" />
-                    </div>
-                    <div class="form-group">
                         <label for="pdate">Purchased Date</label>
                         <input type="text" class="form-control" id="pdate" name="pdate" readonly="true" />
                     </div>
                     <div class="form-group">
                         <label for="ddate">Received Date</label>
                         <input type="text" class="form-control" id="ddate" name="ddate" readonly="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="qty">Stock Quantity</label>
+                        <input type="text" class="form-control" id="qty" name="qty" readonly="true" />
                     </div>
                     <div class="form-group">
                         <label for="pquan">Quantity Passed</label>
@@ -179,7 +179,7 @@
                     <div class="form-group">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                             <ContentTemplate>
-                                <asp:Label ID="lbError" runat="server" Text="Label" Visible="false" ForeColor="Red"></asp:Label>
+                                <asp:Label ID="lbError" runat="server" Text="Label" Visible="false" ForeColor="DarkGreen"></asp:Label>
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="tbPquan" EventName="TextChanged" />
@@ -231,10 +231,10 @@
                 }
             });
             $('#dispatchModal').modal('show');
-            document.getElementById("<%=tbFquan.ClientID%>").style.borderColor = 'Gray';
+            <%--document.getElementById("<%=tbFquan.ClientID%>").style.borderColor = 'Gray';
             document.getElementById("<%=tbPquan.ClientID%>").style.borderColor = 'Gray';
             document.getElementById("<%=tbFquan.ClientID%>").style.color = 'Black';
-            document.getElementById("<%=tbPquan.ClientID%>").style.color = 'Black';
+            document.getElementById("<%=tbPquan.ClientID%>").style.color = 'Black';--%>
             document.getElementById("<%=tbFquan.ClientID%>").value = '';
             document.getElementById("<%=tbPquan.ClientID%>").value = '';
              //document.getElementById("<%=lbError.ClientID%>").style.display = 'none';

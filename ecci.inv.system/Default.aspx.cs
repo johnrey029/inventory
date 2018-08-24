@@ -102,6 +102,15 @@ namespace ecci.inv.system
                                     Response.Redirect("~/warehouse/index.aspx");
                                     break;
 
+                                case "Admin":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/admin/rawmaterials.aspx");
+                                    break;
+                                case "Production":
+                                    Session["empnumber"] = con._dr["empno"].ToString();
+                                    Response.Redirect("~/production/rawmaterials.aspx");
+                                    break;
+
                                 case "Sales":
                                     Session["empnumber"] = con._dr["empno"].ToString();
                                     Response.Redirect("~/sales/index.aspx");

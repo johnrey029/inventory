@@ -112,6 +112,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\rawmaterials.aspx" />
+    <Content Include="admin\WebService\RawMaterialsService.asmx" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -6752,7 +6754,11 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt03" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
+    <Content Include="production\rawmaterials.aspx" />
+    <Content Include="production\WebService\ProdRaw.asmx" />
     <Content Include="Products.aspx" />
+    <Content Include="production\Production.Master" />
+    <Content Include="admin\Admin.Master" />
     <None Include="Service References\ManageItemService\ManageItemService.disco" />
     <None Include="Service References\ManageItemService\configuration91.svcinfo" />
     <None Include="Service References\ManageItemService\configuration.svcinfo" />
@@ -6764,6 +6770,28 @@
     <None Include="Service References\ManageSupplierService\configuration91.svcinfo" />
     <None Include="Service References\ManageSupplierService\configuration.svcinfo" />
     <None Include="Service References\ManageSupplierService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\OnholdService\OnHoldService.disco" />
+    <None Include="Service References\OnholdService\configuration91.svcinfo" />
+    <None Include="Service References\OnholdService\configuration.svcinfo" />
+    <None Include="Service References\OnholdService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ProductRawService\ProdRaw.wsdl" />
+    <None Include="Service References\RawMaterialService\RawMaterialsService.disco" />
+    <None Include="Service References\RawMaterialService\configuration91.svcinfo" />
+    <None Include="Service References\RawMaterialService\configuration.svcinfo" />
+    <None Include="Service References\RawMaterialService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ProductRawService\ProdRaw.disco" />
+    <None Include="Service References\ProductRawService\configuration91.svcinfo" />
+    <None Include="Service References\ProductRawService\configuration.svcinfo" />
+    <None Include="Service References\ProductRawService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -7454,10 +7482,13 @@
     <Content Include="superadmin\resetpassword.aspx" />
     <Content Include="superadmin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
+    <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
+    <None Include="Service References\OnholdService\OnHoldService.wsdl" />
+    <None Include="Service References\RawMaterialService\RawMaterialsService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7543,6 +7574,25 @@
     <Compile Include="AddProducts.aspx.designer.cs">
       <DependentUpon>AddProducts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\CS\RawMaterials.cs" />
+    <Compile Include="admin\rawmaterials.aspx.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\rawmaterials.aspx.designer.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\WebService\RawMaterialsService.asmx.cs">
+      <DependentUpon>RawMaterialsService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7565,6 +7615,25 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="production\CS\RawMaterials.cs" />
+    <Compile Include="production\Production.Master.cs">
+      <DependentUpon>Production.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\Production.Master.designer.cs">
+      <DependentUpon>Production.Master</DependentUpon>
+    </Compile>
+    <Compile Include="production\rawmaterials.aspx.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\rawmaterials.aspx.designer.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="production\WebService\ProdRaw.asmx.cs">
+      <DependentUpon>ProdRaw.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7578,6 +7647,21 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ManageSupplierService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\OnholdService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProductRawService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RawMaterialService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -7779,6 +7863,13 @@
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
     <Compile Include="warehouse\CS\RawMaterials.cs" />
+    <Compile Include="warehouse\rawmaterials.aspx.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="warehouse\rawmaterials.aspx.designer.cs">
+      <DependentUpon>rawmaterials.aspx</DependentUpon>
+    </Compile>
     <Compile Include="warehouse\WareHouse.Master.cs">
       <DependentUpon>WareHouse.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7813,12 +7904,16 @@
     <WCFMetadataStorage Include="Service References\DispatchService\" />
     <WCFMetadataStorage Include="Service References\ManageItemService\" />
     <WCFMetadataStorage Include="Service References\ManageSupplierService\" />
+    <WCFMetadataStorage Include="Service References\OnholdService\" />
+    <WCFMetadataStorage Include="Service References\ProductRawService\" />
+    <WCFMetadataStorage Include="Service References\RawMaterialService\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="purchasing\purchOrder.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

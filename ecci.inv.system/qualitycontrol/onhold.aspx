@@ -129,53 +129,105 @@
 
         <div class="modal-body">
             <div class="form-group">
+                <div class="form-group col-sm-4">
                 <label for="PO">Purchase Order Number</label>
                 <input type="text" class="form-control" id="po" name="po" readonly="true"/>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group col-sm-8">
                 <label for="supplier">Supplier</label>
                 <input type="text" class="form-control" id="supplier" name="supplier" readonly="true"/>
+                 </div>
              </div>
-             <div class="form-group">
+            <div class="form-group">
+                <div class="form-group col-sm-3">
+                <label for="qty">Qty To Evaluate</label>
+                <input type="text" class="form-control" id="qty" name="qty" readonly="true" />
+                </div>
+                <div class="form-group col-sm-3">
+                <label for="rdate">Hold Date</label>
+                <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
+                </div>
+                <div class="form-group col-sm-6">
                  <label for="brand">Brand</label>
                  <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
-             </div>
+                </div>
+                </div>
+             <%--<div class="form-group">
+                 <label for="brand">Brand</label>
+                 <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
+             </div>--%>
             <%--<div class="form-group">
                 <label for="pdate">Purchased Date</label>
                 <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
             </div>--%>
-            <div class="form-group">
-                <label for="rdate">Received Date</label>
+            <%--<div class="form-group">
+                <label for="rdate">Hold Date</label>
                 <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
-            </div>
+            </div>--%>
+            <%--<div class="form-group">
+                <label for="qty">Quantity To Evaluate</label>
+                <input type="text" class="form-control" id="qty" name="qty" readonly="true" />
+            </div>--%>
             <div class="form-group">
-                <label for="qty">Stock Quantity</label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
-                    <ContentTemplate>--%>
-                <asp:TextBox ID="qty" CssClass="form-control"  runat="server" placeholder="Input Quantity Receive" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
-            <%--</ContentTemplate> 
+            <div class="form-group col-sm-4">
+                <label for="rwqty">Rework Quantity</label>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
+                    <ContentTemplate>
+                <asp:TextBox ID="tbRework" CssClass="form-control"  runat="server" placeholder="Input Quantity Fixed" OnTextChanged="tbRework_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled"></asp:TextBox>
+
+            </ContentTemplate> 
                         <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
-                        </Triggers>OnTextChanged="qty_TextChanged" 
-                    </asp:UpdatePanel>--%>
-            </div>
-            <div class="form-group">
-              <%--  <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
-                    <ContentTemplate>--%>
-             <asp:Label ID="lbError" runat="server" Text="Receiving Total Quantity" Visible="true" ForeColor="Green"></asp:Label>
-               <%--         </ContentTemplate> 
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="tbRework" EventName="TextChanged" />
                         </Triggers>
-                    </asp:UpdatePanel>--%>
-                </div>
+                    </asp:UpdatePanel>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbRework" ErrorMessage="Empty Field" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label for="rsqty">Return Quantity</label>
+                 <asp:UpdatePanel ID="UpdatePanel2" runat="server" RenderMode="Inline">
+                    <ContentTemplate>
+                <asp:TextBox ID="tbReturn" CssClass="form-control"  runat="server" placeholder="Input Quantity Return" OnTextChanged="tbReturn_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled" ReadOnly="True"></asp:TextBox>
+            </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbReturn" EventName="TextChanged" />
+                             <asp:AsyncPostBackTrigger ControlID="tbRework" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbReturn" ErrorMessage="Empty Field" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="sqty">Scrap Quantity</label>
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
+                    <ContentTemplate>
+                <asp:TextBox ID="tbScrap" CssClass="form-control"  runat="server" placeholder="Input Quantity Scraps" OnTextChanged="tbScrap_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled" ReadOnly="True"></asp:TextBox>
+            </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbReturn" EventName="TextChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="tbScrap" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbScrap" ErrorMessage="Empty Field" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div>
+          </div>
+            <div class="form-group text-center">
+                <asp:UpdatePanel ID="UpdatePanel4" runat="server" RenderMode="Inline">
+                    <ContentTemplate>
+             <asp:Label ID="lbError" runat="server" Text="Please Fill The Quantities Needed" Visible="true" ForeColor="DarkGreen"></asp:Label>
+                        </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="tbRework" EventName="TextChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="tbReturn" EventName="TextChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="tbScrap" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
             <input type="hidden" id="hiddenquantity"  name="hiddenquantity" value="" />
-                
+                </div>
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-success"/>
+          <asp:Button ID="btnSave" runat="server" Text="Evaluate Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"
+              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Evaluating...'; this.disabled='false'; }"/>
           <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
            <%-- OnClick="btnSave_Click"  UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"--%>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
@@ -192,7 +244,7 @@
            $('#hiddenStockId').val(stockId);
            var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
+              url: "WebService/OnHoldService.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",
@@ -200,10 +252,10 @@
                       $('#po').val(data.purchaseOrder);
                       $('#supplier').val(data.suppName);
                       $('#brand').val(data.brandName);
-                      //$('#qty').val(data.quantity);
+                      $('#qty').val(data.quantity);
                      // $('#pdate').val(data.purchaseDate);
-                      $('#ddate').val(data.receiveDate);
-                      document.getElementById('<%=qty.ClientID %>').value = data.quantity;
+                      $('#ddate').val(data.holdDate);
+                      <%--document.getElementById('<%=tbReturn.ClientID %>').value = data.quantity;--%>
                   $('#hiddenquantity').val(data.quantity);
                   
               },
@@ -212,14 +264,29 @@
               }
           });
              $('#updateModal').modal('show');
-             document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
+             <%--document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
              document.getElementById("<%=qty.ClientID%>").style.color = 'Black';
-             document.getElementById("<%=lbError.ClientID%>").style.color = 'Green';
+             document.getElementById("<%=lbError.ClientID%>").style.color = 'White';
              document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
+        
+             document.getElementById("<%=lbError.ClientID%>").style.display = 'none';--%>
+             
+             document.getElementById("<%=tbReturn.ClientID%>").value = null;
+             document.getElementById("<%=tbRework.ClientID%>").value = null;
+             document.getElementById("<%=tbScrap.ClientID%>").value = null;
+             document.getElementById("<%=lbError.ClientID%>").style.color = 'DarkGreen';
+             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Please Fill The Quantities Needed';
+            document.getElementById("<%=tbReturn.ClientID%>").readOnly = "readonly";
+            document.getElementById("<%=tbScrap.ClientID%>").readOnly = "readonly";
+  <%--           document.getElementById("<%=tbReturn.ClientID%>").disabled = true;--%>
+<%--             document.getElementById("<%=tbScrap.ClientID%>").disabled = true;--%>
+            <%-- document.getElementById("<%=tbRework.ClientID%>").focus();--%>
          }
-         function myFunction() {
-             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
-             document.getElementById("<%=btnSave.ClientID%>").disabled = false;
+        function myFunction() {
+            document.getElementById("<%=tbReturn.ClientID%>").value = null;
+            document.getElementById("<%=tbRework.ClientID%>").value = null;
+            document.getElementById("<%=tbScrap.ClientID%>").value = null;
+            <%--document.getElementById("<%=lbError.ClientID%>").style.color = 'DarkGreen';--%>
          }
  </script>
 </asp:Content>

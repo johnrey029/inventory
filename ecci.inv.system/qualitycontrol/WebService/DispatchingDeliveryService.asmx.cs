@@ -122,7 +122,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
             }
-            else if (rq > 0 && oq > 0)
+            else if (rq > 0 || oq > 0)
             {
                 con.OpenConection();
                 con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,receivedquantity=@rq, dispatchquantity=@dq, receivedate = @rdate WHERE stockid = @sid");
@@ -134,7 +134,6 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
             }
-
             return a;
         }
     }

@@ -6,9 +6,9 @@ using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Data;
-using ecci.inv.system.warehouse.CS;
+using ecci.inv.system.admin.CS;
 
-namespace ecci.inv.system.warehouse.WebService
+namespace ecci.inv.system.admin.WebService
 {
     /// <summary>
     /// Summary description for RawMaterialsService

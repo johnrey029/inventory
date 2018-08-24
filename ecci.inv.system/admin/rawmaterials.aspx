@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/warehouse/WareHouse.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.warehouse.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Admin.Master" AutoEventWireup="true" CodeBehind="rawmaterials.aspx.cs" Inherits="ecci.inv.system.admin.rawmaterials" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Warehouse
 </asp:Content>
@@ -15,6 +15,12 @@
                  datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
+                         {
+                             'data': 'id', 'render': function (data, type, row) {
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Request</a>";
+                             },
+                             orderable: false
+                         },
                          { 'data': 'purchaseOrder' },
                          { 'data': 'suppName' },
                          { 'data': 'brandName' },
@@ -32,7 +38,7 @@
                  alert(err);
              }
          });
-         $("#dashboardMainMenu").addClass('active');
+         $("#rawmatsNav").addClass('active');
 
          });
  </script>  
@@ -78,18 +84,19 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Delivered Goods</h3>
+            <h3 class="box-title">View Raw Materials</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
             <table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
               <thead>
               <tr>
+                <th>Action</th>
                 <th>PO#</th>
                 <th>Supplier Name</th>
                 <th>Brand Name</th>
                 <th>Stock Quantity</th>
-                <th>Received Date</th>
+                <th>Stock Date</th>
                 <th>Status</th>
               </tr>
               </thead>
@@ -116,7 +123,7 @@
     <div class="modal-content">
       <div class="modal-header bg-aqua-active">
         <button type="button" class="close active" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Accept Delivery Items</h4>
+        <h4 class="modal-title">Releasing Of Raw Materials</h4>
       </div>
 
         <div class="modal-body">
@@ -137,37 +144,38 @@
                 <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
             </div>--%>
             <div class="form-group">
-                <label for="rdate">Received Date</label>
-                <input type="text" class="form-control" id="ddate" name="ddate"readonly="true"/>
+                <label for="sdate">Stock Date</label>
+                <input type="text" class="form-control" id="sdate" name="sdate" readonly="true"/>
             </div>
             <div class="form-group">
                 <label for="qty">Stock Quantity</label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
+                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
                     <ContentTemplate>--%>
-                <asp:TextBox ID="qty" CssClass="form-control"  runat="server" placeholder="Input Quantity Receive" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                <asp:TextBox ID="qty" CssClass="form-control"  runat="server" ReadOnly="true"></asp:TextBox>
             <%--</ContentTemplate> 
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
-                        </Triggers>OnTextChanged="qty_TextChanged" 
-                    </asp:UpdatePanel>--%>
-            </div>
-            <div class="form-group">
-              <%--  <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
-                    <ContentTemplate>--%>
-             <asp:Label ID="lbError" runat="server" Text="Receiving Total Quantity" Visible="true" ForeColor="Green"></asp:Label>
-               <%--         </ContentTemplate> 
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
                         </Triggers>
                     </asp:UpdatePanel>--%>
-                </div>
+            </div>
+            <%--<div class="form-group">
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
+                    <ContentTemplate>
+             <asp:Label ID="lbError" runat="server" Text="Receiving Total Quantity" Visible="true" ForeColor="Green"></asp:Label>
+                        </ContentTemplate> 
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>--%>
             <input type="hidden" id="hiddenquantity"  name="hiddenquantity" value="" />
                 
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <asp:Button ID="btnSave" runat="server" Text="Receive Order" CssClass="btn btn-success"/>
+          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"
+              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Releasing...'; this.disabled='false'; }"/>
           <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
            <%-- OnClick="btnSave_Click"  UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"--%>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
@@ -184,7 +192,7 @@
            $('#hiddenStockId').val(stockId);
            var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
+              url: "WebService/RawMaterialsService.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",
@@ -192,9 +200,7 @@
                       $('#po').val(data.purchaseOrder);
                       $('#supplier').val(data.suppName);
                       $('#brand').val(data.brandName);
-                      //$('#qty').val(data.quantity);
-                     // $('#pdate').val(data.purchaseDate);
-                      $('#ddate').val(data.receiveDate);
+                      $('#sdate').val(data.receivedDate);
                       document.getElementById('<%=qty.ClientID %>').value = data.quantity;
                   $('#hiddenquantity').val(data.quantity);
                   
@@ -204,14 +210,15 @@
               }
           });
              $('#updateModal').modal('show');
-             document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
+       <%--      document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
              document.getElementById("<%=qty.ClientID%>").style.color = 'Black';
              document.getElementById("<%=lbError.ClientID%>").style.color = 'Green';
-             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
+             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';--%>
          }
          function myFunction() {
-             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
-             document.getElementById("<%=btnSave.ClientID%>").disabled = false;
+           <%--  document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
+             document.getElementById("<%=btnSave.ClientID%>").disabled = false;--%>
          }
  </script>
 </asp:Content>
+

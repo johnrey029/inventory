@@ -62,7 +62,7 @@
   <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Morris.js charts -->
   <script src="../assets/bower_components/raphael/raphael.min.js"></script>
-  <script src="../assets/bower_components/morris.js/morris.min.js"></script>
+ <%-- <script src="../assets/bower_components/morris.js/morris.min.js"></script>--%>
   <!-- Sparkline -->
   <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
   <!-- jvectormap -->
@@ -86,7 +86,7 @@
   <!-- AdminLTE App -->  
   <script src="../assets/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../assets/dist/js/pages/dashboard.js"></script>
+<%--  <script src="../assets/dist/js/pages/dashboard.js"></script>--%>
   <!-- AdminLTE for demo purposes -->
   <script src="../assets/dist/js/demo.js"></script>
   <script src="../assets/plugins/fileinput/fileinput.min.js"></script>
@@ -184,14 +184,14 @@
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
             <li id="receiveNav">
-              <a href="#">
+              <a href="rawmaterials.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-            <li id="dispatchNav">
+            <li id="productNav">
               <a href="#">
                 <i class="glyphicon glyphicon-tags"></i> <span>Products</span>
               </a>
