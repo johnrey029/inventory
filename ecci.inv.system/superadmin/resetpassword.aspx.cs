@@ -19,13 +19,18 @@ namespace ecci.inv.system.superadmin
             if (Session["empnumber"] != null)
             {
                 sessionempno = Session["empnumber"].ToString();
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
                 con = new DBConnection();
                 if (!IsPostBack)
                 {
-                    //dropdown();
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
                 }
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/default.aspx");
             }
         }
 

@@ -29,10 +29,9 @@ namespace ecci.inv.system.superadmin
             int sid = Convert.ToInt32(Request.Form.Get("hiddenSupplierId").ToString());
             ManageSupplierService.ManageSupplierServiceSoapClient supplierSC = new ManageSupplierService.ManageSupplierServiceSoapClient("ManageSupplierServiceSoap");
 
-            //int result1 = insertItemActivity();
+            int result1 = activitySupplier();
             int result2 = supplierSC.updateSupplierById(sid, tbSuppAdd.Text, tbSuppContact.Text);
-            if (result2 == 1)
-            //&& result2 == 1)
+            if (result1 == 1 && result2 == 1)
             {
                 //Session["sucess"] = "Tama";
                 //  UpdatePanel2.ValidateRequestMode = ValidateRequestMode.Disabled;
@@ -48,26 +47,18 @@ namespace ecci.inv.system.superadmin
             }
         }
 
-        public int insertItemActivity()
+        public int activitySupplier()
         {
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("UPDATE ");
-            con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
-
+            con.ExecSqlQuery("INSERT INTO activity_suppliersaddupdate (act_empno,act_suppid,act_remarks) VALUES (@empno,@suppid,@remarks) ");
+            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+            con.Cmd.Parameters.AddWithValue("@suppid", tbSuppCode.Text);
+            con.Cmd.Parameters.AddWithValue("@remarks", "Update");
 
             int a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
-            if (a == 0)
-            {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");
-            }
-            else
-            {
-                //Page.ClientScript.RegisterClientScriptBlock(GetType(), "alert",
-                //"<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); });</script>");
-            }
+
             return a;
         }
     }

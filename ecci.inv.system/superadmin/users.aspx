@@ -57,7 +57,7 @@
                   <div class="form-group">
                   <label for="brand">Employee Number</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbEmpNo" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbEmpNo" runat="server" CssClass="form-control" placeholder="Employee Number" CausesValidation="false"></asp:TextBox>
+                      <asp:TextBox ID="tbEmpNo" runat="server" CssClass="form-control" placeholder="Employee Number" CausesValidation="false"></asp:TextBox>               
                      </div>
 
                   <div class="form-group">

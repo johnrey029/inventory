@@ -24,7 +24,7 @@ namespace ecci.inv.system.purchasing {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class purchaseorder : global::System.Data.DataSet {
         
-        private DataTable1DataTable tableDataTable1;
+        private poDTDataTable tablepoDT;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace ecci.inv.system.purchasing {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["poDT"] != null)) {
+                    base.Tables.Add(new poDTDataTable(ds.Tables["poDT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace ecci.inv.system.purchasing {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataTable1DataTable DataTable1 {
+        public poDTDataTable poDT {
             get {
-                return this.tableDataTable1;
+                return this.tablepoDT;
             }
         }
         
@@ -152,8 +152,8 @@ namespace ecci.inv.system.purchasing {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["poDT"] != null)) {
+                    base.Tables.Add(new poDTDataTable(ds.Tables["poDT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace ecci.inv.system.purchasing {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDataTable1 = ((DataTable1DataTable)(base.Tables["DataTable1"]));
+            this.tablepoDT = ((poDTDataTable)(base.Tables["poDT"]));
             if ((initTable == true)) {
-                if ((this.tableDataTable1 != null)) {
-                    this.tableDataTable1.InitVars();
+                if ((this.tablepoDT != null)) {
+                    this.tablepoDT.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace ecci.inv.system.purchasing {
             this.Namespace = "http://tempuri.org/purchaseorder.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDataTable1 = new DataTable1DataTable();
-            base.Tables.Add(this.tableDataTable1);
+            this.tablepoDT = new poDTDataTable();
+            base.Tables.Add(this.tablepoDT);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDataTable1() {
+        private bool ShouldSerializepoDT() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace ecci.inv.system.purchasing {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DataTable1RowChangeEventHandler(object sender, DataTable1RowChangeEvent e);
+        public delegate void poDTRowChangeEventHandler(object sender, poDTRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
+        public partial class poDTDataTable : global::System.Data.TypedTableBase<poDTRow> {
             
             private global::System.Data.DataColumn columnpurchaseorder;
             
@@ -305,10 +305,22 @@ namespace ecci.inv.system.purchasing {
             
             private global::System.Data.DataColumn columnsuppcontact;
             
+            private global::System.Data.DataColumn columnunit;
+            
+            private global::System.Data.DataColumn columnExpr3;
+            
+            private global::System.Data.DataColumn columnempno;
+            
+            private global::System.Data.DataColumn columnExpr4;
+            
+            private global::System.Data.DataColumn columnfirstname;
+            
+            private global::System.Data.DataColumn columnlastname;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1DataTable() {
-                this.TableName = "DataTable1";
+            public poDTDataTable() {
+                this.TableName = "poDT";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -316,7 +328,7 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataTable1DataTable(global::System.Data.DataTable table) {
+            internal poDTDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -333,7 +345,7 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DataTable1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected poDTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -444,6 +456,54 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn unitColumn {
+                get {
+                    return this.columnunit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Expr3Column {
+                get {
+                    return this.columnExpr3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn empnoColumn {
+                get {
+                    return this.columnempno;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Expr4Column {
+                get {
+                    return this.columnExpr4;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn firstnameColumn {
+                get {
+                    return this.columnfirstname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn lastnameColumn {
+                get {
+                    return this.columnlastname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -453,34 +513,52 @@ namespace ecci.inv.system.purchasing {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row this[int index] {
+            public poDTRow this[int index] {
                 get {
-                    return ((DataTable1Row)(this.Rows[index]));
+                    return ((poDTRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanging;
+            public event poDTRowChangeEventHandler poDTRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanged;
+            public event poDTRowChangeEventHandler poDTRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleting;
+            public event poDTRowChangeEventHandler poDTRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleted;
+            public event poDTRowChangeEventHandler poDTRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDataTable1Row(DataTable1Row row) {
+            public void AddpoDTRow(poDTRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string purchaseorder, System.DateTime purchasedate, System.DateTime deliverydate, int quantity, int itemsid, string description, decimal unitprice, decimal price, string suppcode, string Expr2, string suppname, string suppcontact) {
-                DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
+            public poDTRow AddpoDTRow(
+                        string purchaseorder, 
+                        System.DateTime purchasedate, 
+                        System.DateTime deliverydate, 
+                        int quantity, 
+                        int itemsid, 
+                        string description, 
+                        decimal unitprice, 
+                        decimal price, 
+                        string suppcode, 
+                        string Expr2, 
+                        string suppname, 
+                        string suppcontact, 
+                        string unit, 
+                        string Expr3, 
+                        string empno, 
+                        string Expr4, 
+                        string firstname, 
+                        string lastname) {
+                poDTRow rowpoDTRow = ((poDTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         purchaseorder,
                         purchasedate,
@@ -494,23 +572,29 @@ namespace ecci.inv.system.purchasing {
                         suppcode,
                         Expr2,
                         suppname,
-                        suppcontact};
-                rowDataTable1Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataTable1Row);
-                return rowDataTable1Row;
+                        suppcontact,
+                        unit,
+                        Expr3,
+                        empno,
+                        Expr4,
+                        firstname,
+                        lastname};
+                rowpoDTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowpoDTRow);
+                return rowpoDTRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row FindByExpr1(int Expr1) {
-                return ((DataTable1Row)(this.Rows.Find(new object[] {
+            public poDTRow FindByExpr1(int Expr1) {
+                return ((poDTRow)(this.Rows.Find(new object[] {
                             Expr1})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataTable1DataTable cln = ((DataTable1DataTable)(base.Clone()));
+                poDTDataTable cln = ((poDTDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -518,7 +602,7 @@ namespace ecci.inv.system.purchasing {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataTable1DataTable();
+                return new poDTDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -537,6 +621,12 @@ namespace ecci.inv.system.purchasing {
                 this.columnExpr2 = base.Columns["Expr2"];
                 this.columnsuppname = base.Columns["suppname"];
                 this.columnsuppcontact = base.Columns["suppcontact"];
+                this.columnunit = base.Columns["unit"];
+                this.columnExpr3 = base.Columns["Expr3"];
+                this.columnempno = base.Columns["empno"];
+                this.columnExpr4 = base.Columns["Expr4"];
+                this.columnfirstname = base.Columns["firstname"];
+                this.columnlastname = base.Columns["lastname"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -568,6 +658,18 @@ namespace ecci.inv.system.purchasing {
                 base.Columns.Add(this.columnsuppname);
                 this.columnsuppcontact = new global::System.Data.DataColumn("suppcontact", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsuppcontact);
+                this.columnunit = new global::System.Data.DataColumn("unit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnunit);
+                this.columnExpr3 = new global::System.Data.DataColumn("Expr3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr3);
+                this.columnempno = new global::System.Data.DataColumn("empno", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnempno);
+                this.columnExpr4 = new global::System.Data.DataColumn("Expr4", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr4);
+                this.columnfirstname = new global::System.Data.DataColumn("firstname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfirstname);
+                this.columnlastname = new global::System.Data.DataColumn("lastname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlastname);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnExpr1}, true));
                 this.columnpurchaseorder.AllowDBNull = false;
@@ -592,32 +694,43 @@ namespace ecci.inv.system.purchasing {
                 this.columnsuppname.AllowDBNull = false;
                 this.columnsuppname.MaxLength = 50;
                 this.columnsuppcontact.MaxLength = 100;
+                this.columnunit.MaxLength = 10;
+                this.columnExpr3.AllowDBNull = false;
+                this.columnExpr3.MaxLength = 20;
+                this.columnempno.AllowDBNull = false;
+                this.columnempno.MaxLength = 10;
+                this.columnExpr4.AllowDBNull = false;
+                this.columnExpr4.MaxLength = 20;
+                this.columnfirstname.AllowDBNull = false;
+                this.columnfirstname.MaxLength = 50;
+                this.columnlastname.AllowDBNull = false;
+                this.columnlastname.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row NewDataTable1Row() {
-                return ((DataTable1Row)(this.NewRow()));
+            public poDTRow NewpoDTRow() {
+                return ((poDTRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataTable1Row(builder);
+                return new poDTRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataTable1Row);
+                return typeof(poDTRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataTable1RowChanged != null)) {
-                    this.DataTable1RowChanged(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.poDTRowChanged != null)) {
+                    this.poDTRowChanged(this, new poDTRowChangeEvent(((poDTRow)(e.Row)), e.Action));
                 }
             }
             
@@ -625,8 +738,8 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataTable1RowChanging != null)) {
-                    this.DataTable1RowChanging(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.poDTRowChanging != null)) {
+                    this.poDTRowChanging(this, new poDTRowChangeEvent(((poDTRow)(e.Row)), e.Action));
                 }
             }
             
@@ -634,8 +747,8 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataTable1RowDeleted != null)) {
-                    this.DataTable1RowDeleted(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.poDTRowDeleted != null)) {
+                    this.poDTRowDeleted(this, new poDTRowChangeEvent(((poDTRow)(e.Row)), e.Action));
                 }
             }
             
@@ -643,14 +756,14 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataTable1RowDeleting != null)) {
-                    this.DataTable1RowDeleting(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.poDTRowDeleting != null)) {
+                    this.poDTRowDeleting(this, new poDTRowChangeEvent(((poDTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDataTable1Row(DataTable1Row row) {
+            public void RemovepoDTRow(poDTRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -677,7 +790,7 @@ namespace ecci.inv.system.purchasing {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataTable1DataTable";
+                attribute2.FixedValue = "poDTDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -721,25 +834,25 @@ namespace ecci.inv.system.purchasing {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataTable1Row : global::System.Data.DataRow {
+        public partial class poDTRow : global::System.Data.DataRow {
             
-            private DataTable1DataTable tableDataTable1;
+            private poDTDataTable tablepoDT;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataTable1Row(global::System.Data.DataRowBuilder rb) : 
+            internal poDTRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataTable1 = ((DataTable1DataTable)(this.Table));
+                this.tablepoDT = ((poDTDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string purchaseorder {
                 get {
-                    return ((string)(this[this.tableDataTable1.purchaseorderColumn]));
+                    return ((string)(this[this.tablepoDT.purchaseorderColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.purchaseorderColumn] = value;
+                    this[this.tablepoDT.purchaseorderColumn] = value;
                 }
             }
             
@@ -747,10 +860,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime purchasedate {
                 get {
-                    return ((global::System.DateTime)(this[this.tableDataTable1.purchasedateColumn]));
+                    return ((global::System.DateTime)(this[this.tablepoDT.purchasedateColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.purchasedateColumn] = value;
+                    this[this.tablepoDT.purchasedateColumn] = value;
                 }
             }
             
@@ -758,10 +871,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime deliverydate {
                 get {
-                    return ((global::System.DateTime)(this[this.tableDataTable1.deliverydateColumn]));
+                    return ((global::System.DateTime)(this[this.tablepoDT.deliverydateColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.deliverydateColumn] = value;
+                    this[this.tablepoDT.deliverydateColumn] = value;
                 }
             }
             
@@ -769,10 +882,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int quantity {
                 get {
-                    return ((int)(this[this.tableDataTable1.quantityColumn]));
+                    return ((int)(this[this.tablepoDT.quantityColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.quantityColumn] = value;
+                    this[this.tablepoDT.quantityColumn] = value;
                 }
             }
             
@@ -780,10 +893,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int itemsid {
                 get {
-                    return ((int)(this[this.tableDataTable1.itemsidColumn]));
+                    return ((int)(this[this.tablepoDT.itemsidColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.itemsidColumn] = value;
+                    this[this.tablepoDT.itemsidColumn] = value;
                 }
             }
             
@@ -791,10 +904,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Expr1 {
                 get {
-                    return ((int)(this[this.tableDataTable1.Expr1Column]));
+                    return ((int)(this[this.tablepoDT.Expr1Column]));
                 }
                 set {
-                    this[this.tableDataTable1.Expr1Column] = value;
+                    this[this.tablepoDT.Expr1Column] = value;
                 }
             }
             
@@ -802,10 +915,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string description {
                 get {
-                    return ((string)(this[this.tableDataTable1.descriptionColumn]));
+                    return ((string)(this[this.tablepoDT.descriptionColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.descriptionColumn] = value;
+                    this[this.tablepoDT.descriptionColumn] = value;
                 }
             }
             
@@ -814,14 +927,14 @@ namespace ecci.inv.system.purchasing {
             public decimal unitprice {
                 get {
                     try {
-                        return ((decimal)(this[this.tableDataTable1.unitpriceColumn]));
+                        return ((decimal)(this[this.tablepoDT.unitpriceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'unitprice\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'unitprice\' in table \'poDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.unitpriceColumn] = value;
+                    this[this.tablepoDT.unitpriceColumn] = value;
                 }
             }
             
@@ -829,10 +942,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal price {
                 get {
-                    return ((decimal)(this[this.tableDataTable1.priceColumn]));
+                    return ((decimal)(this[this.tablepoDT.priceColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.priceColumn] = value;
+                    this[this.tablepoDT.priceColumn] = value;
                 }
             }
             
@@ -840,10 +953,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suppcode {
                 get {
-                    return ((string)(this[this.tableDataTable1.suppcodeColumn]));
+                    return ((string)(this[this.tablepoDT.suppcodeColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.suppcodeColumn] = value;
+                    this[this.tablepoDT.suppcodeColumn] = value;
                 }
             }
             
@@ -851,10 +964,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Expr2 {
                 get {
-                    return ((string)(this[this.tableDataTable1.Expr2Column]));
+                    return ((string)(this[this.tablepoDT.Expr2Column]));
                 }
                 set {
-                    this[this.tableDataTable1.Expr2Column] = value;
+                    this[this.tablepoDT.Expr2Column] = value;
                 }
             }
             
@@ -862,10 +975,10 @@ namespace ecci.inv.system.purchasing {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suppname {
                 get {
-                    return ((string)(this[this.tableDataTable1.suppnameColumn]));
+                    return ((string)(this[this.tablepoDT.suppnameColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.suppnameColumn] = value;
+                    this[this.tablepoDT.suppnameColumn] = value;
                 }
             }
             
@@ -874,39 +987,122 @@ namespace ecci.inv.system.purchasing {
             public string suppcontact {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.suppcontactColumn]));
+                        return ((string)(this[this.tablepoDT.suppcontactColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'suppcontact\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'suppcontact\' in table \'poDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.suppcontactColumn] = value;
+                    this[this.tablepoDT.suppcontactColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string unit {
+                get {
+                    try {
+                        return ((string)(this[this.tablepoDT.unitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'unit\' in table \'poDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepoDT.unitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Expr3 {
+                get {
+                    return ((string)(this[this.tablepoDT.Expr3Column]));
+                }
+                set {
+                    this[this.tablepoDT.Expr3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string empno {
+                get {
+                    return ((string)(this[this.tablepoDT.empnoColumn]));
+                }
+                set {
+                    this[this.tablepoDT.empnoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Expr4 {
+                get {
+                    return ((string)(this[this.tablepoDT.Expr4Column]));
+                }
+                set {
+                    this[this.tablepoDT.Expr4Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string firstname {
+                get {
+                    return ((string)(this[this.tablepoDT.firstnameColumn]));
+                }
+                set {
+                    this[this.tablepoDT.firstnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string lastname {
+                get {
+                    return ((string)(this[this.tablepoDT.lastnameColumn]));
+                }
+                set {
+                    this[this.tablepoDT.lastnameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsunitpriceNull() {
-                return this.IsNull(this.tableDataTable1.unitpriceColumn);
+                return this.IsNull(this.tablepoDT.unitpriceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetunitpriceNull() {
-                this[this.tableDataTable1.unitpriceColumn] = global::System.Convert.DBNull;
+                this[this.tablepoDT.unitpriceColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IssuppcontactNull() {
-                return this.IsNull(this.tableDataTable1.suppcontactColumn);
+                return this.IsNull(this.tablepoDT.suppcontactColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetsuppcontactNull() {
-                this[this.tableDataTable1.suppcontactColumn] = global::System.Convert.DBNull;
+                this[this.tablepoDT.suppcontactColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsunitNull() {
+                return this.IsNull(this.tablepoDT.unitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetunitNull() {
+                this[this.tablepoDT.unitColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -914,22 +1110,22 @@ namespace ecci.inv.system.purchasing {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DataTable1RowChangeEvent : global::System.EventArgs {
+        public class poDTRowChangeEvent : global::System.EventArgs {
             
-            private DataTable1Row eventRow;
+            private poDTRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1RowChangeEvent(DataTable1Row row, global::System.Data.DataRowAction action) {
+            public poDTRowChangeEvent(poDTRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row Row {
+            public poDTRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -957,7 +1153,7 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DataTable1TableAdapter : global::System.ComponentModel.Component {
+    public partial class poDTTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -971,7 +1167,7 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataTable1TableAdapter() {
+        public poDTTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1068,7 +1264,7 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DataTable1";
+            tableMapping.DataSetTable = "poDT";
             tableMapping.ColumnMappings.Add("purchaseorder", "purchaseorder");
             tableMapping.ColumnMappings.Add("purchasedate", "purchasedate");
             tableMapping.ColumnMappings.Add("deliverydate", "deliverydate");
@@ -1082,6 +1278,12 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
             tableMapping.ColumnMappings.Add("Expr2", "Expr2");
             tableMapping.ColumnMappings.Add("suppname", "suppname");
             tableMapping.ColumnMappings.Add("suppcontact", "suppcontact");
+            tableMapping.ColumnMappings.Add("unit", "unit");
+            tableMapping.ColumnMappings.Add("Expr3", "Expr3");
+            tableMapping.ColumnMappings.Add("empno", "empno");
+            tableMapping.ColumnMappings.Add("Expr4", "Expr4");
+            tableMapping.ColumnMappings.Add("firstname", "firstname");
+            tableMapping.ColumnMappings.Add("lastname", "lastname");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1099,10 +1301,12 @@ namespace ecci.inv.system.purchasing.purchaseorderTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        stock_raw.purchaseorder, stock_raw.purchasedate, stock_raw.deliverydate, stock_raw.quantity, stock_raw.itemsid, items.itemsid AS Expr1, items.description, items.unitprice, stock_raw.price, items.suppcode, 
-                         suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact
+                         suppliers.suppcode AS Expr2, suppliers.suppname, suppliers.suppcontact, stock_raw.unit, activity_stock_raw.purchaseorder AS Expr3, activity_stock_raw.empno, users.empno AS Expr4, users.firstname, users.lastname
 FROM            stock_raw INNER JOIN
                          items ON stock_raw.itemsid = items.itemsid INNER JOIN
-                         suppliers ON items.suppcode = suppliers.suppcode";
+                         suppliers ON items.suppcode = suppliers.suppcode INNER JOIN
+                         activity_stock_raw ON stock_raw.purchaseorder = activity_stock_raw.purchaseorder INNER JOIN
+                         users ON activity_stock_raw.empno = users.empno";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1110,7 +1314,7 @@ FROM            stock_raw INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int FillPoTable(purchaseorder.DataTable1DataTable dataTable) {
+        public virtual int FillPoTable(purchaseorder.poDTDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1123,9 +1327,9 @@ FROM            stock_raw INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual purchaseorder.DataTable1DataTable GetDataPoTable() {
+        public virtual purchaseorder.poDTDataTable GetDataPoTable() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            purchaseorder.DataTable1DataTable dataTable = new purchaseorder.DataTable1DataTable();
+            purchaseorder.poDTDataTable dataTable = new purchaseorder.poDTDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
