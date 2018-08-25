@@ -140,7 +140,7 @@
               <!-- mini logo for sidebar mini 50x50 pixels -->
               <span class="logo-mini"><b>WH</b></span>
               <!-- logo for regular state and mobile devices -->
-              <span class="logo-lg"><b>Warehouse</b></span>
+              <span class="logo-lg"><b>Production</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -185,15 +185,15 @@
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
             <li id="requestNav">
               <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Request Materials</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
-            <li id="dispatchNav">
-              <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Products</span>
+            <li id="processNav">
+              <a href="process.aspx">
+                <i class="glyphicon glyphicon-tags"></i> <span>Process Materials</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="rawmaterials.aspx.cs" Inherits="ecci.inv.system.production.rawmaterials" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="process.aspx.cs" Inherits="ecci.inv.system.production.WebForm1" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Production
 </asp:Content>
@@ -10,14 +10,14 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             url: "WebService/ProdRaw.asmx/GetProductRaw",
+             url: "WebService/ProcessRaw.asmx/GetProductRaw",
              success: function (data) {
                  datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
                          {
                              'data': 'id', 'render': function (data, type, row) {
-                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Request</a>";
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Assessment</a>";
                              },
                              orderable: false
                          },
@@ -38,7 +38,7 @@
                  alert(err);
              }
          });
-         $("#requestNav").addClass('active');
+         $("#processNav").addClass('active');
 
          });
  </script>  
@@ -174,7 +174,7 @@
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"/>
+          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success"/>
           <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
            <%-- OnClick="btnSave_Click"  UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"--%>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
@@ -191,7 +191,7 @@
            $('#hiddenStockId').val(stockId);
            var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/ProdRaw.asmx/ShowDeliveredById",
+              url: "WebService/ProcessRaw.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",
@@ -220,4 +220,3 @@
          }
  </script>
 </asp:Content>
-
