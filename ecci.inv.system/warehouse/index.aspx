@@ -10,7 +10,7 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             url: "WebService/RawMaterialsService.asmx/GetRawMaterials",
+             url: "WebService/WarehouseRaw.asmx/GetRawMaterials",
              success: function (data) {
                  datatableVariable = $('#manageTable').DataTable({
                      data: data,
@@ -184,7 +184,7 @@
            $('#hiddenStockId').val(stockId);
            var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/OrderDeliveryService.asmx/ShowDeliveredById",
+              url: "WebService/WarehouseRaw.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",

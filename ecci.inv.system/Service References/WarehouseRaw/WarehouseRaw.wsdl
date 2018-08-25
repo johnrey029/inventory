@@ -22,7 +22,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="upid" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="dq" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -62,7 +61,6 @@
   <wsdl:message name="ShowDeliveredByIdHttpGetOut" />
   <wsdl:message name="UpdateDispatchHttpGetIn">
     <wsdl:part name="upid" type="s:string" />
-    <wsdl:part name="dq" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateDispatchHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -75,12 +73,11 @@
   <wsdl:message name="ShowDeliveredByIdHttpPostOut" />
   <wsdl:message name="UpdateDispatchHttpPostIn">
     <wsdl:part name="upid" type="s:string" />
-    <wsdl:part name="dq" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateDispatchHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
-  <wsdl:portType name="RawMaterialsServiceSoap">
+  <wsdl:portType name="WarehouseRawSoap">
     <wsdl:operation name="GetRawMaterials">
       <wsdl:input message="tns:GetRawMaterialsSoapIn" />
       <wsdl:output message="tns:GetRawMaterialsSoapOut" />
@@ -94,7 +91,7 @@
       <wsdl:output message="tns:UpdateDispatchSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="RawMaterialsServiceHttpGet">
+  <wsdl:portType name="WarehouseRawHttpGet">
     <wsdl:operation name="GetRawMaterials">
       <wsdl:input message="tns:GetRawMaterialsHttpGetIn" />
       <wsdl:output message="tns:GetRawMaterialsHttpGetOut" />
@@ -108,7 +105,7 @@
       <wsdl:output message="tns:UpdateDispatchHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="RawMaterialsServiceHttpPost">
+  <wsdl:portType name="WarehouseRawHttpPost">
     <wsdl:operation name="GetRawMaterials">
       <wsdl:input message="tns:GetRawMaterialsHttpPostIn" />
       <wsdl:output message="tns:GetRawMaterialsHttpPostOut" />
@@ -122,7 +119,7 @@
       <wsdl:output message="tns:UpdateDispatchHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="RawMaterialsServiceSoap" type="tns:RawMaterialsServiceSoap">
+  <wsdl:binding name="WarehouseRawSoap" type="tns:WarehouseRawSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRawMaterials">
       <soap:operation soapAction="http://tempuri.org/GetRawMaterials" style="document" />
@@ -152,7 +149,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="RawMaterialsServiceSoap12" type="tns:RawMaterialsServiceSoap">
+  <wsdl:binding name="WarehouseRawSoap12" type="tns:WarehouseRawSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRawMaterials">
       <soap12:operation soapAction="http://tempuri.org/GetRawMaterials" style="document" />
@@ -182,7 +179,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="RawMaterialsServiceHttpGet" type="tns:RawMaterialsServiceHttpGet">
+  <wsdl:binding name="WarehouseRawHttpGet" type="tns:WarehouseRawHttpGet">
     <http:binding verb="GET" />
     <wsdl:operation name="GetRawMaterials">
       <http:operation location="/GetRawMaterials" />
@@ -208,7 +205,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="RawMaterialsServiceHttpPost" type="tns:RawMaterialsServiceHttpPost">
+  <wsdl:binding name="WarehouseRawHttpPost" type="tns:WarehouseRawHttpPost">
     <http:binding verb="POST" />
     <wsdl:operation name="GetRawMaterials">
       <http:operation location="/GetRawMaterials" />
@@ -234,18 +231,18 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="RawMaterialsService">
-    <wsdl:port name="RawMaterialsServiceSoap" binding="tns:RawMaterialsServiceSoap">
-      <soap:address location="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx" />
+  <wsdl:service name="WarehouseRaw">
+    <wsdl:port name="WarehouseRawSoap" binding="tns:WarehouseRawSoap">
+      <soap:address location="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx" />
     </wsdl:port>
-    <wsdl:port name="RawMaterialsServiceSoap12" binding="tns:RawMaterialsServiceSoap12">
-      <soap12:address location="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx" />
+    <wsdl:port name="WarehouseRawSoap12" binding="tns:WarehouseRawSoap12">
+      <soap12:address location="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx" />
     </wsdl:port>
-    <wsdl:port name="RawMaterialsServiceHttpGet" binding="tns:RawMaterialsServiceHttpGet">
-      <http:address location="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx" />
+    <wsdl:port name="WarehouseRawHttpGet" binding="tns:WarehouseRawHttpGet">
+      <http:address location="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx" />
     </wsdl:port>
-    <wsdl:port name="RawMaterialsServiceHttpPost" binding="tns:RawMaterialsServiceHttpPost">
-      <http:address location="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx" />
+    <wsdl:port name="WarehouseRawHttpPost" binding="tns:WarehouseRawHttpPost">
+      <http:address location="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

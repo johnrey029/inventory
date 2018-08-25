@@ -76,9 +76,9 @@ namespace ecci.inv.system.warehouse
             totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
             if (totalquantity >= Convert.ToInt32(qty.Text) && Convert.ToInt32(qty.Text) != 0)
             {
-                DeliveryService.OrderDeliveryServiceSoapClient client = new DeliveryService.OrderDeliveryServiceSoapClient("OrderDeliveryServiceSoap");
+                WarehouseRaw.WarehouseRawSoapClient client = new WarehouseRaw.WarehouseRawSoapClient("WarehouseRawSoap");
                // int result1 = InsertById();
-                int result = client.UpdateById(sid, Convert.ToInt32(qty.Text));
+                int result = client.UpdateDispatch(sid);
                 if (result == 1) //&& result1 == 1)
                 {
                     //Session["sucess"] = "Tama";

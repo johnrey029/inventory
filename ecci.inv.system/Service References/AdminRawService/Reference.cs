@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ecci.inv.system.RawMaterialService {
+namespace ecci.inv.system.AdminRawService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RawMaterialService.RawMaterialsServiceSoap")]
-    public interface RawMaterialsServiceSoap {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdminRawService.AdminRawSoap")]
+    public interface AdminRawSoap {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRawMaterials", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -31,36 +31,36 @@ namespace ecci.inv.system.RawMaterialService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDispatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        int UpdateDispatch(int upid, int dq);
+        int UpdateDispatch(int upid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateDispatch", ReplyAction="*")]
-        System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid, int dq);
+        System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface RawMaterialsServiceSoapChannel : ecci.inv.system.RawMaterialService.RawMaterialsServiceSoap, System.ServiceModel.IClientChannel {
+    public interface AdminRawSoapChannel : ecci.inv.system.AdminRawService.AdminRawSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RawMaterialsServiceSoapClient : System.ServiceModel.ClientBase<ecci.inv.system.RawMaterialService.RawMaterialsServiceSoap>, ecci.inv.system.RawMaterialService.RawMaterialsServiceSoap {
+    public partial class AdminRawSoapClient : System.ServiceModel.ClientBase<ecci.inv.system.AdminRawService.AdminRawSoap>, ecci.inv.system.AdminRawService.AdminRawSoap {
         
-        public RawMaterialsServiceSoapClient() {
+        public AdminRawSoapClient() {
         }
         
-        public RawMaterialsServiceSoapClient(string endpointConfigurationName) : 
+        public AdminRawSoapClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public RawMaterialsServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public AdminRawSoapClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RawMaterialsServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public AdminRawSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RawMaterialsServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public AdminRawSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -80,12 +80,12 @@ namespace ecci.inv.system.RawMaterialService {
             return base.Channel.ShowDeliveredByIdAsync(id);
         }
         
-        public int UpdateDispatch(int upid, int dq) {
-            return base.Channel.UpdateDispatch(upid, dq);
+        public int UpdateDispatch(int upid) {
+            return base.Channel.UpdateDispatch(upid);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid, int dq) {
-            return base.Channel.UpdateDispatchAsync(upid, dq);
+        public System.Threading.Tasks.Task<int> UpdateDispatchAsync(int upid) {
+            return base.Channel.UpdateDispatchAsync(upid);
         }
     }
 }

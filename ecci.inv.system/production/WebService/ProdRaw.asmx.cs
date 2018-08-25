@@ -30,12 +30,12 @@ namespace ecci.inv.system.production.WebService
             var orders = new List<RawMaterials>();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT w.purchaseorder,w.quantity,w.receivedate,w.id, w.status, 
+            @"SELECT w.purchaseorder,w.quantity,w.receivedate,w.id, w.status, w.code,
             i.brandname,u.suppname FROM stock_warehouse w
             INNER JOIN stock_raw s ON w.purchaseorder = s.purchaseorder
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode  
-            WHERE w.receivedate is not null and w.status='In Stock' and w.quantity>=0
+            WHERE w.receivedate is not null and w.quantity>=0 and w.code=0
             ORDER BY w.id ASC");
             while (con._dr.Read())
             {

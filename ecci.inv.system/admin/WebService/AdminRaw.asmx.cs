@@ -6,21 +6,21 @@ using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Data;
-using ecci.inv.system.warehouse.CS;
+using ecci.inv.system.admin.CS;
 
-namespace ecci.inv.system.warehouse.WebService
+
+namespace ecci.inv.system.admin.WebService
 {
     /// <summary>
-    /// Summary description for RawMaterialsService
+    /// Summary description for AdminRaw
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class RawMaterialsService : System.Web.Services.WebService
+    public class AdminRaw : System.Web.Services.WebService
     {
-
         DBConnection con;
         [WebMethod(enableSession: true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -92,45 +92,16 @@ namespace ecci.inv.system.warehouse.WebService
         }
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public int UpdateDispatch(int upid, int dq)
+        public int UpdateDispatch(int upid)
         {
+            int a = 0;
             con = new DBConnection();
-            int rq = 0, oq = 0, a = 0;
             con.OpenConection();
-            con.ExecSqlQuery("Select * from stock_raw where stockid = @sid");
+            con.ExecSqlQuery("UPDATE stock_warehouse SET code = @c WHERE id = @sid");
+            con.Cmd.Parameters.AddWithValue("@c", 2);
             con.Cmd.Parameters.AddWithValue("@sid", upid);
-            con._dr = con.Cmd.ExecuteReader();
-            while (con._dr.Read())
-            {
-                rq = Convert.ToInt32(con._dr["quantity"].ToString());
-                oq = Convert.ToInt32(con._dr["quantity"].ToString());
-            }
+            a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
-            if (rq == 0 && oq == 0)
-            {
-                con.OpenConection();
-                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,receivedquantity=@rq, dispatchquantity=@dq, receivedate = @rdate WHERE stockid = @sid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Dispatch");
-                con.Cmd.Parameters.AddWithValue("@rq", 0);
-                con.Cmd.Parameters.AddWithValue("@dq", dq);
-                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-                con.Cmd.Parameters.AddWithValue("@sid", upid);
-                a = con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
-            }
-            else if (rq > 0 && oq > 0)
-            {
-                con.OpenConection();
-                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,receivedquantity=@rq, dispatchquantity=@dq, receivedate = @rdate WHERE stockid = @sid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
-                con.Cmd.Parameters.AddWithValue("@rq", 0);
-                con.Cmd.Parameters.AddWithValue("@dq", dq);
-                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-                con.Cmd.Parameters.AddWithValue("@sid", upid);
-                a = con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
-            }
-
             return a;
         }
     }

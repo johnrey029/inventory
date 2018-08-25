@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8399b0cd-ced1-44c8-8668-86d5033f93a7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b6dac2d9-096f-4f1d-aec4-352dba88d745" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RawMaterialsService.disco" MetadataType="Disco" ID="97573735-b21d-4b60-8cea-874238c49257" SourceId="1" SourceUrl="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx?disco" />
-    <MetadataFile FileName="RawMaterialsService.wsdl" MetadataType="Wsdl" ID="9c387965-d909-4505-9304-25de2de11f0d" SourceId="1" SourceUrl="http://localhost:2908/warehouse/WebService/RawMaterialsService.asmx?wsdl" />
+    <MetadataFile FileName="WarehouseRaw.disco" MetadataType="Disco" ID="5cae5d5f-a3ff-4e5e-a572-834a786b0cc3" SourceId="1" SourceUrl="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx?disco" />
+    <MetadataFile FileName="WarehouseRaw.wsdl" MetadataType="Wsdl" ID="8cfab3b6-5103-4dcd-b762-1398498b9844" SourceId="1" SourceUrl="http://localhost:2908/warehouse/WebService/WarehouseRaw.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

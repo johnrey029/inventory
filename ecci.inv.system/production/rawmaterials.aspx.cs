@@ -32,7 +32,7 @@ namespace ecci.inv.system.production
         {
             int sid = Convert.ToInt32(Request.Form.Get("hiddenStockId").ToString());
             totalquantity = Convert.ToInt32(Request.Form.Get("hiddenquantity").ToString());
-            if (totalquantity >= Convert.ToInt32(qty.Text) && Convert.ToInt32(qty.Text) != 0)
+            if (totalquantity > 0)
             {
                 ProductRawService.ProdRawSoapClient client = new ProductRawService.ProdRawSoapClient("ProdRawSoap");
                 // int result1 = InsertById();

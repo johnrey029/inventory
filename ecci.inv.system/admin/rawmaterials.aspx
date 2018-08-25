@@ -10,14 +10,14 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             url: "WebService/RawMaterialsService.asmx/GetRawMaterials",
+             url: "WebService/AdminRaw.asmx/GetRawMaterials",
              success: function (data) {
                  datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
                          {
                              'data': 'id', 'render': function (data, type, row) {
-                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Request</a>";
+                                 return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Approve</a>";
                              },
                              orderable: false
                          },
@@ -174,8 +174,7 @@
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"
-              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Releasing...'; this.disabled='false'; }"/>
+          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"/>
           <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
            <%-- OnClick="btnSave_Click"  UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"--%>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
@@ -192,7 +191,7 @@
            $('#hiddenStockId').val(stockId);
            var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/RawMaterialsService.asmx/ShowDeliveredById",
+              url: "WebService/AdminRaw.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",

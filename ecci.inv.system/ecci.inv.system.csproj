@@ -113,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\rawmaterials.aspx" />
-    <Content Include="admin\WebService\RawMaterialsService.asmx" />
+    <Content Include="admin\WebService\AdminRaw.asmx" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -6755,10 +6755,12 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="production\rawmaterials.aspx" />
+    <Content Include="production\WebForm1.aspx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
     <Content Include="Products.aspx" />
     <Content Include="production\Production.Master" />
     <Content Include="admin\Admin.Master" />
+    <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.disco" />
     <None Include="Service References\ManageItemService\configuration91.svcinfo" />
     <None Include="Service References\ManageItemService\configuration.svcinfo" />
@@ -6781,17 +6783,24 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\ProductRawService\ProdRaw.wsdl" />
-    <None Include="Service References\RawMaterialService\RawMaterialsService.disco" />
-    <None Include="Service References\RawMaterialService\configuration91.svcinfo" />
-    <None Include="Service References\RawMaterialService\configuration.svcinfo" />
-    <None Include="Service References\RawMaterialService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\ProductRawService\ProdRaw.disco" />
     <None Include="Service References\ProductRawService\configuration91.svcinfo" />
     <None Include="Service References\ProductRawService\configuration.svcinfo" />
     <None Include="Service References\ProductRawService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AdminRawService\AdminRaw.disco" />
+    <None Include="Service References\AdminRawService\configuration91.svcinfo" />
+    <None Include="Service References\AdminRawService\configuration.svcinfo" />
+    <None Include="Service References\AdminRawService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WarehouseRaw\WarehouseRaw.disco" />
+    <None Include="Service References\WarehouseRaw\configuration91.svcinfo" />
+    <None Include="Service References\WarehouseRaw\configuration.svcinfo" />
+    <None Include="Service References\WarehouseRaw\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -7488,7 +7497,7 @@
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
     <None Include="Service References\OnholdService\OnHoldService.wsdl" />
-    <None Include="Service References\RawMaterialService\RawMaterialsService.wsdl" />
+    <None Include="Service References\WarehouseRaw\WarehouseRaw.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7554,7 +7563,7 @@
     <Content Include="superadmin\index.aspx" />
     <Content Include="superadmin\users.aspx" />
     <Content Include="warehouse\index.aspx" />
-    <Content Include="warehouse\WebService\RawMaterialsService.asmx" />
+    <Content Include="warehouse\WebService\WarehouseRaw.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -7589,8 +7598,8 @@
     <Compile Include="admin\rawmaterials.aspx.designer.cs">
       <DependentUpon>rawmaterials.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\WebService\RawMaterialsService.asmx.cs">
-      <DependentUpon>RawMaterialsService.asmx</DependentUpon>
+    <Compile Include="admin\WebService\AdminRaw.asmx.cs">
+      <DependentUpon>AdminRaw.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="changepassword.aspx.cs">
@@ -7630,6 +7639,13 @@
     <Compile Include="production\rawmaterials.aspx.designer.cs">
       <DependentUpon>rawmaterials.aspx</DependentUpon>
     </Compile>
+    <Compile Include="production\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="production\WebService\ProdRaw.asmx.cs">
       <DependentUpon>ProdRaw.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -7640,6 +7656,11 @@
     </Compile>
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AdminRawService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ManageItemService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -7661,7 +7682,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\RawMaterialService\Reference.cs">
+    <Compile Include="Service References\WarehouseRaw\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -7884,8 +7905,8 @@
     <Compile Include="warehouse\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="warehouse\WebService\RawMaterialsService.asmx.cs">
-      <DependentUpon>RawMaterialsService.asmx</DependentUpon>
+    <Compile Include="warehouse\WebService\WarehouseRaw.asmx.cs">
+      <DependentUpon>WarehouseRaw.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -7900,13 +7921,14 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AdminRawService\" />
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
     <WCFMetadataStorage Include="Service References\DispatchService\" />
     <WCFMetadataStorage Include="Service References\ManageItemService\" />
     <WCFMetadataStorage Include="Service References\ManageSupplierService\" />
     <WCFMetadataStorage Include="Service References\OnholdService\" />
     <WCFMetadataStorage Include="Service References\ProductRawService\" />
-    <WCFMetadataStorage Include="Service References\RawMaterialService\" />
+    <WCFMetadataStorage Include="Service References\WarehouseRaw\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="purchasing\purchOrder.rdlc">

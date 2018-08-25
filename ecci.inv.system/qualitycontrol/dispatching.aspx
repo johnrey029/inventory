@@ -195,8 +195,7 @@
 
                 </div>
                 <div class="modal-footer bg-aqua-active">
-                    <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"
-                        UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Dispatching...'; this.disabled='false'; }" />
+                    <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>
                "this.disabled=true; this.value='Dispatching...';"--%>

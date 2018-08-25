@@ -29,7 +29,7 @@
                          { 'data': 'status' }
                      ],
                      language: {
-                         emptyTable: "No Available Stock!"
+                         emptyTable: "No Request Available!"
                      }
                  });
              },
@@ -49,8 +49,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Manage
-      <small>Delivery</small>
+      Manage Raw Materials
+      <small>Request</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -174,8 +174,7 @@
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"
-              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Releasing...'; this.disabled='false'; }"/>
+          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click"/>
           <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
            <%-- OnClick="btnSave_Click"  UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"--%>
           <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
