@@ -65,7 +65,7 @@ namespace ecci.inv.system
                     user_activity();
                     // Response.Redirect("~/qualitycontrol/index.aspx");
                     con.OpenConection();
-                    con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS");
+                    con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass");
                     con.Cmd.Parameters.AddWithValue("@user", user);
                     con.Cmd.Parameters.AddWithValue("@pass", GetHashedText(pass));
                     con._dr = con.Cmd.ExecuteReader();
@@ -106,7 +106,7 @@ namespace ecci.inv.system
                                     Session["empnumber"] = con._dr["empno"].ToString();
                                     Response.Redirect("~/admin/rawmaterials.aspx");
                                     break;
-                                case "Prod":
+                                case "Production":
                                     Session["empnumber"] = con._dr["empno"].ToString();
                                     Response.Redirect("~/production/rawmaterials.aspx");
                                     break;
