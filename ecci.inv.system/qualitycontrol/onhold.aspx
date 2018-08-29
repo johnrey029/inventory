@@ -128,7 +128,7 @@
       </div>
 
         <div class="modal-body">
-            <div class="form-group">
+            <div class="form-group col-sm-12" >
                 <div class="form-group col-sm-4">
                 <label for="PO">Purchase Order Number</label>
                 <input type="text" class="form-control" id="po" name="po" readonly="true"/>
@@ -137,8 +137,8 @@
                 <label for="supplier">Supplier</label>
                 <input type="text" class="form-control" id="supplier" name="supplier" readonly="true"/>
                  </div>
-             </div>
-            <div class="form-group">
+                </div>
+            <div class="form-group col-sm-12" >
                 <div class="form-group col-sm-3">
                 <label for="qty">Qty To Evaluate</label>
                 <input type="text" class="form-control" id="qty" name="qty" readonly="true" />
@@ -168,7 +168,7 @@
                 <label for="qty">Quantity To Evaluate</label>
                 <input type="text" class="form-control" id="qty" name="qty" readonly="true" />
             </div>--%>
-            <div class="form-group">
+            <div class="form-group col-sm-12" >
             <div class="form-group col-sm-4">
                 <label for="rwqty">Rework Quantity</label>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
@@ -209,7 +209,7 @@
                     </asp:UpdatePanel>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbScrap" ErrorMessage="Empty Field" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-          </div>
+            </div>
             <div class="form-group text-center">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server" RenderMode="Inline">
                     <ContentTemplate>
@@ -222,7 +222,7 @@
                         </Triggers>
                     </asp:UpdatePanel>
             <input type="hidden" id="hiddenquantity"  name="hiddenquantity" value="" />
-                </div>
+            </div>
         </div>
         
         <div class="modal-footer bg-aqua-active">

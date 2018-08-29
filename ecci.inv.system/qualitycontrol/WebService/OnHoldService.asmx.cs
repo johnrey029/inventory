@@ -101,7 +101,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
         public int UpdateDispatch(int upid, int rework, int returns, int scrap)
         {
             con = new DBConnection();
-            int rq = 0, oq = 0,sq = 0,quantity=0,warehouse=0, a = 0;
+            int rq = 0, oq = 0,sq = 0,quantity=0,dispatch=0,warehouse=0, a = 0;
             int po = 0;
             con.OpenConection();
             con.ExecSqlQuery("Select * from stock_raw_fail where id = @sid");
@@ -122,6 +122,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
             while (con._dr.Read())
             {
                 quantity = Convert.ToInt32(con._dr["quantity"].ToString());
+                dispatch = Convert.ToInt32(con._dr["dispatchquantity"].ToString());
+
             }
             con.CloseConnection();
             con.OpenConection();
@@ -136,6 +138,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             int sum = rework + returns + scrap;
             int decrease = oq - sum;
             int receiving = returns + quantity;
+            int dispatching = dispatch - returns;
             int stock = warehouse + rework;
             if (oq == sum)
             {
@@ -162,9 +165,10 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 if(rework > 0)
                 {
                     con.OpenConection();
-                    con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, quantity=@rq WHERE purchaseorder = @sid");
+                    con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, quantity=@rq,dispatchquantity=@dq WHERE purchaseorder = @sid");
                     con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
                     con.Cmd.Parameters.AddWithValue("@rq", receiving);
+                    con.Cmd.Parameters.AddWithValue("@dq", dispatching);
                     con.Cmd.Parameters.AddWithValue("@sid", po);
                     a = con.Cmd.ExecuteNonQuery();
                     con.CloseConnection();
