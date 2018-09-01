@@ -124,7 +124,7 @@
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbUnitPrice" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                     <ContentTemplate>
-                                        <asp:TextBox ID="tbUnitPrice" runat="server" CssClass="form-control" placeholder="Description" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
+                                        <asp:TextBox ID="tbUnitPrice" runat="server" CssClass="form-control" placeholder="Unit Price" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddBrand" EventName="SelectedIndexChanged" />
