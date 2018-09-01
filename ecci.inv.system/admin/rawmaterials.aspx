@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Admin.Master" AutoEventWireup="true" CodeBehind="rawmaterials.aspx.cs" Inherits="ecci.inv.system.admin.rawmaterials" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Warehouse
+    Admin
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
