@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0c5382f5-cad2-4b12-9e21-e5901f299073" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9a45c7eb-b20f-4e73-b3dc-3bb7a886fbfa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ManageSupplierService.disco" MetadataType="Disco" ID="b580c898-7ad5-401b-8957-eb728c780da7" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx?disco" />
-    <MetadataFile FileName="ManageSupplierService.wsdl" MetadataType="Wsdl" ID="ece569c9-c7ed-4773-bd1d-cca4a469ad43" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx?wsdl" />
+    <MetadataFile FileName="ManageSupplierService.disco" MetadataType="Disco" ID="ae66ad76-2e75-4ebd-a33d-dc84f57f0984" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx?disco" />
+    <MetadataFile FileName="ManageSupplierService.wsdl" MetadataType="Wsdl" ID="398e3581-c494-409f-a726-abd3547e0c7e" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

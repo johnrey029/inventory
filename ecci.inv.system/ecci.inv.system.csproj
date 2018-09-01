@@ -6762,20 +6762,8 @@
     <Content Include="production\Production.Master" />
     <Content Include="admin\Admin.Master" />
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
-    <None Include="Service References\ManageItemService\ManageItemService.disco" />
-    <None Include="Service References\ManageItemService\configuration91.svcinfo" />
-    <None Include="Service References\ManageItemService\configuration.svcinfo" />
-    <None Include="Service References\ManageItemService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ManageSupplierService\ManageSupplierService.disco" />
-    <None Include="Service References\ManageSupplierService\configuration91.svcinfo" />
-    <None Include="Service References\ManageSupplierService\configuration.svcinfo" />
-    <None Include="Service References\ManageSupplierService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
+    <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
     <None Include="Service References\OnholdService\OnHoldService.disco" />
     <None Include="Service References\OnholdService\configuration91.svcinfo" />
     <None Include="Service References\OnholdService\configuration.svcinfo" />
@@ -6802,6 +6790,20 @@
     <None Include="Service References\WarehouseRaw\configuration91.svcinfo" />
     <None Include="Service References\WarehouseRaw\configuration.svcinfo" />
     <None Include="Service References\WarehouseRaw\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ManageItemService\ManageItemService.disco" />
+    <None Include="Service References\ManageItemService\configuration91.svcinfo" />
+    <None Include="Service References\ManageItemService\configuration.svcinfo" />
+    <None Include="Service References\ManageItemService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ManageSupplierService\ManageSupplierService.disco" />
+    <None Include="Service References\ManageSupplierService\configuration91.svcinfo" />
+    <None Include="Service References\ManageSupplierService\configuration.svcinfo" />
+    <None Include="Service References\ManageSupplierService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -7495,8 +7497,6 @@
     <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
-    <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
-    <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
     <None Include="Service References\OnholdService\OnHoldService.wsdl" />
     <None Include="Service References\WarehouseRaw\WarehouseRaw.wsdl" />
     <None Include="Web.Debug.config">
