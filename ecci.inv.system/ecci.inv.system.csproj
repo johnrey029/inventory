@@ -91,7 +91,10 @@
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\..\Desktop\OnlineBiometricVotingSystem\OnlineBiometricVotingSystem\bin\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Neodynamic.SDK.WebClientPrint, Version=4.0.2000.0, Culture=neutral, PublicKeyToken=93565f9c313b0a45, processorArchitecture=MSIL" />
+    <Reference Include="Neodynamic.SDK.WebClientPrint, Version=4.0.2000.0, Culture=neutral, PublicKeyToken=93565f9c313b0a45, processorArchitecture=MSIL">
+      <HintPath>..\packages\Neodynamic.SDK.WebClientPrint.4.0.2018.601\lib\Neodynamic.SDK.WebClientPrint.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
