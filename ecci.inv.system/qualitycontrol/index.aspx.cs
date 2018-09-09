@@ -111,7 +111,7 @@ namespace ecci.inv.system.qualitycontrol
             //DateTime ddate = DateTime.Parse(Request.Form.Get("ddate").ToString());
             string time = DateTime.Now.ToLongTimeString();
             con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@rdate,@t)");
+            con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time,remarks)VALUES(@po,@en,@act,@rdate,@t,@rem)");
             con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
             //con.Cmd.Parameters.AddWithValue("@item", item);
             //con.Cmd.Parameters.AddWithValue("@quan", Request.Form.Get("qty").ToString());
@@ -122,6 +122,7 @@ namespace ecci.inv.system.qualitycontrol
             con.Cmd.Parameters.AddWithValue("@en", sessionempno);
             con.Cmd.Parameters.AddWithValue("@act", "Received");
             con.Cmd.Parameters.AddWithValue("@t", DateTime.Parse(time));
+            con.Cmd.Parameters.AddWithValue("@rem", "Update");
             int a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
             if (a == 0)

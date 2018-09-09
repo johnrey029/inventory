@@ -21,6 +21,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
     [System.Web.Script.Services.ScriptService]
     public class OnHoldService : System.Web.Services.WebService
     {
+        private string deldate { get; set; }
+        private string recdate { get; set; }
         DBConnection con;
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -102,9 +104,11 @@ namespace ecci.inv.system.qualitycontrol.WebService
         {
             con = new DBConnection();
             int rq = 0, oq = 0,sq = 0,quantity=0,dispatch=0,warehouse=0, a = 0;
-            int po = 0;
+            int po = 0, iid=0, tq=0;
+
+            
             con.OpenConection();
-            con.ExecSqlQuery("Select * from stock_raw_fail where id = @sid");
+            con.ExecSqlQuery("SELECT * FROM stock_raw_fail WHERE id = @sid");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
             con._dr = con.Cmd.ExecuteReader();
             while (con._dr.Read())
@@ -116,18 +120,22 @@ namespace ecci.inv.system.qualitycontrol.WebService
             }
             con.CloseConnection();
             con.OpenConection();
-            con.ExecSqlQuery("Select * from stock_raw where purchaseorder = @sid");
-            con.Cmd.Parameters.AddWithValue("@sid", po);
+            con.ExecSqlQuery("SELECT * FROM stock_raw WHERE purchaseorder = @po");
+            con.Cmd.Parameters.AddWithValue("@po", po);
             con._dr = con.Cmd.ExecuteReader();
             while (con._dr.Read())
             {
                 quantity = Convert.ToInt32(con._dr["quantity"].ToString());
                 dispatch = Convert.ToInt32(con._dr["dispatchquantity"].ToString());
+                iid = Convert.ToInt32(con._dr["itemsid"].ToString());
+                tq = Convert.ToInt32(con._dr["totalquantity"].ToString());
+                deldate = con._dr["deliverydate"].ToString();
+                recdate = con._dr["receivedate"].ToString();
 
             }
             con.CloseConnection();
             con.OpenConection();
-            con.ExecSqlQuery("Select * from stock_warehouse where purchaseorder = @sid");
+            con.ExecSqlQuery("SELECT * FROM stock_warehouse WHERE purchaseorder = @sid");
             con.Cmd.Parameters.AddWithValue("@sid", po);
             con._dr = con.Cmd.ExecuteReader();
             while (con._dr.Read())
@@ -142,7 +150,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             int stock = warehouse + rework;
             if (oq == sum)
             {
-                if (returns > 0)
+                if (rework > 0)
                 {
                     con.OpenConection();
                     con.ExecSqlQuery("UPDATE stock_raw_fail SET status = @stat,quantity=@rq, fixquantity=@dq, date = @rdate WHERE id = @sid");
@@ -162,14 +170,26 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     a = con.Cmd.ExecuteNonQuery();
                     con.CloseConnection();
                 }
-                if(rework > 0)
+                if(returns > 0)
                 {
                     con.OpenConection();
-                    con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, quantity=@rq,dispatchquantity=@dq WHERE purchaseorder = @sid");
-                    con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
-                    con.Cmd.Parameters.AddWithValue("@rq", receiving);
+                    //con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, quantity=@rq,dispatchquantity=@dq WHERE purchaseorder = @sid");
+                    //con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
+                    con.ExecSqlQuery(@"INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity,totalquantity, purchasedate, deliverydate, postatus, price, unit)
+                                        VALUES(@po, @item, @quan, @rq,@dq,@tq, @pdate, @ddate, @stat, @price, @unit)");
+                    
+                    con.Cmd.Parameters.Add("@po", SqlDbType.NVarChar).Value = po.ToString();
+                    con.Cmd.Parameters.AddWithValue("@item", iid);
+                    con.Cmd.Parameters.AddWithValue("@quan", returns);
+                    con.Cmd.Parameters.AddWithValue("@rq", '0');
                     con.Cmd.Parameters.AddWithValue("@dq", dispatching);
-                    con.Cmd.Parameters.AddWithValue("@sid", po);
+                    con.Cmd.Parameters.AddWithValue("@tq", tq);
+                    con.Cmd.Parameters.AddWithValue("@pdate", deldate);
+                    con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(DateTime.Now.ToShortDateString()));
+                    con.Cmd.Parameters.AddWithValue("@stat", "For Return");
+                    con.Cmd.Parameters.AddWithValue("@price", 0);
+                    con.Cmd.Parameters.AddWithValue("@unit", "NA");
+
                     a = con.Cmd.ExecuteNonQuery();
                     con.CloseConnection();
                 }
