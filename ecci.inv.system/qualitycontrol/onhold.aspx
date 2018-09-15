@@ -130,7 +130,7 @@
         <div class="modal-body">
             <div class="form-group col-sm-12" >
                 <div class="form-group col-sm-4">
-                <label for="PO">Purchase Order Number</label>
+                <label for="PO">PO Number</label>
                 <input type="text" class="form-control" id="po" name="po" readonly="true"/>
                 </div>
                 <div class="form-group col-sm-8">
@@ -173,7 +173,7 @@
                 <label for="rwqty">Rework Quantity</label>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
                     <ContentTemplate>
-                <asp:TextBox ID="tbRework" CssClass="form-control"  runat="server" placeholder="Input Quantity Fixed" OnTextChanged="tbRework_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled"></asp:TextBox>
+                <asp:TextBox ID="tbRework" CssClass="form-control"  runat="server" placeholder="Input Qty Fixed" OnTextChanged="tbRework_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled"></asp:TextBox>
 
             </ContentTemplate> 
                         <Triggers>
@@ -187,7 +187,7 @@
                 <label for="rsqty">Return Quantity</label>
                  <asp:UpdatePanel ID="UpdatePanel2" runat="server" RenderMode="Inline">
                     <ContentTemplate>
-                <asp:TextBox ID="tbReturn" CssClass="form-control"  runat="server" placeholder="Input Quantity Return" OnTextChanged="tbReturn_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="tbReturn" CssClass="form-control"  runat="server" placeholder="Input Qty Return" OnTextChanged="tbReturn_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled" ReadOnly="True"></asp:TextBox>
             </ContentTemplate> 
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="tbReturn" EventName="TextChanged" />
@@ -200,7 +200,7 @@
                 <label for="sqty">Scrap Quantity</label>
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
                     <ContentTemplate>
-                <asp:TextBox ID="tbScrap" CssClass="form-control"  runat="server" placeholder="Input Quantity Scraps" OnTextChanged="tbScrap_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="tbScrap" CssClass="form-control"  runat="server" placeholder="Input Qty Scraps" OnTextChanged="tbScrap_TextChanged" autocomplete="off" min="0" AutoPostBack="True"  onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32 && event.keyCode!=9);" ViewStateMode="Enabled" ReadOnly="True"></asp:TextBox>
             </ContentTemplate> 
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="tbReturn" EventName="TextChanged" />

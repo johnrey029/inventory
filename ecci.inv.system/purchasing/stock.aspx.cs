@@ -96,6 +96,8 @@ namespace ecci.inv.system.purchasing
             tbQuantity.Text = "";
             ddBrand.Enabled = false;
             tbUnitPrice.Text = "";
+            tbTotalPrice.Text = "";
+            ddlUnit.SelectedIndex = -1;
             //tbCalendar.Visible = false;
             tbEdate.Text = "";
         }
@@ -184,7 +186,7 @@ namespace ecci.inv.system.purchasing
             else
             {
 
-                lbError.Text = "Dito may mali.";
+                //lbError.Text = "Dito may mali.";
                 lbError.Visible = true;
                 lbError.ForeColor = System.Drawing.Color.Red;
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
@@ -228,7 +230,7 @@ namespace ecci.inv.system.purchasing
             {
                 check = false;
                 lbError.ForeColor = System.Drawing.Color.Red;
-                //lbError.Text = "Error: " + ex.Message;
+                lbError.Text = "Error: " + ex.Message;
                 lbError.Visible = true;
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); });</script>");

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Data;
 using System.Web.UI.WebControls;
 
 namespace ecci.inv.system.qualitycontrol
@@ -11,7 +12,6 @@ namespace ecci.inv.system.qualitycontrol
     {
         private string sessionempno { get; set; }
         DBConnection con;
-        bool s = false, r = false, f = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["empnumber"] != null)
@@ -19,7 +19,6 @@ namespace ecci.inv.system.qualitycontrol
                 sessionempno = Session["empnumber"].ToString();
             }
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            con = new DBConnection();
             if (!IsPostBack)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
@@ -57,8 +56,6 @@ namespace ecci.inv.system.qualitycontrol
             }
             else if (quantity > sum)
             {
-                //lbError.Visible = true;
-                //lbError.Text = "Sum of Rework, Return and Scrap Are Less Than The Total Quantity";
                 lbWarning.Text = "Sum of Rework, Return and Scrap Are Less Than The Total Quantity";
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                       "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
@@ -66,8 +63,6 @@ namespace ecci.inv.system.qualitycontrol
             }
             else if (quantity < sum)
             {
-                //lbError.Visible = true;
-                //lbError.Text = "Sum of Rework, Return and Scrap Are Greater Than The Total Quantity";
                 lbWarning.Text = "Sum of Rework, Return and Scrap Are Greater Than The Total Quantity";
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                    "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').show(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
@@ -100,7 +95,6 @@ namespace ecci.inv.system.qualitycontrol
                     lbError.ForeColor = System.Drawing.Color.Red;
                     tbRework.Focus();
                 }
-                //  tbRework.EnableViewState = false;
             }else
             {
                 lbError.ForeColor = System.Drawing.Color.DarkGreen;
@@ -137,7 +131,6 @@ namespace ecci.inv.system.qualitycontrol
                     lbError.ForeColor = System.Drawing.Color.Red;
                     tbReturn.Focus();
                 }
-                //  tbReturn.EnableViewState = false;
             }
             else
             {
@@ -150,28 +143,12 @@ namespace ecci.inv.system.qualitycontrol
 
         protected void tbScrap_TextChanged(object sender, EventArgs e)
         {
-            //if (tbRework.Text == string.Empty)
-            //{
-            //    tbRework.Text = "0";
-            //}
-            //if (tbReturn.Text == string.Empty)
-            //{
-            //    tbReturn.Text = "0";
-            //}
             if (tbReturn.Text.Trim().Length > 0 && tbRework.Text.Trim().Length > 0 && tbScrap.Text.Trim().Length > 0)
             {
                 lbError.Visible = true;
                 int total = Convert.ToInt32(Request.Form.Get("qty").ToString());
                 int sum = Convert.ToInt32(tbReturn.Text.Trim()) + Convert.ToInt32(tbRework.Text.Trim()) + Convert.ToInt32(tbScrap.Text.Trim());
                 int computed = total - sum;
-                //if (tbRework.Text == "0")
-                //{
-                //    tbRework.Text = null;
-                //}
-                //if (tbReturn.Text == "0")
-                //{
-                //    tbReturn.Text = null;
-                //}
                 if (total == sum)
                 {
                     lbError.Text = "Total Quantity Equal Confirmed.";
@@ -190,7 +167,6 @@ namespace ecci.inv.system.qualitycontrol
                     lbError.ForeColor = System.Drawing.Color.Red;
                     tbScrap.Focus();
                 }
-               //   tbScrap.EnableViewState = false;
             }
             else
             {

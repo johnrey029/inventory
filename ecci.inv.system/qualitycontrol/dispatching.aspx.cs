@@ -128,11 +128,12 @@ namespace ecci.inv.system.qualitycontrol
                 else
                 {
                     con.OpenConection();
-                    con.ExecSqlQuery("INSERT INTO stock_raw_fail(purchaseorder,quantity,fixquantity,scrapquantity,date,status)VALUES(@po,@quan,@fix,@scrap,@date,@st)");
+                    con.ExecSqlQuery("INSERT INTO stock_raw_fail(purchaseorder,quantity,fixquantity,scrapquantity,returnquantity,date,status)VALUES(@po,@quan,@fix,@scrap,@return,@date,@st)");
                     con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
                     con.Cmd.Parameters.AddWithValue("@quan", tbFquan.Text);
                     con.Cmd.Parameters.AddWithValue("@fix", 0);
-                    con.Cmd.Parameters.AddWithValue("@scrap", 0);
+                    con.Cmd.Parameters.AddWithValue("@scrap", 0); 
+                    con.Cmd.Parameters.AddWithValue("@return", 0);
                     con.Cmd.Parameters.AddWithValue("@date", DateTime.Parse(date));
                     con.Cmd.Parameters.AddWithValue("@st", "Hold");
                     a = con.Cmd.ExecuteNonQuery();
