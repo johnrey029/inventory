@@ -40,7 +40,7 @@ namespace ecci.inv.system.qualitycontrol
             {
                 if (Convert.ToInt32(tbReturn.Text) >= 0 && Convert.ToInt32(tbRework.Text) >= 0)
                 {
-                    OnholdService.OnHoldServiceSoapClient client = new OnholdService.OnHoldServiceSoapClient("OnHoldServiceSoap");
+                    OnHoldService.OnHoldServiceSoapClient client = new OnHoldService.OnHoldServiceSoapClient("OnHoldServiceSoap");
                     int result = client.UpdateDispatch(sid, Convert.ToInt32(tbRework.Text),Convert.ToInt32(tbReturn.Text), Convert.ToInt32(tbScrap.Text));
                     if (result == 1 )//&& result1 == 1 && result2 == 1)
                     {

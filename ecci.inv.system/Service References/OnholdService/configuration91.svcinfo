@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="4oYmDl+MKY2Y2ibyPO31IQurCfI=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="rSH/vhDgJiRMzet9hmvddnUwtTQ=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="OnHoldServiceSoap">
+    <bindingConfiguration bindingType="basicHttpBinding" name="OnHoldServiceSoap1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>OnHoldServiceSoap</serializedValue>
+          <serializedValue>OnHoldServiceSoap1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -263,7 +263,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="OnHoldServiceSoap" contract="OnholdService.OnHoldServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx" bindingConfiguration="OnHoldServiceSoap">
+    <endpoint name="OnHoldServiceSoap" contract="OnHoldService.OnHoldServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx" bindingConfiguration="OnHoldServiceSoap1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx</serializedValue>
@@ -275,10 +275,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>OnHoldServiceSoap</serializedValue>
+          <serializedValue>OnHoldServiceSoap1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>OnholdService.OnHoldServiceSoap</serializedValue>
+          <serializedValue>OnHoldService.OnHoldServiceSoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -348,7 +348,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="OnHoldServiceSoap12" contract="OnholdService.OnHoldServiceSoap" bindingType="customBinding" address="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx" bindingConfiguration="OnHoldServiceSoap12">
+    <endpoint name="OnHoldServiceSoap12" contract="OnHoldService.OnHoldServiceSoap" bindingType="customBinding" address="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx" bindingConfiguration="OnHoldServiceSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx</serializedValue>
@@ -363,7 +363,7 @@
           <serializedValue>OnHoldServiceSoap12</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>OnholdService.OnHoldServiceSoap</serializedValue>
+          <serializedValue>OnHoldService.OnHoldServiceSoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

@@ -204,12 +204,13 @@ namespace ecci.inv.system.purchasing
             {
                 ponumber2 = tbPO.Text;
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity, purchasedate, deliverydate, postatus, price, unit)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price, @unit)");
+                con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity,totalquantity, purchasedate, deliverydate, postatus, price, unit)VALUES(@po, @item, @quan, @rq,@dq,@tq, @pdate, @ddate, @stat, @price, @unit)");
                 con.Cmd.Parameters.Add("@po", SqlDbType.NVarChar).Value = tbPO.Text;
                 con.Cmd.Parameters.Add("@item", SqlDbType.Int).Value = ddBrand.SelectedValue;
                 con.Cmd.Parameters.Add("@quan", SqlDbType.Int).Value = tbQuantity.Text;
                 con.Cmd.Parameters.Add("@rq", SqlDbType.Int).Value = 0;
                 con.Cmd.Parameters.Add("@dq", SqlDbType.Int).Value = 0;
+                con.Cmd.Parameters.Add("@tq", SqlDbType.Int).Value = tbQuantity.Text;
                 con.Cmd.Parameters.AddWithValue("@pdate", DateTime.Parse(date));
                 con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(tbEdate.Text));
                 con.Cmd.Parameters.Add("@stat", SqlDbType.Char).Value = "For delivery";
@@ -248,7 +249,7 @@ namespace ecci.inv.system.purchasing
             {
                 //itemsid, quantity, purchasedate, deliverydate, postatus,@item, @quan, @pdate, @ddate, @stat,
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time)VALUES(@po,@en,@act,@ddate,@t)");
+                con.ExecSqlQuery("INSERT INTO activity_stock_raw(purchaseorder,empno,activity,date,time,remarks)VALUES(@po,@en,@act,@ddate,@t,@rem)");
                 con.Cmd.Parameters.AddWithValue("@po", tbPO.Text);
                 //con.Cmd.Parameters.AddWithValue("@item", ddBrand.SelectedValue);
                 //con.Cmd.Parameters.AddWithValue("@quan", tbQuantity.Text);
@@ -258,6 +259,7 @@ namespace ecci.inv.system.purchasing
                 con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(date));
                 //con.Cmd.Parameters.AddWithValue("@stat", "For delivery");
                 con.Cmd.Parameters.AddWithValue("@t", DateTime.Parse(time));
+                con.Cmd.Parameters.AddWithValue("@rem", "Add");
                 int a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
                 if (a == 0)

@@ -6767,13 +6767,7 @@
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
-    <None Include="Service References\OnholdService\OnHoldService.disco" />
-    <None Include="Service References\OnholdService\configuration91.svcinfo" />
-    <None Include="Service References\OnholdService\configuration.svcinfo" />
-    <None Include="Service References\OnholdService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <None Include="Service References\OnHoldService\OnHoldService.wsdl" />
     <None Include="Service References\ProductRawService\ProdRaw.wsdl" />
     <None Include="Service References\ProductRawService\ProdRaw.disco" />
     <None Include="Service References\ProductRawService\configuration91.svcinfo" />
@@ -6807,6 +6801,13 @@
     <None Include="Service References\ManageSupplierService\configuration91.svcinfo" />
     <None Include="Service References\ManageSupplierService\configuration.svcinfo" />
     <None Include="Service References\ManageSupplierService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\OnHoldService\OnHoldService.disco" />
+    <None Include="Service References\OnHoldService\configuration91.svcinfo" />
+    <None Include="Service References\OnHoldService\configuration.svcinfo" />
+    <None Include="Service References\OnHoldService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -7500,7 +7501,6 @@
     <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
-    <None Include="Service References\OnholdService\OnHoldService.wsdl" />
     <None Include="Service References\WarehouseRaw\WarehouseRaw.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -7680,7 +7680,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\OnholdService\Reference.cs">
+    <Compile Include="Service References\OnHoldService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -7934,7 +7934,7 @@
     <WCFMetadataStorage Include="Service References\DispatchService\" />
     <WCFMetadataStorage Include="Service References\ManageItemService\" />
     <WCFMetadataStorage Include="Service References\ManageSupplierService\" />
-    <WCFMetadataStorage Include="Service References\OnholdService\" />
+    <WCFMetadataStorage Include="Service References\OnHoldService\" />
     <WCFMetadataStorage Include="Service References\ProductRawService\" />
     <WCFMetadataStorage Include="Service References\WarehouseRaw\" />
   </ItemGroup>

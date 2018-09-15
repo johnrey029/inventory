@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ecci.inv.system.OnholdService {
+namespace ecci.inv.system.OnHoldService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OnholdService.OnHoldServiceSoap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OnHoldService.OnHoldServiceSoap")]
     public interface OnHoldServiceSoap {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetOnHoldItems", ReplyAction="*")]
@@ -38,12 +38,12 @@ namespace ecci.inv.system.OnholdService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface OnHoldServiceSoapChannel : ecci.inv.system.OnholdService.OnHoldServiceSoap, System.ServiceModel.IClientChannel {
+    public interface OnHoldServiceSoapChannel : ecci.inv.system.OnHoldService.OnHoldServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class OnHoldServiceSoapClient : System.ServiceModel.ClientBase<ecci.inv.system.OnholdService.OnHoldServiceSoap>, ecci.inv.system.OnholdService.OnHoldServiceSoap {
+    public partial class OnHoldServiceSoapClient : System.ServiceModel.ClientBase<ecci.inv.system.OnHoldService.OnHoldServiceSoap>, ecci.inv.system.OnHoldService.OnHoldServiceSoap {
         
         public OnHoldServiceSoapClient() {
         }
