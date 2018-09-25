@@ -35,7 +35,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             INNER JOIN stock_raw r ON s.purchaseorder = r.purchaseorder
             INNER JOIN items i ON r.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
-            WHERE s.quantity>0
+            WHERE s.quantity>0 and r.postatus != 'Returned'
             ORDER BY s.id ASC");
             while (con._dr.Read())
             {
@@ -133,7 +133,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     con.Cmd.Parameters.AddWithValue("@rq", returns+rq);
                     con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
                     con.Cmd.Parameters.AddWithValue("@sid", upid);
-                    con.Cmd.Parameters.AddWithValue("@stat", "Hold");
+                    con.Cmd.Parameters.AddWithValue("@stats", "Hold");
                     a = con.Cmd.ExecuteNonQuery();
                     con.CloseConnection();
 
@@ -177,9 +177,9 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     padd = Convert.ToDouble(unitprice * (total - returns));
                     assumedate = DateTime.Now.AddMonths(1).ToShortDateString();
                     con.OpenConection();
-                    con.ExecSqlQuery("UPDATE stock_raw SET dispatchquantity=@dq, price = @p,returndate=@rdate WHERE purchaseorder = @sid and postatus != @stat");
+                    con.ExecSqlQuery("UPDATE stock_raw SET dispatchquantity=@dq,returndate=@rdate WHERE purchaseorder = @sid and postatus != @stat");
                     con.Cmd.Parameters.AddWithValue("@dq", dispatching);
-                    con.Cmd.Parameters.AddWithValue("@p", padd);
+                    // con.Cmd.Parameters.AddWithValue("@p", padd); price = @p,
                     con.Cmd.Parameters.AddWithValue("@rdate", SqlDbType.Date).Value = DateTime.Now;
                     con.Cmd.Parameters.AddWithValue("@sid", po);
                     con.Cmd.Parameters.AddWithValue("@stat", "Returned");
@@ -209,9 +209,9 @@ namespace ecci.inv.system.qualitycontrol.WebService
                         int dispatching2 = dispatch - upquan;
                         double padd2 = price * (total - upquan);
                         con.OpenConection();
-                        con.ExecSqlQuery("UPDATE stock_raw SET quantity=@rq,dispatchquantity=@dq,price = @p,deliverydate=@ddate WHERE purchaseorder = @sid and postatus =@stat");
+                        con.ExecSqlQuery("UPDATE stock_raw SET quantity=@rq,dispatchquantity=@dq,deliverydate=@ddate WHERE purchaseorder = @sid and postatus =@stat");
                         con.Cmd.Parameters.AddWithValue("@dq", dispatching2);
-                        con.Cmd.Parameters.AddWithValue("@p", padd2);
+                        //con.Cmd.Parameters.AddWithValue("@p", padd2);,price = @p
                         con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(assumedate));
                         con.Cmd.Parameters.AddWithValue("@sid", po);
                         con.Cmd.Parameters.AddWithValue("@stat", "Returned");
@@ -221,7 +221,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     else
                     {
                         con.OpenConection();
-                        con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity, purchasedate, deliverydate, postatus, price, unit)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat, @price, @unit)");
+                        con.ExecSqlQuery("INSERT INTO stock_raw(purchaseorder, itemsid, quantity, receivedquantity, dispatchquantity, purchasedate, deliverydate, postatus, unit)VALUES(@po, @item, @quan, @rq,@dq, @pdate, @ddate, @stat,  @unit)");
                         con.Cmd.Parameters.Add("@po", SqlDbType.NVarChar).Value = po;
                         con.Cmd.Parameters.Add("@item", SqlDbType.Int).Value = itemsid;
                         con.Cmd.Parameters.Add("@quan", SqlDbType.Int).Value = returns;
@@ -230,7 +230,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                         con.Cmd.Parameters.AddWithValue("@pdate", pdate);
                         con.Cmd.Parameters.AddWithValue("@ddate", DateTime.Parse(assumedate));
                         con.Cmd.Parameters.Add("@stat", SqlDbType.Char).Value = "Returned";
-                        con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = pminus;
+                        //  con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = pminus;price, @price,
                         con.Cmd.Parameters.Add("@unit", SqlDbType.VarChar).Value = units;
                         a = con.Cmd.ExecuteNonQuery();
                         con.CloseConnection();

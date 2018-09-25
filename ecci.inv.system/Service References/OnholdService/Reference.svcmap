@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1d17d57b-ab1a-46b2-91b4-04cce2151330" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="afdcbd83-476c-43a5-a7eb-81cadd2c24f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="OnHoldService.wsdl" MetadataType="Wsdl" ID="e060fff4-d13d-43d8-aad0-282bdfb8af69" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx?wsdl" />
-    <MetadataFile FileName="OnHoldService.disco" MetadataType="Disco" ID="5b79640c-eff2-4285-ba62-f7b5dae84a61" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx?disco" />
+    <MetadataFile FileName="OnHoldService.wsdl" MetadataType="Wsdl" ID="2a9d9fc5-5666-4281-a9a8-78f44d80f789" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx?wsdl" />
+    <MetadataFile FileName="OnHoldService.disco" MetadataType="Disco" ID="a58b4b76-e34c-4dfd-9197-6f101dc0b20f" SourceId="1" SourceUrl="http://localhost:2908/qualitycontrol/WebService/OnHoldService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

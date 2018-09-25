@@ -100,43 +100,102 @@ namespace ecci.inv.system.qualitycontrol.WebService
         public int UpdateById(int upid,int total)
         {
             con = new DBConnection();
-            int rq = 0, oq = 0, a = 0;
+            int rq = 0, oq = 0, a = 0, po = 0,b =0,c=0;
+            int decrease = 0, increase = 0;
             con.OpenConection();
             con.ExecSqlQuery("SELECT * FROM stock_raw WHERE stockid = @sid");
             con.Cmd.Parameters.AddWithValue("@sid", upid);
             con._dr = con.Cmd.ExecuteReader();
             while (con._dr.Read())
             {
+                po = Convert.ToInt32(con._dr["purchaseorder"].ToString());
                 rq = Convert.ToInt32(con._dr["receivedquantity"].ToString());
                 oq = Convert.ToInt32(con._dr["quantity"].ToString());
             }
             con.CloseConnection();
-            int decrease = oq - total;
-            int increase = rq + total;
 
-            if (decrease > 0 && increase >= 0)
+            con.OpenConection();
+            con.ExecSqlQuery("SELECT count(*) FROM stock_raw WHERE purchaseorder = @po and postatus != @stat and stockid = @sid");
+            con.Cmd.Parameters.AddWithValue("@po", po);
+            con.Cmd.Parameters.AddWithValue("@stat", "Returned");
+            con.Cmd.Parameters.AddWithValue("@sid", upid);
+            c = Convert.ToInt32(con.Cmd.ExecuteScalar());
+            con.CloseConnection();
+            if (c == 1)
             {
-                con.OpenConection();
-                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,quantity=@quan, receivedquantity=@rq, receivedate = @rdate WHERE stockid = @sid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
-                con.Cmd.Parameters.AddWithValue("@quan", decrease);
-                con.Cmd.Parameters.AddWithValue("@rq", increase);
-                con.Cmd.Parameters.AddWithValue("@sid", upid);
-                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-                a = con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
+                decrease = oq - total;
+                increase = rq + total;
+
+                if (decrease > 0 && increase >= 0)
+                {
+                    con.OpenConection();
+                    con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,quantity=@quan, receivedquantity=@rq, receivedate = @rdate WHERE stockid = @sid");
+                    con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
+                    con.Cmd.Parameters.AddWithValue("@quan", decrease);
+                    con.Cmd.Parameters.AddWithValue("@rq", increase);
+                    con.Cmd.Parameters.AddWithValue("@sid", upid);
+                    con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
+                }
+                else if (decrease == 0)
+                {
+                    con.OpenConection();
+                    con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,quantity=@quan, receivedquantity=@rq, receivedate = @rdate WHERE stockid = @sid");
+                    con.Cmd.Parameters.AddWithValue("@stat", "Received");
+                    con.Cmd.Parameters.AddWithValue("@quan", decrease);
+                    con.Cmd.Parameters.AddWithValue("@rq", increase);
+                    con.Cmd.Parameters.AddWithValue("@sid", upid);
+                    con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
+                }
             }
-            else if (decrease == 0)
+
+
+            con.OpenConection();
+            con.ExecSqlQuery("SELECT count(*) FROM stock_raw WHERE purchaseorder = @po and postatus = @stat and stockid = @sid");
+            con.Cmd.Parameters.AddWithValue("@po", po);
+            con.Cmd.Parameters.AddWithValue("@stat", "Returned");
+            con.Cmd.Parameters.AddWithValue("@sid", upid);
+            b = Convert.ToInt32(con.Cmd.ExecuteScalar());
+            con.CloseConnection();
+            if (b == 1)
             {
                 con.OpenConection();
-                con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat,quantity=@quan, receivedquantity=@rq, receivedate = @rdate WHERE stockid = @sid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Received");
-                con.Cmd.Parameters.AddWithValue("@quan", decrease);
-                con.Cmd.Parameters.AddWithValue("@rq", increase);
-                con.Cmd.Parameters.AddWithValue("@sid", upid);
-                con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-                a = con.Cmd.ExecuteNonQuery();
+                con.ExecSqlQuery("SELECT * FROM stock_raw WHERE purchaseorder = @po and postatus !=@stat");
+                con.Cmd.Parameters.AddWithValue("@po", po);
+                con.Cmd.Parameters.AddWithValue("@stat", "Returned");
+                con._dr = con.Cmd.ExecuteReader();
+                while (con._dr.Read())
+                {
+                    rq = Convert.ToInt32(con._dr["receivedquantity"].ToString());
+                }
                 con.CloseConnection();
+                decrease = oq - total;
+                increase = rq + total;
+                if (increase >= 0)
+                {
+                    con.OpenConection();
+                    con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat, receivedquantity=@rq, receivedate = @rdate WHERE purchaseorder = @sid and postatus !=@stt");
+                    con.Cmd.Parameters.AddWithValue("@stat", "Partial Delivery");
+                    con.Cmd.Parameters.AddWithValue("@rq", increase);
+                    con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                    con.Cmd.Parameters.AddWithValue("@sid", po);
+                    con.Cmd.Parameters.AddWithValue("@stt", "Returned");
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
+                }
+                if (decrease >= 0)
+                {
+                    con.OpenConection();
+                    con.ExecSqlQuery("UPDATE stock_raw SET quantity=@quan, receivedate = @rdate WHERE stockid = @sid");
+                    con.Cmd.Parameters.AddWithValue("@quan", decrease);
+                    con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                    con.Cmd.Parameters.AddWithValue("@sid", upid);
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
+                }
             }
             return a;
         }
