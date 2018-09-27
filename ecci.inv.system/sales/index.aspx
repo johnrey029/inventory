@@ -118,7 +118,7 @@
                   <thead>
                     <tr>
                       <th style="width:50%">Product</th>
-                      <th style="width:10%">Qty</th>
+                      <th style="width:10%">Quantity</th>
                       <th style="width:10%">Rate</th>
                       <th style="width:20%">Amount</th>
                       <th style="width:10%"><asp:Button ID="btnAddrow" runat="server" CssClass="btn btn-primary" Text="Add New Row" OnClick="btnAddrow_Click"></asp:Button></th>

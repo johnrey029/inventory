@@ -16,7 +16,7 @@ namespace ecci.inv.system.sales
         DBConnection con;
         TableRow tr;
         TableCell tc;
-        int i = 1;
+        int i = 1, count = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -31,6 +31,7 @@ namespace ecci.inv.system.sales
                 lbDate.Text = DateTime.Now.ToString("MMMM d, yyyy");
 
                 lbTime.Text = DateTime.Now.ToString("hh:mm tt");
+                btnAddrow.Font.Size = FontUnit.Smaller;
 
                 load(i);
             }
@@ -54,6 +55,7 @@ namespace ecci.inv.system.sales
 
         private void load(int id)
         {
+            StringBuilder sb = new StringBuilder();
             i = id;
            // StringBuilder table = new StringBuilder();
             tr = new TableRow();
@@ -68,15 +70,29 @@ namespace ecci.inv.system.sales
                 TextBox tbRate = new TextBox();
                 TextBox tbAmount = new TextBox();
                 Button btnRemove = new Button();
+                sb.Append("<div class='form-group'>");
+                
                 //table.Append("<td style='width: 100px'>");
                 switch (x) {
                     case 0: 
                         ddProduct.ID = "Product" + i;
-                       // ddProduct.Text = "Product" + i;
-                        ddProduct.Items.Add("Hello world1");
-                        ddProduct.Items.Add("Hello world2");
-                        ddProduct.Items.Add("Hello world3");
-                        ddProduct.Items.Add("Hello world4");
+                        // ddProduct.Text = "Product" + i;
+                        try
+                        {
+                            con.OpenConection();
+                            con.ExecSqlQuery("Select * from suppliers");
+                            ddProduct.DataTextField = "suppname";
+                            ddProduct.DataValueField = "suppcode";
+                            ddProduct.DataSource = con.DataQueryExec();
+                            ddProduct.DataBind();
+                            ddProduct.Items.Insert(0, new ListItem("Select Supplier", "-1"));
+                            con.CloseConnection();
+                        }
+                        catch { }
+                        //ddProduct.Items.Add("Hello world1");
+                        //ddProduct.Items.Add("Hello world2");
+                        //ddProduct.Items.Add("Hello world3");
+                        //ddProduct.Items.Add("Hello world4");
                         ddProduct.Attributes.Add("style", "width:100%");
                         ddProduct.Attributes.Add("class", "js-example-placeholder-single");
                         tc.Controls.Add(ddProduct);
@@ -84,33 +100,41 @@ namespace ecci.inv.system.sales
                     case 1:
                         tbQty.ID = "Qty" + i;
                         tbQty.Text = "Qty" + i;
-                        //  tbQty.Attributes.Add("class", "form-control");
+
+                        tbQty.Font.Size = FontUnit.Medium;
+                        //tbQty.Attributes.Add("class", "form-control");
                         tc.Controls.Add(tbQty);
                         break;
                     case 2:
                         tbRate.ID = "Rate" + i;
                         tbRate.Text = "Rate" + i;
-                        //  tbRate.Attributes.Add("class", "form-control");
+
+                        tbRate.Font.Size = FontUnit.Medium;
+                        //tbRate.Attributes.Add("class", "form-control");
                         tc.Controls.Add(tbRate);
                         break;
                     case 3:
                         tbAmount.ID = "Amount" + i;
                         tbAmount.Text = "Amount" + i;
-                        //   tbAmount.Attributes.Add("class", "form-control");
+                        tbAmount.Font.Size = FontUnit.Medium;
+                        //tbAmount.Attributes.Add("class", "form-control");
                         tc.Controls.Add(tbAmount);
                         break;
                     case 4:
                         btnRemove.ID = "Remove" + i;
                         btnRemove.Text = "Remove Row";
-                        //     btnRemove.Attributes.Add("class", "btn btn-danger");
+                        btnRemove.Font.Size = FontUnit.Smaller;
+                        ddProduct.Attributes.Add("style", "width:50%");
+                        btnRemove.Attributes.Add("class", "btn btn-warning");
                         btnRemove.Click += BtnRemove_Click;
                         tc.Controls.Add(btnRemove);
                         break;
                     default: break;
                 }
                 tr.Cells.Add(tc);
+                sb.Append("</div>");
             }
-                //  table.Append("</td>");
+            //  table.Append("</td>");
             i++;
             panelTableRow.Controls.Add(tr);
 
@@ -149,39 +173,33 @@ namespace ecci.inv.system.sales
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            int count = 0;
             string message = "";
             foreach (TableRow tbRow in panelTableRow.Controls.OfType<TableRow>())
             {
                 foreach (TableCell tbCell in tbRow.Controls.OfType<TableCell>())
                 {
-                    //count = 1;
-                    foreach (DropDownList ddProd in tbCell.Controls.OfType<DropDownList>())
+                    switch (count)
                     {
-                        message += ddProd.Text + "\\n";
+                        case 0:
+                            foreach (DropDownList ddProd in tbCell.Controls.OfType<DropDownList>())
+                            {
+                                message += ddProd.SelectedValue.ToString() + "\\n";
+                            }
+                            count++;
+                            break;
+                        case 1:
+                        case 2:
+                        case 3:
+                            foreach (TextBox Text in tbCell.Controls.OfType<TextBox>())
+                            {
+                                message += Text.ID.ToString() + "\\n";
+                            }
+                            count++;
+                            break;
+                        default:
+                            count = 0;
+                            break;
                     }
-                    foreach (TextBox Text in tbCell.Controls.OfType<TextBox>())
-                    {
-                         message += Text.Text + "\\n";
-                    }
-                    //count = 0;
-                    //foreach (TextBox tbRate in tbCell.Controls.OfType<TextBox>())
-                    //{
-                    //    count++;
-                    //    if (count == 1)
-                    //    {
-                    //        message += tbRate.Text + "\\n";
-                    //    }
-                    //}
-                    //count = 0;
-                    //foreach (TextBox tbAmount in tbCell.Controls.OfType<TextBox>())
-                    //{
-                    //    count++;
-                    //    if (count == 1){
-                    //        message += tbAmount.Text + "\\n";
-                    //    }
-                    //}
-                    //count = 0;
                 }
             }
             
