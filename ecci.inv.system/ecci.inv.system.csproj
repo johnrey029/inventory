@@ -6768,6 +6768,7 @@
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
     <None Include="Service References\OnHoldService\OnHoldService.wsdl" />
+    <None Include="Service References\ProductOrderService\ProductOrderService.wsdl" />
     <None Include="Service References\ProductRawService\ProdRaw.wsdl" />
     <None Include="Service References\ProductRawService\ProdRaw.disco" />
     <None Include="Service References\ProductRawService\configuration91.svcinfo" />
@@ -6808,6 +6809,15 @@
     <None Include="Service References\OnHoldService\configuration91.svcinfo" />
     <None Include="Service References\OnHoldService\configuration.svcinfo" />
     <None Include="Service References\OnHoldService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="sales\report.aspx" />
+    <Content Include="sales\WebService\ProductOrderService.asmx" />
+    <None Include="Service References\ProductOrderService\ProductOrderService.disco" />
+    <None Include="Service References\ProductOrderService\configuration91.svcinfo" />
+    <None Include="Service References\ProductOrderService\configuration.svcinfo" />
+    <None Include="Service References\ProductOrderService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -7665,6 +7675,18 @@
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
+    <Compile Include="sales\CS\OrderDelivery.cs" />
+    <Compile Include="sales\report.aspx.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sales\report.aspx.designer.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sales\WebService\ProductOrderService.asmx.cs">
+      <DependentUpon>ProductOrderService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Service References\AdminRawService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -7681,6 +7703,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\OnHoldService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProductOrderService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -7935,6 +7962,7 @@
     <WCFMetadataStorage Include="Service References\ManageItemService\" />
     <WCFMetadataStorage Include="Service References\ManageSupplierService\" />
     <WCFMetadataStorage Include="Service References\OnHoldService\" />
+    <WCFMetadataStorage Include="Service References\ProductOrderService\" />
     <WCFMetadataStorage Include="Service References\ProductRawService\" />
     <WCFMetadataStorage Include="Service References\WarehouseRaw\" />
   </ItemGroup>
