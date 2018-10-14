@@ -192,7 +192,7 @@
 
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
-            <li id="stockNav">
+            <li id="reportNav">
               <a href="report.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Reports</span>
               </a>

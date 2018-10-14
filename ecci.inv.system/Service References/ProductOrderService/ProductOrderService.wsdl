@@ -20,25 +20,25 @@
   <wsdl:message name="GetPurchaseOrderHttpGetOut" />
   <wsdl:message name="GetPurchaseOrderHttpPostIn" />
   <wsdl:message name="GetPurchaseOrderHttpPostOut" />
-  <wsdl:portType name="PurchaseOrderServiceSoap">
+  <wsdl:portType name="ProductOrderServiceSoap">
     <wsdl:operation name="GetPurchaseOrder">
       <wsdl:input message="tns:GetPurchaseOrderSoapIn" />
       <wsdl:output message="tns:GetPurchaseOrderSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="PurchaseOrderServiceHttpGet">
+  <wsdl:portType name="ProductOrderServiceHttpGet">
     <wsdl:operation name="GetPurchaseOrder">
       <wsdl:input message="tns:GetPurchaseOrderHttpGetIn" />
       <wsdl:output message="tns:GetPurchaseOrderHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="PurchaseOrderServiceHttpPost">
+  <wsdl:portType name="ProductOrderServiceHttpPost">
     <wsdl:operation name="GetPurchaseOrder">
       <wsdl:input message="tns:GetPurchaseOrderHttpPostIn" />
       <wsdl:output message="tns:GetPurchaseOrderHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="PurchaseOrderServiceSoap" type="tns:PurchaseOrderServiceSoap">
+  <wsdl:binding name="ProductOrderServiceSoap" type="tns:ProductOrderServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetPurchaseOrder">
       <soap:operation soapAction="http://tempuri.org/GetPurchaseOrder" style="document" />
@@ -50,7 +50,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="PurchaseOrderServiceSoap12" type="tns:PurchaseOrderServiceSoap">
+  <wsdl:binding name="ProductOrderServiceSoap12" type="tns:ProductOrderServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetPurchaseOrder">
       <soap12:operation soapAction="http://tempuri.org/GetPurchaseOrder" style="document" />
@@ -62,7 +62,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="PurchaseOrderServiceHttpGet" type="tns:PurchaseOrderServiceHttpGet">
+  <wsdl:binding name="ProductOrderServiceHttpGet" type="tns:ProductOrderServiceHttpGet">
     <http:binding verb="GET" />
     <wsdl:operation name="GetPurchaseOrder">
       <http:operation location="/GetPurchaseOrder" />
@@ -72,7 +72,7 @@
       <wsdl:output />
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="PurchaseOrderServiceHttpPost" type="tns:PurchaseOrderServiceHttpPost">
+  <wsdl:binding name="ProductOrderServiceHttpPost" type="tns:ProductOrderServiceHttpPost">
     <http:binding verb="POST" />
     <wsdl:operation name="GetPurchaseOrder">
       <http:operation location="/GetPurchaseOrder" />
@@ -82,17 +82,17 @@
       <wsdl:output />
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="PurchaseOrderService">
-    <wsdl:port name="PurchaseOrderServiceSoap" binding="tns:PurchaseOrderServiceSoap">
+  <wsdl:service name="ProductOrderService">
+    <wsdl:port name="ProductOrderServiceSoap" binding="tns:ProductOrderServiceSoap">
       <soap:address location="http://localhost:2908/sales/WebService/ProductOrderService.asmx" />
     </wsdl:port>
-    <wsdl:port name="PurchaseOrderServiceSoap12" binding="tns:PurchaseOrderServiceSoap12">
+    <wsdl:port name="ProductOrderServiceSoap12" binding="tns:ProductOrderServiceSoap12">
       <soap12:address location="http://localhost:2908/sales/WebService/ProductOrderService.asmx" />
     </wsdl:port>
-    <wsdl:port name="PurchaseOrderServiceHttpGet" binding="tns:PurchaseOrderServiceHttpGet">
+    <wsdl:port name="ProductOrderServiceHttpGet" binding="tns:ProductOrderServiceHttpGet">
       <http:address location="http://localhost:2908/sales/WebService/ProductOrderService.asmx" />
     </wsdl:port>
-    <wsdl:port name="PurchaseOrderServiceHttpPost" binding="tns:PurchaseOrderServiceHttpPost">
+    <wsdl:port name="ProductOrderServiceHttpPost" binding="tns:ProductOrderServiceHttpPost">
       <http:address location="http://localhost:2908/sales/WebService/ProductOrderService.asmx" />
     </wsdl:port>
   </wsdl:service>

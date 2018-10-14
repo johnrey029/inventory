@@ -180,12 +180,13 @@ namespace ecci.inv.system.qualitycontrol
                 if (comp >= 0 && comp <= quantity)
                 {
                     con.OpenConection();
-                    con.ExecSqlQuery("INSERT INTO stock_warehouse(purchaseorder,quantity,receivedate,status,code)VALUES(@po,@quan,@rdate,@st,@c)");
+                    con.ExecSqlQuery("INSERT INTO stock_warehouse(purchaseorder,quantity,receivedate,status,code,itemsid)VALUES(@po,@quan,@rdate,@st,@c,@id)");
                     con.Cmd.Parameters.AddWithValue("@po", Request.Form.Get("po").ToString());
                     con.Cmd.Parameters.AddWithValue("@quan", comp);
                     con.Cmd.Parameters.AddWithValue("@rdate", DateTime.Parse(date));
                     con.Cmd.Parameters.AddWithValue("@st", "In Stock");
                     con.Cmd.Parameters.AddWithValue("@c", 0);
+                    con.Cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Request.Form.Get("itemsid").ToString()));
                     a = con.Cmd.ExecuteNonQuery();
                     con.CloseConnection();
                 }

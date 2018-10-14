@@ -12,8 +12,8 @@ namespace ecci.inv.system.ProductOrderService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductOrderService.PurchaseOrderServiceSoap")]
-    public interface PurchaseOrderServiceSoap {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductOrderService.ProductOrderServiceSoap")]
+    public interface ProductOrderServiceSoap {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPurchaseOrder", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -24,29 +24,29 @@ namespace ecci.inv.system.ProductOrderService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface PurchaseOrderServiceSoapChannel : ecci.inv.system.ProductOrderService.PurchaseOrderServiceSoap, System.ServiceModel.IClientChannel {
+    public interface ProductOrderServiceSoapChannel : ecci.inv.system.ProductOrderService.ProductOrderServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PurchaseOrderServiceSoapClient : System.ServiceModel.ClientBase<ecci.inv.system.ProductOrderService.PurchaseOrderServiceSoap>, ecci.inv.system.ProductOrderService.PurchaseOrderServiceSoap {
+    public partial class ProductOrderServiceSoapClient : System.ServiceModel.ClientBase<ecci.inv.system.ProductOrderService.ProductOrderServiceSoap>, ecci.inv.system.ProductOrderService.ProductOrderServiceSoap {
         
-        public PurchaseOrderServiceSoapClient() {
+        public ProductOrderServiceSoapClient() {
         }
         
-        public PurchaseOrderServiceSoapClient(string endpointConfigurationName) : 
+        public ProductOrderServiceSoapClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public PurchaseOrderServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public ProductOrderServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public PurchaseOrderServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ProductOrderServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public PurchaseOrderServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ProductOrderServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

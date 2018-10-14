@@ -24,6 +24,7 @@
                             },
                             { 'data': 'purchaseOrder' },
                             { 'data': 'suppName' },
+                            {'data': 'itemsid'},
                             { 'data': 'brandName' },
                             { 'data': 'quantity' },
                             { 'data': 'purchaseDate' },
@@ -96,6 +97,7 @@
                                         <th>Action</th>
                                         <th>PO#</th>
                                         <th>Supplier Name</th>
+                                        <th>Items Id</th>
                                         <th>Brand Name</th>
                                         <th>Stock Quantity</th>
                                         <th>Purchased Date</th>
@@ -192,7 +194,7 @@
             </div>--%>
                     </div>
                     <input type="hidden" id="dispatchquantity" name="dispatchquantity" value="" />
-
+                    <input type="text" id="itemsid" name="itemsid" value="" />
                 </div>
                 <div class="modal-footer bg-aqua-active">
                     <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click" />
@@ -224,6 +226,7 @@
                     $('#pdate').val(data.purchaseDate);
                     $('#ddate').val(data.receivedDate);
                     $('#dispatchquantity').val(data.dispatch);
+                    $('#itemsid').val(data.itemsid);
                 },
                 error: function (err) {
                     alert(err);

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="report.aspx.cs" Inherits="ecci.inv.system.sales.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="report.aspx.cs" Inherits="ecci.inv.system.sales.report" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Reports
 </asp:Content>
@@ -15,6 +15,7 @@
                  datatableVariable = $('#manageTable').DataTable({
                      data: data,
                      columns: [
+                         { 'data': 'orderid' },
                          { 'data': 'client' },
                          { 'data': 'product' },
                          { 'data': 'price' },
@@ -33,7 +34,7 @@
                  alert(err);
              }
          });
-         $("#dashboardMainMenu").addClass('active');
+         $("#reportNav").addClass('active');
 
          });
  </script>  
@@ -80,13 +81,14 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Delivered Goods</h3>
+            <h3 class="box-title">View Ordered History</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
             <table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
               <thead>
               <tr>
+                <th>SO</th>
                 <th>Client</th>
                 <th>Product</th>
                 <th>Price</th>

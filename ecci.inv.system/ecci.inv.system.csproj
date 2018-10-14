@@ -6759,8 +6759,10 @@
     <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="production\rawmaterials.aspx" />
     <Content Include="production\process.aspx" />
+    <Content Include="production\request.aspx" />
     <Content Include="production\WebService\ProcessRaw.asmx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
+    <Content Include="production\WebService\RequestMaterials.asmx" />
     <Content Include="Products.aspx" />
     <Content Include="production\Production.Master" />
     <Content Include="admin\Admin.Master" />
@@ -7639,6 +7641,7 @@
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="production\CS\RawMaterials.cs" />
+    <Compile Include="production\CS\RequestMaterial.cs" />
     <Compile Include="production\Production.Master.cs">
       <DependentUpon>Production.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7660,12 +7663,23 @@
     <Compile Include="production\process.aspx.designer.cs">
       <DependentUpon>process.aspx</DependentUpon>
     </Compile>
+    <Compile Include="production\request.aspx.cs">
+      <DependentUpon>request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\request.aspx.designer.cs">
+      <DependentUpon>request.aspx</DependentUpon>
+    </Compile>
     <Compile Include="production\WebService\ProcessRaw.asmx.cs">
       <DependentUpon>ProcessRaw.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="production\WebService\ProdRaw.asmx.cs">
       <DependentUpon>ProdRaw.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="production\WebService\RequestMaterials.asmx.cs">
+      <DependentUpon>RequestMaterials.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Products.aspx.cs">

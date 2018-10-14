@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true"  CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.sales.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.sales.index" %>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Purchase Order
@@ -127,6 +127,7 @@
                 
                 
                 <br /> <br/>
+             
                 <table class="table table-bordered" id="product_info_table">
                   <thead>
                     <tr>
@@ -175,45 +176,17 @@
                 <br /> <br/>
 
                 <div class="col-md-6 col-xs-12 pull pull-right">
-
-                  <%--<div class="form-group">
-                    <label for="gross_amount" class="col-sm-5 control-label">Gross Amount</label>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control" id="gross_amount" name="gross_amount"  autocomplete="off"/>
-                      <input type="hidden" class="form-control" id="gross_amount_value" name="gross_amount_value" autocomplete="off"/>
-                    </div>
-                  </div>
-
+                    <%--<asp:Panel ID="panelTotal" runat="server"></asp:Panel>--%>
                   <div class="form-group">
-                    <label for="service_charge" class="col-sm-5 control-label">S-Charge </label>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control" id="service_charge" name="service_charge" autocomplete="off"/>
-                      <input type="hidden" class="form-control" id="service_charge_value" name="service_charge_value" autocomplete="off"/>
-                    </div>
+                    <label for="gross_amount" style="text-align:right;font:bold;font-size:large" class="col-sm-4 control-label">Total Amount</label>
+                    <div class="col-sm-8">
+                        <asp:UpdatePanel ID="UpdatePanel5" runat="server" RenderMode="Inline">
+                        <ContentTemplate>
+                        <asp:TextBox ID="tbTotalAmount" runat="server" CssClass="form-control" placeholder="0.00" ReadOnly="true" autocomplete="off" BackColor="White" Font-Bold="True" Font-Size="Large"></asp:TextBox>
+                        </ContentTemplate>
+                        </asp:UpdatePanel>
                   </div>
-
-                  <div class="form-group">
-                    <label for="vat_charge" class="col-sm-5 control-label">Vat </label>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control" id="vat_charge" name="vat_charge"  autocomplete="off"/>
-                      <input type="hidden" class="form-control" id="vat_charge_value" name="vat_charge_value" autocomplete="off"/>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="discount" class="col-sm-5 control-label">Discount</label>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control" id="discount" name="discount" placeholder="Discount" onkeyup="subAmount()" autocomplete="off"/>
-                    </div>
-                  </div>--%>
-
-                 <%-- <div class="form-group">
-                    <label for="net_amount" class="col-sm-5 control-label">Total Amount</label>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control" id="net_amount" name="net_amount"  autocomplete="off"/>
-                      <input type="hidden" class="form-control" id="net_amount_value" name="net_amount_value" autocomplete="off"/>
-                    </div>
-                  </div>--%>
+                      </div>
 
                 </div>
               </div>

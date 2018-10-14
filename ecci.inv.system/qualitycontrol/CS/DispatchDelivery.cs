@@ -12,6 +12,7 @@ namespace ecci.inv.system.qualitycontrol.CS
         public string suppName { get; set; }
         public string brandName { get; set; }
         public int quantity { get; set; }
+        public int itemsid { get; set; }
         public int dispatch { get; set; }
         public string purchaseDate { get; set; }
         public string receivedDate { get; set; }

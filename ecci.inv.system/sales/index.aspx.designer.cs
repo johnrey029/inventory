@@ -103,6 +103,24 @@ namespace ecci.inv.system.sales {
         protected global::System.Web.UI.WebControls.Panel panelTableRow;
         
         /// <summary>
+        /// UpdatePanel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
+        
+        /// <summary>
+        /// tbTotalAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbTotalAmount;
+        
+        /// <summary>
         /// lbError control.
         /// </summary>
         /// <remarks>

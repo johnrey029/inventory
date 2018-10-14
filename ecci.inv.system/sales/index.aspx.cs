@@ -7,18 +7,18 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace ecci.inv.system.sales
 {
     public partial class index : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
-        private string ponumber { get; set; }
-        private string ponumber2 { get; set; }
         DBConnection con;
         TableRow tr;
         TableCell tc;
         bool disp = true;
+        int SumTotal = 0;
         protected int rows
         {
             get { return (int)ViewState["Rows"]; }
@@ -39,6 +39,7 @@ namespace ecci.inv.system.sales
                 this.rows = 1;
                 panelTableRow.Controls.Clear();
                 createRow();
+
                 lbDate.Text = DateTime.Now.ToString("MMMM d, yyyy");
                 //lbTime.Text = DateTime.Now.ToString("hh:mm tt");
                 btnAddrow.Font.Size = FontUnit.Smaller;
@@ -52,6 +53,7 @@ namespace ecci.inv.system.sales
                     createTable();
                 }
             }
+
 
         }
         private void createRow()
@@ -75,7 +77,7 @@ namespace ecci.inv.system.sales
                         {
                             con.OpenConection();
                             con.ExecSqlQuery("Select * from product");
-                            ddProduct.DataTextField = "name";
+                            ddProduct.DataTextField = "pname";
                             ddProduct.DataValueField = "productid";
                             ddProduct.DataSource = con.DataQueryExec();
                             ddProduct.DataBind();
@@ -175,6 +177,14 @@ namespace ecci.inv.system.sales
                 tr.Cells.Add(tc);
             }
             panelTableRow.Controls.Add(tr);
+            AsyncPostBackTrigger trigger5 = new AsyncPostBackTrigger();
+            trigger5.ControlID = "" + rows;
+            trigger5.EventName = "SelectedIndexChanged";
+            AsyncPostBackTrigger trigger6 = new AsyncPostBackTrigger();
+            trigger6.ControlID = "Qty" + rows;
+            trigger6.EventName = "TextChanged";
+            UpdatePanel5.Triggers.Add(trigger5);
+            UpdatePanel5.Triggers.Add(trigger6);
 
         }
 
@@ -189,11 +199,10 @@ namespace ecci.inv.system.sales
             decimal quant = Convert.ToDecimal(tbQ.Text);
             decimal total = uprice * quant;
             tbA.Text = total.ToString();
-
+            tbTotalAmount.Text = getTAmount();
         }
         protected void ddProductSelect(object sender, EventArgs e)
         {
-            //Table table = (Table)Page.FindControl("product_info_table");
             DropDownList dl = (DropDownList)sender;
             string row = dl.ID.ToString();
             TextBox tbR = (TextBox)panelTableRow.FindControl("Rate" + Convert.ToInt32(row));
@@ -213,21 +222,64 @@ namespace ecci.inv.system.sales
                 decimal quant = Convert.ToDecimal(tbQ.Text);
                 decimal total = uprice * quant;
                 tbA.Text = total.ToString();
+                tbTotalAmount.Text = getTAmount();
             }
             catch
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
             }
         }
-
-        //private void DdProduct_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-            
-        //}
+        private string getTAmount()
+        {
+            decimal total = 0;
+            int rws = 0;
+            int count = 0;
+            string[,] array = new string[this.rows, 4];
+            foreach (TableRow tbRow in panelTableRow.Controls.OfType<TableRow>())
+            {
+                foreach (TableCell tbCell in tbRow.Controls.OfType<TableCell>())
+                {
+                    switch (count)
+                    {
+                        case 0:
+                            count++;
+                            break;
+                        case 1:
+                            count++;
+                            break;
+                        case 2:
+                            count++;
+                            break;
+                        case 3:
+                            foreach (UpdatePanel up in tbCell.Controls.OfType<UpdatePanel>())
+                            {
+                                foreach (TextBox Text in up.ContentTemplateContainer.Controls.OfType<TextBox>())
+                                {
+                                    //message += Text.Text.ToString() + "\\n";
+                                    array[rws, 3] = Text.Text.ToString();
+                                }
+                            }
+                            count++;
+                            break;
+                        default:
+                            count = 0;
+                            break;
+                    }
+                }
+                rws++;
+            }
+            rws = 0;
+            for (int x = 0; x < this.rows; x++)
+            {
+                total += Convert.ToDecimal(array[x, 3].ToString());
+            }
+            return total.ToString();
+        }
         private void createTable()
         {
             int num = this.rows;
+            UpdatePanel5.Triggers.Clear();
             for (int i = 1;i<=num; i++)
             {
                 this.rows = i;
@@ -240,26 +292,6 @@ namespace ecci.inv.system.sales
 
         }
 
-        //private void dropProd()
-        //{
-        //    try
-        //    {
-        //        con.OpenConection();
-        //        con.ExecSqlQuery("Select * from product");
-        //        ddProduct.DataTextField = "name";
-        //        ddProduct.DataValueField = "productid";
-        //        ddProduct.DataSource = con.DataQueryExec();
-        //        ddProduct.DataBind();
-        //        ddProduct.Items.Insert(0, new ListItem("Select Product", "-1"));
-        //        con.CloseConnection();
-        //    }
-        //    catch//(Exception ex)
-        //    {
-        //        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-        //        "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-        //    }
-        //}
-
         protected void btnAddrow_Click(object sender, EventArgs e)
         {
             this.rows++;
@@ -268,7 +300,7 @@ namespace ecci.inv.system.sales
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            string message = "";
+            //string message = "";
             int rws = 0;
             int count = 0;
             int checkdb = 0;
@@ -282,7 +314,7 @@ namespace ecci.inv.system.sales
                         case 0:
                             foreach (DropDownList ddProd in tbCell.Controls.OfType<DropDownList>())
                             {
-                                message += ddProd.SelectedValue.ToString() + "\\n";
+                                //message += ddProd.SelectedValue.ToString() + "\\n";
                                 array[rws,0] = ddProd.SelectedValue.ToString();
                             }
                             count++;
@@ -290,7 +322,7 @@ namespace ecci.inv.system.sales
                         case 1:
                             foreach (TextBox Text in tbCell.Controls.OfType<TextBox>())
                             {
-                                message += Text.Text.ToString() + "\\n";
+                                //message += Text.Text.ToString() + "\\n";
                                 array[rws, 1] = Text.Text.ToString();
                             }
                             count++;
@@ -300,7 +332,7 @@ namespace ecci.inv.system.sales
                             {
                                 foreach (TextBox Text in up.ContentTemplateContainer.Controls.OfType<TextBox>())
                                 {
-                                    message += Text.Text.ToString() + "\\n";
+                                    //message += Text.Text.ToString() + "\\n";
                                     array[rws, 2] = Text.Text.ToString();
                                 }
                             }
@@ -311,7 +343,7 @@ namespace ecci.inv.system.sales
                             {
                                 foreach (TextBox Text in up.ContentTemplateContainer.Controls.OfType<TextBox>())
                                 {
-                                    message += Text.Text.ToString() + "\\n";
+                                    //message += Text.Text.ToString() + "\\n";
                                     array[rws, 3] = Text.Text.ToString();
                                 }
                             }
@@ -348,11 +380,12 @@ namespace ecci.inv.system.sales
             {
                 string date = DateTime.Now.ToShortTimeString();
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO purchaseorder(clientid,usersid,date,status)VALUES(@ci,@ui,@date,@stat)");//output inserted.orderid SET @ID = @@IDENTITY RETURN @ID
+                con.ExecSqlQuery("INSERT INTO purchaseorder(clientid,usersid,date,status,totalamount)VALUES(@ci,@ui,@date,@stat,@tamount)");//output inserted.orderid SET @ID = @@IDENTITY RETURN @ID
                 con.Cmd.Parameters.AddWithValue("@ci", ddCustomer.SelectedValue.ToString());
                 con.Cmd.Parameters.AddWithValue("@ui", 4008);
                 con.Cmd.Parameters.AddWithValue("@date", DateTime.Parse(date));
                 con.Cmd.Parameters.AddWithValue("@stat", "Order");
+                con.Cmd.Parameters.AddWithValue("@tamount", tbTotalAmount.Text);
                 //con.Cmd.Parameters.Add("@ID", SqlDbType.Int).Direction = ParameterDirection.Output;
                 //int olid = Convert.ToInt32(con.Cmd.Parameters["@ID"].Value.ToString());
                 con.Cmd.ExecuteNonQuery();
@@ -388,8 +421,6 @@ namespace ecci.inv.system.sales
                     con.Cmd.Parameters.AddWithValue("@pid", array[i, 0]);
                     checkdb = Convert.ToInt32(con.Cmd.ExecuteScalar());
                     con.CloseConnection();
-
-
                     try
                     {
                         if (checkdb  > 0)
@@ -458,6 +489,7 @@ namespace ecci.inv.system.sales
             tbAddress.Text = "";
             tbContact.Text = "";
             lbError.Visible = false;
+            tbTotalAmount.Text = "0.00";
             createRow();
 
         }
@@ -481,48 +513,6 @@ namespace ecci.inv.system.sales
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
             }
         }
-
-        //protected void ddProduct_SelectedIndexChanged1(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        con.OpenConection();
-        //        con._dr = con.DataReader("SELECT * FROM product WHERE productid='" + ddProduct.SelectedValue.ToString() + "'");
-        //        while (con._dr.Read())
-        //        {
-        //            tbRate.Text = con._dr["price"].ToString();
-        //        }
-        //        con.CloseConnection();
-        //    }
-        //    catch
-        //    {
-        //        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-        //        "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-        //    }
-
-        //    decimal uprice = Convert.ToDecimal(tbRate.Text);
-        //    decimal quant = Convert.ToDecimal(tbQuantity.Text);
-
-        //    decimal total = uprice * quant;
-        //    tbAmount.Text = total.ToString();
-        //}
-
-        //protected void tbQuantity_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (Convert.ToInt32(tbQuantity.Text) <= 0)
-        //    {
-        //        lbError.Visible = true;
-        //    }
-        //    else
-        //    {
-        //        lbError.Visible = false;
-        //        decimal uprice = Convert.ToDecimal(tbRate.Text);
-        //        decimal quant = Convert.ToDecimal(tbQuantity.Text);
-        //        decimal total = uprice * quant;
-        //        tbAmount.Text = total.ToString();
-        //    }
-        //}
-
         private void dropdown()
         {
             try
