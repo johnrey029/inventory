@@ -29,7 +29,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             var orders = new List<DispatchDelivery>();
             con.OpenConection();
             con._dr = con.DataReader(
-            @"SELECT s.purchaseorder,s.receivedquantity,s.purchasedate,s.receivedate,
+            @"SELECT s.purchaseorder,s.receivedquantity,s.purchasedate,s.receivedate,s.itemsid,
             s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
@@ -48,7 +48,8 @@ namespace ecci.inv.system.qualitycontrol.WebService
                     quantity = Convert.ToInt32(con._dr["receivedquantity"].ToString()),
                     purchaseDate = dt.ToShortDateString(),
                     receivedDate = dt1.ToShortDateString(),
-                    poStatus = con._dr["postatus"].ToString()
+                    poStatus = con._dr["postatus"].ToString(),
+                    itemsid = Convert.ToInt32(con._dr["itemsid"].ToString())
                 };
                 orders.Add(order);
             }
@@ -66,7 +67,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
             con.OpenConection();
             con._dr = con.DataReader(
             @"SELECT s.purchaseorder,s.receivedquantity,s.dispatchquantity,s.purchasedate,s.receivedate,
-            s.stockid, s.postatus, i.brandname, u.suppname FROM stock_raw s
+            s.stockid, s.itemsid,s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
             WHERE s.stockid = '" + id + "';");
@@ -86,6 +87,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 od.receivedDate = dt1.ToShortDateString();
                 od.poStatus = con._dr["postatus"].ToString();
                 od.dispatch = Convert.ToInt32(con._dr["dispatchquantity"].ToString());
+                od.itemsid = Convert.ToInt32(con._dr["itemsid"].ToString());
                 //};
                 //orders.Add(order);
             }
