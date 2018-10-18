@@ -6764,6 +6764,17 @@
     <Content Include="Products.aspx" />
     <Content Include="production\Production.Master" />
     <Content Include="admin\Admin.Master" />
+    <Content Include="qualitycontrol\inspection.xsc">
+      <DependentUpon>inspection.xsd</DependentUpon>
+    </Content>
+    <None Include="qualitycontrol\inspection.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>inspection.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="qualitycontrol\inspection.xss">
+      <DependentUpon>inspection.xsd</DependentUpon>
+    </Content>
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
@@ -7664,6 +7675,11 @@
     </Compile>
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="qualitycontrol\inspection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>inspection.xsd</DependentUpon>
     </Compile>
     <Compile Include="Service References\AdminRawService\Reference.cs">
       <AutoGen>True</AutoGen>
