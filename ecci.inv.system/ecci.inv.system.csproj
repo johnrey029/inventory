@@ -6735,6 +6735,8 @@
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Images\globe.jpg" />
+    <Content Include="Images\minus.png" />
+    <Content Include="Images\plus.png" />
     <Content Include="js\main.js" />
     <Content Include="css\sidenav.css" />
     <Content Include="css\CustomStyle.css" />
@@ -6752,14 +6754,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt01" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt02" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt03" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05" />
     <Content Include="production\rawmaterials.aspx" />
     <Content Include="production\process.aspx" />
     <Content Include="production\request.aspx" />
+    <Content Include="production\orderedrequest.aspx" />
     <Content Include="production\WebService\ProcessRaw.asmx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
     <Content Include="production\WebService\RequestMaterials.asmx" />
@@ -6814,7 +6812,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="sales\reports.aspx" />
     <Content Include="sales\report.aspx" />
+    <Content Include="sales\WebService\OrderService.asmx" />
     <Content Include="sales\WebService\ProductOrderService.asmx" />
     <None Include="Service References\ProductOrderService\ProductOrderService.disco" />
     <None Include="Service References\ProductOrderService\configuration91.svcinfo" />
@@ -7532,36 +7532,6 @@
     <Content Include="Images\Carousel 02.jpg" />
     <Content Include="Images\Carousel 03.jpg" />
     <Content Include="Images\noimage.jpg" />
-    <Content Include="Images\ProductImages\10005\WROGN Men Blue Slim Fit Printed Casual Shirt01.jpg" />
-    <Content Include="Images\ProductImages\10005\WROGN Men Blue Slim Fit Printed Casual Shirt02.jpg" />
-    <Content Include="Images\ProductImages\10005\WROGN Men Blue Slim Fit Printed Casual Shirt03.jpg" />
-    <Content Include="Images\ProductImages\10005\WROGN Men Blue Slim Fit Printed Casual Shirt04.jpg" />
-    <Content Include="Images\ProductImages\10005\WROGN Men Blue Slim Fit Printed Casual Shirt05.jpg" />
-    <Content Include="Images\ProductImages\10006\Flying Machine Men Navy Checked Casual Shirt01.jpg" />
-    <Content Include="Images\ProductImages\10006\Flying Machine Men Navy Checked Casual Shirt02.jpg" />
-    <Content Include="Images\ProductImages\10006\Flying Machine Men Navy Checked Casual Shirt03.jpg" />
-    <Content Include="Images\ProductImages\10006\Flying Machine Men Navy Checked Casual Shirt04.jpg" />
-    <Content Include="Images\ProductImages\10006\Flying Machine Men Navy Checked Casual Shirt05.jpg" />
-    <Content Include="Images\ProductImages\10007\Flying Machine Men Blue Regular Fit Washed Casual Shirt01.jpg" />
-    <Content Include="Images\ProductImages\10007\Flying Machine Men Blue Regular Fit Washed Casual Shirt02.jpg" />
-    <Content Include="Images\ProductImages\10007\Flying Machine Men Blue Regular Fit Washed Casual Shirt03.jpg" />
-    <Content Include="Images\ProductImages\10007\Flying Machine Men Blue Regular Fit Washed Casual Shirt04.jpg" />
-    <Content Include="Images\ProductImages\10007\Flying Machine Men Blue Regular Fit Washed Casual Shirt05.jpg" />
-    <Content Include="Images\ProductImages\10008\Flying Machine Men White Printed Casual Shirt01.jpg" />
-    <Content Include="Images\ProductImages\10008\Flying Machine Men White Printed Casual Shirt02.jpg" />
-    <Content Include="Images\ProductImages\10008\Flying Machine Men White Printed Casual Shirt03.jpg" />
-    <Content Include="Images\ProductImages\10008\Flying Machine Men White Printed Casual Shirt04.jpg" />
-    <Content Include="Images\ProductImages\10008\Flying Machine Men White Printed Casual Shirt05.jpg" />
-    <Content Include="Images\ProductImages\10009\Flying Machine Men White Printed Casual Shirt01.jpg" />
-    <Content Include="Images\ProductImages\10009\Flying Machine Men White Printed Casual Shirt02.jpg" />
-    <Content Include="Images\ProductImages\10009\Flying Machine Men White Printed Casual Shirt03.jpg" />
-    <Content Include="Images\ProductImages\10009\Flying Machine Men White Printed Casual Shirt04.jpg" />
-    <Content Include="Images\ProductImages\10009\Flying Machine Men White Printed Casual Shirt05.jpg" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt01.jpg" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt02.jpg" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt03.jpg" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt04.jpg" />
-    <Content Include="Images\ProductImages\7\Peter England Men Blue Linen Slim Fit Formal Shirt05.jpg" />
     <Content Include="Images\shirt01.jpg" />
     <Content Include="Images\tc.png" />
     <Content Include="Images\Thumb01.jpeg" />
@@ -7670,6 +7640,13 @@
     <Compile Include="production\request.aspx.designer.cs">
       <DependentUpon>request.aspx</DependentUpon>
     </Compile>
+    <Compile Include="production\orderedrequest.aspx.cs">
+      <DependentUpon>orderedrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\orderedrequest.aspx.designer.cs">
+      <DependentUpon>orderedrequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="production\WebService\ProcessRaw.asmx.cs">
       <DependentUpon>ProcessRaw.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -7690,12 +7667,24 @@
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="sales\CS\OrderDelivery.cs" />
+    <Compile Include="sales\CS\RequestMaterial.cs" />
+    <Compile Include="sales\reports.aspx.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sales\reports.aspx.designer.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="sales\report.aspx.cs">
       <DependentUpon>report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="sales\report.aspx.designer.cs">
       <DependentUpon>report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sales\WebService\OrderService.asmx.cs">
+      <DependentUpon>OrderService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="sales\WebService\ProductOrderService.asmx.cs">
       <DependentUpon>ProductOrderService.asmx</DependentUpon>

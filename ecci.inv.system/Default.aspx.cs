@@ -108,7 +108,7 @@ namespace ecci.inv.system
                                     break;
                                 case "Production":
                                     Session["empnumber"] = con._dr["empno"].ToString();
-                                    Response.Redirect("~/production/request.aspx");
+                                    Response.Redirect("~/production/orderedrequest.aspx");
                                     break;
 
                                 case "Sales":

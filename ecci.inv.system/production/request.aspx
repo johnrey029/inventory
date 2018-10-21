@@ -198,7 +198,7 @@
                       $('#supplier').val(data.suppName);
                       $('#brand').val(data.brandName);
                       $('#sdate').val(data.receivedDate);
-                      document.getElementById('<%=qty.ClientID %>').value = data.quantity;
+                      <%--document.getElementById('<%=qty.ClientID %>').value = data.quantity;--%>
                   $('#hiddenquantity').val(data.quantity);
                   
               },

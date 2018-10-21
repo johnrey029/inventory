@@ -10,7 +10,7 @@
 namespace ecci.inv.system.production {
     
     
-    public partial class report {
+    public partial class orderedrequest {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -29,6 +29,15 @@ namespace ecci.inv.system.production {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbWarning;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// qty control.

@@ -1,44 +1,44 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="report.aspx.cs" Inherits="ecci.inv.system.production.report" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="orderedrequest.aspx.cs" Inherits="ecci.inv.system.production.orderedrequest" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Production
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
          $(document).ready(function () {
-             var datatableVariable;
-             //data-target="#updateModal" data-toggle="modal"<i class="fa fa-clipboard-edit"></i> data-target='#updateModal' data-toggle='modal'
-         $.ajax({  
-             type: "POST",  
-             dataType: "json",
-             url: "WebService/OrderService.asmx/GetProductRaw",
-             success: function (data) {
-                 datatableVariable = $('#manageTable').DataTable({
-                     data: data,
-                     columns: [
-                         //{
-                         //    'data': 'so', 'render': function (data, type, row) {
-                         //        return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Assessment</a>";
-                         //    },
-                         //    orderable: false
-                         //},
-                         { 'data': 'so' },
-                         { 'data': 'client' },
-                         { 'data': 'amount' },
-                         { 'data': 'date' },
-                         { 'data': 'status' },
-                         { 'data': 'user' }
-                     ],
-                     language: {
-                         emptyTable: "No Request Available!"
-                     }
-                 });
-             },
-             bServerSide: true,
-             error: function (err) {
-                 alert(err);
-             }
-         });
-         $("#reportNav").addClass('active');
+         //    var datatableVariable;
+         //    //data-target="#updateModal" data-toggle="modal"<i class="fa fa-clipboard-edit"></i> data-target='#updateModal' data-toggle='modal'
+         //$.ajax({  
+         //    type: "POST",  
+         //    dataType: "json",
+         //    url: "WebService/ProdRaw.asmx/GetProductRaw",
+         //    success: function (data) {
+         //        datatableVariable = $('#manageTable').DataTable({
+         //            data: data,
+         //            columns: [
+         //                {
+         //                    'data': 'id', 'render': function (data, type, row) {
+         //                        return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Request</a>";
+         //                    },
+         //                    orderable: false
+         //                },
+         //                { 'data': 'purchaseOrder' },
+         //                { 'data': 'suppName' },
+         //                { 'data': 'brandName' },
+         //                { 'data': 'quantity'},
+         //                { 'data': 'receivedDate' },
+         //                { 'data': 'status' }
+         //            ],
+         //            language: {
+         //                emptyTable: "No Request Available!"
+         //            }
+         //        });
+         //    },
+         //    bServerSide: true,
+         //    error: function (err) {
+         //        alert(err);
+         //    }
+         //});
+         $("#requestNav").addClass('active');
 
          });
  </script>  
@@ -86,20 +86,57 @@
           <div class="box-header">
             <h3 class="box-title">View Raw Materials</h3>
           </div>
-          <!-- /.box-header -->
+          <!-- /.box-header --><%-- --%>
           <div class="box-body">
-            <table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
+              <asp:GridView ID="GridView1" CssClass="table table-bordered table-striped" runat="server" AutoGenerateColumns="false">
+                  <Columns>
+                      <asp:TemplateField>
+                          <ItemTemplate>
+                              <a href="JavaScript:expandcollapse('<%#Eval("orderid" + "productid") %>');">
+                                 <img src="../Images/plus.png" border="0" id='img<%#Eval("orderid" + "productid") %>' />
+                              </a>
+                          </ItemTemplate>
+                      </asp:TemplateField>
+                      <asp:BoundField DataField="name" HeaderText="Customer Name" />
+                      <asp:BoundField DataField="pname" HeaderText="Product Name"/>
+                      <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
+                      <asp:BoundField DataField="price" HeaderText="Price"/>
+                      <asp:BoundField DataField="amount" HeaderText="Total Amount" />
+                      <asp:BoundField DataField="date" HeaderText="Date"/>
+                      <asp:BoundField DataField="status" HeaderText="Status" />
+                      <asp:TemplateField>
+                          <ItemTemplate>
+                              <tr>
+                                  <td>
+                                      <div id='<%#Eval("productid") %>' style="display:none">
+                                          <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" AutoGenerateColumns="false">
+                                                 <Columns>
+                                                     <asp:BoundField DataField="name" HeaderText="Customer Name" />
+                                                     <asp:BoundField DataField="pname" HeaderText="Product Name"/>
+                                                     <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
+                                                 </Columns>
+                                          </asp:GridView>
+                                      </div>
+
+                                  </td>
+                              </tr>
+                          </ItemTemplate>
+                      </asp:TemplateField>
+                  </Columns>
+              </asp:GridView>
+            <%--<table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
               <thead>
               <tr>
-                <th>Sales Order</th>
-                <th>Client Name</th>
-                <th>Total Amount</th>
-                <th>Date</th>
+                <th>Action</th>
+                <th>PO#</th>
+                <th>Supplier Name</th>
+                <th>Brand Name</th>
+                <th>Stock Quantity</th>
+                <th>Stock Date</th>
                 <th>Status</th>
-                <th>Employee</th>
               </tr>
               </thead>
-            </table>
+            </table>--%>
           </div>
             <input type="hidden" id="hiddenStockId"  name="hiddenStockId" value="" />
           <!-- /.box-body -->
@@ -190,7 +227,7 @@
            $('#hiddenStockId').val(stockId);
            var sid = $('#hiddenStockId').val();
           $.ajax({
-              url: "WebService/ProcessRaw.asmx/ShowDeliveredById",
+              url: "WebService/ProdRaw.asmx/ShowDeliveredById",
               data: { id: sid },
               type: "POST",
               dataType: "json",
@@ -199,7 +236,7 @@
                       $('#supplier').val(data.suppName);
                       $('#brand').val(data.brandName);
                       $('#sdate').val(data.receivedDate);
-                      <%--document.getElementById('<%=qty.ClientID %>').value = data.quantity;--%>
+                      document.getElementById('<%=qty.ClientID %>').value = data.quantity;
                   $('#hiddenquantity').val(data.quantity);
                   
               },

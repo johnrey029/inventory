@@ -184,7 +184,7 @@
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
             <li id="requestNav">
-              <a href="rawmaterials.aspx">
+              <a href="orderedrequest.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Request Materials</span>
               </a>
             </li>
