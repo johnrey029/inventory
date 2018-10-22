@@ -39,8 +39,19 @@
          //    }
          //});
          $("#requestNav").addClass('active');
-
          });
+         function expandcollapse(name) {
+             var div = document.getElementById(name);
+             var img = document.getElementById('img' + name);
+             if (div.style.display=="none") {
+                 div.style.display = "inline";
+                 img.src = "../Images/minus.png";
+             }
+             else {
+                 div.style.display = "none";
+                 img.src = "../Images/plus.png";
+             }
+         }
  </script>  
 </asp:Content>
 <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -88,32 +99,35 @@
           </div>
           <!-- /.box-header --><%-- --%>
           <div class="box-body">
-              <asp:GridView ID="GridView1" CssClass="table table-bordered table-striped" runat="server" AutoGenerateColumns="false">
+              <asp:GridView ID="GridView1" CssClass="table table-bordered table-striped" runat="server" 
+                  AutoGenerateColumns="false" OnRowDataBound="GridView1_RowDataBound" 
+                  DataKeyNames="uniqueid">
                   <Columns>
                       <asp:TemplateField>
                           <ItemTemplate>
-                              <a href="JavaScript:expandcollapse('<%#Eval("orderid" + "productid") %>');">
-                                 <img src="../Images/plus.png" border="0" id='img<%#Eval("orderid" + "productid") %>' />
+                              <a href="JavaScript:expandcollapse('<%#Eval("uniqueid") %>');">
+                                 <img src="../Images/plus.png" class="img-sm" border="0" id='img<%#Eval("uniqueid") %>' />
                               </a>
                           </ItemTemplate>
                       </asp:TemplateField>
                       <asp:BoundField DataField="name" HeaderText="Customer Name" />
-                      <asp:BoundField DataField="pname" HeaderText="Product Name"/>
+                      <asp:BoundField DataField="pname" HeaderText="Product Name" />
                       <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
-                      <asp:BoundField DataField="price" HeaderText="Price"/>
+                      <asp:BoundField DataField="price" HeaderText="Price" />
                       <asp:BoundField DataField="amount" HeaderText="Total Amount" />
                       <asp:BoundField DataField="date" HeaderText="Date"/>
-                      <asp:BoundField DataField="status" HeaderText="Status" />
-                      <asp:TemplateField>
+                      <%--<asp:BoundField DataField="status"  />--%>
+                      <asp:TemplateField HeaderText="Status">
                           <ItemTemplate>
+                              <%#Eval("status") %>
                               <tr>
                                   <td>
-                                      <div id='<%#Eval("productid") %>' style="display:none">
-                                          <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" AutoGenerateColumns="false">
+                                      <div id='<%#Eval("uniqueid") %>' style="display:none">
+                                          <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" Width="100%" AutoGenerateColumns="false">
                                                  <Columns>
-                                                     <asp:BoundField DataField="name" HeaderText="Customer Name" />
-                                                     <asp:BoundField DataField="pname" HeaderText="Product Name"/>
+                                                     <asp:BoundField DataField="brandname" HeaderText="Material Name" />
                                                      <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
+                                                     <asp:BoundField DataField="price" HeaderText="Price"/>
                                                  </Columns>
                                           </asp:GridView>
                                       </div>
@@ -123,6 +137,7 @@
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
+                  
               </asp:GridView>
             <%--<table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
               <thead>
@@ -222,37 +237,5 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
     <script type="text/javascript">  
-         function ConfirmUpdate(stockId)
-         {
-           $('#hiddenStockId').val(stockId);
-           var sid = $('#hiddenStockId').val();
-          $.ajax({
-              url: "WebService/ProdRaw.asmx/ShowDeliveredById",
-              data: { id: sid },
-              type: "POST",
-              dataType: "json",
-              success: function (data) {
-                      $('#po').val(data.purchaseOrder);
-                      $('#supplier').val(data.suppName);
-                      $('#brand').val(data.brandName);
-                      $('#sdate').val(data.receivedDate);
-                      document.getElementById('<%=qty.ClientID %>').value = data.quantity;
-                  $('#hiddenquantity').val(data.quantity);
-                  
-              },
-              error: function (err) {
-                  alert(err);
-              }
-          });
-             $('#updateModal').modal('show');
-       <%--      document.getElementById("<%=qty.ClientID%>").style.borderColor = 'Green';
-             document.getElementById("<%=qty.ClientID%>").style.color = 'Black';
-             document.getElementById("<%=lbError.ClientID%>").style.color = 'Green';
-             document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';--%>
-         }
-         function myFunction() {
-           <%--  document.getElementById("<%=lbError.ClientID%>").innerHTML = 'Receiving Total Quantity';
-             document.getElementById("<%=btnSave.ClientID%>").disabled = false;--%>
-         }
  </script>
 </asp:Content>
