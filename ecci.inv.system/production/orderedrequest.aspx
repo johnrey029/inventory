@@ -118,7 +118,7 @@
                                                  </Columns>
                               </asp:GridView>
                                 <div style="width:100%; text-align:center;">
-                                <button class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" id="'<%#Eval("uniqueid") %>'" name="submit" type="submit">Request Raw Materials</button>
+                                <button class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" id="'<%#Eval("uniqueid") %>'" onclick="return ConfirmUpdate('<%#Eval("uniqueid") %>')" name="submit" type="submit">Request Raw Materials</button>
                                 </div>
                               </br>
                                      <%--<tr>onclick='<%#Request_RawMats(this.ClientID) %>'
@@ -162,74 +162,36 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<!-- Update raw stock modal -->
-<div class="modal fade" tabindex="-1"  role="dialog" id="updateModal">
+    <div class="modal fade" tabindex="-1"  role="dialog" id="popUpModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-aqua-active">
         <button type="button" class="close active" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Releasing Of Raw Materials</h4>
+        <h4 class="modal-title">Request</h4>
       </div>
 
         <div class="modal-body">
             <div class="form-group">
-                <label for="PO">Purchase Order Number</label>
-                <input type="text" class="form-control" id="po" name="po" readonly="true"/>
+                <label for="PO">Proceed to request the list of raw materials?</label>
             </div>
-            <div class="form-group">
-                <label for="supplier">Supplier</label>
-                <input type="text" class="form-control" id="supplier" name="supplier" readonly="true"/>
-             </div>
-             <div class="form-group">
-                 <label for="brand">Brand</label>
-                 <input type="text" class="form-control" id="brand" name="brand" readonly="true"/>
-             </div>
-            <%--<div class="form-group">
-                <label for="pdate">Purchased Date</label>
-                <input type="text" class="form-control" id="pdate" name="pdate" readonly="true"/>
-            </div>--%>
-            <div class="form-group">
-                <label for="sdate">Stock Date</label>
-                <input type="text" class="form-control" id="sdate" name="sdate" readonly="true"/>
-            </div>
-            <div class="form-group">
-                <label for="qty">Stock Quantity</label>
-                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="qty" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
-                    <ContentTemplate>--%>
-                <asp:TextBox ID="qty" CssClass="form-control"  runat="server" ReadOnly="true"></asp:TextBox>
-            <%--</ContentTemplate> 
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
-                        </Triggers>
-                    </asp:UpdatePanel>--%>
-            </div>
-            <%--<div class="form-group">
-                <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
-                    <ContentTemplate>
-             <asp:Label ID="lbError" runat="server" Text="Receiving Total Quantity" Visible="true" ForeColor="Green"></asp:Label>
-                        </ContentTemplate> 
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="qty" EventName="TextChanged" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                </div>--%>
-            <input type="hidden" id="hiddenquantity"  name="hiddenquantity" value="" />
-                
         </div>
         
         <div class="modal-footer bg-aqua-active">
-          <asp:Button ID="btnSave" runat="server" Text="Release Raw Materials" CssClass="btn btn-success"/>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="myFunction()">Cancel</button>
-           <%-- OnClick="btnSave_Click"  UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Receiving...'; this.disabled='false'; }"--%>
-          <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button>--%>
-             <%-- <input type="text" class="form-control" id="qty" name="qty" readonly="false"/>--%> 
+          <asp:Button ID="btnRequest" runat="server" Text="Send Request" CssClass="btn btn-success"
+              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Requesting...'; this.disabled='false'; }"/>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <%--<button type="submit" class="btn btn-primary" onclick="UpdateDelivery()">Receive Delivery</button> onclick="myFunction()"--%>
+             <%-- <input type="text" class="form-control" id="qty" name="qty" readonly="false"/>--%>
         </div>
 
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-    <script type="text/javascript">  
+    <script type="text/javascript"> 
+        function ConfirmUpdate(stockId) {
+            $('#popUpModal').modal('show');
+            return false;
+        }
  </script>
 </asp:Content>
