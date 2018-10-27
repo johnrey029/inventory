@@ -115,8 +115,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\rawmaterials.aspx" />
-    <Content Include="admin\WebService\AdminRaw.asmx" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -6763,7 +6761,6 @@
     <Content Include="production\WebService\RequestMaterials.asmx" />
     <Content Include="Products.aspx" />
     <Content Include="production\Production.Master" />
-    <Content Include="admin\Admin.Master" />
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
@@ -6823,15 +6820,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="superadmin\manageitems.aspx" />
-    <Content Include="superadmin\managesuppliers.aspx" />
-    <Content Include="superadmin\manageusers.aspx" />
-    <Content Include="superadmin\WebService\ManageItemService.asmx" />
-    <Content Include="superadmin\WebService\ManageSupplierService.asmx" />
+    <Content Include="admin\manageitems.aspx" />
+    <Content Include="admin\managesuppliers.aspx" />
+    <Content Include="admin\manageusers.aspx" />
+    <Content Include="admin\WebService\ManageItemService.asmx" />
+    <Content Include="admin\WebService\ManageSupplierService.asmx" />
     <Content Include="purchasing\WebService\PurchaseOrderService.asmx" />
     <Content Include="purchasing\index.aspx" />
-    <Content Include="superadmin\supplier.aspx" />
-    <Content Include="superadmin\items.aspx" />
+    <Content Include="admin\supplier.aspx" />
+    <Content Include="admin\items.aspx" />
     <Content Include="purchasing\stock.aspx" />
     <Content Include="qualitycontrol\dispatching.aspx" />
     <Content Include="qualitycontrol\index.aspx" />
@@ -7507,8 +7504,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="superadmin\resetpassword.aspx" />
-    <Content Include="superadmin\Superadmin.Master" />
+    <Content Include="admin\resetpassword.aspx" />
+    <Content Include="admin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
     <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\WareHouse.Master" />
@@ -7545,9 +7542,9 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Dashboard.aspx" />
     <Content Include="EditProducts.aspx" />
-    <Content Include="superadmin\department.aspx" />
-    <Content Include="superadmin\index.aspx" />
-    <Content Include="superadmin\users.aspx" />
+    <Content Include="admin\department.aspx" />
+    <Content Include="admin\index.aspx" />
+    <Content Include="admin\users.aspx" />
     <Content Include="warehouse\index.aspx" />
     <Content Include="warehouse\WebService\WarehouseRaw.asmx" />
     <Content Include="Web.config">
@@ -7568,25 +7565,6 @@
     </Compile>
     <Compile Include="AddProducts.aspx.designer.cs">
       <DependentUpon>AddProducts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\Admin.Master.designer.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-    </Compile>
-    <Compile Include="admin\CS\RawMaterials.cs" />
-    <Compile Include="admin\rawmaterials.aspx.cs">
-      <DependentUpon>rawmaterials.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\rawmaterials.aspx.designer.cs">
-      <DependentUpon>rawmaterials.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\WebService\AdminRaw.asmx.cs">
-      <DependentUpon>AdminRaw.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>
@@ -7725,21 +7703,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\CS\ManageItem.cs" />
-    <Compile Include="superadmin\CS\ManageSupplier.cs" />
+    <Compile Include="admin\CS\ManageItem.cs" />
+    <Compile Include="admin\CS\ManageSupplier.cs" />
     <Compile Include="purchasing\CS\PurchaseOrder.cs" />
-    <Compile Include="superadmin\manageitems.aspx.cs">
+    <Compile Include="admin\manageitems.aspx.cs">
       <DependentUpon>manageitems.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\manageitems.aspx.designer.cs">
+    <Compile Include="admin\manageitems.aspx.designer.cs">
       <DependentUpon>manageitems.aspx</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\managesuppliers.aspx.cs">
+    <Compile Include="admin\managesuppliers.aspx.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\managesuppliers.aspx.designer.cs">
+    <Compile Include="admin\managesuppliers.aspx.designer.cs">
       <DependentUpon>managesuppliers.aspx</DependentUpon>
     </Compile>
     <Compile Include="purchasing\purchaseorder.cs">
@@ -7750,18 +7728,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>purchaseorder.xsd</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\manageusers.aspx.cs">
+    <Compile Include="admin\manageusers.aspx.cs">
       <DependentUpon>manageusers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\manageusers.aspx.designer.cs">
+    <Compile Include="admin\manageusers.aspx.designer.cs">
       <DependentUpon>manageusers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\WebService\ManageItemService.asmx.cs">
+    <Compile Include="admin\WebService\ManageItemService.asmx.cs">
       <DependentUpon>ManageItemService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="superadmin\WebService\ManageSupplierService.asmx.cs">
+    <Compile Include="admin\WebService\ManageSupplierService.asmx.cs">
       <DependentUpon>ManageSupplierService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
@@ -7783,19 +7761,19 @@
     <Compile Include="purchasing\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\supplier.aspx.cs">
+    <Compile Include="admin\supplier.aspx.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\supplier.aspx.designer.cs">
+    <Compile Include="admin\supplier.aspx.designer.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="superadmin\items.aspx.cs">
+    <Compile Include="admin\items.aspx.cs">
       <DependentUpon>items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\items.aspx.designer.cs">
+    <Compile Include="admin\items.aspx.designer.cs">
       <DependentUpon>items.aspx</DependentUpon>
     </Compile>
     <Compile Include="purchasing\stock.aspx.cs">
@@ -7886,39 +7864,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\department.aspx.cs">
+    <Compile Include="admin\department.aspx.cs">
       <DependentUpon>department.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\department.aspx.designer.cs">
+    <Compile Include="admin\department.aspx.designer.cs">
       <DependentUpon>department.aspx</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\index.aspx.cs">
+    <Compile Include="admin\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\index.aspx.designer.cs">
+    <Compile Include="admin\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\resetpassword.aspx.cs">
+    <Compile Include="admin\resetpassword.aspx.cs">
       <DependentUpon>resetpassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\resetpassword.aspx.designer.cs">
+    <Compile Include="admin\resetpassword.aspx.designer.cs">
       <DependentUpon>resetpassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\Superadmin.Master.cs">
+    <Compile Include="admin\Superadmin.Master.cs">
       <DependentUpon>Superadmin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\Superadmin.Master.designer.cs">
+    <Compile Include="admin\Superadmin.Master.designer.cs">
       <DependentUpon>Superadmin.Master</DependentUpon>
     </Compile>
-    <Compile Include="superadmin\users.aspx.cs">
+    <Compile Include="admin\users.aspx.cs">
       <DependentUpon>users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="superadmin\users.aspx.designer.cs">
+    <Compile Include="admin\users.aspx.designer.cs">
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
     <Compile Include="warehouse\CS\RawMaterials.cs" />
@@ -7974,7 +7952,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="superadmin\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

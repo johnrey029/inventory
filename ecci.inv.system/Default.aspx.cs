@@ -87,9 +87,9 @@ namespace ecci.inv.system
                                     Response.Redirect("~/purchasing/index.aspx");
                                     break;
 
-                                case "Super Admin":
+                                case "Admin":
                                     Session["empnumber"] = con._dr["empno"].ToString();
-                                    Response.Redirect("~/superadmin/index.aspx");
+                                    Response.Redirect("~/admin/index.aspx");
                                     break;
 
                                 case "Quality Control":
@@ -102,9 +102,9 @@ namespace ecci.inv.system
                                     Response.Redirect("~/warehouse/index.aspx");
                                     break;
 
-                                case "Admin":
+                                case "Super Admin":
                                     Session["empnumber"] = con._dr["empno"].ToString();
-                                    Response.Redirect("~/admin/rawmaterials.aspx");
+                                    Response.Redirect("~/superadmin/rawmaterials.aspx");
                                     break;
                                 case "Production":
                                     Session["empnumber"] = con._dr["empno"].ToString();
