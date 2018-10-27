@@ -3,56 +3,44 @@
     Production
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
-     <script type="text/javascript">  
+    <style type="text/css">
+        .collapsed-row{
+            display:none;
+            padding:0px;
+            margin:0px;
+
+        }
+    </style>  
+<script type="text/javascript">  
          $(document).ready(function () {
-         //    var datatableVariable;
-         //    //data-target="#updateModal" data-toggle="modal"<i class="fa fa-clipboard-edit"></i> data-target='#updateModal' data-toggle='modal'
-         //$.ajax({  
-         //    type: "POST",  
-         //    dataType: "json",
-         //    url: "WebService/ProdRaw.asmx/GetProductRaw",
-         //    success: function (data) {
-         //        datatableVariable = $('#manageTable').DataTable({
-         //            data: data,
-         //            columns: [
-         //                {
-         //                    'data': 'id', 'render': function (data, type, row) {
-         //                        return "<a  class='btn btn-primary btn-sm' onClick='ConfirmUpdate(" + data + ")'><i class='fa fa-truck'></i>  Request</a>";
-         //                    },
-         //                    orderable: false
-         //                },
-         //                { 'data': 'purchaseOrder' },
-         //                { 'data': 'suppName' },
-         //                { 'data': 'brandName' },
-         //                { 'data': 'quantity'},
-         //                { 'data': 'receivedDate' },
-         //                { 'data': 'status' }
-         //            ],
-         //            language: {
-         //                emptyTable: "No Request Available!"
-         //            }
-         //        });
-         //    },
-         //    bServerSide: true,
-         //    error: function (err) {
-         //        alert(err);
-         //    }
-         //});
          $("#requestNav").addClass('active');
          });
-         function expandcollapse(name) {
-             var div = document.getElementById(name);
-             var img = document.getElementById('img' + name);
-             if (div.style.display=="none") {
-                 div.style.display = "inline";
-                 img.src = "../Images/minus.png";
+         //function expandcollapse(name) {
+         //    var div = document.getElementById(name);
+         //    var img = document.getElementById('img' + name);
+         //    if (div.style.display=="none") {
+         //        div.style.display = "inline";
+         //        img.src = "../Images/minus.png";
+         //    }
+         //    else {
+         //        div.style.display = "none";
+         //        img.src = "../Images/plus.png";
+         //    }
+    //}
+         function ToggleGridPanel(btn, row) {
+             var current = $('#' + row).css('display');
+             if (current == 'none') {
+                 $('#' + row).show();
+                 $(btn).removeClass('btn-primary glyphicon-plus')
+                 $(btn).addClass('btn-danger glyphicon-minus')
+             } else {
+                 $('#' + row).hide();
+                 $(btn).addClass('btn-primary glyphicon-plus')
+                 $(btn).removeClass('btn-danger glyphicon-minus')
              }
-             else {
-                 div.style.display = "none";
-                 img.src = "../Images/plus.png";
-             }
+             return false;
          }
- </script>  
+</script>
 </asp:Content>
 <asp:Content ID="CS1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -105,9 +93,10 @@
                   <Columns>
                       <asp:TemplateField>
                           <ItemTemplate>
-                              <a href="JavaScript:expandcollapse('<%#Eval("uniqueid") %>');">
+                              <%--<a href="JavaScript:expandcollapse('<%#Eval("uniqueid") %>');">
                                  <img src="../Images/plus.png" class="img-sm" border="0" id='img<%#Eval("uniqueid") %>' />
-                              </a>
+                              </a>--%>
+                              <button class="btn btn-primary glyphicon-plus" onclick="return ToggleGridPanel(this, 'tr<%# Eval("uniqueid") %>')"></button>
                           </ItemTemplate>
                       </asp:TemplateField>
                       <asp:BoundField DataField="name" HeaderText="Customer Name" />
@@ -115,25 +104,30 @@
                       <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
                       <asp:BoundField DataField="price" HeaderText="Price" />
                       <asp:BoundField DataField="amount" HeaderText="Total Amount" />
-                      <asp:BoundField DataField="date" HeaderText="Date"/>
+                      <asp:BoundField DataField="date" HeaderText="Date" DataFormatString="{0:MMMM-dd-yyyy}" />
                       <%--<asp:BoundField DataField="status"  />--%>
                       <asp:TemplateField HeaderText="Status">
                           <ItemTemplate>
                               <%#Eval("status") %>
-                              <tr>
-                                  <td>
-                                      <div id='<%#Eval("uniqueid") %>' style="display:none">
-                                          <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" Width="100%" AutoGenerateColumns="false">
+                              <%#MyNewRow(Eval("uniqueid")) %>
+                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" Width="100%" AutoGenerateColumns="false">
                                                  <Columns>
                                                      <asp:BoundField DataField="brandname" HeaderText="Material Name" />
                                                      <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
                                                      <asp:BoundField DataField="price" HeaderText="Price"/>
                                                  </Columns>
-                                          </asp:GridView>
-                                      </div>
-
+                              </asp:GridView>
+                                <div style="width:100%; text-align:center;">
+                                <button class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" id="'<%#Eval("uniqueid") %>'" name="submit" type="submit">Request Raw Materials</button>
+                                </div>
+                              </br>
+                                     <%--<tr>onclick='<%#Request_RawMats(this.ClientID) %>'
+                                  <td>
+                                      <div id='<%#Eval("uniqueid") %>' style="display:none">--%>
+                                          
+                                     <%-- </div>
                                   </td>
-                              </tr>
+                              </tr>--%>
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
