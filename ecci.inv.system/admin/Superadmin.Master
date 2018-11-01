@@ -15,7 +15,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="../assets/dist/css/AdminLTE.min.css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
+           folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css" />
     <!-- Morris chart -->
     <link rel="stylesheet" href="../assets/bower_components/morris.js/morris.css" />
@@ -36,17 +36,17 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="../assets/plugins/iCheck/all.css" />
     <%--    
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.min.css"/>--%>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
+      <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.min.css"/>--%>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
@@ -62,7 +62,7 @@
     <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Morris.js charts -->
     <script src="../assets/bower_components/raphael/raphael.min.js"></script>
- <%--   <script src="../assets/bower_components/morris.js/morris.min.js"></script>--%>
+    <%--   <script src="../assets/bower_components/morris.js/morris.min.js"></script>--%>
     <!-- Sparkline -->
     <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- jvectormap -->
@@ -86,7 +86,7 @@
     <!-- AdminLTE App -->
     <script src="../assets/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <%--  <script src="../assets/dist/js/pages/dashboard.js"></script>--%>
+    <%--  <script src="../assets/dist/js/pages/dashboard.js"></script>--%>
     <!-- AdminLTE for demo purposes -->
     <script src="../assets/dist/js/demo.js"></script>
     <script src="../assets/plugins/fileinput/fileinput.min.js"></script>
@@ -137,7 +137,7 @@
                 <strong>Copyright &copy; 2018.</strong> All rights reserved.
             </footer>
             <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
+               immediately after the control sidebar -->
             <div class="control-sidebar-bg">
             </div>
 
@@ -175,6 +175,18 @@
                             <li id="manageSupNav"><a href="managesuppliers.aspx"><i class="fa fa-circle-o"></i>Manage Supplier</a></li>
                         </ul>
                     </li>
+                    <li class="treeview" id="mainClientNav">
+                        <a href="#"><i class="fa fa-users"></i>
+                            <span>Client</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="addClientNav"><a href="clients.aspx"><i class="fa fa-plus"></i>Add Client</a></li>
+                            <li id="manageClientNav"><a href="manageclients.aspx"><i class="fa fa-circle-o"></i>Manage Clients</a></li>
+                        </ul>
+                    </li>
                     <li class="treeview" id="mainItemNav">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
@@ -201,25 +213,6 @@
                             <li id="manageProductsNav"><a href="manageproducts.aspx"><i class="fa fa-circle-o"></i>Manage Products</a></li>
                         </ul>
                     </li>
-                    <%--<li class="treeview" id="mainGroupNav">
-                        <a href="#">
-                            <i class="fa fa-files-o"></i>
-                            <span>Departments</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li id="addGroupNav"><a href="department.aspx"><i class="fa fa-plus"></i>Add Department</a></li>
-                            <li id="manageGroupNav"><a href="#"><i class="fa fa-circle-o"></i>Manage Department</a></li>
-                        </ul>
-                    </li>--%>
-                    <%--<li id="brandNav">
-              <a href="stock.aspx">
-                <i class="glyphicon glyphicon-tags"></i> <span>Stock Input</span>
-              </a>
-            </li>--%>
-
                     <li><a href="resetpassword.aspx"><i class="fa fa-user-o"></i><span>Reset Password</span></a></li>
                     <li><a href="#"><i class="fa fa-user-o"></i><span>Profile</span></a></li>
 

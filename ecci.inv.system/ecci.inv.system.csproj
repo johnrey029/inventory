@@ -115,6 +115,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\clients.aspx" />
+    <Content Include="admin\manageproducts.aspx" />
     <Content Include="admin\products.aspx" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
@@ -7566,6 +7568,20 @@
     </Compile>
     <Compile Include="AddProducts.aspx.designer.cs">
       <DependentUpon>AddProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\clients.aspx.cs">
+      <DependentUpon>clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\clients.aspx.designer.cs">
+      <DependentUpon>clients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\manageproducts.aspx.cs">
+      <DependentUpon>manageproducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\manageproducts.aspx.designer.cs">
+      <DependentUpon>manageproducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\products.aspx.cs">
       <DependentUpon>products.aspx</DependentUpon>
