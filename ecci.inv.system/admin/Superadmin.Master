@@ -112,9 +112,9 @@
                 <!-- Logo -->
                 <a href="index.aspx" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>SPA</b></span>
+                    <span class="logo-mini"><b>AD</b></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Super Admin</b></span>
+                    <span class="logo-lg"><b>Administrator</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -186,6 +186,19 @@
                         <ul class="treeview-menu">
                             <li id="addItemsNav"><a href="items.aspx"><i class="fa fa-plus"></i>Add Items</a></li>
                             <li id="manageItemsNav"><a href="manageitems.aspx"><i class="fa fa-circle-o"></i>Manage Items</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" id="mainProductNav">
+                        <a href="#">
+                            <i class="fa fa-files-o"></i>
+                            <span>Products</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="addProductsNav"><a href="products.aspx"><i class="fa fa-plus"></i>Add Products</a></li>
+                            <li id="manageProductsNav"><a href="manageproducts.aspx"><i class="fa fa-circle-o"></i>Manage Products</a></li>
                         </ul>
                     </li>
                     <%--<li class="treeview" id="mainGroupNav">

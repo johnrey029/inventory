@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="managesuppliers.aspx.cs" Inherits="ecci.inv.system.admin.managesuppliers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Admin-Manage Suppliers
+    Administrator-Manage Suppliers
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">
@@ -45,12 +45,12 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Manage
-      <small>Suppliers</small>
+            <h1>Manage Suppliers
+      <small>Administrator</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                <li class="active">Suppliers</li>
+                <li class="active">Manage Suppliers</li>
             </ol>
         </section>
 

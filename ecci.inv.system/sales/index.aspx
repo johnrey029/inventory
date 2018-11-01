@@ -111,7 +111,6 @@
                   </div>
                   <div class="form-group">
                     <label for="contact" <%--class="col-sm-5 control-label"--%> style="text-align:left;">Customer Phone</label>
-                   <%-- <div class="col-sm-7">--%>
                       <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                     <ContentTemplate>
                       <asp:TextBox ID="tbContact" runat="server" CssClass="form-control" placeholder="Auto Fill Customer Phone" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
@@ -120,8 +119,6 @@
                                         <asp:AsyncPostBackTrigger ControlID="ddCustomer" EventName="SelectedIndexChanged" />
                                     </Triggers>
                                 </asp:UpdatePanel>
-                     <%-- <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Enter Customer Phone" autocomplete="off"/>--%>
-                   <%-- </div>--%>
                   </div>
                 </div>
                 

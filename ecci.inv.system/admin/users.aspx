@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="users.aspx.cs" Inherits="ecci.inv.system.admin.users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    SuperAdmin-Users
+    Administrator-Users
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
 </asp:Content>
@@ -12,7 +12,7 @@
     <section class="content-header">
       <h1>
         Add Users
-        <small>Super Admin</small>
+        <small>Administrator</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

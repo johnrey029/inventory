@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="manageitems.aspx.cs" Inherits="ecci.inv.system.admin.manageitems" %>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Super Admin-Manage Items
+    Administrator-Manage Items
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">
@@ -45,12 +45,12 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Manage
-      <small>Items</small>
+            <h1>Manage Items
+      <small>Administrator</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                <li class="active">Items</li>
+                <li class="active">Manage Items</li>
             </ol>
         </section>
 

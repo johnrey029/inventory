@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="resetpassword.aspx.cs" Inherits="ecci.inv.system.admin.resetpassword" %>
 <asp:Content ID="ts1" ContentPlaceHolderID="title" runat="server">
-    SuperAdmin-Reset Password
+    Administrator-Reset Password
 </asp:Content>
 <asp:Content ID="hs1" ContentPlaceHolderID="heading" runat="server">
 </asp:Content>
@@ -11,12 +11,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Add Users
-        <small>Admin</small>
+        Reset Password
+        <small>Administrator</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Users</li>
+        <li class="active">Reset Password</li>
       </ol>
     </section>
  <!-- Main content -->
@@ -51,13 +51,13 @@
                   <div class="form-group">
                   <label for="brand">Password</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbPassword" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" CausesValidation="false"></asp:TextBox>
+                  <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password" CausesValidation="false"></asp:TextBox>
                      </div>
 
                    <div class="form-group">
                   <label for="brand">Confirm Password</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbConfPassword" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                  <asp:TextBox ID="tbConfPassword" runat="server" CssClass="form-control" placeholder="Confirm Password" CausesValidation="false"></asp:TextBox>
+                  <asp:TextBox ID="tbConfPassword" runat="server" CssClass="form-control" placeholder="Confirm Password" TextMode="Password" CausesValidation="false"></asp:TextBox>
                      </div>
 
               </div>
