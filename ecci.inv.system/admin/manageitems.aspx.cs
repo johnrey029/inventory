@@ -51,12 +51,11 @@ namespace ecci.inv.system.admin
 
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_itemsid, act_brandname, act_unitprice, act_remarks)VALUES(@empno, @itemsid, @brandname, @unitprice, @remarks)");
+            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_itemsid, act_unitprice, act_remarks)VALUES(@empno, @itemsid, @unitprice, @remarks)");
             con.Cmd.Parameters.AddWithValue("@itemsid", iid);
             con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
-            con.Cmd.Parameters.AddWithValue("@brandname", Request.Form.Get("brandname").ToString());
             con.Cmd.Parameters.AddWithValue("@unitprice", tbNewUnitPrice.Text);
-            con.Cmd.Parameters.AddWithValue("@remarks", "Changed Price");
+            con.Cmd.Parameters.AddWithValue("@remarks", "Update");
             a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
 

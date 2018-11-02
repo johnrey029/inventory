@@ -11,6 +11,7 @@ namespace ecci.inv.system.admin
     public partial class items : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
+        private int count { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,7 +78,15 @@ namespace ecci.inv.system.admin
                 con.Cmd.Parameters.Add("@price", SqlDbType.Money).Value = tbUnitPrice.Text;
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
-                
+
+                con.OpenConection();
+                con._dr = con.DataReader("SELECT TOP 1 itemsid FROM items ORDER BY itemsid DESC");
+                while (con._dr.Read())
+                {
+                    count = Convert.ToInt32(con._dr["itemsid"].ToString());
+                }
+                con.CloseConnection();
+
             }
             catch
             {
@@ -91,25 +100,26 @@ namespace ecci.inv.system.admin
         private int activityItems()
         {
             int a = 0;
-            try
-            {
-                con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_suppcode, act_brandname, act_unitprice, act_remarks)VALUES(@empno, @suppcode, @brandname, @unitprice, @remarks)");
-                con.Cmd.Parameters.AddWithValue("@suppcode", ddSupplier.SelectedValue);
-                con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
-                con.Cmd.Parameters.AddWithValue("@brandname", tbBrand.Text);
-                con.Cmd.Parameters.AddWithValue("@unitprice", tbUnitPrice.Text);
-                con.Cmd.Parameters.AddWithValue("@remarks", "Add");
-                a = con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
+            //try
+            //{
 
-            }
-            catch
-            {
+            con.OpenConection();
+            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_suppcode, act_unitprice, act_remarks,act_itemsid)VALUES(@empno, @suppcode, @unitprice, @remarks, @id)");
+            con.Cmd.Parameters.AddWithValue("@suppcode", ddSupplier.SelectedValue);
+            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+            con.Cmd.Parameters.AddWithValue("@unitprice", tbUnitPrice.Text);
+            con.Cmd.Parameters.AddWithValue("@remarks", "Add");
+            con.Cmd.Parameters.AddWithValue("@id", count.ToString());
+            a = con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
 
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-            }
+            //}
+            //catch
+            //{
+
+            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+            //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+            //}
             return a;
         }
         private void clear()
@@ -127,5 +137,5 @@ namespace ecci.inv.system.admin
             Response.Redirect("index.aspx");
         }
     }
-    
+
 }
