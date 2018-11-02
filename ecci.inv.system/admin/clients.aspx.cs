@@ -11,6 +11,7 @@ namespace ecci.inv.system.admin
     public partial class clients : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
+        private int count { get; set; }
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,8 +46,8 @@ namespace ecci.inv.system.admin
             else
             {
                 int result1 = addClient();
-                //int result2 = activityClient();
-                if (result1 == 1) //&& result2 == 1)
+                int result2 = activityClient();
+                if (result1 == 1 && result2 == 1)
                 {
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-error').hide(); $('.alert-success').show(); $('.alert-warning').hide(); });</script>");
@@ -81,6 +82,14 @@ namespace ecci.inv.system.admin
                 a = con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
 
+                con.OpenConection();
+                con._dr = con.DataReader("SELECT TOP 1 clientid FROM client ORDER BY clientid DESC");
+                while (con._dr.Read())
+                {
+                    count = Convert.ToInt32(con._dr["clientid"].ToString());
+                }
+                con.CloseConnection();
+
                 //clear();
             }
             catch (Exception ex)
@@ -92,29 +101,32 @@ namespace ecci.inv.system.admin
             return a;
         }
 
-        //private int activitySupplier()
-        //{
-        //    int a = 0;
-        //    try
-        //    {
-        //        con.OpenConection();
-        //        con.ExecSqlQuery("INSERT INTO activity_suppliersaddupdate(act_empno, act_suppcode, act_remarks)VALUES(@empno, @scode, @remarks)");
-        //        con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
-        //        con.Cmd.Parameters.AddWithValue("@scode", tbSuppCode.Text);
-        //        con.Cmd.Parameters.AddWithValue("@remarks", "Add");
+        private int activityClient()
+        {
+            int a = 0;
+            try
+            {
+                DateTime dati = DateTime.Now;
+                con.OpenConection();
+                con.ExecSqlQuery("INSERT INTO activity_client(empno, client, datetime,remarks)VALUES(@empno, @client, @datetime, @remarks)");
+                con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+                con.Cmd.Parameters.AddWithValue("@client", count.ToString());
+                con.Cmd.Parameters.AddWithValue("@datetime", dati);
+                con.Cmd.Parameters.AddWithValue("@remarks", "Add");
 
-        //        a = con.Cmd.ExecuteNonQuery();
-        //        con.CloseConnection();
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
 
-        //        clear();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lbError.ForeColor = System.Drawing.Color.Red;
-        //        lbError.Text = "Error: " + ex.Message;
-        //        lbError.Visible = true;
-        //    }
-        //    return a;
-        //}
+                //clear();
+
+            }
+            catch (Exception ex)
+            {
+                lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "Error: " + ex.Message;
+                lbError.Visible = true;
+            }
+            return a;
+        }
     }
 }

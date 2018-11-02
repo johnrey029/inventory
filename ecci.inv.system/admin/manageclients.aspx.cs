@@ -39,9 +39,9 @@ namespace ecci.inv.system.admin
             {
                 stat = 2;
             }
-            //int result1 = activityClient();
+            int result1 = activityClient();
             int result2 = clientSC.updateClientById(cid, tbClientAdd.Text, tbClientCon.Text, tbClientCon2.Text, stat);
-            if (result2 == 1)//&& result2 == 1)
+            if (result1 == 1 && result2 == 1)
             {
                 //Session["sucess"] = "Tama";
                 //  UpdatePanel2.ValidateRequestMode = ValidateRequestMode.Disabled;
@@ -56,19 +56,34 @@ namespace ecci.inv.system.admin
                 //Session["sucess"] = "Mali";
             }
         }
-        //public int activityClient()
-        //{
-        //    con = new DBConnection();
-        //    con.OpenConection();
-        //    con.ExecSqlQuery("INSERT INTO activity_suppliersaddupdate (act_empno,act_suppid,act_remarks) VALUES (@empno,@suppid,@remarks) ");
-        //    con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
-        //    //con.Cmd.Parameters.AddWithValue("@suppid", tbSuppCode.Text);
-        //    con.Cmd.Parameters.AddWithValue("@remarks", "Update");
+        public int activityClient()
+        {
+            int a = 0;
+            //try
+            //{
+            int cid = Convert.ToInt32(Request.Form.Get("hiddenClientId").ToString());
+            DateTime dati = DateTime.Now;
+            con = new DBConnection();
+            con.OpenConection();
+            con.ExecSqlQuery("INSERT INTO activity_client(empno, client, datetime,remarks)VALUES(@empno, @client, @datetime, @remarks)");
+            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+            con.Cmd.Parameters.AddWithValue("@client", cid.ToString());
+            con.Cmd.Parameters.AddWithValue("@datetime", dati);
+            con.Cmd.Parameters.AddWithValue("@remarks", "Update");
 
-        //    int a = con.Cmd.ExecuteNonQuery();
-        //    con.CloseConnection();
+            a = con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
 
-        //    return a;
-        //}
+            //clear();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    lbError.ForeColor = System.Drawing.Color.Red;
+            //    lbError.Text = "Error: " + ex.Message;
+            //    lbError.Visible = true;
+            //}
+            return a;
+        }
     }
 }
