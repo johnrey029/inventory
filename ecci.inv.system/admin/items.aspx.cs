@@ -100,26 +100,28 @@ namespace ecci.inv.system.admin
         private int activityItems()
         {
             int a = 0;
-            //try
-            //{
+            DateTime dati = DateTime.Now;
+            try
+            {
 
-            con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_suppcode, act_unitprice, act_remarks,act_itemsid)VALUES(@empno, @suppcode, @unitprice, @remarks, @id)");
-            con.Cmd.Parameters.AddWithValue("@suppcode", ddSupplier.SelectedValue);
-            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
-            con.Cmd.Parameters.AddWithValue("@unitprice", tbUnitPrice.Text);
-            con.Cmd.Parameters.AddWithValue("@remarks", "Add");
-            con.Cmd.Parameters.AddWithValue("@id", count.ToString());
-            a = con.Cmd.ExecuteNonQuery();
-            con.CloseConnection();
+                con.OpenConection();
+                con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_suppcode, act_unitprice, act_remarks,act_itemsid,act_datetime)VALUES(@empno, @suppcode, @unitprice, @remarks, @id,@dt)");
+                con.Cmd.Parameters.AddWithValue("@suppcode", ddSupplier.SelectedValue);
+                con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+                con.Cmd.Parameters.AddWithValue("@unitprice", tbUnitPrice.Text);
+                con.Cmd.Parameters.AddWithValue("@remarks", "Add");
+                con.Cmd.Parameters.AddWithValue("@id", count.ToString());
+                con.Cmd.Parameters.AddWithValue("@dt", dati);
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
 
-            //}
-            //catch
-            //{
+            }
+            catch
+            {
 
-            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-            //}
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
+            }
             return a;
         }
         private void clear()

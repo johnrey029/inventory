@@ -11,6 +11,7 @@ namespace ecci.inv.system.admin
     public partial class products : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
+        private int pidx { get; set; }
         DBConnection con;
         TableRow tr;
         TableCell tc;
@@ -23,16 +24,17 @@ namespace ecci.inv.system.admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["empnumber"] != null)
+            {
+                sessionempno = Session["empnumber"].ToString();
+            }
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             con = new DBConnection();
             if (!IsPostBack)
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                      "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");
-                if (Session["empnumber"] != null)
-                {
-                    sessionempno = Session["empnumber"].ToString();
-                }
+                
                 this.rows = 1;
                 panelTableRow.Controls.Clear();
                 createRow();
@@ -373,25 +375,26 @@ namespace ecci.inv.system.admin
             //}
             //try
             //{
-                //string date = DateTime.Now.ToShortTimeString();
-                con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO product(pname,description,price)VALUES(@pname,@desc,@price)");//output inserted.orderid SET @ID = @@IDENTITY RETURN @ID
-                con.Cmd.Parameters.Add("@pname", SqlDbType.VarChar).Value = tbProduct.Text;
-                con.Cmd.Parameters.Add("@desc", SqlDbType.VarChar).Value = tbDescription.Text;
-                con.Cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = tbUnitPrice.Text;
+            //string date = DateTime.Now.ToShortTimeString();
+            con.OpenConection();
+            con.ExecSqlQuery("INSERT INTO product(pname,description,price)VALUES(@pname,@desc,@price)");//output inserted.orderid SET @ID = @@IDENTITY RETURN @ID
+            con.Cmd.Parameters.Add("@pname", SqlDbType.VarChar).Value = tbProduct.Text;
+            con.Cmd.Parameters.Add("@desc", SqlDbType.VarChar).Value = tbDescription.Text;
+            con.Cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = tbUnitPrice.Text;
 
-                //con.Cmd.Parameters.Add("@ID", SqlDbType.Int).Direction = ParameterDirection.Output;
-                //int olid = Convert.ToInt32(con.Cmd.Parameters["@ID"].Value.ToString());
-                con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
+            //con.Cmd.Parameters.Add("@ID", SqlDbType.Int).Direction = ParameterDirection.Output;
+            //int olid = Convert.ToInt32(con.Cmd.Parameters["@ID"].Value.ToString());
+            con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
 
-                con.OpenConection();
-                con._dr = con.DataReader("SELECT TOP 1 productid FROM product ORDER BY productid DESC");// "Select * from product"
-                while (con._dr.Read())
-                {
-                    count = Convert.ToInt32(con._dr["productid"].ToString());
-                }
-                con.CloseConnection();
+            con.OpenConection();
+            con._dr = con.DataReader("SELECT TOP 1 productid FROM product ORDER BY productid DESC");// "Select * from product"
+            while (con._dr.Read())
+            {
+                count = Convert.ToInt32(con._dr["productid"].ToString());
+                pidx = Convert.ToInt32(con._dr["productid"].ToString());
+            }
+            con.CloseConnection();
             //}
             //catch
             //{
@@ -417,42 +420,42 @@ namespace ecci.inv.system.admin
                     con.CloseConnection();
                     //try
                     //{
-                        if (checkdb > 0)
+                    if (checkdb > 0)
+                    {
+                        con.OpenConection();
+                        con._dr = con.DataReader("SELECT * FROM productitems WHERE productid='" + count + "' and itemsid='" + array[i, 0] + "'");// "Select * from productitems"
+                                                                                                                                                 // con.Cmd.Parameters.AddWithValue("@orid", count);
+                                                                                                                                                 //   con.Cmd.Parameters.AddWithValue("@pdid", array[i, 0]);
+                        while (con._dr.Read())
                         {
-                            con.OpenConection();
-                            con._dr = con.DataReader("SELECT * FROM productitems WHERE productid='" + count + "' and itemsid='" + array[i, 0] + "'");// "Select * from productitems"
-                            // con.Cmd.Parameters.AddWithValue("@orid", count);
-                            //   con.Cmd.Parameters.AddWithValue("@pdid", array[i, 0]);
-                            while (con._dr.Read())
-                            {
-                                qty = Convert.ToInt32(con._dr["quantity"].ToString());
-                            }
-                            con.CloseConnection();
-                            decimal uprice = Convert.ToDecimal(array[i, 2]);
-                            decimal quant = Convert.ToDecimal(qty) + Convert.ToDecimal(array[i, 1]);
-                            decimal total = uprice * quant;
-                            con.OpenConection();
-                            con.ExecSqlQuery("UPDATE productitems SET quantity=@quant,price=@p WHERE productid=@pid and itemsid=@iid");
-                            con.Cmd.Parameters.AddWithValue("@pid", count);
-                            con.Cmd.Parameters.AddWithValue("@iid", array[i, 0]);
-                            con.Cmd.Parameters.AddWithValue("@quant", quant);
-                            con.Cmd.Parameters.AddWithValue("@p", array[i, 2]);
-                            con.Cmd.Parameters.AddWithValue("@amt", total);
-                            rws = con.Cmd.ExecuteNonQuery();
-                            con.CloseConnection();
+                            qty = Convert.ToInt32(con._dr["quantity"].ToString());
                         }
-                        else
-                        {
-                            con.OpenConection();
-                            con.ExecSqlQuery("INSERT INTO productitems(productid,itemsid,quantity,price)VALUES(@pid,@iid,@qo,@p)");
-                            con.Cmd.Parameters.AddWithValue("@pid", count);
-                            con.Cmd.Parameters.AddWithValue("@iid", array[i, 0]);
-                            con.Cmd.Parameters.AddWithValue("@qo", array[i, 1]);
-                            con.Cmd.Parameters.AddWithValue("@p", array[i, 2]);
-                            con.Cmd.Parameters.AddWithValue("@amt", array[i, 3]);
-                            rws = con.Cmd.ExecuteNonQuery();
-                            con.CloseConnection();
-                        }
+                        con.CloseConnection();
+                        decimal uprice = Convert.ToDecimal(array[i, 2]);
+                        decimal quant = Convert.ToDecimal(qty) + Convert.ToDecimal(array[i, 1]);
+                        decimal total = uprice * quant;
+                        con.OpenConection();
+                        con.ExecSqlQuery("UPDATE productitems SET quantity=@quant,price=@p WHERE productid=@pid and itemsid=@iid");
+                        con.Cmd.Parameters.AddWithValue("@pid", count);
+                        con.Cmd.Parameters.AddWithValue("@iid", array[i, 0]);
+                        con.Cmd.Parameters.AddWithValue("@quant", quant);
+                        con.Cmd.Parameters.AddWithValue("@p", array[i, 2]);
+                        con.Cmd.Parameters.AddWithValue("@amt", total);
+                        rws = con.Cmd.ExecuteNonQuery();
+                        con.CloseConnection();
+                    }
+                    else
+                    {
+                        con.OpenConection();
+                        con.ExecSqlQuery("INSERT INTO productitems(productid,itemsid,quantity,price)VALUES(@pid,@iid,@qo,@p)");
+                        con.Cmd.Parameters.AddWithValue("@pid", count);
+                        con.Cmd.Parameters.AddWithValue("@iid", array[i, 0]);
+                        con.Cmd.Parameters.AddWithValue("@qo", array[i, 1]);
+                        con.Cmd.Parameters.AddWithValue("@p", array[i, 2]);
+                        con.Cmd.Parameters.AddWithValue("@amt", array[i, 3]);
+                        rws = con.Cmd.ExecuteNonQuery();
+                        con.CloseConnection();
+                    }
                     //}
                     //catch
                     //{
@@ -465,6 +468,7 @@ namespace ecci.inv.system.admin
             clear();
             if (rws == 1 && count > 0)
             {
+                activityProduct();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').show(); $('.alert-error').hide(); });</script>");
             }
@@ -486,6 +490,29 @@ namespace ecci.inv.system.admin
             tbTotalAmount.Text = "0.00";
             createRow();
 
+        }
+        private void activityProduct()
+        {
+            DateTime dati = DateTime.Now;   
+            //try
+            //{
+
+                con.OpenConection();
+                con.ExecSqlQuery("INSERT INTO activity_products(empno, productid, remarks, datetime) VALUES(@empno, @pid, @remarks, @dt)");
+                con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+                con.Cmd.Parameters.AddWithValue("@pid", pidx.ToString());
+                con.Cmd.Parameters.AddWithValue("@remarks", "Add");
+                con.Cmd.Parameters.AddWithValue("@dt", dati);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+
+            //}
+            //catch
+            //{
+
+            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+            //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+            //}
         }
     }
 }

@@ -48,14 +48,16 @@ namespace ecci.inv.system.admin
         {
             int iid = Convert.ToInt32(Request.Form.Get("hiddenItemsId").ToString());
             int a = 0;
+            DateTime dati = DateTime.Now;
 
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_itemsid, act_unitprice, act_remarks)VALUES(@empno, @itemsid, @unitprice, @remarks)");
+            con.ExecSqlQuery("INSERT INTO activity_items(act_empno, act_itemsid, act_unitprice, act_remarks,act_datetime)VALUES(@empno, @itemsid, @unitprice, @remarks,@dt)");
             con.Cmd.Parameters.AddWithValue("@itemsid", iid);
             con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
             con.Cmd.Parameters.AddWithValue("@unitprice", tbNewUnitPrice.Text);
             con.Cmd.Parameters.AddWithValue("@remarks", "Update");
+            con.Cmd.Parameters.AddWithValue("@dt", dati);
             a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();
 

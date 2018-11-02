@@ -59,30 +59,30 @@ namespace ecci.inv.system.admin
         public int activityClient()
         {
             int a = 0;
-            //try
-            //{
-            int cid = Convert.ToInt32(Request.Form.Get("hiddenClientId").ToString());
-            DateTime dati = DateTime.Now;
-            con = new DBConnection();
-            con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_client(empno, client, datetime,remarks)VALUES(@empno, @client, @datetime, @remarks)");
-            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
-            con.Cmd.Parameters.AddWithValue("@client", cid.ToString());
-            con.Cmd.Parameters.AddWithValue("@datetime", dati);
-            con.Cmd.Parameters.AddWithValue("@remarks", "Update");
+            try
+            {
+                int cid = Convert.ToInt32(Request.Form.Get("hiddenClientId").ToString());
+                DateTime dati = DateTime.Now;
+                con = new DBConnection();
+                con.OpenConection();
+                con.ExecSqlQuery("INSERT INTO activity_client(empno, client, datetime,remarks)VALUES(@empno, @client, @datetime, @remarks)");
+                con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+                con.Cmd.Parameters.AddWithValue("@client", cid.ToString());
+                con.Cmd.Parameters.AddWithValue("@datetime", dati);
+                con.Cmd.Parameters.AddWithValue("@remarks", "Update");
 
-            a = con.Cmd.ExecuteNonQuery();
-            con.CloseConnection();
+                a = con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
 
-            //clear();
+                //clear();
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    lbError.ForeColor = System.Drawing.Color.Red;
-            //    lbError.Text = "Error: " + ex.Message;
-            //    lbError.Visible = true;
-            //}
+            }
+            catch (Exception ex)
+            {
+                lbError.ForeColor = System.Drawing.Color.Red;
+                lbError.Text = "Error: " + ex.Message;
+                lbError.Visible = true;
+            }
             return a;
         }
     }
