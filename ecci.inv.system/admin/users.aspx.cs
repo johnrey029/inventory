@@ -149,7 +149,7 @@ namespace ecci.inv.system.admin
             {
                 Label1.Text = "";
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO activity_users_addupdate (act_empno,act_fname,act_lname,act_remarks) VALUES (@empid,@fname,@lname,@remarks)");
+                con.ExecSqlQuery("INSERT INTO activity_users (act_empno,act_fname,act_lname,act_remarks) VALUES (@empid,@fname,@lname,@remarks)");
                 con.Cmd.Parameters.Add("@empid", SqlDbType.VarChar).Value = tbEmpNo.Text;
                 con.Cmd.Parameters.Add("@fname", SqlDbType.VarChar).Value = tbFname.Text;
                 con.Cmd.Parameters.Add("@lname", SqlDbType.VarChar).Value = tbLname.Text;

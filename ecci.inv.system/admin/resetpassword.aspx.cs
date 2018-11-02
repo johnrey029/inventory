@@ -64,6 +64,8 @@ namespace ecci.inv.system.admin
                             con.Cmd.Parameters.Add("@reset", SqlDbType.VarChar).Value = "Y";
                             con.Cmd.ExecuteNonQuery();
 
+                            activityReset();
+
                         }
                         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "<script>$(document).ready(function(){ $('.alert-error').hide();$('.alert-success').show(); });</script>");
@@ -76,6 +78,19 @@ namespace ecci.inv.system.admin
                     }
                 }
             }
+        }
+
+        private void activityReset()
+        {
+            DateTime dati = DateTime.Now;
+            con.OpenConection();
+            con.ExecSqlQuery("INSERT INTO activity_reset(empno, rst_empno, datetime)VALUES(@empno, @rst, @dt)");
+            con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
+            con.Cmd.Parameters.AddWithValue("@rst", tbEmpNo.Text);
+            con.Cmd.Parameters.AddWithValue("@dt", dati);
+
+            con.Cmd.ExecuteNonQuery();
+            con.CloseConnection();
         }
         private string GetHashedText(string inputData)
         {

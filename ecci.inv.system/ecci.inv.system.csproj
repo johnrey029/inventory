@@ -116,8 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\clients.aspx" />
+    <Content Include="admin\manageclients.aspx" />
     <Content Include="admin\manageproducts.aspx" />
     <Content Include="admin\products.aspx" />
+    <Content Include="admin\WebService\ManageClientService.asmx" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -6765,6 +6767,7 @@
     <Content Include="Products.aspx" />
     <Content Include="production\Production.Master" />
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
+    <None Include="Service References\ManageClientService\ManageClientService.wsdl" />
     <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
     <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
     <None Include="Service References\OnHoldService\OnHoldService.wsdl" />
@@ -7510,6 +7513,13 @@
     <Content Include="admin\resetpassword.aspx" />
     <Content Include="admin\Superadmin.Master" />
     <Content Include="qualitycontrol\QualityControl.Master" />
+    <None Include="Service References\ManageClientService\ManageClientService.disco" />
+    <None Include="Service References\ManageClientService\configuration91.svcinfo" />
+    <None Include="Service References\ManageClientService\configuration.svcinfo" />
+    <None Include="Service References\ManageClientService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
@@ -7576,6 +7586,14 @@
     <Compile Include="admin\clients.aspx.designer.cs">
       <DependentUpon>clients.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\CS\ManageClient.cs" />
+    <Compile Include="admin\manageclients.aspx.cs">
+      <DependentUpon>manageclients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\manageclients.aspx.designer.cs">
+      <DependentUpon>manageclients.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\manageproducts.aspx.cs">
       <DependentUpon>manageproducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7589,6 +7607,10 @@
     </Compile>
     <Compile Include="admin\products.aspx.designer.cs">
       <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\WebService\ManageClientService.asmx.cs">
+      <DependentUpon>ManageClientService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="changepassword.aspx.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>
@@ -7693,6 +7715,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Service References\AdminRawService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ManageClientService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -7964,6 +7991,7 @@
     <WCFMetadataStorage Include="Service References\AdminRawService\" />
     <WCFMetadataStorage Include="Service References\DeliveryService\" />
     <WCFMetadataStorage Include="Service References\DispatchService\" />
+    <WCFMetadataStorage Include="Service References\ManageClientService\" />
     <WCFMetadataStorage Include="Service References\ManageItemService\" />
     <WCFMetadataStorage Include="Service References\ManageSupplierService\" />
     <WCFMetadataStorage Include="Service References\OnHoldService\" />

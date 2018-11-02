@@ -4,6 +4,12 @@
     Administrator-Clients
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
+    <script type="text/javascript">  
+     $(document).ready(function () {  
+         $("#mainClientNav").addClass('active');
+         $("#addClientNav").addClass('active');
+  });  
+ </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -64,12 +70,12 @@
                                 <asp:TextBox ID="tbClientCon2" runat="server" CssClass="form-control" placeholder="Client Contact 2" autocomplete="off"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <label for="gender">Status</label>
+                                <label for="stat">Status</label>
                                 <div class="radio">
                                     <label>
-                                        <asp:RadioButton ID="rbActive" runat="server" GroupName="gender"></asp:RadioButton>Activated</label>
+                                        <asp:RadioButton ID="rbActive" runat="server" GroupName="stat"></asp:RadioButton>Activated</label>
                                     <label>
-                                        <asp:RadioButton ID="rbDeactivate" runat="server" GroupName="gender"></asp:RadioButton>Deactivated</label>
+                                        <asp:RadioButton ID="rbDeactivate" runat="server" GroupName="stat"></asp:RadioButton>Deactivated</label>
                                 </div>
                             </div>
                         </div>

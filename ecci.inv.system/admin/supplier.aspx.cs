@@ -91,7 +91,7 @@ namespace ecci.inv.system.admin
             {
                 DateTime dati = DateTime.Now;
                 con.OpenConection();
-                con.ExecSqlQuery("INSERT INTO activity_suppliersaddupdate(act_empno, act_suppcode, act_remarks, act_datetime)VALUES(@empno, @scode, @remarks, @dt)");
+                con.ExecSqlQuery("INSERT INTO activity_suppliers(act_empno, act_suppcode, act_remarks, act_datetime)VALUES(@empno, @scode, @remarks, @dt)");
                 con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
                 con.Cmd.Parameters.AddWithValue("@scode", tbSuppCode.Text);
                 con.Cmd.Parameters.AddWithValue("@remarks", "Add");

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetClient">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="updateClientById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="stat" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateClientByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="updateClientByIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetClientSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClient" />
+  </wsdl:message>
+  <wsdl:message name="GetClientSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientById" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateClientByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:updateClientById" />
+  </wsdl:message>
+  <wsdl:message name="updateClientByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:updateClientByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientHttpGetIn" />
+  <wsdl:message name="GetClientHttpGetOut" />
+  <wsdl:message name="GetClientByIdHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdHttpGetOut" />
+  <wsdl:message name="updateClientByIdHttpGetIn">
+    <wsdl:part name="clid" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="contact" type="s:string" />
+    <wsdl:part name="contact2" type="s:string" />
+    <wsdl:part name="stat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateClientByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetClientHttpPostIn" />
+  <wsdl:message name="GetClientHttpPostOut" />
+  <wsdl:message name="GetClientByIdHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdHttpPostOut" />
+  <wsdl:message name="updateClientByIdHttpPostIn">
+    <wsdl:part name="clid" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="contact" type="s:string" />
+    <wsdl:part name="contact2" type="s:string" />
+    <wsdl:part name="stat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateClientByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="ManageClientServiceSoap">
+    <wsdl:operation name="GetClient">
+      <wsdl:input message="tns:GetClientSoapIn" />
+      <wsdl:output message="tns:GetClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <wsdl:input message="tns:GetClientByIdSoapIn" />
+      <wsdl:output message="tns:GetClientByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <wsdl:input message="tns:updateClientByIdSoapIn" />
+      <wsdl:output message="tns:updateClientByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ManageClientServiceHttpGet">
+    <wsdl:operation name="GetClient">
+      <wsdl:input message="tns:GetClientHttpGetIn" />
+      <wsdl:output message="tns:GetClientHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <wsdl:input message="tns:GetClientByIdHttpGetIn" />
+      <wsdl:output message="tns:GetClientByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <wsdl:input message="tns:updateClientByIdHttpGetIn" />
+      <wsdl:output message="tns:updateClientByIdHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ManageClientServiceHttpPost">
+    <wsdl:operation name="GetClient">
+      <wsdl:input message="tns:GetClientHttpPostIn" />
+      <wsdl:output message="tns:GetClientHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <wsdl:input message="tns:GetClientByIdHttpPostIn" />
+      <wsdl:output message="tns:GetClientByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <wsdl:input message="tns:updateClientByIdHttpPostIn" />
+      <wsdl:output message="tns:updateClientByIdHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManageClientServiceSoap" type="tns:ManageClientServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetClient">
+      <soap:operation soapAction="http://tempuri.org/GetClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <soap:operation soapAction="http://tempuri.org/GetClientById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <soap:operation soapAction="http://tempuri.org/updateClientById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManageClientServiceSoap12" type="tns:ManageClientServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetClient">
+      <soap12:operation soapAction="http://tempuri.org/GetClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <soap12:operation soapAction="http://tempuri.org/GetClientById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <soap12:operation soapAction="http://tempuri.org/updateClientById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManageClientServiceHttpGet" type="tns:ManageClientServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetClient">
+      <http:operation location="/GetClient" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <http:operation location="/GetClientById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <http:operation location="/updateClientById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManageClientServiceHttpPost" type="tns:ManageClientServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetClient">
+      <http:operation location="/GetClient" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <http:operation location="/GetClientById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="updateClientById">
+      <http:operation location="/updateClientById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManageClientService">
+    <wsdl:port name="ManageClientServiceSoap" binding="tns:ManageClientServiceSoap">
+      <soap:address location="http://localhost:2908/admin/WebService/ManageClientService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManageClientServiceSoap12" binding="tns:ManageClientServiceSoap12">
+      <soap12:address location="http://localhost:2908/admin/WebService/ManageClientService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManageClientServiceHttpGet" binding="tns:ManageClientServiceHttpGet">
+      <http:address location="http://localhost:2908/admin/WebService/ManageClientService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManageClientServiceHttpPost" binding="tns:ManageClientServiceHttpPost">
+      <http:address location="http://localhost:2908/admin/WebService/ManageClientService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

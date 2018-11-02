@@ -39,15 +39,8 @@
                             <h3 class="box-title">Add Items</h3>
                         </div>
                         <!-- /.box-header -->
-                        <%--<form role="form" action="#" method="post" enctype="multipart/form-data">--%>
                         <div class="box-body">
 
-                            <%--<div class="form-group">
-                  <label for="supplier">Supplier Name</label>
-                  <select id="select1" class="form-control" role="list" runat="server">
-                    <option value="">Select Supplier</option>
-                  </select>
-                </div>--%>
 
                             <div class="form-group">
                                 <label for="brand">Product Name</label>
@@ -83,36 +76,7 @@
 
                                 <tbody>
                                     <asp:Panel ID="panelTableRow" runat="server" Width="100%"></asp:Panel>
-                                    <%-- <tr id="row_1">
-                       <td>
-                           
-                            <asp:DropDownList ID="ddProduct" CssClass="form-control js-example-placeholder-single" CausesValidation="false" runat="server" OnSelectedIndexChanged="ddProduct_SelectedIndexChanged1" AutoPostBack="True" Width="100%"></asp:DropDownList>
-                        
-                         </td>
-                        <td>
-                            <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" autocomplete="off" OnTextChanged="tbQuantity_TextChanged" BackColor="White" Text="1" AutoPostBack="True"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" RenderMode="Inline">
-                                    <ContentTemplate>
-                           <asp:TextBox ID="tbRate" runat="server" CssClass="form-control" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
-                                        </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddProduct" EventName="SelectedIndexChanged" />
-                                    </Triggers>
-                                </asp:UpdatePanel>=
-                        </td>
-                        <td>
-                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Inline">
-                                    <ContentTemplate>
-                           <asp:TextBox ID="tbAmount" runat="server" CssClass="form-control" autocomplete="off" ReadOnly="true" BackColor="White"></asp:TextBox>
-                            </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="tbQuantity" EventName="TextChanged" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                        </td>
-                     </tr>--%>
+                                    
                                 </tbody>
                             </table>
                             <br />
@@ -146,11 +110,17 @@
                 </div>
                 <!-- col-md-12 -->
             </div>
-    <!-- /.row -->
+            <!-- /.row -->
 
-    </section>     
-      
-  </div>
+        </section>
+
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="heading" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#mainProductNav").addClass('active');
+            $("#addProductsNav").addClass('active');
+        });
+    </script>
 </asp:Content>
