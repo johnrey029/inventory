@@ -5,7 +5,7 @@
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
          $(document).ready(function () {
-             var datatableVariable;
+         var datatableVariable;
              //data-target="#updateModal" data-toggle="modal"<i class="fa fa-clipboard-edit"></i> data-target='#updateModal' data-toggle='modal'
          $.ajax({  
              type: "POST",  

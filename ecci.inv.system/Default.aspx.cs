@@ -62,7 +62,7 @@ namespace ecci.inv.system
                 else
                 {
                     log_user = tbEmpNo.Text;
-                    user_activity();
+                    //user_activity();
                     // Response.Redirect("~/qualitycontrol/index.aspx");
                     con.OpenConection();
                     con.ExecSqlQuery("SELECT * FROM users WHERE empno=@user COLLATE SQL_Latin1_General_CP1_CS_AS AND password=@pass");
