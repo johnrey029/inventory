@@ -26,7 +26,7 @@
          //        div.style.display = "none";
          //        img.src = "../Images/plus.png";
          //    }
-    //}
+         //} 
          function ToggleGridPanel(btn, row) {
              var current = $('#' + row).css('display');
              if (current == 'none') {
@@ -110,7 +110,7 @@
                           <ItemTemplate>
                               <%#Eval("status") %>
                               <%#MyNewRow(Eval("uniqueid")) %>
-                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" Width="100%" AutoGenerateColumns="false">
+                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" Width="100%" AutoGenerateColumns="false">
                                                  <Columns>
                                                      <asp:BoundField DataField="brandname" HeaderText="Material Name" />
                                                      <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
@@ -118,11 +118,13 @@
                                                  </Columns>
                               </asp:GridView>
                                 <div style="width:100%; text-align:center;">
-                                <button class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" id="'<%#Eval("uniqueid") %>'" onclick="return ConfirmUpdate('<%#Eval("uniqueid") %>')" name="submit" type="submit">Request Raw Materials</button>
+                                  <%--  <asp:Button CssClass="btn btn-success" Height="30px" Width="75%"  runat="server" Text="Request Raw Materials" OnClick="ConfirmUpdate" OnClientClick="return openModal('<%#Eval("uniqueid")%>')" />--%>
+                                <button type="button" class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" >Request Raw Materials</button>
                                 </div>
-                              </br>
-                                     <%--<tr>onclick='<%#Request_RawMats(this.ClientID) %>'
-                                  <td>
+                                   <input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>
+                           <%--    </br>
+                                     <tr>onclick='<%#Request_RawMats(this.ClientID) %>'onserverclick="ConfirmUpdate(<%# Eval("uniqueid") %>);"
+                                  <td> 
                                       <div id='<%#Eval("uniqueid") %>' style="display:none">--%>
                                           
                                      <%-- </div>
@@ -133,21 +135,7 @@
                   </Columns>
                   
               </asp:GridView>
-            <%--<table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
-              <thead>
-              <tr>
-                <th>Action</th>
-                <th>PO#</th>
-                <th>Supplier Name</th>
-                <th>Brand Name</th>
-                <th>Stock Quantity</th>
-                <th>Stock Date</th>
-                <th>Status</th>
-              </tr>
-              </thead>
-            </table>--%>
           </div>
-            <input type="hidden" id="hiddenStockId"  name="hiddenStockId" value="" />
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
@@ -161,7 +149,7 @@
   </section>
   <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
+<!-- /.content-wrapper onload="BindPopUp();" -->
     <div class="modal fade" tabindex="-1"  role="dialog" id="popUpModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -170,10 +158,39 @@
         <h4 class="modal-title">Request</h4>
       </div>
 
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="PO">Proceed to request the list of raw materials?</label>
-            </div>
+      <div class="modal-body">
+            <table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
+              <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Total Quantity</th>
+                <th>List Raw Materials PO #</th>
+              </tr>
+              </thead>
+            </table>
+           <%--    <asp:GridView ID="GridView3" CssClass="table table-bordered table-striped" ShowHeaderWhenEmpty="True" runat="server" 
+                  AutoGenerateColumns="False" OnRowDataBound="GridView3_RowDataBound">
+                <Columns>
+                        <asp:BoundField DataField="date" HeaderText="Date" DataFormatString="{0:MMMM-dd-yyyy}" />--%>
+                      <%--<asp:TemplateField HeaderText="List of PO # reserved">
+                          <ItemTemplate>DataField="brand"DataField="price"DataField="qty"
+                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" Width="100%" AutoGenerateColumns="false">
+                                                 <Columns>
+                                                     <asp:BoundField DataField="brandname" HeaderText="Material Name" />
+                                                     <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
+                                                     <asp:BoundField DataField="price" HeaderText="Price"/>
+                                                 </Columns>
+                              </asp:GridView>
+                          </ItemTemplate>
+                      </asp:TemplateField>--%>
+                      
+                     <%-- <asp:BoundField DataField="amount" HeaderText="Total Amount" />
+                      <asp:BoundField HeaderText="Product Name" />
+                      <asp:BoundField HeaderText="Price" />
+                      <asp:BoundField HeaderText="Qty" />
+                  </Columns>
+              </asp:GridView>   --%>
         </div>
         
         <div class="modal-footer bg-aqua-active">
@@ -184,14 +201,55 @@
              <%-- <input type="text" class="form-control" id="qty" name="qty" readonly="false"/>--%>
         </div>
 
-
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-    <script type="text/javascript"> 
-        function ConfirmUpdate(stockId) {
-            $('#popUpModal').modal('show');
-            return false;
-        }
+    <script type="text/javascript">
+       // window.onclick = openModal();
+            function openModal(stockId) {
+                $('#' + stockId).val(stockId);
+                var sid = $('#' + stockId).val();
+                var datatableVariable;
+                $.ajax({
+                    url: "WebService/ReservedRawMats.asmx/GetReservedRaw",
+                    data: { id: sid },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        datatableVariable = $('#manageTable').DataTable({
+                            data: data,
+                            columns: [
+                                { 'data': 'brand' },
+                                { 'data': 'price' },
+                                { 'data': 'qty' }
+                            ],
+                            language: {
+                                emptyTable: "No Request Available!"
+                            }
+                        });
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
+                //$.ajax({
+                //    url: "orderedrequest.aspx/ConfirmUpdate",
+                //    data: { id: sid },
+                //    type: "POST",
+                //    dataType: "json",
+                //    success: function (data) {
+                //       // alert(data);
+                //                //$("#GridView3").find("tr:gt(0)").remove();
+                //                //for (var i = 0; i < data.length; i++) {
+                //                //    $("#GridView3").append("<tr><td>" + data.brandname +
+                //                //                                    "</td><td>" + data.price + "</td><td>" + data.quantityordered + "</td></tr>");
+                //                //}
+                //    },
+                //    error: function (err) {
+                //        alert(err);
+                //    }
+                //});
+                $('#popUpModal').modal('show');
+            }
  </script>
 </asp:Content>

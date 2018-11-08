@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -23,10 +26,18 @@ namespace ecci.inv.system.production
             if (!IsPostBack)
             {
                 BindGridView();
+                
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); $('.alert-warning').hide();});</script>");
             }
-
+          //  BindPopUp();
+        }
+        private void BindPopUp()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[] { new DataColumn("Brandname"), new DataColumn("Price"), new DataColumn("Total Quantity") });
+          //  GridView3.DataSource = dt;
+          //  GridView3.DataBind();
         }
         private void BindGridView()
         {
@@ -40,6 +51,37 @@ namespace ecci.inv.system.production
             GridView1.DataSource = con.DataQueryExec();
             GridView1.DataBind();
             con.CloseConnection();
+        }
+
+        [WebMethod(enableSession: true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void ConfirmUpdate(string id)
+        { 
+           // BindPopUp();
+            try
+            {
+               // string id = Convert.ToString(Request.Form.Get("hiddenStockId").ToString());
+                int pos = 0;
+                string pid = "";
+                string oid = "";
+                pos = id.IndexOf("c");
+                pid = id.Substring(0, pos);
+                oid = id.Substring(pos + 1, id.Length - (pos + 1));
+                con.OpenConection();
+                con.ExecSqlQuery(
+                @"SELECT  i.quantityordered,
+                u.price,t.brandname FROM oderdetails i
+                INNER JOIN productitems u ON i.productid = u.productid
+                INNER JOIN items t ON u.itemsid = t.itemsid
+                where i.productid = '" + Convert.ToInt32(pid) + "' and i.orderid ='" + Convert.ToInt64(oid) + "' ");
+              //  GridView3.DataSource = con.DataQueryExec();
+              //  GridView3.DataBind();
+                con.CloseConnection();
+                //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "Pop", "openModal();",true);
+            }catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+            }
         }
         public string MyNewRow(object unqid)
         {
@@ -76,6 +118,11 @@ namespace ecci.inv.system.production
                     con.CloseConnection();
                 }
             }
+        }
+
+        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
         }
     }
 }

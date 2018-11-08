@@ -6764,6 +6764,7 @@
     <Content Include="production\WebService\ProcessRaw.asmx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
     <Content Include="production\WebService\RequestMaterials.asmx" />
+    <Content Include="production\WebService\ReservedRawMats.asmx" />
     <Content Include="Products.aspx" />
     <Content Include="production\Production.Master" />
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
@@ -7634,7 +7635,9 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="production\CS\ProductRaw.cs" />
     <Compile Include="production\CS\RawMaterials.cs" />
+    <Compile Include="production\CS\RawProduct.cs" />
     <Compile Include="production\CS\RequestMaterial.cs" />
     <Compile Include="production\Production.Master.cs">
       <DependentUpon>Production.Master</DependentUpon>
@@ -7681,6 +7684,10 @@
     </Compile>
     <Compile Include="production\WebService\RequestMaterials.asmx.cs">
       <DependentUpon>RequestMaterials.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="production\WebService\ReservedRawMats.asmx.cs">
+      <DependentUpon>ReservedRawMats.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Products.aspx.cs">
