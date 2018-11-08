@@ -151,6 +151,9 @@
                     <li id="dashboardMainMenu">
                         <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                     </li>
+                    <li id="approvalMenu">
+                        <a href="#"><i class="fa fa-dashboard"></i><span>Approvals</span></a>
+                    </li>
                     <li class="treeview" id="mainUserNav">
                         <a href="#"><i class="fa fa-users"></i>
                             <span>Users</span>
