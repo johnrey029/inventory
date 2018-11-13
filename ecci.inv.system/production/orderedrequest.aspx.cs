@@ -36,8 +36,8 @@ namespace ecci.inv.system.production
         {
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[] { new DataColumn("Brandname"), new DataColumn("Price"), new DataColumn("Total Quantity") });
-          //  GridView3.DataSource = dt;
-          //  GridView3.DataBind();
+            GridView3.DataSource = dt;
+            GridView3.DataBind();
         }
         private void BindGridView()
         {
@@ -53,14 +53,14 @@ namespace ecci.inv.system.production
             con.CloseConnection();
         }
 
-        [WebMethod(enableSession: true)]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void ConfirmUpdate(string id)
+        //[WebMethod(enableSession: true)]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void ConfirmUpdate()
         { 
            // BindPopUp();
             try
             {
-               // string id = Convert.ToString(Request.Form.Get("hiddenStockId").ToString());
+                string id = Convert.ToString(Request.Form.Get("hiddenStockId").ToString());
                 int pos = 0;
                 string pid = "";
                 string oid = "";
@@ -74,8 +74,8 @@ namespace ecci.inv.system.production
                 INNER JOIN productitems u ON i.productid = u.productid
                 INNER JOIN items t ON u.itemsid = t.itemsid
                 where i.productid = '" + Convert.ToInt32(pid) + "' and i.orderid ='" + Convert.ToInt64(oid) + "' ");
-              //  GridView3.DataSource = con.DataQueryExec();
-              //  GridView3.DataBind();
+                GridView3.DataSource = con.DataQueryExec();
+                GridView3.DataBind();
                 con.CloseConnection();
                 //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "Pop", "openModal();",true);
             }catch (Exception ex)
@@ -123,6 +123,10 @@ namespace ecci.inv.system.production
         protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
+        }
+        protected void button_Click(object sender, EventArgs e)
+        {
+            string id = Convert.ToString(Request.Form.Get("hiddenStockId").ToString());
         }
     }
 }

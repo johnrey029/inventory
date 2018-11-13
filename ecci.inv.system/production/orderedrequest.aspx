@@ -118,7 +118,7 @@
                                                  </Columns>
                               </asp:GridView>
                                 <div style="width:100%; text-align:center;">
-                                  <%--  <asp:Button CssClass="btn btn-success" Height="30px" Width="75%"  runat="server" Text="Request Raw Materials" OnClick="ConfirmUpdate" OnClientClick="return openModal('<%#Eval("uniqueid")%>')" />--%>
+                                <%--<asp:Button ID="button" CssClass="btn btn-success" Height="30px" Width="75%"  runat="server" Text="Request Raw Materials" OnClick="button_Click" OnClientClick="return openModal('<%#Eval("uniqueid")%>')" />--%>
                                 <button type="button" class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" >Request Raw Materials</button>
                                 </div>
                                    <input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>
@@ -151,7 +151,7 @@
 </div>
 <!-- /.content-wrapper onload="BindPopUp();" -->
     <div class="modal fade" tabindex="-1"  role="dialog" id="popUpModal">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" style="width:70%">
     <div class="modal-content">
       <div class="modal-header bg-aqua-active">
         <button type="button" class="close active" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -159,7 +159,7 @@
       </div>
 
       <div class="modal-body">
-            <table id="manageTable" class="table table-bordered table-striped" style=" width: 100%">
+            <table id="manageTable" class="table table-bordered table-striped" style="width: 100%">
               <thead>
               <tr>
                 <th>Brand</th>
@@ -169,11 +169,11 @@
               </tr>
               </thead>
             </table>
-           <%--    <asp:GridView ID="GridView3" CssClass="table table-bordered table-striped" ShowHeaderWhenEmpty="True" runat="server" 
-                  AutoGenerateColumns="False" OnRowDataBound="GridView3_RowDataBound">
+             <asp:GridView ID="GridView3" CssClass="table table-bordered table-striped" ShowHeaderWhenEmpty="True" runat="server" 
+                  AutoGenerateColumns="True" OnRowDataBound="GridView3_RowDataBound">
                 <Columns>
-                        <asp:BoundField DataField="date" HeaderText="Date" DataFormatString="{0:MMMM-dd-yyyy}" />--%>
-                      <%--<asp:TemplateField HeaderText="List of PO # reserved">
+                       <%--  <asp:BoundField DataField="date" HeaderText="Date" DataFormatString="{0:MMMM-dd-yyyy}" />
+                     <asp:TemplateField HeaderText="List of PO # reserved">
                           <ItemTemplate>DataField="brand"DataField="price"DataField="qty"
                               <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" Width="100%" AutoGenerateColumns="false">
                                                  <Columns>
@@ -183,14 +183,13 @@
                                                  </Columns>
                               </asp:GridView>
                           </ItemTemplate>
-                      </asp:TemplateField>--%>
-                      
-                     <%-- <asp:BoundField DataField="amount" HeaderText="Total Amount" />
-                      <asp:BoundField HeaderText="Product Name" />
-                      <asp:BoundField HeaderText="Price" />
-                      <asp:BoundField HeaderText="Qty" />
+                      </asp:TemplateField>
+                     <asp:BoundField DataField="amount" HeaderText="Total Amount" /> --%>
+                      <asp:BoundField DataField="" HeaderText="Product Name" />
+                      <asp:BoundField DataField="" HeaderText="Price" />
+                      <asp:BoundField DataField="" HeaderText="Qty" />
                   </Columns>
-              </asp:GridView>   --%>
+              </asp:GridView>  
         </div>
         
         <div class="modal-footer bg-aqua-active">
@@ -209,32 +208,45 @@
             function openModal(stockId) {
                 $('#' + stockId).val(stockId);
                 var sid = $('#' + stockId).val();
-                var datatableVariable;
-                $.ajax({
-                    url: "WebService/ReservedRawMats.asmx/GetReservedRaw",
-                    data: { id: sid },
-                    type: "POST",
-                    dataType: "json",
-                    success: function (data) {
-                        datatableVariable = $('#manageTable').DataTable({
-                            data: data,
-                            columns: [
-                                { 'data': 'brand' },
-                                { 'data': 'price' },
-                                { 'data': 'qty' }
-                            ],
-                            language: {
-                                emptyTable: "No Request Available!"
-                            }
-                        });
-                    },
-                    error: function (err) {
-                        alert(err);
-                    }
-                });
+                var now = new Date();
+                var minutes = 30;
+                now.setTime(now.getTime() + (minutes * 60 * 1000));
+                document.cookie = "CookieName=" + sid + ";expires=" + now.toUTCString();
+                window.location = "/production/WebForm3.aspx";
+                //var datatableVariable;
+                //var dtVariable;
+                //$.ajax({
+                //    url: "WebService/ReservedRawMats.asmx/GetReservedRaw",
+                //    data: { id: sid },
+                //    type: "POST",
+                //    dataType: "json",
+                //    success: function (data) {
+                //        datatableVariable = $('#manageTable').DataTable({
+                //            data: data,
+                //            columns: [
+                //                { 'data': 'brand' },
+                //                { 'data': 'price' },
+                //                { 'data': 'qty' },
+                //                {
+                //                    'data': 'itemsid', 'render': function (data, type, row) {
+                //                        return '<table id="dtTable" class="table table-bordered table-striped" style="width: 100%"><thead>' +
+                //                            '<tr><th>PO#</th><th>Brand</th><th>Quantity</th><th>Stored Date</th></tr>';
+                //                    }
+                //                }
+                //            ],
+                //            destroy: true,
+                //            language: {
+                //                emptyTable: "No Request Available!"
+                //            }
+                //        });
+                //    },
+                //    error: function (err) {
+                //        alert(err);
+                //    }
+                //});
                 //$.ajax({
                 //    url: "orderedrequest.aspx/ConfirmUpdate",
-                //    data: { id: sid },
+                //    data: { },
                 //    type: "POST",
                 //    dataType: "json",
                 //    success: function (data) {
@@ -249,7 +261,31 @@
                 //        alert(err);
                 //    }
                 //});
-                $('#popUpModal').modal('show');
+                //complete: function () {
+                //    $.ajax({
+                //        url: "WebService/ReservedRawMats.asmx/GetRawList",
+                //        data: { id: sid },
+                //        type: "POST",
+                //        dataType: "json",
+                //        success: function (data) {
+                //            dtVariable = $('#dtTable').DataTable({
+                //                data: data,
+                //                columns: [
+                //                    { 'data': 'brand' },
+                //                    { 'data': 'price' },
+                //                    { 'data': 'qty' },
+                //                ],
+                //                destroy: true,
+                //                language: {
+                //                    emptyTable: "No Request Available!"
+                //                }
+
+                //                /*do some thing in second function*/
+                //            });
+                //        }
+                //    });
+                //}
+                //$('#popUpModal').modal('show');
             }
- </script>
+</script>
 </asp:Content>

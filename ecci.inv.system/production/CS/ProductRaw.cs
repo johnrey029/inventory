@@ -10,5 +10,6 @@ namespace ecci.inv.system.production.CS
         public string price { get; set; }
         public string brand { get; set; }
         public string qty { get; set; }
+        public string itemsid { get; set; }
     }
 }

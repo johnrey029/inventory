@@ -6761,6 +6761,7 @@
     <Content Include="production\process.aspx" />
     <Content Include="production\request.aspx" />
     <Content Include="production\orderedrequest.aspx" />
+    <Content Include="production\WebForm3.aspx" />
     <Content Include="production\WebService\ProcessRaw.asmx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
     <Content Include="production\WebService\RequestMaterials.asmx" />
@@ -7673,6 +7674,13 @@
     </Compile>
     <Compile Include="production\orderedrequest.aspx.designer.cs">
       <DependentUpon>orderedrequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="production\WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
     </Compile>
     <Compile Include="production\WebService\ProcessRaw.asmx.cs">
       <DependentUpon>ProcessRaw.asmx</DependentUpon>
