@@ -135,7 +135,7 @@ namespace ecci.inv.system
         private void user_activity()
         {
             con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_login (act_empno,act_activity,act_datetime) VALUES (@empno,@activity,@datetime)");
+            con.ExecSqlQuery("INSERT INTO activity_user (act_empno,act_activity,act_datetime) VALUES (@empno,@activity,@datetime)");
             con.Cmd.Parameters.Add("@empno", SqlDbType.Char).Value = log_user;
             con.Cmd.Parameters.Add("@activity", SqlDbType.Char).Value = "Login";
             con.Cmd.Parameters.Add("@datetime", SqlDbType.DateTime).Value = DateTime.Now;
