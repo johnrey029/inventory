@@ -113,7 +113,7 @@
                               <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" Width="100%" AutoGenerateColumns="false">
                                                  <Columns>
                                                      <asp:BoundField DataField="brandname" HeaderText="Material Name" />
-                                                     <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
+                                                     <asp:BoundField DataField="required" HeaderText="Qty" />
                                                      <asp:BoundField DataField="price" HeaderText="Price"/>
                                                  </Columns>
                               </asp:GridView>
@@ -122,8 +122,8 @@
                                 <button type="button" class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" >Request Raw Materials</button>
                                 </div>
                                    <input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>
-                           <%--    </br>
-                                     <tr>onclick='<%#Request_RawMats(this.ClientID) %>'onserverclick="ConfirmUpdate(<%# Eval("uniqueid") %>);"
+                               </br>
+                            <%--         <tr>onclick='<%#Request_RawMats(this.ClientID) %>'onserverclick="ConfirmUpdate(<%# Eval("uniqueid") %>);"
                                   <td> 
                                       <div id='<%#Eval("uniqueid") %>' style="display:none">--%>
                                           

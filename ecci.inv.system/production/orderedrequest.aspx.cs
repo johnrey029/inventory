@@ -108,7 +108,7 @@ namespace ecci.inv.system.production
                     //Convert(VARCHAR(19), i.productid) + 'j' + Convert(VARCHAR(50), i.orderid) AS idunique,
                     con.OpenConection();
                     GridView gv = (GridView)e.Row.FindControl("GridView2");
-                    con.ExecSqlQuery(@"SELECT  i.quantityordered,
+                    con.ExecSqlQuery(@"SELECT  i.quantityordered * u.quantity as required,
                     u.price,t.brandname FROM oderdetails i
                     INNER JOIN productitems u ON i.productid = u.productid
                     INNER JOIN items t ON u.itemsid = t.itemsid

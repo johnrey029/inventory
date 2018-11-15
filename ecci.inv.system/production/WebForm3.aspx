@@ -86,7 +86,7 @@
             </table>--%>
               <asp:GridView ID="GridView1" CssClass="table table-bordered table-striped" runat="server" 
                   AutoGenerateColumns="false" OnRowDataBound="GridView1_RowDataBound" 
-                  DataKeyNames="itemsid">
+                  DataKeyNames="uniqueid">
                   <Columns>
                       <asp:TemplateField HeaderStyle-Width="20px" ItemStyle-Width="20px">
                           <ItemTemplate>
@@ -97,13 +97,12 @@
                           </ItemTemplate>
                       </asp:TemplateField>
                       <asp:BoundField DataField="brandname" HeaderText="Material Name" />
-                      <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
+                      <asp:BoundField DataField="required" HeaderText="Qty" />
                       <asp:TemplateField HeaderText="Price">
                           <ItemTemplate>
                               <%#Eval("price") %>
-                              <%#MyNewRow(Eval("itemsid")) %>
-                              
-                                   <input type="hidden" id="<%# Eval("itemsid") %>"  name="hiddenStockId" value="<%# Eval("quantityordered") %>" />
+                              <%#MyNewRow(Eval("uniqueid")) %>
+                                   <%--<input type="hidden" id="<%# Eval("itemsid") %>"  name="hiddenStockId" value="<%# Eval("quantityordered") %>" />--%>
                               <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" Width="100%" AutoGenerateColumns="false">
                                                  <Columns>
                                                      <asp:BoundField DataField="purchaseorder" HeaderText="PO#" />
@@ -112,11 +111,14 @@
                                                      <asp:BoundField DataField="receivedate" HeaderText="Date"/>
                                                  </Columns>
                               </asp:GridView>
+                          <br />
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
-                  
               </asp:GridView>
+              <br />
+              <asp:Button ID="btnRequest" runat="server" Width="100%" Text="Send Request" CssClass="btn btn-success"
+              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Requesting...'; this.disabled='false'; }"/>
           </div>
           <!-- /.box-body -->
         </div>

@@ -37,8 +37,8 @@ namespace ecci.inv.system.production
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             con.OpenConection();
             con.ExecSqlQuery(
-            @"SELECT  i.quantityordered, u.itemsid,
-                u.price,t.brandname FROM oderdetails i
+            @"SELECT  i.quantityordered * u.quantity as required, u.itemsid,Convert(VARCHAR(19),i.quantityordered) + 'c' + Convert(VARCHAR(50),u.itemsid) AS uniqueid,
+                u.price,t.brandname, i.quantityordered FROM oderdetails i
                 INNER JOIN productitems u ON i.productid = u.productid
                 INNER JOIN items t ON u.itemsid = t.itemsid
                 where i.productid = '" + Convert.ToInt32(pid) + "' and i.orderid ='" + Convert.ToInt64(oid) + "' ");
@@ -55,53 +55,66 @@ namespace ecci.inv.system.production
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Int64 total = 0;
-            Int64 addedtotal = 0;
+            int total = 0;
             int count = 1;
+            int pos = 0;
+            string qty = "";
+            string itemsid = "";
+            int status = 0;
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string requestedid = GridView1.DataKeys[e.Row.RowIndex].Value.ToString();
+
                 if (requestedid.Length > 0)
                 {
+                    GridView gv = (GridView)e.Row.FindControl("GridView2");
+                    pos = requestedid.IndexOf("c");
+                    qty = requestedid.Substring(0, pos);
+                    itemsid = requestedid.Substring(pos + 1, requestedid.Length - (pos + 1));
                     do
                     {
-                        //   for (int i = 1; i<= GridView1; i++)
-                        //  {
-                        //for (int i = 0; i < gv.Columns.Count; i++)
-                        // {
-                        //String header = gv.Columns[i].HeaderText;
-                        //    total = Convert.ToInt64(row.Cells[2].Text);
-                        // }
-                        //}
-                      //  total = Convert.ToInt64(GridView1.Rows[index].Cells[2].Text.ToString());
-                        //total = Convert.ToInt64(Request.Form.Get(requestedid).ToString());
+
                         con.OpenConection();
-                        GridView gv = (GridView)e.Row.FindControl("GridView2");
-                        con.ExecSqlQuery("SELECT TOP " + count.ToString() + " " + 
-                        "sw.purchaseorder, sw.quantity,"+
+                        con._dr = con.DataReader("SELECT TOP " + count.ToString() + " " +
+                        "sw.purchaseorder, sw.quantity," +
                         "sw.receivedate,t.brandname FROM stock_warehouse sw " +
                         "INNER JOIN items t ON sw.itemsid = t.itemsid " +
-                        "where sw.itemsid ='" + Convert.ToInt64(requestedid) + "' "+
+                        "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' " +
                         "order by sw.receivedate Desc");
-                        gv.DataSource = con.DataQueryExec();
-                        gv.DataBind();
-                        con.CloseConnection();
-                        foreach (GridViewRow row in gv.Rows)
+                        while (con._dr.Read()) 
                         {
-                            //for (int i = 0; i < gv.Columns.Count; i++)
-                            // {
-                            //String header = gv.Columns[i].HeaderText;
-                            addedtotal += Convert.ToInt64(row.Cells[2].Text);
-                            // }
+                            total += Convert.ToInt32(con._dr["quantity"].ToString());
                         }
-                        if (addedtotal == total)
+                        con._dr.Close();
+                        con.CloseConnection();
+
+                        if (total > Convert.ToInt32(qty) || total == Convert.ToInt32(qty))
                         {
+                            count++;
                             contin = false;
                         }
+                    
+                        else
+                        {
+                            contin = true;
+                           // gv.BorderColor = System.Drawing.Color.Orange;
+                        }
                     } while (contin != false);
+                    con.OpenConection();
+                    con.ExecSqlQuery("SELECT TOP " + count.ToString() + " " +
+                    "sw.purchaseorder, sw.quantity," +
+                    "sw.receivedate,t.brandname FROM stock_warehouse sw " +
+                    "INNER JOIN items t ON sw.itemsid = t.itemsid " +
+                    "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' " +
+                    "order by sw.receivedate ASC");
+                    gv.DataSource = con.DataQueryExec();
+                    gv.DataBind();
+                    con.CloseConnection();
+                    
                 }
             }
         }
+
     }
 }
