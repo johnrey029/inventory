@@ -212,7 +212,7 @@
                 var minutes = 30;
                 now.setTime(now.getTime() + (minutes * 60 * 1000));
                 document.cookie = "CookieName=" + sid + ";expires=" + now.toUTCString();
-                window.location = "/production/WebForm3.aspx";
+                window.location = "/production/requestmaterials.aspx";
                 //var datatableVariable;
                 //var dtVariable;
                 //$.ajax({

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="WebForm3.aspx.cs" Inherits="ecci.inv.system.production.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="requestmaterials.aspx.cs" Inherits="ecci.inv.system.production.requestmaterials" %>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Dashboard
@@ -93,7 +93,7 @@
                               <%--<a href="JavaScript:expandcollapse('<%#Eval("uniqueid") %>');">
                                  <img src="../Images/plus.png" class="img-sm" border="0" id='img<%#Eval("uniqueid") %>' />
                               </a>--%>
-                              <button class="btn btn-primary glyphicon-plus" onclick="return ToggleGridPanel(this, 'tr<%# Eval("itemsid") %>')"></button>
+                              <button class="btn btn-primary glyphicon-plus" onclick="return ToggleGridPanel(this, 'tr<%# Eval("itemsid") %>')" disabled="disabled"></button>
                           </ItemTemplate>
                       </asp:TemplateField>
                       <asp:BoundField DataField="brandname" HeaderText="Material Name" />
@@ -112,18 +112,24 @@
                                                  </Columns>
                                   <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="Left" />
                               </asp:GridView>
+                              <div style="width:100%; text-align:center;">
+                                  <asp:Label ID="Label2" runat="server" Text="Label" Font-Size="Large" Font-Bold="True" Font-Italic="True" Visible="False" ForeColor ="Red"></asp:Label>
+                              </div>
+                              
                           <br />
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
               </asp:GridView>
               <br />
-              <asp:Button ID="btnRequest" runat="server" Width="100%" Text="Send Request" CssClass="btn btn-success"
-              UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Requesting...'; this.disabled='false'; }"/>
+              <asp:Label ID="Label3" runat="server" Text="Label" Font-Size="Large" Font-Bold="True" Font-Italic="True"  ForeColor ="Red"></asp:Label>
+              <asp:Button ID="btnRequest" runat="server" Width="100%" Text="Send Request" CssClass="btn btn-success" OnClick="btnRequest_Click"
+              />
           </div>
           <!-- /.box-body -->
         </div>
-        <!-- /.box -->
+        <!-- /.box UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Requesting...'; this.disabled='false'; }" 
+            -->
       </div>
       <!-- col-md-12 -->
     </div>

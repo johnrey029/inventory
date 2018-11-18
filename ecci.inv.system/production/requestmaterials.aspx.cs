@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ecci.inv.system.production
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class requestmaterials : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         DBConnection con;
@@ -37,7 +37,8 @@ namespace ecci.inv.system.production
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             con.OpenConection();
             con.ExecSqlQuery(
-            @"SELECT  i.quantityordered * u.quantity as required, u.itemsid,Convert(VARCHAR(19),i.quantityordered * u.quantity) + 'c' + Convert(VARCHAR(50),u.itemsid) AS uniqueid,
+            @"SELECT  i.quantityordered * u.quantity as required,
+                u.itemsid,Convert(VARCHAR(19),i.quantityordered * u.quantity) + 'c' + Convert(VARCHAR(50),u.itemsid) AS uniqueid,
                 u.price,t.brandname, i.quantityordered FROM oderdetails i
                 INNER JOIN productitems u ON i.productid = u.productid
                 INNER JOIN items t ON u.itemsid = t.itemsid
@@ -83,7 +84,7 @@ namespace ecci.inv.system.production
                         "sw.receivedate,t.brandname FROM stock_warehouse sw " +
                         "INNER JOIN items t ON sw.itemsid = t.itemsid " +
                         "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' " +
-                        "order by sw.receivedate Desc");
+                        "order by sw.receivedate ASC");
                         //read = Convert.ToInt32(con._dr.Read());
                         while (con._dr.Read()) 
                         {
@@ -97,15 +98,15 @@ namespace ecci.inv.system.production
                             if (count == read)
                             {
                                 contin = false;
-                                btnRequest.Enabled = true;
+                               // btnRequest.Enabled = true;
                             }
                             else
                             {
                                 e.Row.BackColor = System.Drawing.Color.Orange;
                                 contin = true;
-                                number = count;
-                                btnRequest.Enabled = false;
+                                number = read;
                                 sum = total;
+                                btnRequest.Enabled = false;
                             }
                             count++;
                         }
@@ -113,7 +114,7 @@ namespace ecci.inv.system.production
                         {
                             e.Row.BackColor = System.Drawing.Color.White;
                             contin = true;
-                            number = count;
+                            number = read;
                             sum = total;
                         }
                         read = 0;
@@ -133,12 +134,84 @@ namespace ecci.inv.system.production
                     lb.Text = "Total Amount";
                     Label lb1 = new Label();
                     lb1.Text = sum + "/" + qty;
-                    gv.FooterRow.Cells[1].Controls.Add(lb);
-                    gv.FooterRow.Cells[2].Controls.Add(lb1);
+                    if (gv.Rows.Count > 0)
+                    {
+                        gv.FooterRow.Cells[1].Controls.Add(lb);
+                        gv.FooterRow.Cells[2].Controls.Add(lb1);
+                    }
+                    else
+                    {
+                        Label lab = (Label)e.Row.FindControl("Label2");
+                        lab.Text = "No Raw Materials Available";
+                        lab.Visible = true;
+                        btnRequest.Enabled = false;
+                    }
                     count = 1;
+                    sum = 0;
                 }
             }
         }
 
+        protected void btnRequest_Click(object sender, EventArgs e)
+        {
+            int qty = 0;
+            int sum = 0;
+            int com = 0;
+            string ponumber = "";
+            foreach (GridViewRow gvrow in GridView1.Rows)
+            {
+                qty = Convert.ToInt32(gvrow.Cells[2].Text);
+                GridView gvInner = gvrow.FindControl("GridView2") as GridView;
+                foreach (GridViewRow row in gvInner.Rows)
+                {
+                    ponumber = row.Cells[0].Text;
+                    com = Convert.ToInt32(row.Cells[2].Text);
+                    sum += Convert.ToInt32(row.Cells[2].Text);
+                    if(qty > sum)
+                    {
+                        insertupdate(com, 0, ponumber);
+                    }
+                    else
+                    {
+                        int diff = sum - com;
+                        int notdiff = qty - diff;
+                        int finaldiff = com - notdiff;
+                        insertupdate(notdiff, finaldiff, ponumber);
+                    }
+                }
+                sum = 0;
+            }
+        }
+        private void insertupdate(int com,int update, string ponumber)
+        {
+            string id = Label1.Text;
+            int pos = 0;
+            string pid = "";
+            string oid = "";
+            pos = id.IndexOf("c");
+            pid = id.Substring(0, pos);
+            oid = id.Substring(pos + 1, id.Length - (pos + 1));
+            try
+            {
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE stock_warehouse SET quantity = @qty WHERE purchaseorder = @sid");
+                con.Cmd.Parameters.AddWithValue("@qty", update);
+                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+
+                con.OpenConection();
+                con.ExecSqlQuery("Insert into requestitems(quantity,po,productid)values(@qty,@sid,@pid)");
+                con.Cmd.Parameters.AddWithValue("@qty", com);
+                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                con.Cmd.Parameters.AddWithValue("@pid", pid);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+            }
+        }
     }
 }
