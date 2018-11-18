@@ -37,7 +37,7 @@ namespace ecci.inv.system.production
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             con.OpenConection();
             con.ExecSqlQuery(
-            @"SELECT  i.quantityordered * u.quantity as required, u.itemsid,Convert(VARCHAR(19),i.quantityordered) + 'c' + Convert(VARCHAR(50),u.itemsid) AS uniqueid,
+            @"SELECT  i.quantityordered * u.quantity as required, u.itemsid,Convert(VARCHAR(19),i.quantityordered * u.quantity) + 'c' + Convert(VARCHAR(50),u.itemsid) AS uniqueid,
                 u.price,t.brandname, i.quantityordered FROM oderdetails i
                 INNER JOIN productitems u ON i.productid = u.productid
                 INNER JOIN items t ON u.itemsid = t.itemsid
@@ -56,11 +56,13 @@ namespace ecci.inv.system.production
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             int total = 0;
+            int sum = 0;
             int count = 1;
+            int number = 0;
             int pos = 0;
             string qty = "";
             string itemsid = "";
-            int status = 0;
+            int read = 0;
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -82,27 +84,43 @@ namespace ecci.inv.system.production
                         "INNER JOIN items t ON sw.itemsid = t.itemsid " +
                         "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' " +
                         "order by sw.receivedate Desc");
+                        //read = Convert.ToInt32(con._dr.Read());
                         while (con._dr.Read()) 
                         {
                             total += Convert.ToInt32(con._dr["quantity"].ToString());
+                            read++;
                         }
                         con._dr.Close();
                         con.CloseConnection();
-
-                        if (total > Convert.ToInt32(qty) || total == Convert.ToInt32(qty))
+                        if (total < Convert.ToInt32(qty))
                         {
+                            if (count == read)
+                            {
+                                contin = false;
+                                btnRequest.Enabled = true;
+                            }
+                            else
+                            {
+                                e.Row.BackColor = System.Drawing.Color.Orange;
+                                contin = true;
+                                number = count;
+                                btnRequest.Enabled = false;
+                                sum = total;
+                            }
                             count++;
-                            contin = false;
                         }
-                    
                         else
                         {
+                            e.Row.BackColor = System.Drawing.Color.White;
                             contin = true;
-                           // gv.BorderColor = System.Drawing.Color.Orange;
+                            number = count;
+                            sum = total;
                         }
-                    } while (contin != false);
+                        read = 0;
+                        total = 0;
+                    } while (contin == false);
                     con.OpenConection();
-                    con.ExecSqlQuery("SELECT TOP " + count.ToString() + " " +
+                    con.ExecSqlQuery("SELECT TOP " + number.ToString() + " " +
                     "sw.purchaseorder, sw.quantity," +
                     "sw.receivedate,t.brandname FROM stock_warehouse sw " +
                     "INNER JOIN items t ON sw.itemsid = t.itemsid " +
@@ -111,7 +129,13 @@ namespace ecci.inv.system.production
                     gv.DataSource = con.DataQueryExec();
                     gv.DataBind();
                     con.CloseConnection();
-                    
+                    Label lb = new Label();
+                    lb.Text = "Total Amount";
+                    Label lb1 = new Label();
+                    lb1.Text = sum + "/" + qty;
+                    gv.FooterRow.Cells[1].Controls.Add(lb);
+                    gv.FooterRow.Cells[2].Controls.Add(lb1);
+                    count = 1;
                 }
             }
         }

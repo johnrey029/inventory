@@ -103,13 +103,14 @@
                               <%#Eval("price") %>
                               <%#MyNewRow(Eval("uniqueid")) %>
                                    <%--<input type="hidden" id="<%# Eval("itemsid") %>"  name="hiddenStockId" value="<%# Eval("quantityordered") %>" />--%>
-                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" Width="100%" AutoGenerateColumns="false">
+                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" Width="100%" AutoGenerateColumns="false" ShowFooter="true">
                                                  <Columns>
                                                      <asp:BoundField DataField="purchaseorder" HeaderText="PO#" />
                                                      <asp:BoundField DataField="brandname" HeaderText="Material Name" />
                                                      <asp:BoundField DataField="quantity" HeaderText="Qty"/>
                                                      <asp:BoundField DataField="receivedate" HeaderText="Date"/>
                                                  </Columns>
+                                  <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="Left" />
                               </asp:GridView>
                           <br />
                           </ItemTemplate>
