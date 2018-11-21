@@ -101,8 +101,8 @@
 <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
-<%--    
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
+<%--  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
@@ -118,6 +118,7 @@
         $(document).ready(function () {
             $('.alert-success').hide();
             $('.alert-error').hide();
+            $('.alert-warning').hide();
         });
     </script>
     
@@ -186,6 +187,11 @@
             <li id="receiveNav">
               <a href="rawmaterials.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
+              </a>
+            </li>
+          <li id="requestNav">
+              <a href="productionrequest.aspx">
+                <i class="glyphicon glyphicon-tags"></i> <span>Requested Raw Materials</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

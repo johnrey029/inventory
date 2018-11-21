@@ -7522,7 +7522,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="warehouse\productionrequest.aspx" />
     <Content Include="warehouse\rawmaterials.aspx" />
+    <Content Include="warehouse\approvematerials.aspx" />
     <Content Include="warehouse\WareHouse.Master" />
     <None Include="Service References\DispatchService\DispatchingDeliveryService.wsdl" />
     <None Include="Service References\WarehouseRaw\WarehouseRaw.wsdl" />
@@ -7966,12 +7968,26 @@
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
     <Compile Include="warehouse\CS\RawMaterials.cs" />
+    <Compile Include="warehouse\productionrequest.aspx.cs">
+      <DependentUpon>productionrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="warehouse\productionrequest.aspx.designer.cs">
+      <DependentUpon>productionrequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="warehouse\rawmaterials.aspx.cs">
       <DependentUpon>rawmaterials.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="warehouse\rawmaterials.aspx.designer.cs">
       <DependentUpon>rawmaterials.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="warehouse\approvematerials.aspx.cs">
+      <DependentUpon>approvematerials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="warehouse\approvematerials.aspx.designer.cs">
+      <DependentUpon>approvematerials.aspx</DependentUpon>
     </Compile>
     <Compile Include="warehouse\WareHouse.Master.cs">
       <DependentUpon>WareHouse.Master</DependentUpon>

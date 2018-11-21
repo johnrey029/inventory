@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.production
+namespace ecci.inv.system.warehouse
 {
-    public partial class requestmaterials : System.Web.UI.Page
+    public partial class approvematerials : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         DBConnection con;
@@ -47,7 +47,7 @@ namespace ecci.inv.system.production
             GridView1.DataBind();
             con.CloseConnection();
         }
-        public string MyNewRow(object unqid)
+        public string MyRow(object unqid)
         {
             return String.Format(@"</td></tr><tr id='tr{0}' class='collapsed-row'>
             <td>LIST OF AVAILABLE PO #</td> <td colspan='100' style='padding:0px; margin:0px;'>", unqid);

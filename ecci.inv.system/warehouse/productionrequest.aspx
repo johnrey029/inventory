@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="orderedrequest.aspx.cs" Inherits="ecci.inv.system.production.orderedrequest" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/warehouse/WareHouse.Master" AutoEventWireup="true" CodeBehind="productionrequest.aspx.cs" Inherits="ecci.inv.system.warehouse.productionrequest" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Production
 </asp:Content>
@@ -14,6 +14,8 @@
 <script type="text/javascript">  
     $(document).ready(function () {
         $(".display").DataTable();
+       // document.getElementById("<%=GridView1.ClientID %>").prepend($("<thead></thead>").append($("#GridView1").find("tbody tr:first"))).dataTable();
+        //$("#GridView1").prepend($("<thead></thead>").append($("#GridView1").find("tbody tr:first"))).dataTable();
              $("#requestNav").addClass('active');
          });
          //function expandcollapse(name) {
@@ -84,20 +86,17 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Raw Materials</h3>
+            <h3 class="box-title">Request By Production</h3>
           </div>
-          <!-- /.box-header --><%--OnPreRender="GridView1_PreRender" --%>
+          <!-- /.box-header --><%--OnPreRender="GridView1_PreRender" OnRowDataBound="GridView1_RowDataBound" 
+                  DataKeyNames="uniqueid">--%>
           <div class="box-body">
-              <asp:GridView ID="GridView1" CssClass="display table table-bordered table-striped" runat="server" 
-                  AutoGenerateColumns="false" OnRowDataBound="GridView1_RowDataBound" 
-                  DataKeyNames="uniqueid">
+              <asp:GridView ID="GridView1" CssClass="display table table-bordered table-striped" ShowHeaderWhenEmpty="true" Width="100%" runat="server" 
+                  AutoGenerateColumns="false" >
                   <Columns>
-                      <asp:TemplateField>
+                     <asp:TemplateField>
                           <ItemTemplate>
-                              <%--<a href="JavaScript:expandcollapse('<%#Eval("uniqueid") %>');">
-                                 <img src="../Images/plus.png" class="img-sm" border="0" id='img<%#Eval("uniqueid") %>' />
-                              </a>--%>
-                              <button class="btn btn-primary glyphicon-plus" onclick="return ToggleGridPanel(this, 'tr<%# Eval("uniqueid") %>')"></button>
+                                <button type="button" class="btn btn-success glyphicon-envelope" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" > Request</button>
                           </ItemTemplate>
                       </asp:TemplateField>
                       <asp:BoundField DataField="orderid" HeaderText="Order ID" />
@@ -107,8 +106,8 @@
                       <asp:BoundField DataField="price" HeaderText="Price" />
                       <asp:BoundField DataField="amount" HeaderText="Total Amount" />
                       <asp:BoundField DataField="date" HeaderText="Date" DataFormatString="{0:MMMM-dd-yyyy}" />
-                      <%--<asp:BoundField DataField="status"  />--%>
-                      <asp:TemplateField HeaderText="Status">
+                      <asp:BoundField DataField="status" HeaderText="Status"/> 
+                     <%-- <asp:TemplateField HeaderText="Status">
                           <ItemTemplate>
                               <%#Eval("status") %>
                               <%#MyNewRow(Eval("uniqueid")) %>
@@ -120,7 +119,7 @@
                                                  </Columns>
                               </asp:GridView>
                                 <div style="width:100%; text-align:center;">
-                                <%--<asp:Button ID="button" CssClass="btn btn-success" Height="30px" Width="75%"  runat="server" Text="Request Raw Materials" OnClick="button_Click" OnClientClick="return openModal('<%#Eval("uniqueid")%>')" />--%>
+                                <asp:Button ID="button" CssClass="btn btn-success" Height="30px" Width="75%"  runat="server" Text="Request Raw Materials" OnClick="button_Click" OnClientClick="return openModal('<%#Eval("uniqueid")%>')" />
                                 <button type="button" class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" >Request Raw Materials</button>
                                 </div>
                                    <input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>
@@ -131,9 +130,9 @@
                                           
                                      <%-- </div>
                                   </td>
-                              </tr>--%>
+                              </tr>
                           </ItemTemplate>
-                      </asp:TemplateField>
+                      </asp:TemplateField>--%>
                   </Columns>
                   
               </asp:GridView>
@@ -206,7 +205,9 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
     <script type="text/javascript">
-        //$("#GridView1").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        //$(document).ready(function () {
+        //    $("#GridView1").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        //});
             function openModal(stockId) {
                 $('#' + stockId).val(stockId);
                 var sid = $('#' + stockId).val();
