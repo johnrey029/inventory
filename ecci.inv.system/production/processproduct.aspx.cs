@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.warehouse
+namespace ecci.inv.system.production
 {
-    public partial class approvematerials : System.Web.UI.Page
+    public partial class processproduct : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         DBConnection con;
@@ -47,7 +47,7 @@ namespace ecci.inv.system.warehouse
             GridView1.DataBind();
             con.CloseConnection();
         }
-        public string MyRow(object unqid)
+        public string MyNewRow(object unqid)
         {
             return String.Format(@"</td></tr><tr id='tr{0}' class='collapsed-row'>
             <td>LIST OF AVAILABLE PO #</td> <td colspan='100' style='padding:0px; margin:0px;'>", unqid);
@@ -193,28 +193,30 @@ namespace ecci.inv.system.warehouse
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             try
             {
-                //con.OpenConection();
-                //con.ExecSqlQuery("UPDATE stock_warehouse SET quantity = @qty WHERE purchaseorder = @sid");
-                //con.Cmd.Parameters.AddWithValue("@qty", update);
-                //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
-                //con.Cmd.ExecuteNonQuery();
-                //con.CloseConnection();
+                con.OpenConection();
+                con.ExecSqlQuery("update stock_warehouse set quantity = @qty where purchaseorder = @sid");
+                con.Cmd.Parameters.AddWithValue("@qty", update);
+                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+
+                con.OpenConection();
+                con.ExecSqlQuery("Insert into requestitems(quantity,po,productid,orderid)values(@qty,@sid,@pid,@oid)");
+                con.Cmd.Parameters.AddWithValue("@qty", com);
+                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                con.Cmd.Parameters.AddWithValue("@pid", pid);
+                con.Cmd.Parameters.AddWithValue("@oid", oid);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+
                 con.OpenConection();
                 con.ExecSqlQuery("UPDATE oderdetails SET status = @stat WHERE orderid=@oid and productid=@pid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Approved");
+                con.Cmd.Parameters.AddWithValue("@stat", "In Production");
                 con.Cmd.Parameters.AddWithValue("@oid", oid);
                 con.Cmd.Parameters.AddWithValue("@pid", pid);
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
 
-                //con.OpenConection();
-                //con.ExecSqlQuery("Insert into requestitems(quantity,po,productid,orderid)values(@oid,@qty,@sid,@pid)");
-                //con.Cmd.Parameters.AddWithValue("@oid", oid);
-                //con.Cmd.Parameters.AddWithValue("@qty", com);
-                //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
-                //con.Cmd.Parameters.AddWithValue("@pid", pid);
-                //con.Cmd.ExecuteNonQuery();
-                //con.CloseConnection();
             }
             catch (Exception ex)
             {

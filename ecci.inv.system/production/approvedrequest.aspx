@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/warehouse/WareHouse.Master" AutoEventWireup="true" CodeBehind="productionrequest.aspx.cs" Inherits="ecci.inv.system.warehouse.productionrequest" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="approvedrequest.aspx.cs" Inherits="ecci.inv.system.production.approvedrequest" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
     Production
 </asp:Content>
@@ -13,10 +13,10 @@
     </style>  
 <script type="text/javascript">  
     $(document).ready(function () {
+        $("#processproductNav").addClass('active');
         $(".display").DataTable();
        // document.getElementById("<%=GridView1.ClientID %>").prepend($("<thead></thead>").append($("#GridView1").find("tbody tr:first"))).dataTable();
         //$("#GridView1").prepend($("<thead></thead>").append($("#GridView1").find("tbody tr:first"))).dataTable();
-             $("#requestNav").addClass('active');
          });
          //function expandcollapse(name) {
          //    var div = document.getElementById(name);
@@ -96,7 +96,7 @@
                   <Columns>
                      <asp:TemplateField>
                           <ItemTemplate>
-                                <button type="button" class="btn btn-success glyphicon-envelope" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" > Request</button>
+                                <button type="button" class="btn btn-success glyphicon-envelope" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" > Receive Materials</button>
                                <input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>
                           </ItemTemplate>
                       </asp:TemplateField>
@@ -162,7 +162,7 @@
                 var minutes = 30;
                 now.setTime(now.getTime() + (minutes * 60 * 1000));
                 document.cookie = "CookieName=" + sid + ";expires=" + now.toUTCString();
-                window.location = "/warehouse/approvematerials.aspx";
+                window.location = "/production/processproduct.aspx";
                 //var datatableVariable;
                 //var dtVariable;
                 //$.ajax({

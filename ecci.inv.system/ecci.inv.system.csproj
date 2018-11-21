@@ -6757,10 +6757,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="production\approvedrequest.aspx" />
     <Content Include="production\rawmaterials.aspx" />
     <Content Include="production\process.aspx" />
     <Content Include="production\request.aspx" />
     <Content Include="production\orderedrequest.aspx" />
+    <Content Include="production\processproduct.aspx" />
     <Content Include="production\requestmaterials.aspx" />
     <Content Include="production\WebService\ProcessRaw.asmx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
@@ -7649,6 +7651,13 @@
     <Compile Include="production\Production.Master.designer.cs">
       <DependentUpon>Production.Master</DependentUpon>
     </Compile>
+    <Compile Include="production\approvedrequest.aspx.cs">
+      <DependentUpon>approvedrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\approvedrequest.aspx.designer.cs">
+      <DependentUpon>approvedrequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="production\rawmaterials.aspx.cs">
       <DependentUpon>rawmaterials.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7676,6 +7685,13 @@
     </Compile>
     <Compile Include="production\orderedrequest.aspx.designer.cs">
       <DependentUpon>orderedrequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="production\processproduct.aspx.cs">
+      <DependentUpon>processproduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\processproduct.aspx.designer.cs">
+      <DependentUpon>processproduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="production\requestmaterials.aspx.cs">
       <DependentUpon>requestmaterials.aspx</DependentUpon>

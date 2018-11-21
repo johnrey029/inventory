@@ -8,9 +8,9 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.warehouse
+namespace ecci.inv.system.production
 {
-    public partial class productionrequest : System.Web.UI.Page
+    public partial class approvedrequest : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         DBConnection con;
@@ -39,7 +39,7 @@ namespace ecci.inv.system.warehouse
             INNER JOIN oderdetails i ON s.orderid = i.orderid
             INNER JOIN client c ON s.clientid = c.clientid
             INNER JOIN product u ON i.productid = u.productid
-            where i.status = '" + "Requested" + "' ");
+            where i.status = '" + "Approved" + "' ");
             GridView1.DataSource = con.DataQueryExec();
             GridView1.DataBind();
             if (GridView1.Rows.Count > 0)

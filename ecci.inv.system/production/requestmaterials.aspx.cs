@@ -199,14 +199,21 @@ namespace ecci.inv.system.production
                 //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
                 //con.Cmd.ExecuteNonQuery();
                 //con.CloseConnection();
-
                 con.OpenConection();
-                con.ExecSqlQuery("Insert into requestitems(quantity,po,productid)values(@qty,@sid,@pid)");
-                con.Cmd.Parameters.AddWithValue("@qty", com);
-                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                con.ExecSqlQuery("UPDATE oderdetails SET status = @stat WHERE orderid=@oid and productid=@pid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Requested");
+                con.Cmd.Parameters.AddWithValue("@oid", oid);
                 con.Cmd.Parameters.AddWithValue("@pid", pid);
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
+
+                //con.OpenConection();
+                //con.ExecSqlQuery("Insert into requestitems(quantity,po,productid)values(@qty,@sid,@pid)");
+                //con.Cmd.Parameters.AddWithValue("@qty", com);
+                //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                //con.Cmd.Parameters.AddWithValue("@pid", pid);
+                //con.Cmd.ExecuteNonQuery();
+                //con.CloseConnection();
             }
             catch (Exception ex)
             {

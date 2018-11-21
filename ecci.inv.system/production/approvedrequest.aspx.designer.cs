@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ecci.inv.system.warehouse {
+namespace ecci.inv.system.production {
     
     
-    public partial class productionrequest {
+    public partial class approvedrequest {
         
         /// <summary>
         /// ScriptManager1 control.

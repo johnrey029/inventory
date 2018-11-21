@@ -183,7 +183,14 @@
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li id="requestNav">
+            <li id="rawmatsNav">
+              <a href="rawmaterials.aspx">
+                <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
+              </a>
+            </li>
+          
+          
+          <li id="requestNav">
               <a href="orderedrequest.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Request Materials</span>
               </a>
@@ -194,6 +201,11 @@
             <li id="processNav">
               <a href="process.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Process Materials</span>
+              </a>
+            </li>
+          <li id="processproductNav">
+              <a href="approvedrequest.aspx">
+                <i class="glyphicon glyphicon-tags"></i> <span>Process Product</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

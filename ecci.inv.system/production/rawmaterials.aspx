@@ -38,7 +38,7 @@
                  alert(err);
              }
          });
-         $("#requestNav").addClass('active');
+         $("#rawmatsNav").addClass('active');
 
          });
  </script>  

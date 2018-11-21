@@ -13,8 +13,8 @@
     </style>  
 <script type="text/javascript">  
     $(document).ready(function () {
+        $("#requestNav").addClass('active');
         $(".display").DataTable();
-             $("#requestNav").addClass('active');
          });
          //function expandcollapse(name) {
          //    var div = document.getElementById(name);
