@@ -172,7 +172,7 @@
               </thead>
             </table>
              <asp:GridView ID="GridView3" CssClass="table table-bordered table-striped" ShowHeaderWhenEmpty="True" runat="server" 
-                  AutoGenerateColumns="True" OnRowDataBound="GridView3_RowDataBound">
+                  AutoGenerateColumns="True" >
                 <Columns>
                        <%--  <asp:BoundField DataField="date" HeaderText="Date" DataFormatString="{0:MMMM-dd-yyyy}" />
                      <asp:TemplateField HeaderText="List of PO # reserved">
@@ -183,7 +183,7 @@
                                                      <asp:BoundField DataField="quantityordered" HeaderText="Qty" />
                                                      <asp:BoundField DataField="price" HeaderText="Price"/>
                                                  </Columns>
-                              </asp:GridView>
+                              </asp:GridView>OnRowDataBound="GridView3_RowDataBound"
                           </ItemTemplate>
                       </asp:TemplateField>
                      <asp:BoundField DataField="amount" HeaderText="Total Amount" /> --%>

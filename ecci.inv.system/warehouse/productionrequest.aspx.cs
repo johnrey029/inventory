@@ -86,11 +86,7 @@ namespace ecci.inv.system.warehouse
             //    }
             //}
         }
-
-        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
+        
         protected void button_Click(object sender, EventArgs e)
         {
             string id = Convert.ToString(Request.Form.Get("hiddenStockId").ToString());
