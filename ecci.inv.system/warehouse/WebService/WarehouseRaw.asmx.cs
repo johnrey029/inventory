@@ -36,7 +36,7 @@ namespace ecci.inv.system.warehouse.WebService
             INNER JOIN stock_raw s ON w.purchaseorder = s.purchaseorder
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode  
-            WHERE w.receivedate is not null and w.code=2 and w.quantity>=0
+            WHERE w.receivedate is not null and w.quantity>0
             ORDER BY w.id ASC");
             while (con._dr.Read())
             {

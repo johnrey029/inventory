@@ -6764,6 +6764,7 @@
     <Content Include="production\orderedrequest.aspx" />
     <Content Include="production\processproduct.aspx" />
     <Content Include="production\requestmaterials.aspx" />
+    <Content Include="production\stock.aspx" />
     <Content Include="production\WebService\ProcessRaw.asmx" />
     <Content Include="production\WebService\ProdRaw.asmx" />
     <Content Include="production\WebService\RequestMaterials.asmx" />
@@ -7699,6 +7700,13 @@
     </Compile>
     <Compile Include="production\requestmaterials.aspx.designer.cs">
       <DependentUpon>requestmaterials.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="production\stock.aspx.cs">
+      <DependentUpon>stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="production\stock.aspx.designer.cs">
+      <DependentUpon>stock.aspx</DependentUpon>
     </Compile>
     <Compile Include="production\WebService\ProcessRaw.asmx.cs">
       <DependentUpon>ProcessRaw.asmx</DependentUpon>
