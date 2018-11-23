@@ -33,6 +33,7 @@ namespace ecci.inv.system.purchasing.WebService
             s.postatus, i.brandname, u.suppname FROM stock_raw s
             INNER JOIN items i ON s.itemsid = i.itemsid
             INNER JOIN suppliers u ON i.suppcode = u.suppcode
+            WHERE s.quantity>0
             ORDER BY s.stockid ASC");
             while (con._dr.Read())
             {

@@ -6813,13 +6813,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\OnHoldService\OnHoldService.disco" />
-    <None Include="Service References\OnHoldService\configuration91.svcinfo" />
-    <None Include="Service References\OnHoldService\configuration.svcinfo" />
-    <None Include="Service References\OnHoldService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <Content Include="qualitycontrol\reports.aspx" />
     <Content Include="sales\reports.aspx" />
     <Content Include="sales\report.aspx" />
     <Content Include="sales\WebService\OrderService.asmx" />
@@ -7525,6 +7519,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\OnHoldService\OnHoldService.disco" />
+    <None Include="Service References\OnHoldService\configuration91.svcinfo" />
+    <None Include="Service References\OnHoldService\configuration.svcinfo" />
+    <None Include="Service References\OnHoldService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="warehouse\productionrequest.aspx" />
     <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\approvematerials.aspx" />
@@ -7730,6 +7731,13 @@
     </Compile>
     <Compile Include="Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="qualitycontrol\reports.aspx.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="qualitycontrol\reports.aspx.designer.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
     </Compile>
     <Compile Include="sales\CS\OrderDelivery.cs" />
     <Compile Include="sales\CS\RequestMaterial.cs" />

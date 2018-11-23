@@ -125,7 +125,7 @@ namespace ecci.inv.system.production
                     "sw.purchaseorder, sw.quantity," +
                     "sw.receivedate,t.brandname FROM stock_warehouse sw " +
                     "INNER JOIN items t ON sw.itemsid = t.itemsid " +
-                    "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' " +
+                    "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' and sw.status='" + "Reserved" + "' " +
                     "order by sw.receivedate ASC");
                     gv.DataSource = con.DataQueryExec();
                     gv.DataBind();
@@ -169,21 +169,25 @@ namespace ecci.inv.system.production
                     sum += Convert.ToInt32(row.Cells[2].Text);
                     if(qty > sum)
                     {
-                        insertupdate(com, 0, ponumber);
+                        insertupdate(com, 0, ponumber,qty);
                     }
                     else
                     {
                         int diff = sum - com;
                         int notdiff = qty - diff;
                         int finaldiff = com - notdiff;
-                        insertupdate(notdiff, finaldiff, ponumber);
+                        insertupdate(notdiff, finaldiff, ponumber,qty);
                     }
                 }
                 sum = 0;
             }
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                     "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').shiw(); $('.alert-error').hide(); $('.alert-warning').hide(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
+
         }
-        private void insertupdate(int com,int update, string ponumber)
+        private void insertupdate(int com,int update, string ponumber,int qty)
         {
+            string status = "";
             string id = Label1.Text;
             int pos = 0;
             string pid = "";
@@ -193,9 +197,20 @@ namespace ecci.inv.system.production
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             try
             {
+                if(com<qty)
+                {
+                    status = "In Stock";
+                }
+                else
+                {
+                    status = "Used";
+                }
                 con.OpenConection();
-                con.ExecSqlQuery("update stock_warehouse set quantity = @qty where purchaseorder = @sid");
+                con.ExecSqlQuery("update stock_warehouse set quantity = @qty, status = @fstat  where purchaseorder = @sid and status = @stat");
                 con.Cmd.Parameters.AddWithValue("@qty", update);
+                con.Cmd.Parameters.AddWithValue("@fstat", status);
+                // con.Cmd.Parameters.AddWithValue("@uqty", com);usedqty =@uqty
+                con.Cmd.Parameters.AddWithValue("@stat", "Reserved");
                 con.Cmd.Parameters.AddWithValue("@sid", ponumber);
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
@@ -214,6 +229,13 @@ namespace ecci.inv.system.production
                 con.Cmd.Parameters.AddWithValue("@stat", "In Production");
                 con.Cmd.Parameters.AddWithValue("@oid", oid);
                 con.Cmd.Parameters.AddWithValue("@pid", pid);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
+
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE purchaseorder SET status = @stat WHERE orderid=@oid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Processing");
+                con.Cmd.Parameters.AddWithValue("@oid", oid);
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
 

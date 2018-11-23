@@ -46,11 +46,15 @@ namespace ecci.inv.system.production
             i.price,i.quantityordered, i.amount, u.pname FROM purchaseorder s
             INNER JOIN oderdetails i ON s.orderid = i.orderid
             INNER JOIN client c ON s.clientid = c.clientid
-            INNER JOIN product u ON i.productid = u.productid");
+            INNER JOIN product u ON i.productid = u.productid
+            where i.status='" + "Order" + "'");
             GridView1.DataSource = con.DataQueryExec();
             GridView1.DataBind();
-            GridView1.UseAccessibleHeader = true;
-            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (GridView1.Rows.Count > 0)
+            {
+                GridView1.UseAccessibleHeader = true;
+                GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
             con.CloseConnection();
         }
 

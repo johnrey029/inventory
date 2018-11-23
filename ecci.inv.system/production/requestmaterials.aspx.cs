@@ -194,8 +194,8 @@ namespace ecci.inv.system.production
             try
             {
                 //con.OpenConection();
-                //con.ExecSqlQuery("UPDATE stock_warehouse SET quantity = @qty WHERE purchaseorder = @sid");
-                //con.Cmd.Parameters.AddWithValue("@qty", update);
+                //con.ExecSqlQuery("UPDATE stock_warehouse SET status = @stat WHERE purchaseorder = @sid");
+                //con.Cmd.Parameters.AddWithValue("@stat", "Reserved");
                 //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
                 //con.Cmd.ExecuteNonQuery();
                 //con.CloseConnection();

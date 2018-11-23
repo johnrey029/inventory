@@ -177,7 +177,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
 
                     <li id="dashboardMainMenu">
-                        <a href="index.aspx"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                        <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                     </li>
 
                     <%--        <?php if($user_permission): ?>
@@ -190,8 +190,8 @@
                         </a>
                     </li>
 
-                    <li><a href="#"><i class="glyphicon glyphicon-tags"></i><span>Reports</span></a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i><span>Profile</span></a></li>
+                    <li id="reportNav"><a href="index.aspx"><i class="glyphicon glyphicon-tags"></i><span>Reports</span></a></li>
+                    <li id="profileNav"><a href="#"><i class="fa fa-user-o"></i><span>Profile</span></a></li>
 
                     <!-- user permission info -->
                     <li><a href="~/logout.aspx" runat="server"><i class="glyphicon glyphicon-log-out"></i><span>Logout</span></a></li>

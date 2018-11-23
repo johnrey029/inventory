@@ -39,7 +39,7 @@
                  alert(err);
              }
          });
-         $("#dashboardMainMenu").addClass('active');
+         $("#receiveNav").addClass('active');
 
          });
  </script>  

@@ -194,7 +194,7 @@
             </div>--%>
                     </div>
                     <input type="hidden" id="dispatchquantity" name="dispatchquantity" value="" />
-                    <input type="text" id="itemsid" name="itemsid" value="" />
+                    <input type="hidden" id="itemsid" name="itemsid" value="" />
                 </div>
                 <div class="modal-footer bg-aqua-active">
                     <asp:Button ID="btnSave" runat="server" Text="Dispatch Raw Materials" CssClass="btn btn-success" OnClick="btnSave_Click" />

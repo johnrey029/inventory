@@ -180,7 +180,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         
         <li id="dashboardMainMenu">
-            <a href="index.aspx"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
 
 <%--        <?php if($user_permission): ?>
@@ -207,8 +207,8 @@
 
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
-            <li id="stockNav">
-              <a href="#">
+            <li id="reportNav">
+              <a href="reports.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Reports</span>
               </a>
             </li>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.purchasing.index" MasterPageFile="~/purchasing/Purchasing.Master"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="reports.aspx.cs" Inherits="ecci.inv.system.quality.reports" MasterPageFile="~/qualitycontrol/QualityControl.Master"  %>
 
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
@@ -11,7 +11,7 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             url: "WebService/PurchaseOrderService.asmx/GetPurchaseOrder",
+             url: "WebService/OrderDeliveryService.asmx/GetDeliveredOrder",
              //url: '@Url.Action("WebService", "PurchaseOrderService.asmx", "GetPurchaseOrder")',
              //url: resourceAdress,
              success: function (data) {

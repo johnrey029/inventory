@@ -193,12 +193,12 @@ namespace ecci.inv.system.warehouse
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             try
             {
-                //con.OpenConection();
-                //con.ExecSqlQuery("UPDATE stock_warehouse SET quantity = @qty WHERE purchaseorder = @sid");
-                //con.Cmd.Parameters.AddWithValue("@qty", update);
-                //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
-                //con.Cmd.ExecuteNonQuery();
-                //con.CloseConnection();
+                con.OpenConection();
+                con.ExecSqlQuery("UPDATE stock_warehouse SET status = @stat WHERE purchaseorder = @sid");
+                con.Cmd.Parameters.AddWithValue("@stat", "Reserved");
+                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                con.Cmd.ExecuteNonQuery();
+                con.CloseConnection();
                 con.OpenConection();
                 con.ExecSqlQuery("UPDATE oderdetails SET status = @stat WHERE orderid=@oid and productid=@pid");
                 con.Cmd.Parameters.AddWithValue("@stat", "Approved");

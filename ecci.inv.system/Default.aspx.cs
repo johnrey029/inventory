@@ -84,7 +84,7 @@ namespace ecci.inv.system
                             {
                                 case "Purchasing":
                                     Session["empnumber"] = con._dr["empno"].ToString();
-                                    Response.Redirect("~/purchasing/index.aspx");
+                                    Response.Redirect("~/purchasing/stock.aspx");
                                     break;
 
                                 case "Admin":
