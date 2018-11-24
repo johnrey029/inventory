@@ -190,7 +190,7 @@ namespace ecci.inv.system.production
                 sum = 0;
             }
             Session["saved"] = "ok";
-            Response.Redirect("/production/orderrequest.aspx");
+            Response.Redirect("~/production/orderedrequest.aspx");
         }
         private void insertupdate(int com,int update, string ponumber)
         {

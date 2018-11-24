@@ -158,8 +158,6 @@ namespace ecci.inv.system.warehouse
                     sum = 0;
                 }
             }
-            Session["saver"] = "ok";
-            Response.Redirect("/warehouse/productionrequest.aspx");
         }
 
         protected void btnRequest_Click(object sender, EventArgs e)
@@ -191,6 +189,9 @@ namespace ecci.inv.system.warehouse
                 }
                 sum = 0;
             }
+
+            Session["saver"] = "ok";
+            Response.Redirect("/warehouse/productionrequest.aspx");
         }
         private void insertupdate(int com,int update, string ponumber)
         {
