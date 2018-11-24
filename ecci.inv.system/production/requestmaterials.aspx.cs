@@ -24,11 +24,19 @@ namespace ecci.inv.system.production
             {
                 Label1.Text = Server.HtmlEncode(Request.Cookies["CookieName"].Value);
             }
+            if(!IsPostBack)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                    "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').hide(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
+
+            }
             BindGridView();
         }
         private void BindGridView()
         {
             string id = Label1.Text;
+            Label1.Visible = false;
+            Label3.Visible = false;
             int pos = 0;
             string pid = "";
             string oid = "";
@@ -181,6 +189,8 @@ namespace ecci.inv.system.production
                 }
                 sum = 0;
             }
+            Session["saved"] = "ok";
+            Response.Redirect("/production/orderrequest.aspx");
         }
         private void insertupdate(int com,int update, string ponumber)
         {

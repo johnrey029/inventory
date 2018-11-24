@@ -32,7 +32,7 @@
                  alert(err);
              }
          });
-         $("#dashboardMainMenu").addClass('active');
+         $("#stockNav").addClass('active');
 
          });
  </script>  

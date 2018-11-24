@@ -28,6 +28,11 @@ namespace ecci.inv.system.production
                 BindGridView();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); $('.alert-warning').hide();});</script>");
+                if(Session["saved"] != null)
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                   "<script>$(document).ready(function(){ $('.alert-success').show();$('.alert-error').hide(); $('.alert-warning').hide();});</script>");
+                }
             }
           //  BindPopUp();
         }

@@ -14,7 +14,7 @@ namespace ecci.inv.system.production
         {
             if (Session["empnumber"] != null)
             {
-               // lblEmpno.Text = Session["empnumber"].ToString();
+                lblEmpno.Text = Session["empnumber"].ToString();
             }
             else
             {

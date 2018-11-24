@@ -179,16 +179,16 @@
       <ul class="sidebar-menu" data-widget="tree">
         
         <li id="dashboardMainMenu">
-            <a href="index.aspx"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li id="receiveNav">
+            <%--<li id="receiveNav">
               <a href="rawmaterials.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
               </a>
-            </li>
+            </li>--%>
           <li id="requestNav">
               <a href="productionrequest.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Requested Raw Materials</span>
@@ -207,7 +207,7 @@
 
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
             <li id="stockNav">
-              <a href="#">
+              <a href="index.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Reports</span>
               </a>
             </li>

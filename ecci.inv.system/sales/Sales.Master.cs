@@ -14,7 +14,7 @@ namespace ecci.inv.system.sales
         {
             if (Session["empnumber"] != null)
             {
-                sessionempno = Session["empnumber"].ToString();
+                lblEmpno.Text = Session["empnumber"].ToString();
             }
             else
             {

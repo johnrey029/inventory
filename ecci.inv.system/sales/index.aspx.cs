@@ -438,24 +438,26 @@ namespace ecci.inv.system.sales
                             decimal quant = Convert.ToDecimal(qty) + Convert.ToDecimal(array[i, 1]);
                             decimal total = uprice * quant;
                             con.OpenConection();
-                            con.ExecSqlQuery("UPDATE oderdetails SET quantityordered=@qo,price=@p,amount=@amt where orderid=@oi and productid=@pi");
+                            con.ExecSqlQuery("UPDATE oderdetails SET quantityordered=@qo,price=@p,amount=@amt, status =@stat where orderid=@oi and productid=@pi");
                             con.Cmd.Parameters.AddWithValue("@oi", count);
                             con.Cmd.Parameters.AddWithValue("@pi", array[i, 0]);
                             con.Cmd.Parameters.AddWithValue("@qo", quant);
                             con.Cmd.Parameters.AddWithValue("@p", array[i, 2]);
                             con.Cmd.Parameters.AddWithValue("@amt", total);
+                            con.Cmd.Parameters.AddWithValue("@stat", "Order");
                             rws = con.Cmd.ExecuteNonQuery();
                             con.CloseConnection();
                         }
                         else
                         {
                             con.OpenConection();
-                            con.ExecSqlQuery("INSERT INTO oderdetails(orderid,productid,quantityordered,price,amount)VALUES(@oi,@pi,@qo,@p,@amt)");
+                            con.ExecSqlQuery("INSERT INTO oderdetails(orderid,productid,quantityordered,price,amount,status)VALUES(@oi,@pi,@qo,@p,@amt,@stat)");
                             con.Cmd.Parameters.AddWithValue("@oi", count);
                             con.Cmd.Parameters.AddWithValue("@pi", array[i, 0]);
                             con.Cmd.Parameters.AddWithValue("@qo", array[i, 1]);
                             con.Cmd.Parameters.AddWithValue("@p", array[i, 2]);
                             con.Cmd.Parameters.AddWithValue("@amt", array[i, 3]);
+                            con.Cmd.Parameters.AddWithValue("@stat", "Order");
                             rws = con.Cmd.ExecuteNonQuery();
                             con.CloseConnection();
                         }

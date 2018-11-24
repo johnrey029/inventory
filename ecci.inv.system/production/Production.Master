@@ -178,16 +178,16 @@
       <ul class="sidebar-menu" data-widget="tree">
         
         <li id="dashboardMainMenu">
-            <a href="index.aspx"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
 
 <%--        <?php if($user_permission): ?>
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
-            <li id="rawmatsNav">
+           <%-- <li id="rawmatsNav">
               <a href="rawmaterials.aspx">
                 <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials</span>
               </a>
-            </li>
+            </li>--%>
           
           
           <li id="requestNav">

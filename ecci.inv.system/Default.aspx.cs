@@ -99,7 +99,7 @@ namespace ecci.inv.system
 
                                 case "Warehouse":
                                     Session["empnumber"] = con._dr["empno"].ToString();
-                                    Response.Redirect("~/warehouse/index.aspx");
+                                    Response.Redirect("~/warehouse/productionrequest.aspx");
                                     break;
 
                                 case "Super Admin":

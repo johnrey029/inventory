@@ -181,9 +181,9 @@ namespace ecci.inv.system.production
                 }
                 sum = 0;
             }
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                     "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').shiw(); $('.alert-error').hide(); $('.alert-warning').hide(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
 
+            Session["saved"] = "ok";
+            Response.Redirect("/production/approvedrequest.aspx");
         }
         private void insertupdate(int com,int update, string ponumber,int qty)
         {

@@ -28,6 +28,7 @@ namespace ecci.inv.system.warehouse
                 BindGridView();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); $('.alert-warning').hide();});</script>");
+                
             }
         }
         private void BindGridView()
