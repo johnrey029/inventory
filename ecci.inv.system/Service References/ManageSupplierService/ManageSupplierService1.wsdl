@@ -239,16 +239,16 @@
   </wsdl:binding>
   <wsdl:service name="ManageSupplierService">
     <wsdl:port name="ManageSupplierServiceSoap" binding="tns:ManageSupplierServiceSoap">
-      <soap:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+      <soap:address location="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" />
     </wsdl:port>
     <wsdl:port name="ManageSupplierServiceSoap12" binding="tns:ManageSupplierServiceSoap12">
-      <soap12:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+      <soap12:address location="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" />
     </wsdl:port>
     <wsdl:port name="ManageSupplierServiceHttpGet" binding="tns:ManageSupplierServiceHttpGet">
-      <http:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+      <http:address location="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" />
     </wsdl:port>
     <wsdl:port name="ManageSupplierServiceHttpPost" binding="tns:ManageSupplierServiceHttpPost">
-      <http:address location="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" />
+      <http:address location="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

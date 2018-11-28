@@ -149,7 +149,7 @@
               <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
               </a>
-                <div>
+                <div style="text-align:right">
                     <asp:Label ID="lblEmpno" runat="server" Text="Label" CssClass="text-bold"></asp:Label>
                 </div>
             </nav>
@@ -186,7 +186,7 @@
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>--%>
             <li id="purchaseNav">
               <a href="index.aspx">
-                <i class="glyphicon glyphicon-tags"></i> <span>Purchase Order</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Sales Order</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

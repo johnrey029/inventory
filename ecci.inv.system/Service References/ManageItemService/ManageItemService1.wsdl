@@ -236,16 +236,16 @@
   </wsdl:binding>
   <wsdl:service name="ManageItemService">
     <wsdl:port name="ManageItemServiceSoap" binding="tns:ManageItemServiceSoap">
-      <soap:address location="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" />
+      <soap:address location="http://localhost:2908/admin/WebService/ManageItemService.asmx" />
     </wsdl:port>
     <wsdl:port name="ManageItemServiceSoap12" binding="tns:ManageItemServiceSoap12">
-      <soap12:address location="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" />
+      <soap12:address location="http://localhost:2908/admin/WebService/ManageItemService.asmx" />
     </wsdl:port>
     <wsdl:port name="ManageItemServiceHttpGet" binding="tns:ManageItemServiceHttpGet">
-      <http:address location="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" />
+      <http:address location="http://localhost:2908/admin/WebService/ManageItemService.asmx" />
     </wsdl:port>
     <wsdl:port name="ManageItemServiceHttpPost" binding="tns:ManageItemServiceHttpPost">
-      <http:address location="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" />
+      <http:address location="http://localhost:2908/admin/WebService/ManageItemService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

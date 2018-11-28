@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="yU11exuS4yyCv2YxoqJan1Hp7WM=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="BExrB0TdXvfVGqF0C4NBYWQY0uY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ManageItemServiceSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ManageItemServiceSoap" contract="ManageItemService.ManageItemServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" bindingConfiguration="ManageItemServiceSoap">
+    <endpoint name="ManageItemServiceSoap" contract="ManageItemService.ManageItemServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2908/admin/WebService/ManageItemService.asmx" bindingConfiguration="ManageItemServiceSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:2908/superadmin/WebService/ManageItemService.asmx</serializedValue>
+          <serializedValue>http://localhost:2908/admin/WebService/ManageItemService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="ManageItemServiceSoap12" contract="ManageItemService.ManageItemServiceSoap" bindingType="customBinding" address="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" bindingConfiguration="ManageItemServiceSoap12">
+    <endpoint name="ManageItemServiceSoap12" contract="ManageItemService.ManageItemServiceSoap" bindingType="customBinding" address="http://localhost:2908/admin/WebService/ManageItemService.asmx" bindingConfiguration="ManageItemServiceSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:2908/superadmin/WebService/ManageItemService.asmx</serializedValue>
+          <serializedValue>http://localhost:2908/admin/WebService/ManageItemService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

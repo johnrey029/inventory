@@ -72,7 +72,7 @@ namespace ecci.inv.system.purchasing
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("Select * from suppliers");
+                con.ExecSqlQuery("SELECT * FROM suppliers ORDER BY suppname ASC");
                 ddSupplier.DataTextField = "suppname";
                 ddSupplier.DataValueField = "suppcode";
                 ddSupplier.DataSource = con.DataQueryExec();

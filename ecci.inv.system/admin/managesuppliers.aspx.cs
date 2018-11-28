@@ -49,12 +49,14 @@ namespace ecci.inv.system.admin
 
         public int activitySupplier()
         {
+            DateTime dati = DateTime.Now;
             con = new DBConnection();
             con.OpenConection();
-            con.ExecSqlQuery("INSERT INTO activity_suppliersaddupdate (act_empno,act_suppid,act_remarks) VALUES (@empno,@suppid,@remarks) ");
+            con.ExecSqlQuery("INSERT INTO activity_suppliers (act_empno,act_suppid,act_remarks,act_datetime) VALUES (@empno,@suppid,@remarks,@dt) ");
             con.Cmd.Parameters.AddWithValue("@empno", sessionempno);
             con.Cmd.Parameters.AddWithValue("@suppid", tbSuppCode.Text);
             con.Cmd.Parameters.AddWithValue("@remarks", "Update");
+            con.Cmd.Parameters.AddWithValue("@dt",dati);
 
             int a = con.Cmd.ExecuteNonQuery();
             con.CloseConnection();

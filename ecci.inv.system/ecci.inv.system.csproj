@@ -6775,8 +6775,8 @@
     <Content Include="production\Production.Master" />
     <None Include="Service References\AdminRawService\AdminRaw.wsdl" />
     <None Include="Service References\ManageClientService\ManageClientService.wsdl" />
-    <None Include="Service References\ManageItemService\ManageItemService.wsdl" />
-    <None Include="Service References\ManageSupplierService\ManageSupplierService.wsdl" />
+    <None Include="Service References\ManageItemService\ManageItemService1.wsdl" />
+    <None Include="Service References\ManageSupplierService\ManageSupplierService1.wsdl" />
     <None Include="Service References\OnHoldService\OnHoldService.wsdl" />
     <None Include="Service References\ProductOrderService\ProductOrderService.wsdl" />
     <None Include="Service References\ProductRawService\ProdRaw.wsdl" />
@@ -6801,14 +6801,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\ManageItemService\ManageItemService.disco" />
     <None Include="Service References\ManageItemService\configuration91.svcinfo" />
     <None Include="Service References\ManageItemService\configuration.svcinfo" />
     <None Include="Service References\ManageItemService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\ManageSupplierService\ManageSupplierService.disco" />
     <None Include="Service References\ManageSupplierService\configuration91.svcinfo" />
     <None Include="Service References\ManageSupplierService\configuration.svcinfo" />
     <None Include="Service References\ManageSupplierService\Reference.svcmap">
@@ -7528,6 +7526,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ManageSupplierService\ManageSupplierService1.disco" />
+    <None Include="Service References\ManageItemService\ManageItemService1.disco" />
     <Content Include="warehouse\products.aspx" />
     <Content Include="warehouse\productionrequest.aspx" />
     <Content Include="warehouse\rawmaterials.aspx" />
