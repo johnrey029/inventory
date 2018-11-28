@@ -100,7 +100,20 @@
     <!-- DataTables -->
     <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
+      <script type="text/javascript">
+      $(document).ready(function () {
+            $(".js-example-placeholder-single").select2({
+                allowClear: true
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.alert-success').hide();
+            $('.alert-error').hide();
+            $('.alert-warning').hide();
+        });
+    </script>
 
     <asp:ContentPlaceHolder ID="heading" runat="server"></asp:ContentPlaceHolder>
 </head>
@@ -152,7 +165,7 @@
                         <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                     </li>
                     <li id="approvalMenu">
-                        <a href="#"><i class="fa fa-dashboard"></i><span>Approvals</span></a>
+                        <a href="productionrequest.aspx"><i class="fa fa-dashboard"></i><span>Approvals</span></a>
                     </li>
                     <li class="treeview" id="mainUserNav">
                         <a href="#"><i class="fa fa-users"></i>

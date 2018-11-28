@@ -225,7 +225,7 @@ namespace ecci.inv.system.admin
             catch
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show();});</script>");
             }
         }
         private string getTAmount()
@@ -418,8 +418,8 @@ namespace ecci.inv.system.admin
                     con.Cmd.Parameters.AddWithValue("@iid", array[i, 0]);
                     checkdb = Convert.ToInt32(con.Cmd.ExecuteScalar());
                     con.CloseConnection();
-                    //try
-                    //{
+                    try
+                    {
                     if (checkdb > 0)
                     {
                         con.OpenConection();
@@ -456,12 +456,12 @@ namespace ecci.inv.system.admin
                         rws = con.Cmd.ExecuteNonQuery();
                         con.CloseConnection();
                     }
-                    //}
-                    //catch
-                    //{
-                    //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
-                    //}
+                    }
+                    catch
+                    {
+                        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                        "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+                    }
                 }
             }
             panelTableRow.Controls.Clear();
@@ -494,8 +494,8 @@ namespace ecci.inv.system.admin
         private void activityProduct()
         {
             DateTime dati = DateTime.Now;   
-            //try
-            //{
+            try
+            {
 
                 con.OpenConection();
                 con.ExecSqlQuery("INSERT INTO activity_products(empno, productid, remarks, datetime) VALUES(@empno, @pid, @remarks, @dt)");
@@ -506,13 +506,13 @@ namespace ecci.inv.system.admin
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
 
-            //}
-            //catch
-            //{
+            }
+            catch
+            {
 
-            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            //    "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
-            //}
+               Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').show(); });</script>");
+            }
         }
     }
 }

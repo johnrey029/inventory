@@ -198,8 +198,8 @@
 
 <%--          <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>--%>
             <li id="productNav">
-              <a href="#">
-                <i class="glyphicon glyphicon-tags"></i> <span>Products</span>
+              <a href="products.aspx">
+                <i class="glyphicon glyphicon-tags"></i> <span>Products Report</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>
@@ -208,7 +208,7 @@
 <%--          <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>--%>
             <li id="stockNav">
               <a href="index.aspx">
-                <i class="glyphicon glyphicon-tags"></i> <span>Reports</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>Raw Materials Report</span>
               </a>
             </li>
 <%--          <?php endif; ?>--%>

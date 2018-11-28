@@ -118,6 +118,7 @@
         $(document).ready(function () {
             $('.alert-success').hide();
             $('.alert-error').hide();
+            $('.alert-warning').hide();
         });
     </script>
     

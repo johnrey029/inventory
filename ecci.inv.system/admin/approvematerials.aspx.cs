@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.production
+namespace ecci.inv.system.admin
 {
-    public partial class processproduct : System.Web.UI.Page
+    public partial class approvematerials : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         DBConnection con;
@@ -26,10 +26,11 @@ namespace ecci.inv.system.production
             }
             if (!IsPostBack)
             {
-                BindGridView();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-               "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); $('.alert-warning').hide();});</script>");
+                                    "<script type = 'text/javascript'>window.onload=function(){ $('.alert-success').hide(); $('.alert-error').hide(); $('.alert-warning').hide(); setTimeout(function(){ $('.alert-warning').hide('fade');},30000); };</script>");
+
             }
+            BindGridView();
         }
         private void BindGridView()
         {
@@ -54,7 +55,7 @@ namespace ecci.inv.system.production
             GridView1.DataBind();
             con.CloseConnection();
         }
-        public string MyNewRow(object unqid)
+        public string MyRow(object unqid)
         {
             return String.Format(@"</td></tr><tr id='tr{0}' class='collapsed-row'>
             <td>LIST OF AVAILABLE PO #</td> <td colspan='100' style='padding:0px; margin:0px;'>", unqid);
@@ -132,7 +133,7 @@ namespace ecci.inv.system.production
                     "sw.purchaseorder, sw.quantity," +
                     "sw.receivedate,t.brandname FROM stock_warehouse sw " +
                     "INNER JOIN items t ON sw.itemsid = t.itemsid " +
-                    "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' and sw.status='" + "Reserved" + "' " +
+                    "where sw.itemsid ='" + Convert.ToInt64(itemsid) + "' " +
                     "order by sw.receivedate ASC");
                     gv.DataSource = con.DataQueryExec();
                     gv.DataBind();
@@ -176,25 +177,24 @@ namespace ecci.inv.system.production
                     sum += Convert.ToInt32(row.Cells[2].Text);
                     if(qty > sum)
                     {
-                        insertupdate(com, 0, ponumber,qty);
+                        insertupdate(com, 0, ponumber);
                     }
                     else
                     {
                         int diff = sum - com;
                         int notdiff = qty - diff;
                         int finaldiff = com - notdiff;
-                        insertupdate(notdiff, finaldiff, ponumber,qty);
+                        insertupdate(notdiff, finaldiff, ponumber);
                     }
                 }
                 sum = 0;
             }
 
-            Session["saved"] = "ok";
-            Response.Redirect("/production/approvedrequest.aspx");
+            Session["saver"] = "ok";
+            Response.Redirect("/admin/productionrequest.aspx");
         }
-        private void insertupdate(int com,int update, string ponumber,int qty)
+        private void insertupdate(int com,int update, string ponumber)
         {
-            string status = "";
             string id = Label1.Text;
             int pos = 0;
             string pid = "";
@@ -204,48 +204,28 @@ namespace ecci.inv.system.production
             oid = id.Substring(pos + 1, id.Length - (pos + 1));
             try
             {
-                if(com<qty)
-                {
-                    status = "In Stock";
-                }
-                else
-                {
-                    status = "Used";
-                }
                 con.OpenConection();
-                con.ExecSqlQuery("update stock_warehouse set quantity = @qty, status = @fstat  where purchaseorder = @sid and status = @stat");
-                con.Cmd.Parameters.AddWithValue("@qty", update);
-                con.Cmd.Parameters.AddWithValue("@fstat", status);
-                // con.Cmd.Parameters.AddWithValue("@uqty", com);usedqty =@uqty
+                con.ExecSqlQuery("UPDATE stock_warehouse SET status = @stat WHERE purchaseorder = @sid");
                 con.Cmd.Parameters.AddWithValue("@stat", "Reserved");
                 con.Cmd.Parameters.AddWithValue("@sid", ponumber);
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
-
-                con.OpenConection();
-                con.ExecSqlQuery("Insert into requestitems(quantity,po,productid,orderid)values(@qty,@sid,@pid,@oid)");
-                con.Cmd.Parameters.AddWithValue("@qty", com);
-                con.Cmd.Parameters.AddWithValue("@sid", ponumber);
-                con.Cmd.Parameters.AddWithValue("@pid", pid);
-                con.Cmd.Parameters.AddWithValue("@oid", oid);
-                con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
-
                 con.OpenConection();
                 con.ExecSqlQuery("UPDATE oderdetails SET status = @stat WHERE orderid=@oid and productid=@pid");
-                con.Cmd.Parameters.AddWithValue("@stat", "In Production");
+                con.Cmd.Parameters.AddWithValue("@stat", "Approved");
                 con.Cmd.Parameters.AddWithValue("@oid", oid);
                 con.Cmd.Parameters.AddWithValue("@pid", pid);
                 con.Cmd.ExecuteNonQuery();
                 con.CloseConnection();
 
-                con.OpenConection();
-                con.ExecSqlQuery("UPDATE purchaseorder SET status = @stat WHERE orderid=@oid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Processing");
-                con.Cmd.Parameters.AddWithValue("@oid", oid);
-                con.Cmd.ExecuteNonQuery();
-                con.CloseConnection();
-
+                //con.OpenConection();
+                //con.ExecSqlQuery("Insert into requestitems(quantity,po,productid,orderid)values(@oid,@qty,@sid,@pid)");
+                //con.Cmd.Parameters.AddWithValue("@oid", oid);
+                //con.Cmd.Parameters.AddWithValue("@qty", com);
+                //con.Cmd.Parameters.AddWithValue("@sid", ponumber);
+                //con.Cmd.Parameters.AddWithValue("@pid", pid);
+                //con.Cmd.ExecuteNonQuery();
+                //con.CloseConnection();
             }
             catch (Exception ex)
             {

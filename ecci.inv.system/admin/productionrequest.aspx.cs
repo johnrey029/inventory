@@ -8,9 +8,9 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ecci.inv.system.production
+namespace ecci.inv.system.admin
 {
-    public partial class approvedrequest : System.Web.UI.Page
+    public partial class productionrequest : System.Web.UI.Page
     {
         private string sessionempno { get; set; }
         DBConnection con;
@@ -28,6 +28,7 @@ namespace ecci.inv.system.production
                 BindGridView();
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); $('.alert-warning').hide();});</script>");
+                
             }
         }
         private void BindGridView()
@@ -39,7 +40,7 @@ namespace ecci.inv.system.production
             INNER JOIN oderdetails i ON s.orderid = i.orderid
             INNER JOIN client c ON s.clientid = c.clientid
             INNER JOIN product u ON i.productid = u.productid
-            where i.status = '" + "Forwarded" + "' ");
+            where i.status = '" + "Requested" + "' ");
             GridView1.DataSource = con.DataQueryExec();
             GridView1.DataBind();
             if (GridView1.Rows.Count > 0)
@@ -86,6 +87,7 @@ namespace ecci.inv.system.production
             //    }
             //}
         }
+        
         protected void button_Click(object sender, EventArgs e)
         {
             string id = Convert.ToString(Request.Form.Get("hiddenStockId").ToString());

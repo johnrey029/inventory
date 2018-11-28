@@ -212,7 +212,7 @@ namespace ecci.inv.system.warehouse
                 con.CloseConnection();
                 con.OpenConection();
                 con.ExecSqlQuery("UPDATE oderdetails SET status = @stat WHERE orderid=@oid and productid=@pid");
-                con.Cmd.Parameters.AddWithValue("@stat", "Approved");
+                con.Cmd.Parameters.AddWithValue("@stat", "Forwarded");
                 con.Cmd.Parameters.AddWithValue("@oid", oid);
                 con.Cmd.Parameters.AddWithValue("@pid", pid);
                 con.Cmd.ExecuteNonQuery();

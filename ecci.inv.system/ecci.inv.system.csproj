@@ -115,9 +115,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\approvematerials.aspx" />
     <Content Include="admin\clients.aspx" />
     <Content Include="admin\manageclients.aspx" />
     <Content Include="admin\manageproducts.aspx" />
+    <Content Include="admin\productionrequest.aspx" />
     <Content Include="admin\products.aspx" />
     <Content Include="admin\WebService\ManageClientService.asmx" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
@@ -7526,6 +7528,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="warehouse\products.aspx" />
     <Content Include="warehouse\productionrequest.aspx" />
     <Content Include="warehouse\rawmaterials.aspx" />
     <Content Include="warehouse\approvematerials.aspx" />
@@ -7587,6 +7590,13 @@
     <Compile Include="AddProducts.aspx.designer.cs">
       <DependentUpon>AddProducts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\approvematerials.aspx.cs">
+      <DependentUpon>approvematerials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\approvematerials.aspx.designer.cs">
+      <DependentUpon>approvematerials.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\clients.aspx.cs">
       <DependentUpon>clients.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7608,6 +7618,13 @@
     </Compile>
     <Compile Include="admin\manageproducts.aspx.designer.cs">
       <DependentUpon>manageproducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\productionrequest.aspx.cs">
+      <DependentUpon>productionrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\productionrequest.aspx.designer.cs">
+      <DependentUpon>productionrequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\products.aspx.cs">
       <DependentUpon>products.aspx</DependentUpon>
@@ -8000,6 +8017,13 @@
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
     <Compile Include="warehouse\CS\RawMaterials.cs" />
+    <Compile Include="warehouse\products.aspx.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="warehouse\products.aspx.designer.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
     <Compile Include="warehouse\productionrequest.aspx.cs">
       <DependentUpon>productionrequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

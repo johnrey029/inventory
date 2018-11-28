@@ -23,6 +23,7 @@ namespace ecci.inv.system.admin
                 con = new DBConnection();
                 if (!IsPostBack)
                 {
+                    Label1.Visible = false;
                     dropdown();
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "<script>$(document).ready(function(){ $('.alert-success').hide();$('.alert-error').hide(); });</script>");

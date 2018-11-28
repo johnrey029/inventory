@@ -40,7 +40,7 @@ namespace ecci.inv.system.warehouse
             INNER JOIN oderdetails i ON s.orderid = i.orderid
             INNER JOIN client c ON s.clientid = c.clientid
             INNER JOIN product u ON i.productid = u.productid
-            where i.status = '" + "Requested" + "' ");
+            where i.status = '" + "Approved" + "' ");
             GridView1.DataSource = con.DataQueryExec();
             GridView1.DataBind();
             if (GridView1.Rows.Count > 0)
