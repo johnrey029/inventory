@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="approvematerials.aspx.cs" Inherits="ecci.inv.system.admin.approvematerials" %>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dashboard
+    Administrator-Approval
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  

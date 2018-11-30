@@ -38,7 +38,7 @@ namespace ecci.inv.system.qualitycontrol
             int sum = Convert.ToInt32(tbReturn.Text) + Convert.ToInt32(tbRework.Text) + Convert.ToInt32(tbScrap.Text);
             if (quantity == sum)
             {
-                if (Convert.ToInt32(tbReturn.Text) >= 0 && Convert.ToInt32(tbRework.Text) >= 0)
+                if (Convert.ToInt32(tbReturn.Text) >= 0 && Convert.ToInt32(tbRework.Text) >= 0 && Convert.ToInt32(tbScrap.Text) >= 0)
                 {
                     OnHoldService.OnHoldServiceSoapClient client = new OnHoldService.OnHoldServiceSoapClient("OnHoldServiceSoap");
                     int result = client.UpdateDispatch(sid, Convert.ToInt32(tbRework.Text),Convert.ToInt32(tbReturn.Text), Convert.ToInt32(tbScrap.Text));

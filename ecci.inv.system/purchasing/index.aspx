@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dashboard
+    Purchasing-Reports
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  

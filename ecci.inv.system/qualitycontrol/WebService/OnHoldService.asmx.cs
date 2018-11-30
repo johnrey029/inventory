@@ -123,21 +123,22 @@ namespace ecci.inv.system.qualitycontrol.WebService
                 int stock = warehouse + rework;
                 if (oq == sum)
                 {
-                    if (returns > 0)
-                    {
-                        con.OpenConection();
-                        con.ExecSqlQuery("UPDATE stock_raw_fail SET status = @stat,quantity=@q, fixquantity=@fq, scrapquantity=@sq,returnquantity=@rq, date = @rdate WHERE id = @sid and status = @stats");
-                        con.Cmd.Parameters.AddWithValue("@stat", "Evaluated");
-                        con.Cmd.Parameters.AddWithValue("@q", decrease);
-                        con.Cmd.Parameters.AddWithValue("@fq", rework + fq);
-                        con.Cmd.Parameters.AddWithValue("@sq", scrap + sq);
-                        con.Cmd.Parameters.AddWithValue("@rq", returns + rq);
-                        con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
-                        con.Cmd.Parameters.AddWithValue("@sid", upid);
-                        con.Cmd.Parameters.AddWithValue("@stats", "Hold");
-                        a = con.Cmd.ExecuteNonQuery();
-                        con.CloseConnection();
+                    con.OpenConection();
+                    con.ExecSqlQuery("UPDATE stock_raw_fail SET status = @stat,quantity=@q, fixquantity=@fq, scrapquantity=@sq,returnquantity=@rq, date = @rdate WHERE id = @sid and status = @stats");
+                    con.Cmd.Parameters.AddWithValue("@stat", "Evaluated");
+                    con.Cmd.Parameters.AddWithValue("@q", decrease);
+                    con.Cmd.Parameters.AddWithValue("@fq", rework + fq);
+                    con.Cmd.Parameters.AddWithValue("@sq", scrap + sq);
+                    con.Cmd.Parameters.AddWithValue("@rq", returns + rq);
+                    con.Cmd.Parameters.Add("@rdate", SqlDbType.Date).Value = DateTime.Now;
+                    con.Cmd.Parameters.AddWithValue("@sid", upid);
+                    con.Cmd.Parameters.AddWithValue("@stats", "Hold");
+                    a = con.Cmd.ExecuteNonQuery();
+                    con.CloseConnection();
 
+
+                    if (rework > 0)
+                    {
                         con.OpenConection();
                         con.ExecSqlQuery("UPDATE stock_warehouse SET quantity=@rq, receivedate = @rdate WHERE purchaseorder = @sid");
                         con.Cmd.Parameters.AddWithValue("@rq", stock);
@@ -145,18 +146,25 @@ namespace ecci.inv.system.qualitycontrol.WebService
                         con.Cmd.Parameters.AddWithValue("@sid", po);
                         a = con.Cmd.ExecuteNonQuery();
                         con.CloseConnection();
+                        if(rework == sum)
+                        {
+                        con.OpenConection();
+                        con.ExecSqlQuery("UPDATE stock_raw SET postatus = @stat WHERE purchaseorder = @po");
+                        con.Cmd.Parameters.AddWithValue("@stat", "Dispatch");
+                        con.Cmd.Parameters.AddWithValue("@po", po);
+                        a = con.Cmd.ExecuteNonQuery();
+                        con.CloseConnection();
+                        }
                     }
                     int quantity = 0, dispatch = 0, itemsid = 0, received = 0;
                     int dispatching = 0, total = 0, unitprice = 0;
                     double price = 0.00, pminus = 0.00, padd = 0.00;
                     string pdate = string.Empty, units = string.Empty, assumedate = string.Empty;
-                    if (rework > 0)
+                    if (returns > 0)
                     {
                         con.OpenConection();
                         con.ExecSqlQuery("SELECT * FROM stock_raw where purchaseorder = @sid and postatus != @rstat");
                         con.Cmd.Parameters.AddWithValue("@sid", po);
-                        // con.Cmd.Parameters.AddWithValue("@rdate", string.Empty); s.receivedate != @rdate and
-                        //s.purchasedate,s.itemsid,s.quantity,s.receivedquantity,s.dispatchquantity,s.unit, i.unitprice 
                         con.Cmd.Parameters.AddWithValue("@rstat", "Returned");
                         con._dr = con.Cmd.ExecuteReader();
                         if (con._dr.Read())
@@ -177,6 +185,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                         pminus = Convert.ToDouble(unitprice * returns);
                         padd = Convert.ToDouble(unitprice * (total - returns));
                         assumedate = DateTime.Now.AddMonths(1).ToShortDateString();
+
                         con.OpenConection();
                         con.ExecSqlQuery("UPDATE stock_raw SET dispatchquantity=@dq,returndate=@rdate WHERE purchaseorder = @sid and postatus != @stat");
                         con.Cmd.Parameters.AddWithValue("@dq", dispatching);
@@ -186,6 +195,7 @@ namespace ecci.inv.system.qualitycontrol.WebService
                         con.Cmd.Parameters.AddWithValue("@stat", "Returned");
                         a = con.Cmd.ExecuteNonQuery();
                         con.CloseConnection();
+
 
                         con.OpenConection();
                         con.ExecSqlQuery("Select count(*) from stock_raw where purchaseorder = @sid and postatus = @stat and receivedate=@rdate");

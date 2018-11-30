@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qualitycontrol/QualityControl.Master" AutoEventWireup="true" CodeBehind="dispatching.aspx.cs" Inherits="ecci.inv.system.qualitycontrol.dispatching" %>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dispatching
+    Quality Control-Dispatching
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="productionrequest.aspx.cs" Inherits="ecci.inv.system.admin.productionrequest" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Production
+    Administrator-Approval
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <style type="text/css">

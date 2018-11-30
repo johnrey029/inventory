@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dashboard
+    Quality Control-Reports
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -11,7 +11,7 @@
          $.ajax({  
              type: "POST",  
              dataType: "json",
-             url: "WebService/OrderDeliveryService.asmx/GetDeliveredOrder",
+             url: "WebService/ReportService.asmx/GetDeliveredOrder",
              //url: '@Url.Action("WebService", "PurchaseOrderService.asmx", "GetPurchaseOrder")',
              //url: resourceAdress,
              success: function (data) {
@@ -21,7 +21,7 @@
                          { 'data': 'purchaseOrder' },
                          { 'data': 'suppName' },
                          { 'data': 'brandName' },
-                         { 'data': 'quantity'},
+                         //{ 'data': 'quantity'},
                          { 'data': 'purchaseDate' },
                          { 'data': 'deliverDate' },
                          { 'data': 'poStatus' }
@@ -46,12 +46,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Manage
-      <small>Orders</small>
+      View
+      <small>Reports</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Orders</li>
+      <li class="active">Reports</li>
     </ol>
   </section>
 
@@ -80,7 +80,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Inbound Orders</h3>
+            <h3 class="box-title">Summary of Processing Raw Materials</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -90,13 +90,13 @@
                 <th>PO#</th>
                 <th>Supplier Name</th>
                 <th>Brand Name</th>
-                <th>Quantity</th>
                 <th>Purchased Date</th>
                 <th>Delivery Date</th>
-                <th>Staus</th>
+                <th>Status</th>
               </tr>
               </thead>
 <%--                <tbody>
+                <th>Stock Quantity</th>
               <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                </tbody>--%>
             </table>

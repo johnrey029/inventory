@@ -6814,6 +6814,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="qualitycontrol\reports.aspx" />
+    <Content Include="qualitycontrol\WebService\ReportService.asmx" />
     <Content Include="sales\reports.aspx" />
     <Content Include="sales\report.aspx" />
     <Content Include="sales\WebService\OrderService.asmx" />
@@ -7755,6 +7756,10 @@
     </Compile>
     <Compile Include="qualitycontrol\reports.aspx.designer.cs">
       <DependentUpon>reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="qualitycontrol\WebService\ReportService.asmx.cs">
+      <DependentUpon>ReportService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="sales\CS\OrderDelivery.cs" />
     <Compile Include="sales\CS\RequestMaterial.cs" />

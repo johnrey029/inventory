@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qualitycontrol/QualityControl.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.qualitycontrol.index" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Dashboard
+    Quality Control-Receiving
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -52,11 +52,11 @@
   <section class="content-header">
     <h1>
       Manage
-      <small>Delivery</small>
+      <small>Delivery Receive</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Delivery</li>
+      <li class="active">Delivery Receive</li>
     </ol>
   </section>
 
@@ -86,7 +86,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Delivered Goods</h3>
+            <h3 class="box-title">View Goods To Be Deliver</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">

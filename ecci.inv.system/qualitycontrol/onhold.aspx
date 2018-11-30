@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qualitycontrol/QualityControl.Master" AutoEventWireup="true" CodeBehind="onhold.aspx.cs" Inherits="ecci.inv.system.qualitycontrol.onhold" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    On-hold
+    Quality Control-On Hold Items
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -51,11 +51,11 @@
   <section class="content-header">
     <h1>
       Manage
-      <small>Delivery</small>
+      <small>On Hold Items</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Delivery</li>
+      <li class="active">On Hold Items</li>
     </ol>
   </section>
 
@@ -85,7 +85,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Delivered Goods</h3>
+            <h3 class="box-title">View On Hold Items</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
