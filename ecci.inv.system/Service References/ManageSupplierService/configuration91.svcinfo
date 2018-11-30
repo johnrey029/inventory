@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="cibzh+G+oPzcx755CzK72DSfwuo=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Gwh7mf2hobC+kZz6VWdVSuedA3Y=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ManageSupplierServiceSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ManageSupplierServiceSoap" contract="ManageSupplierService.ManageSupplierServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" bindingConfiguration="ManageSupplierServiceSoap">
+    <endpoint name="ManageSupplierServiceSoap" contract="ManageSupplierService.ManageSupplierServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" bindingConfiguration="ManageSupplierServiceSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx</serializedValue>
+          <serializedValue>http://localhost:2908/admin/WebService/ManageSupplierService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="ManageSupplierServiceSoap12" contract="ManageSupplierService.ManageSupplierServiceSoap" bindingType="customBinding" address="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" bindingConfiguration="ManageSupplierServiceSoap12">
+    <endpoint name="ManageSupplierServiceSoap12" contract="ManageSupplierService.ManageSupplierServiceSoap" bindingType="customBinding" address="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" bindingConfiguration="ManageSupplierServiceSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx</serializedValue>
+          <serializedValue>http://localhost:2908/admin/WebService/ManageSupplierService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

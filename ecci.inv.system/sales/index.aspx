@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ecci.inv.system.sales.index" %>
 
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Purchase Order
+    Sales Order
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  

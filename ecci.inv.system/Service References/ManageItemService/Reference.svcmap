@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2908/superadmin/WebService/ManageItemService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2908/admin/WebService/ManageItemService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ManageItemService.disco" MetadataType="Disco" ID="ec6762ec-ec80-4aba-aa38-f1e0db087032" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageItemService.asmx?disco" />
-    <MetadataFile FileName="ManageItemService.wsdl" MetadataType="Wsdl" ID="bea35fc3-e3db-4210-a743-472e591a0027" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageItemService.asmx?wsdl" />
+    <MetadataFile FileName="ManageItemService1.wsdl" MetadataType="Wsdl" ID="b537d760-33b2-44da-a256-4825ab67c1de" SourceId="1" SourceUrl="http://localhost:2908/admin/WebService/ManageItemService.asmx?wsdl" />
+    <MetadataFile FileName="ManageItemService1.disco" MetadataType="Disco" ID="e43798fa-69d4-4824-8d31-170f80a61676" SourceId="1" SourceUrl="http://localhost:2908/admin/WebService/ManageItemService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

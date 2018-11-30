@@ -43,7 +43,7 @@ namespace ecci.inv.system.admin
             try
             {
                 con.OpenConection();
-                con.ExecSqlQuery("SELECT * FROM department");
+                con.ExecSqlQuery("SELECT * FROM department ORDER BY dept_name ASC");
                 ddDept.DataTextField = "dept_name";
                 ddDept.DataValueField = "dept_name";
                 ddDept.DataSource = con.DataQueryExec();

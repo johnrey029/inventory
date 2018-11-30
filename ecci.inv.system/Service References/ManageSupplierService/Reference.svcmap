@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2908/admin/WebService/ManageSupplierService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ManageSupplierService.disco" MetadataType="Disco" ID="ae66ad76-2e75-4ebd-a33d-dc84f57f0984" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx?disco" />
-    <MetadataFile FileName="ManageSupplierService.wsdl" MetadataType="Wsdl" ID="398e3581-c494-409f-a726-abd3547e0c7e" SourceId="1" SourceUrl="http://localhost:2908/superadmin/WebService/ManageSupplierService.asmx?wsdl" />
+    <MetadataFile FileName="ManageSupplierService1.disco" MetadataType="Disco" ID="1e9adec3-2d0d-48bc-adef-2ac86dbafc8b" SourceId="1" SourceUrl="http://localhost:2908/admin/WebService/ManageSupplierService.asmx?disco" />
+    <MetadataFile FileName="ManageSupplierService1.wsdl" MetadataType="Wsdl" ID="216e094c-c5d8-455d-8fa7-efcebfcf6413" SourceId="1" SourceUrl="http://localhost:2908/admin/WebService/ManageSupplierService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
