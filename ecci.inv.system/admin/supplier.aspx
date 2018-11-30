@@ -2,7 +2,7 @@
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="ecci.inv.system.admin.supplier" MasterPageFile="~/admin/Superadmin.Master"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Administrator-Supplier
+    Administrator-Add Supplier
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -20,7 +20,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Add Supplier
+        Suppliers Management
         <small>Administrator</small>
       </h1>
       <ol class="breadcrumb">

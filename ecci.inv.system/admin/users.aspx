@@ -1,9 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="users.aspx.cs" Inherits="ecci.inv.system.admin.users" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Administrator-Users
+    Administrator-Add Users
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">  
+    <script type="text/javascript">  
+        $(document).ready(function () {
+         $("#groups").select2();
+         $("#mainUserNav").addClass('active');
+         $("#createUserNav").addClass('active');
+  });  
+ </script>  
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -11,12 +18,12 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Add Users
+            <h1>Users Management
         <small>Administrator</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                <li class="active">Add Users</li>
+                <li class="active">Add User</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -37,7 +44,7 @@
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Add Users</h3>
+                            <h3 class="box-title">Add User</h3>
                         </div>
 
                         <div class="box-body">

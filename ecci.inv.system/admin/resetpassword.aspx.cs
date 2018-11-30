@@ -78,6 +78,7 @@ namespace ecci.inv.system.admin
                     }
                 }
             }
+            cleartext();
         }
 
         private void activityReset()
@@ -99,6 +100,12 @@ namespace ecci.inv.system.admin
             tmpSource = ASCIIEncoding.ASCII.GetBytes(inputData);
             tmpData = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
             return Convert.ToBase64String(tmpData);
+        }
+        private void cleartext()
+        {
+            tbConfPassword.Text = "";
+            tbEmpNo.Text = "";
+            tbPassword.Text = "";
         }
     }
 }

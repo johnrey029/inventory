@@ -18,7 +18,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Add Client
+            <h1>Clients Management
         <small>Administrator</small>
             </h1>
             <ol class="breadcrumb">

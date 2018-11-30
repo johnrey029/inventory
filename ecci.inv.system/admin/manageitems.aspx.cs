@@ -21,6 +21,7 @@ namespace ecci.inv.system.admin
             if (!IsPostBack)
             {
                 lbError.Visible = false;
+                Label1.Visible = false;
             }
         }
 

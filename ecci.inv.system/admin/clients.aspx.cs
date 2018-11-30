@@ -58,6 +58,7 @@ namespace ecci.inv.system.admin
                     "<script>$(document).ready(function(){ $('.alert-success').hide(); $('.alert-error').show(); $('.alert-warning').hide(); });</script>");
                 }
             }
+            cleartext();
         }
         private int addClient()
         {
@@ -127,6 +128,13 @@ namespace ecci.inv.system.admin
                 lbError.Visible = true;
             }
             return a;
+        }
+        private void cleartext()
+        {
+            tbClientAdd.Text = "";
+            tbClientCon.Text = "";
+            tbClientCon2.Text = "";
+            tbClientName.Text = "";
         }
     }
 }

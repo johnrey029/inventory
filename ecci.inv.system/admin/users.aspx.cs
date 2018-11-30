@@ -95,6 +95,7 @@ namespace ecci.inv.system.admin
 
                 
             }
+            cleartext();
             //}
 
             //catch (Exception ex)
@@ -178,6 +179,18 @@ namespace ecci.inv.system.admin
             tmpSource = ASCIIEncoding.ASCII.GetBytes(inputData);
             tmpData = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
             return Convert.ToBase64String(tmpData);
+        }
+        private void cleartext()
+        {
+            ddDept.SelectedIndex = -1;
+            tbConfPassword.Text = "";
+            tbEmpNo.Text = "";
+            tbFname.Text = "";
+            tbLname.Text = "";
+            tbPassword.Text = "";
+            tbPosition.Text = "";
+            rbMale.Checked = false;
+            rbFemale.Checked = false;
         }
     }
 }

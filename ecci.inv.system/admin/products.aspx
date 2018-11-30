@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="products.aspx.cs" Inherits="ecci.inv.system.admin.products" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Administrator-Products
+    Administrator-Add Products
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Add Products
+            <h1>Products Management
         <small>Administrator</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                <li class="active">Add Products</li>
+                <li class="active">Add Product</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -36,7 +36,7 @@
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Add Items</h3>
+                            <h3 class="box-title">Add Product</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

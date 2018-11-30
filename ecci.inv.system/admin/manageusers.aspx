@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Superadmin.Master" AutoEventWireup="true" CodeBehind="manageusers.aspx.cs" Inherits="ecci.inv.system.admin.manageusers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-        Super Admin-Manage Users
+        Administrator-Manage Users
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="heading" runat="server">
     <script type="text/javascript">
@@ -34,6 +34,7 @@
                     alert(err);
                 }
             });
+            $("#groups").select2();
             $("#mainUserNav").addClass('active');
             $("#manageUserNav").addClass('active');
         });
@@ -45,11 +46,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Manage
-      <small>Suppliers</small>
+      <small>Users</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-                <li class="active">Suppliers</li>
+                <li class="active">Manage Users</li>
             </ol>
         </section>
 
@@ -58,12 +59,12 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                    <a href="supplier.aspx" class="btn btn-primary">Add Suppliers</a>
+                    <a href="users.aspx" class="btn btn-primary">Add Users</a>
                     <br />
                     <br />
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">List of Suppliers</h3>
+                            <h3 class="box-title">List of Users</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -90,8 +91,6 @@
             </div>
 
             <!-- /.row -->
-
-
         </section>
         <!-- /.content -->
     </div>
@@ -133,7 +132,7 @@
                 </div>
                 <div class="modal-footer bg-aqua-active">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSuppContact" ErrorMessage="Please input a Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:Button ID="btnUpdate" runat="server" Text="Update Items" CssClass="btn btn-success" OnClick="btnUpdate_Click"
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update Items" CssClass="btn btn-success" 
                         UseSubmitBehavior="false" OnClientClick="if ( Page_ClientValidate() ) { this.value='Updating...'; this.disabled='false'; }" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>

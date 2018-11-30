@@ -3,6 +3,11 @@
     Administrator-Reset Password
 </asp:Content>
 <asp:Content ID="hs1" ContentPlaceHolderID="heading" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#resetPassNav").addClass('active');
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -11,7 +16,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Reset Password
+        Password Management
         <small>Administrator</small>
       </h1>
       <ol class="breadcrumb">
@@ -37,7 +42,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Add Users</h3>
+            <h3 class="box-title">Reset Password</h3>
           </div>
 
               <div class="box-body">
@@ -49,13 +54,13 @@
                      </div>
 
                   <div class="form-group">
-                  <label for="brand">Password</label> <span style="display:inline-block; width: 20px;"></span>
+                  <label for="brand">New Password</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbPassword" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                   <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password" CausesValidation="false"></asp:TextBox>
                      </div>
 
                    <div class="form-group">
-                  <label for="brand">Confirm Password</label> <span style="display:inline-block; width: 20px;"></span>
+                  <label for="brand">Confirm New Password</label> <span style="display:inline-block; width: 20px;"></span>
                   <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbConfPassword" ErrorMessage="This field is required" ForeColor="Red"></asp:RequiredFieldValidator>
                   <asp:TextBox ID="tbConfPassword" runat="server" CssClass="form-control" placeholder="Confirm Password" TextMode="Password" CausesValidation="false"></asp:TextBox>
                      </div>
