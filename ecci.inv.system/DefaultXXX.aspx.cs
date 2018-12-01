@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 using System.Web.UI;
+using System.Drawing;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace ecci.inv.system
 {
-    public partial class default2 : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
         DBConnection con;
         protected void Page_Load(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace ecci.inv.system
                                     break;
                             }
                         }
-
+                        
                     }
                 }
                 tbEmpNo.Focus();

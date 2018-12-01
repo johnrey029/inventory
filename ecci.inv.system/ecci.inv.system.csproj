@@ -6738,7 +6738,8 @@
     <Content Include="css\main.css" />
     <Content Include="css\master.css" />
     <Content Include="css\style.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="DefaultXXX.aspx" />
+    <Content Include="default.aspx" />
     <Content Include="Images\globe.jpg" />
     <Content Include="Images\minus.png" />
     <Content Include="Images\plus.png" />
@@ -7646,12 +7647,19 @@
       <DependentUpon>changepassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="DBConnection.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="DefaultXXX.aspx.cs">
+      <DependentUpon>DefaultXXX.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="DefaultXXX.aspx.designer.cs">
+      <DependentUpon>DefaultXXX.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -8097,6 +8105,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="login\css\" />
+    <Folder Include="login\fonts\" />
+    <Folder Include="login\images\" />
+    <Folder Include="login\js\" />
+    <Folder Include="login\vendor\" />
     <Folder Include="superadmin\" />
   </ItemGroup>
   <PropertyGroup>

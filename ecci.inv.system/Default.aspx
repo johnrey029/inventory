@@ -1,104 +1,104 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ecci.inv.system.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="ecci.inv.system.default2" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-  <!-- Bootstrap 3.3.7 -->
-  
-    <!--commit #2-->
-  
-  <link rel="stylesheet" type="text/css" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" type="text/css" href="../assets/bower_components/font-awesome/css/font-awesome.min.css"/>
-  <!-- Ionicons -->
-  <link rel="stylesheet" type="text/css" href="../assets/bower_components/Ionicons/css/ionicons.min.css"/>
-  <!-- Theme style -->
-  <link rel="stylesheet" type="text/css" href="../assets/dist/css/AdminLTE.min.css"/>
-  <!-- iCheck -->
-  <link rel="stylesheet" type="text/css" href="../assets/plugins/iCheck/square/blue.css"/>
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
-    <style type="text/css">
-        .auto-style1 {
-            background: #fff;
-            padding: 20px;
-            color: #666;
-            text-align: center;
-            border-top-style: none;
-            border-top-color: inherit;
-            border-top-width: 0;
-        }
-    </style>
+    <title>Triton Industrial Plastic</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css"/>
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="login/css/util.css"/>
+	<link rel="stylesheet" type="text/css" href="login/css/main.css"/>
+<!--===============================================================================================-->
 </head>
-<body class="hold-transition login-page">
+<body>
     <form id="form1" runat="server">
-    <div class="login-box">
-  <div class="login-logo">
-    <b>Triton Industrial Plastic Manufacturing</b>
-  </div>
-  <!-- /.login-logo -->
-  <div class="auto-style1">
-    <p class="login-box-msg">INVENTORY SYSTEM
-      </p>
-      <asp:Label ID="lbError" runat="server" Text="Label" Visible="False" Width="100%"></asp:Label>
-<%--
-    <form action="<?php echo base_url('auth/login') ?>" method="post">--%>
-      <div class="form-group has-feedback">
-        <%--<input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off">--%>
-          <asp:TextBox ID="tbEmpNo" runat="server" CssClass="form-control" placeholder="Employee Number" autocomplete="off" ></asp:TextBox>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-          
-      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEmpNo" ErrorMessage="*The Employee Number field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-      </div>
-      <div class="form-group has-feedback">
-        <%--<input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">--%>
-        <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password" autocomplete="off"></asp:TextBox>
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          
-      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"  ControlToValidate="tbPassword" ErrorMessage="*The Password field is required" ForeColor="Red"></asp:RequiredFieldValidator>
-      </div>
-      <div class="row">
-        <!-- /.col -->
-        <div class="col-xs-12">
-          <%--<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>--%>
-            <asp:Button ID="btnSubmit" runat="server" Text="Sign In" OnClick="btnSubmit_Click" CssClass="btn btn-primary btn-block btn-flat" />
-        </div>
-        <!-- /.col -->
-      </div>
-<%--    </form>--%>
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<%--<div class="login100-pic js-tilt" data-tilt>
+					<img src="login/images/img-01.png" alt="IMG">
+				</div>--%>
 
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
+<%--				<form class="login100-form validate-form">--%>
+					<span class="login100-form-title">
+						Triton Industrial Plastic Manufacturing
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<%--<input class="input100" type="text" name="username" placeholder="Username"/>--%>
+                        <asp:TextBox ID="tbEmpNo" runat="server" CssClass="input100" placeholder="Username"></asp:TextBox>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<%--<input class="input100" type="password" name="pass" placeholder="Password"/>--%>
+                        <asp:TextBox ID="tbPassword" runat="server" CssClass="input100" placeholder="Password" TextMode="Password"></asp:TextBox>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<%--<button class="login100-form-btn">
+							Login
+						</button>--%>
+                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="login100-form-btn" OnClick="btnSubmit_Click" />
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+                            <asp:Label ID="lbError" runat="server" Text="" Visible="false"></asp:Label>
+						</span>
+						<%--<a class="txt2" href="#">
+							Username / Password?
+						</a>--%>
+					</div>
+
+					<div class="text-center p-t-136">
+						<%--<a class="txt2" href="#">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>--%>
+					</div>
+				<%--</form>--%>
+			</div>
+		</div>
+	</div>
+
+        <!--===============================================================================================-->	
+	<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="login/vendor/bootstrap/js/popper.js"></script>
+	<script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="login/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="login/js/main.js"></script>
     </form>
-    <script type="text/javascript" src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script type="text/javascript" src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script type="text/javascript" src="../assets/plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
-</script>
 </body>
 </html>
