@@ -112,18 +112,18 @@
                           <ItemTemplate>
                               <%#Eval("status") %>
                               <%#MyNewRow(Eval("uniqueid")) %>
-                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" Width="100%" AutoGenerateColumns="false">
+                              <asp:GridView ID="GridView2" CssClass="table table-bordered table-striped" runat="server" ShowHeaderWhenEmpty="true" EmptyDataText="No records Found" Width="100%" AutoGenerateColumns="false" EmptyDataRowStyle-CssClass="center">
                                                  <Columns>
                                                      <asp:BoundField DataField="brandname" HeaderText="Material Name" />
                                                      <asp:BoundField DataField="required" HeaderText="Qty" />
                                                      <asp:BoundField DataField="price" HeaderText="Price"/>
                                                  </Columns>
                               </asp:GridView>
-                                <div style="width:100%; text-align:center;">
+                            <div style="width:100%; text-align:center;">
                                 <%--<asp:Button ID="button" CssClass="btn btn-success" Height="30px" Width="75%"  runat="server" Text="Request Raw Materials" OnClick="button_Click" OnClientClick="return openModal('<%#Eval("uniqueid")%>')" />--%>
-                                <button type="button" class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');" >Request Raw Materials</button>
+                                <button type="button" id="<%# Eval("uniqueid") %>" class="btn btn-success" style="height: 30px; display:inline-block; width: 75%;" onclick="openModal('<%# Eval("uniqueid") %>');">Request Raw Materials</button>
                                 </div>
-                                   <input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>
+                                   <%--<input type="hidden" id="<%# Eval("uniqueid") %>"  name="hiddenStockId" value=""/>--%>
                                </br>
                             <%--         <tr>onclick='<%#Request_RawMats(this.ClientID) %>'onserverclick="ConfirmUpdate(<%# Eval("uniqueid") %>);"
                                   <td> 
@@ -208,12 +208,12 @@
     <script type="text/javascript">
         //$("#GridView1").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
             function openModal(stockId) {
-                $('#' + stockId).val(stockId);
-                var sid = $('#' + stockId).val();
+                //$('#' + stockId).val(stockId);
+                // sid = $('#' + stockId).val();
                 var now = new Date();
                 var minutes = 30;
                 now.setTime(now.getTime() + (minutes * 60 * 1000));
-                document.cookie = "CookieName=" + sid + ";expires=" + now.toUTCString();
+                document.cookie = "CookieName=" + stockId + ";expires=" + now.toUTCString();
                 window.location = "/production/requestmaterials.aspx";
                 //var datatableVariable;
                 //var dtVariable;
@@ -289,5 +289,6 @@
                 //}
                 //$('#popUpModal').modal('show');
             }
+            function disabledelete(stockId) { $('#' + stockId).disabled = true; }
 </script>
 </asp:Content>

@@ -115,14 +115,16 @@
                               <div style="width:100%; text-align:center;">
                                   <asp:Label ID="Label2" runat="server" Text="Label" Font-Size="Large" Font-Bold="True" Font-Italic="True" Visible="False" ForeColor ="Red"></asp:Label>
                               </div>
-                              
                           <br />
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
               </asp:GridView>
               <br />
-              <asp:Label ID="Label3" runat="server" Text="Label" Font-Size="Large" Font-Bold="True" Font-Italic="True"  ForeColor ="Red"></asp:Label>
+              <div style="width:100%; text-align:center;">
+              <asp:Label ID="Label3" runat="server" Text="Label" Font-Size="X-Large" Font-Bold="True" Font-Italic="True"  ForeColor ="Red" CssClass="text-center"></asp:Label>
+              </div>
+               <br />
               <asp:Button ID="btnRequest" runat="server" Width="100%" Text="Send Request" CssClass="btn btn-success" OnClick="btnRequest_Click"
               />
           </div>

@@ -54,6 +54,13 @@ namespace ecci.inv.system.production
             GridView1.DataSource = con.DataQueryExec();
             GridView1.DataBind();
             con.CloseConnection();
+            if(GridView1.Rows.Count == 0)
+            {
+                btnRequest.Text = "Back";
+                btnRequest.CssClass = "btn btn-primary";
+                Label3.Text = "PLEASE REQUEST FOR THE RAW MATERIALS FOR THIS PRODUCT TO THE PURCHASING!";
+                Label3.Visible = true;
+            }
         }
         public string MyNewRow(object unqid)
         {
@@ -166,6 +173,10 @@ namespace ecci.inv.system.production
             int sum = 0;
             int com = 0;
             string ponumber = "";
+            if (btnRequest.Text == "Back")
+            {
+                Response.Redirect("orderedrequest.aspx");
+            }
             foreach (GridViewRow gvrow in GridView1.Rows)
             {
                 qty = Convert.ToInt32(gvrow.Cells[2].Text);
