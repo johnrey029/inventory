@@ -6,7 +6,7 @@
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
          $(document).ready(function () {
-             $("#requestNav").addClass('active');
+             $("#approvalMenu").addClass('active');
          });
          function ToggleGridPanel(btn, row) {
              var current = $('#' + row).css('display');

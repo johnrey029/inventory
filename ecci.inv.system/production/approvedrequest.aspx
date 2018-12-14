@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="approvedrequest.aspx.cs" Inherits="ecci.inv.system.production.approvedrequest" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Production
+    Production-Process
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <style type="text/css">

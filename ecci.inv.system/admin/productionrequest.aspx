@@ -13,7 +13,7 @@
     </style>  
 <script type="text/javascript">  
     $(document).ready(function () {
-        $("#requestNav").addClass('active');
+        $("#approvalMenu").addClass('active');
         $(".display").DataTable();
        // document.getElementById("<%=GridView1.ClientID %>").prepend($("<thead></thead>").append($("#GridView1").find("tbody tr:first"))).dataTable();
         //$("#GridView1").prepend($("<thead></thead>").append($("#GridView1").find("tbody tr:first"))).dataTable();

@@ -123,7 +123,7 @@
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
-                <a href="index.aspx" class="logo">
+                <a href="#" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>AD</b></span>
                     <!-- logo for regular state and mobile devices -->
@@ -176,7 +176,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li id="createUserNav"><a href="users.aspx"><i class="fa fa-plus"></i>Add User</a></li>
-                            <li id="manageUserNav"><a href="manageusers.aspx"><i class="fa fa-circle-o"></i>Manage Users</a></li>
+                            <li id="manageUserNav"><a href="#"><i class="fa fa-circle-o"></i>Manage Users</a></li>
                         </ul>
                     </li>
                     <li class="treeview" id="mainSupNav">

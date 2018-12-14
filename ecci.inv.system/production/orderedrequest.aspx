@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/production/Production.Master" AutoEventWireup="true" CodeBehind="orderedrequest.aspx.cs" Inherits="ecci.inv.system.production.orderedrequest" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Production
+    Production-Request
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
     <style type="text/css">
@@ -88,7 +88,7 @@
           </div>
           <!-- /.box-header --><%--OnPreRender="GridView1_PreRender" --%>
           <div class="box-body">
-              <asp:GridView ID="GridView1" CssClass="display table table-bordered table-striped" runat="server" 
+              <asp:GridView ID="GridView1" CssClass="display table table-bordered table-striped" ShowHeaderWhenEmpty="true" runat="server" 
                   AutoGenerateColumns="false" OnRowDataBound="GridView1_RowDataBound" 
                   DataKeyNames="uniqueid">
                   <Columns>

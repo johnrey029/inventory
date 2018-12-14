@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/warehouse/WareHouse.Master" AutoEventWireup="true" CodeBehind="rawmaterials.aspx.cs" Inherits="ecci.inv.system.warehouse.rawmaterials" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Warehouse
+    Warehouse-Raw Reports
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  

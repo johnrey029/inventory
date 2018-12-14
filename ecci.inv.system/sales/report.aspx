@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="report.aspx.cs" Inherits="ecci.inv.system.production.report" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Production
+    Sales Report
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
@@ -49,12 +49,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Manage Raw Materials
-      <small>Request</small>
+      View Sales
+      <small>Order</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Delivery</li>
+      <li class="active">Sales</li>
     </ol>
   </section>
 
@@ -84,7 +84,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">View Raw Materials</h3>
+            <h3 class="box-title">List of Sales</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">

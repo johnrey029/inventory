@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sales/Sales.Master" AutoEventWireup="true" CodeBehind="reports.aspx.cs" Inherits="ecci.inv.system.sales.report" %>
 <asp:Content ID="TS1" ContentPlaceHolderID="title" runat="server">
-    Reports
+    Sales Report
 </asp:Content>
 <asp:Content ID="HS1" ContentPlaceHolderID="heading" runat="server">
      <script type="text/javascript">  
